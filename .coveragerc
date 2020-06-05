@@ -1,0 +1,7 @@
+[run]
+omit = 
+    roughcast/settings/*
+    roughcast/migrations/*
+
+[report]
+fail_under = 21
