@@ -7,6 +7,7 @@
 asgiref==3.2.7            # via django
 confusable-homoglyphs==3.2.0  # via django-registration
 dj-database-url==0.5.0    # via -r requirements/base.in
+django-crispy-forms==1.9.1  # via -r requirements/base.in
 django-registration==3.1  # via -r requirements/base.in
 django-sendgrid==1.0.1    # via -r requirements/base.in
 django==3.0.7             # via -r requirements/base.in, django-registration

@@ -24,7 +24,6 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DJANGO_DEBUG", type_=boolish)
-
 ALLOWED_HOSTS = [
     "localhost",
     "localhost:8000",
@@ -49,9 +48,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_forms",
     "roughcast",
 ]
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -62,9 +61,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
+WSGI_APPLICATION = "roughcast.wsgi.application"
 ROOT_URLCONF = "roughcast.urls"
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -80,8 +78,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = "roughcast.wsgi.application"
 
 
 # Database
@@ -109,7 +105,6 @@ TEMPLATES = [
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": (
@@ -124,19 +119,32 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+# https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_URL = "/static/"
+STATICFILES_DIRS = [str(BASE_DIR / "static"), str(BASE_DIR / "dist")]
+STATIC_ROOT = str(BASE_DIR / "staticfiles")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+
+# Email
+DEFAULT_FROM_EMAIL = "no-reply@wheretofind.me"
+# @@@ TODO: get rid of conditionals in settings. Move to .dev?
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+else:
+    EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+    SENDGRID_API_KEY = env("SENDGRID_API_KEY")
+
+
+# Django-registration
+ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window

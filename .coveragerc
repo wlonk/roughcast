@@ -4,4 +4,4 @@ omit =
     roughcast/migrations/*
 
 [report]
-fail_under = 21
+fail_under = 29
