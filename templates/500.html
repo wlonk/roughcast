@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block "title" %}Server error | {% endblock "title" %}
+
+{% block "main" %}
+<h1 class="text-center">Whoops.</h1>
+<p class="lead text-center">
+  Sorry, something went wrong. We're working on it. If you need to get in
+  touch, <a href="{% url "user-profile" slug="kit" %}">please do</a>.
+</p>
+{% endblock "main" %}

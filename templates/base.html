@@ -1,0 +1,86 @@
+{% load static %}<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% block "opengraph" %}
+	<meta property="og:title" content="Roughcast" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="{{request.build_absolute_uri}}" />
+	<meta property="og:image" content="{% static 'images/logo-with-bg.png' %}" />
+	<meta property="og:image:alt" content="Roughcast logo" />
+	<meta property="og:description" content="A calling card for the internet." />
+    {% endblock "opengraph" %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo-with-bg.png' %}"/>
+    {% block "meta" %}{% endblock "meta" %}
+
+    <title>{% block "title" %}{% endblock "title" %}Roughcast</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/app.css" %}" rel="stylesheet">
+  </head>
+
+  <body>
+    {% include "_navbar.html" %}
+
+    <div class="main px-3 py-3 pt-md-5 pb-md-4 mx-auto" role="main">
+
+      {% if user.is_authenticated %}
+        <noscript>
+          <div class="alert alert-danger" role="alert">
+            We're sorry but Roughcast doesn't work properly without
+            JavaScript enabled. Please enable it to continue.
+          </div>
+        </noscript>
+      {% endif %}
+
+      {% block "main" %}
+      <div class="text-center">
+        <img src="{% static 'images/logo.png' %}" alt="Roughcast logo" class="hero-logo">
+      </div>
+      <h1 class="display-4 text-center">Title</h1>
+      <p class="lead text-justify">Explanatory paragraph</p>
+      <p class="lead text-justify">Explanatory paragraph</p>
+      {% if not user.is_authenticated %}
+      <div class="text-center">
+        <a class="btn btn-primary btn-lg" href="{% url "django_registration_register" %}">Sign up</a>
+      </div>
+      {% endif %}
+      {% endblock "main" %}
+    </div>
+
+    <div class="container">
+      <footer class="pt-4 my-md-5 pt-md-5 border-top" role="contentinfo">
+        <div class="row">
+          <div class="col-12 col-md text-center">
+            <small class="d-block mb-3">&copy; 2020 Kit La Touche</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md text-center">
+            <small class="d-block mb-3">Please <a href="https://wheretofind.me/@kit">get in touch</a> if you have any problems or feedback.</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md text-center">
+            <small class="d-block mb-3">
+              <a href="#tos">Terms of Service</a>
+              <a href="#about">About</a>
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md text-center">
+            <small class="d-block mb-3">
+              <a href="https://ko-fi.com/B0B586NC">Support us on Ko-fi</a>
+            </small>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
