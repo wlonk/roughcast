@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load markdownify %}
+{% load version_extras %}
+
+{% block "title" %}{{ game.name }} | {% endblock "title" %}
+
+{% block "main" %}
+<h1>{{ game.name }}</h1>
+
+<p>
+<a href="{% url 'games_edit' pk=game.pk %}">edit</a>
+</p>
+
+<div>
+  {{ game.description|markdownify }}
+</div>
+
+<h2>Versions</h2>
+
+<ul>
+  <li><a href="{% url 'versions_new' pk=game.pk %}">new version</a></li>
+  {% for version in game.version_set.all %}
+  <li>
+    <a href="{% url 'versions_detail' game_pk=game.pk pk=version.pk %}">{{ version.name }}</a>
+    <ul>
+      {% for report in version|reports_for:request.user %}
+      <li><a href="">{{ report }}</a></li>
+      {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock "main" %}

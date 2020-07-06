@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block "title" %}{{ group.name }} | {% endblock "title" %}
+
+{% block "main" %}
+<h1>{{ group.name }}</h1>
+
+<p>
+<a href="{% url 'groups_edit' pk=group.pk %}">edit</a>
+</p>
+
+<h2>Members</h2>
+
+<ul>
+  {% for member in group.members.all %}
+  <li>{{ member.get_full_name }}</li>
+  {% endfor %}
+</ul>
+{% endblock "main" %}

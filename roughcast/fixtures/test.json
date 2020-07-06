@@ -1,0 +1,185 @@
+[
+  {
+    "model": "roughcast.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$QPy2PsND1OVP$967SOKzXgbED3MIwS6NZz6/qMHJlojJCw8MkEitSuKk=",
+      "last_login": "2020-07-24T23:27:03.110Z",
+      "is_superuser": true,
+      "username": "kit",
+      "first_name": "",
+      "last_name": "",
+      "email": "kit@transneptune.net",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-07-24T23:26:57.720Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "roughcast.user",
+    "pk": 2,
+    "fields": {
+      "password": "unusable",
+      "last_login": "2020-07-24T23:27:57Z",
+      "is_superuser": false,
+      "username": "stras",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2020-07-24T23:27:39Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "roughcast.publisher",
+    "pk": "mBw6Q2q",
+    "fields": {
+      "created_at": "2020-07-24T23:29:33.037Z",
+      "edited_at": "2020-07-24T23:29:33.037Z",
+      "slug": "transneptune-games",
+      "name": "Transneptune Games",
+      "description": "Games to warm you on a _cold_ night.",
+      "url": "https://transneptunegames.com"
+    }
+  },
+  {
+    "model": "roughcast.publisher",
+    "pk": "B72lnjE",
+    "fields": {
+      "created_at": "2020-07-24T23:29:42.940Z",
+      "edited_at": "2020-07-24T23:29:42.940Z",
+      "slug": "off-guard-games",
+      "name": "Off-Guard Games",
+      "description": "Stabby stabby!",
+      "url": ""
+    }
+  },
+  {
+    "model": "roughcast.publishermembership",
+    "pk": "mBw6Q2q",
+    "fields": {
+      "created_at": "2020-07-24T23:30:21.604Z",
+      "edited_at": "2020-07-24T23:30:21.604Z",
+      "user": 1,
+      "publisher": "mBw6Q2q",
+      "is_owner": true
+    }
+  },
+  {
+    "model": "roughcast.publishermembership",
+    "pk": "B72lnjE",
+    "fields": {
+      "created_at": "2020-07-24T23:30:28.691Z",
+      "edited_at": "2020-07-24T23:30:28.691Z",
+      "user": 2,
+      "publisher": "B72lnjE",
+      "is_owner": true
+    }
+  },
+  {
+    "model": "roughcast.game",
+    "pk": "mBw6Q2q",
+    "fields": {
+      "created_at": "2020-07-24T23:31:20.557Z",
+      "edited_at": "2020-07-24T23:31:20.557Z",
+      "slug": "coven",
+      "publisher": "mBw6Q2q",
+      "name": "Coven",
+      "banner": "",
+      "description": "A game about witches."
+    }
+  },
+  {
+    "model": "roughcast.game",
+    "pk": "B72lnjE",
+    "fields": {
+      "created_at": "2020-07-24T23:32:07.431Z",
+      "edited_at": "2020-07-24T23:32:07.431Z",
+      "slug": "swords-n-blades",
+      "publisher": "B72lnjE",
+      "name": "Swords 'n' Blades",
+      "banner": "",
+      "description": "Stabby stabby?"
+    }
+  },
+  {
+    "model": "roughcast.version",
+    "pk": "mBw6Q2q",
+    "fields": {
+      "created_at": "2020-07-24T23:32:40.956Z",
+      "edited_at": "2020-07-24T23:32:40.956Z",
+      "slug": "v010",
+      "created_by": 1,
+      "game": "mBw6Q2q",
+      "name": "v0.1.0",
+      "changelog": "Initial draft.",
+      "is_public": false,
+      "visible_to": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "roughcast.version",
+    "pk": "B72lnjE",
+    "fields": {
+      "created_at": "2020-07-24T23:33:23.922Z",
+      "edited_at": "2020-07-24T23:33:23.922Z",
+      "slug": "v020",
+      "created_by": 1,
+      "game": "mBw6Q2q",
+      "name": "v0.2.0",
+      "changelog": "Fixed the errors.",
+      "is_public": false,
+      "visible_to": []
+    }
+  },
+  {
+    "model": "roughcast.version",
+    "pk": "q4jeajz",
+    "fields": {
+      "created_at": "2020-07-24T23:33:49.111Z",
+      "edited_at": "2020-07-24T23:33:49.111Z",
+      "slug": "version-1",
+      "created_by": 2,
+      "game": "B72lnjE",
+      "name": "version 1",
+      "changelog": "It's a stab at it, anyway.",
+      "is_public": false,
+      "visible_to": []
+    }
+  },
+  {
+    "model": "roughcast.version",
+    "pk": "gGjpN24",
+    "fields": {
+      "created_at": "2020-07-24T23:34:09.982Z",
+      "edited_at": "2020-07-24T23:34:09.982Z",
+      "slug": "version-2",
+      "created_by": 2,
+      "game": "B72lnjE",
+      "name": "version 2",
+      "changelog": "Stabbity.",
+      "is_public": false,
+      "visible_to": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "roughcast.attachedfile",
+    "pk": "B72lnjE",
+    "fields": {
+      "created_at": "2020-07-25T02:23:15.598Z",
+      "edited_at": "2020-07-25T02:23:15.598Z",
+      "version": "mBw6Q2q",
+      "attached_file": "Transneptune Games/Coven/Coven-v0.1.0-bOTYyMDg2.pdf"
+    }
+  }
+]

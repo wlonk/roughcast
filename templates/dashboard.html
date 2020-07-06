@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block "title" %}Dashboard | {% endblock "title" %}
+
+{% block "main" %}
+<h1>Dashboard</h1>
+
+<h2>Games</h2>
+
+<ul>
+  <li><a href="{% url 'games_new' %}">new</a></li>
+{% for game in games %}
+    <li><a href="{% url 'games_detail' pk=game.pk %}">{{ game }}</a></li>
+{% empty %}
+    <li>No games</li>
+{% endfor %}
+</ul>
+
+<h2>Memberships</h2>
+
+<ul>
+  <li><a href="{% url 'publishers_new' %}">new publisher</a></li>
+  <li><a href="{% url 'groups_new' %}">new group</a></li>
+{% for publisher in publishers %}
+    <li><a href="{% url 'publishers_detail' pk=publisher.id %}">{{ publisher }}</a></li>
+{% endfor %}
+{% for group in groups %}
+    <li><a href="{% url 'groups_detail' pk=group.id %}">{{ group }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Reports</h2>
+
+<ul>
+{% for report in reports %}
+    <li>{{ report }}</li>
+{% empty %}
+    <li>No reports</li>
+{% endfor %}
+</ul>
+{% endblock "main" %}

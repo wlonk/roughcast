@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load markdownify %}
+
+{% block "title" %}{{ publisher.name }} | {% endblock "title" %}
+
+{% block "main" %}
+<h1><a href="{{ publisher.url }}">{{ publisher.name }}</a></h1>
+
+<p>
+<a href="{% url 'publishers_edit' pk=publisher.pk %}">edit</a>
+</p>
+
+<div>
+  {{ publisher.description|markdownify }}
+</div>
+
+<h2>Members</h2>
+
+<ul>
+  {% for membership in publisher.publishermembership_set.all %}
+  <li>{% if membership.is_owner %}(owner) {% endif %}{{ membership.user.get_full_name }}</li>
+  {% endfor %}
+</ul>
+{% endblock "main" %}

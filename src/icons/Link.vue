@@ -1,0 +1,9 @@
+<template>
+  <!-- Link icon by Icons8 -->
+  <img
+    class="icon icons8-Link"
+    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAC4UlEQVR4nO2b7XGjQAyGnxK2BJdAB7cdJR2EDs4dmE5MB7gTuwPfD2ByuUPaD/aD9fid0SRjr1Z6iVYSIkC7MMCvRUxlX4qgA76ACXgKMi1ruko+ZoEFrsikJbkuus3CABfCif8rv2nwiBj0UA+ViYYuQgfcSUd+lTsNXIRc5JuIBF/yD2AAPpmTnF1+H5bvXPqXEmRC4Uu+R/8LmmWNax+bnMEO+JB/EOa0RY+GaxLPE8CXfExjYx37Vm+WcpJf0St79zv23Y0S5GHOCdJRmHbuHY1S5FcMip3iKE0e5hIp2SraE9QgD3oytIltiahFHg5wAQz1yEPlI+BzV5eTPFROghfFeAnyWvTdMtoF3J1YbvJQuRG6KsZLkLeK/Wdu+53DuM1pHHfVGTPbrxp6PiXXZvZBzPwP5NJjmEfa1+VnTInyIX+O2DcYkvFBWL+VrUNneD7kb4F7RsEoDnwKOmdhve8Mz7fTLNL7W8UJK+iMio4rZGu22ZuwiiNW0JEiwCdp1e40/0PMEdAGF0/kGZ6r3GYhf1pEQ2gShLjGRbsAycl3/Ay3STFwE5xyZfZe0Hsi9w9btrKQ30o00lyt31jrIgJxM7yOnxfhRiHyq5wEndikNih6Gk6CL7vgU2Kkqz0qOtpRaGqGp91TW4euVN81PRvNJhCpmotB0R8FHavo2BgyoUg5wzPIFUGKgJeb4W1ldq0vHxTb2XFRjMeQX2GYy9+I/oj7PcNT7PeZbb9neJpxm9M47xlemzO8FGh2hpcCTc/w9qL5Gd4evMQMLxaHIw/ljsAhya/InQQPTR7iZ3g+ODx5yNcINUEe8rTCzZBfMSI7eif8n5WbIg/uu7En7sfWZlnj2udw5FcMuJ2/Mw9OPvh+b+9j+cz3hYdDkgd9hpdCDk1+hetB5UuTX5E6Eorc1aWGwf3c3kfONEj+b1j0EinJyMFeTtqLjrkr1I7GbVnTzFnfA8P3e3vNhvgfj/ZbGvkLAioAAAAASUVORK5CYII="
+    width="16"
+    height="16"
+  />
+</template>
