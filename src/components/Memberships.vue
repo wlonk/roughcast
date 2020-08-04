@@ -7,7 +7,7 @@
       v-bind="membership.publisher"
       :isOwner="membership.is_owner"
     />
-    @@@ Create new publisher (maybe rename "Creative team"?)
+    <PublisherForm />
   </div>
 </template>
 
@@ -16,10 +16,11 @@ import _ from 'lodash';
 import { mapState } from 'vuex';
 
 import Publisher from '@/components/Publisher';
+import PublisherForm from '@/forms/PublisherForm';
 
 export default {
   name: 'Memberships',
-  components: { Publisher },
+  components: { Publisher, PublisherForm },
   computed: {
     ...mapState(['User', 'Publisher', 'PublisherMembership']),
     hydratedMemberships() {

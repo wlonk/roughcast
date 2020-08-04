@@ -39,6 +39,24 @@ const Publisher = {
         // TODO: Display lookup error toast?
       }
     },
+    async createNewPublisher({ commit, state }, data) {
+      const csrftoken = Vue.$cookies.get('csrftoken');
+      const response = await fetch('/api/publisher/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const newPublisher = await response.json();
+        commit('getPublisherById', newPublisher);
+        commit('retrievePublisherMemberships');
+      } else {
+        // TODO: Display lookup error toast?
+      }
+    },
   },
 };
 

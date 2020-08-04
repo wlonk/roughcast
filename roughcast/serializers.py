@@ -178,6 +178,17 @@ class PublisherSerializer(serializers.ModelSerializer):
         user = getattr(self.context.get("request", None), "user")
         return user in publisher.members.all()
 
+    def create(self, validated_data):
+        obj = super().create(validated_data)
+        user = getattr(self.context.get("request", None), "user")
+        if user:
+            PublisherMembership.objets.create(
+                user=user,
+                publisher=obj,
+                is_owner=True,
+            )
+        return obj
+
 
 class PublisherMembershipSerializer(serializers.ModelSerializer):
     class Meta:
