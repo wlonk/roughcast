@@ -74,6 +74,7 @@ class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = "username"
+    lookup_value_regex = "[^/]+"
 
     @action(detail=False)
     def me(self, request):
@@ -103,6 +104,7 @@ class PublisherViewSet(ModelViewSet):
     queryset = Publisher.objects.all()
     serializer_class = PublisherSerializer
     lookup_field = "slug"
+    lookup_value_regex = "[^/]+"
 
 
 class PublisherMembershipViewSet(ModelViewSet):
@@ -114,12 +116,13 @@ class GameViewSet(ModelViewSet):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
     lookup_field = "slug"
+    lookup_value_regex = "[^/]+"
 
 
 class VersionViewSet(ModelViewSet):
     queryset = Version.objects.all()
     serializer_class = VersionSerializer
-    lookup_field = "slug"
+    filterset_fields = ("slug", "game__slug")
 
     @action(detail=True, methods=["get"])
     def archive(self, request, slug=None):

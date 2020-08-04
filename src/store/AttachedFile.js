@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 const AttachedFile = {
   state: () => ({
     all: {},
@@ -7,7 +9,10 @@ const AttachedFile = {
       state.all = attached_files;
     },
     getAttachedFileById(state, attached_file) {
-      state.all[attached_file.id] = attached_file;
+      state.all = {
+        ...state.all,
+        [attached_file.id]: attached_file,
+      }
     },
   },
   actions: {
@@ -32,6 +37,25 @@ const AttachedFile = {
       if (response.ok) {
         const attached_file = await response.json();
         commit('getAttachedFileById', attached_file);
+      } else {
+        // TODO: Display lookup error toast?
+      }
+    },
+    async createNewAttachedFile({ commit }, data) {
+      const formData = new FormData();
+      formData.append("version_id", data.version_id);
+      formData.append("attached_file", data.attached_file);
+      const csrftoken = Vue.$cookies.get('csrftoken');
+      const response = await fetch('/api/attached_file/', {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrftoken,
+        },
+        body: formData,
+      });
+      if (response.ok) {
+        const newAttachedFile = await response.json();
+        commit('getAttachedFileById', newAttachedFile);
       } else {
         // TODO: Display lookup error toast?
       }

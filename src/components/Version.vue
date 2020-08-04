@@ -45,7 +45,7 @@ export default {
   computed: {
     ...mapState(['AttachedFile']),
     attachedFiles() {
-      return _.filter(this.AttachedFile.all, af => af.version === this.slug);
+      return _.filter(this.AttachedFile.all, af => af.version_id === this.id);
     },
   },
 };

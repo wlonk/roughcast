@@ -27,7 +27,10 @@ const User = {
       state.all = users;
     },
     getUserById(state, user) {
-      state.all[user.id] = user;
+      state.all = {
+        ...state.all,
+        [user.id]: user,
+      }
     },
   },
   actions: {
@@ -63,9 +66,8 @@ const User = {
           'X-CSRFToken': csrftoken,
         },
       });
-      if (response.ok) {
-        commit('logOut');
-      } else {
+      commit('logOut');
+      if (!response.ok) {
         const errors = {
           non_field_errors: [
             'There was an error logging out. Please try again in a moment.',

@@ -8,6 +8,7 @@
     <RenderedMarkdown :body="description" />
     <div v-if="isDetail">
       <Version v-for="(version, id) in versions" v-bind="version" :key="id" />
+      <VersionForm v-if="user_can_add_versions" :forGame="slug" />
     </div>
   </div>
 </template>
@@ -17,17 +18,19 @@ import _ from 'lodash';
 import { mapState } from 'vuex';
 
 import Version from '@/components/Version';
+import VersionForm from '@/components/VersionForm';
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 
 export default {
   name: 'Game',
-  components: { Version, RenderedMarkdown },
+  components: { Version, VersionForm, RenderedMarkdown },
   props: {
     id: String,
     name: String,
     slug: String,
     description: String,
     publisher: String,
+    user_can_add_versions: Boolean,
     isDetail: {
       type: Boolean,
       default: false,

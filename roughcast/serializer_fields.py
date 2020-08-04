@@ -1,6 +1,8 @@
 from rest_framework import serializers
+from rest_framework.fields import SlugField as BaseSlugField
 
 from .models import User
+from .slugs import validate_slug
 
 
 class UserStringField(serializers.RelatedField):
@@ -21,3 +23,9 @@ class SlugStringField(serializers.RelatedField):
 
     def to_representation(self, value):
         return value.slug
+
+
+class SlugField(BaseSlugField):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.validators = [validate_slug]

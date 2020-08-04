@@ -23,7 +23,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('getVersionById', this.$route.params.version);
+    this.$store.dispatch('getVersionBySlugs', this.$route.params);
     this.$store.dispatch('retrieveAttachedFiles');
   },
 };

@@ -45,7 +45,10 @@ class Publisher(BasicModelMixin, SimpleSlugMixin, models.Model):
     )
 
     class Meta:
-        constraints = (models.UniqueConstraint(fields=("name",), name="unique_name",),)
+        constraints = (
+            models.UniqueConstraint(fields=("name",), name="unique_publisher_name"),
+            models.UniqueConstraint(fields=("slug",), name="unique_publisher_slug"),
+        )
 
     def __str__(self):
         return self.name
@@ -74,6 +77,7 @@ class Game(BasicModelMixin, SimpleSlugMixin, models.Model):
             models.UniqueConstraint(
                 fields=("publisher", "name"), name="unique_name_per_publisher",
             ),
+            models.UniqueConstraint(fields=("slug",), name="unique_game_slug"),
         )
 
     def __str__(self):
@@ -94,6 +98,9 @@ class Version(BasicModelMixin, SimpleSlugMixin, models.Model):
         constraints = (
             models.UniqueConstraint(
                 fields=("game", "name"), name="unique_name_per_game",
+            ),
+            models.UniqueConstraint(
+                fields=("game", "slug"), name="unique_slug_per_game"
             ),
         )
 

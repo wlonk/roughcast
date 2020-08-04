@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "markdownify",
     "rest_framework",
+    "django_filters",
     "roughcast",
 ]
 MIDDLEWARE = [
@@ -163,5 +164,6 @@ ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
-    ]
+    ],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }

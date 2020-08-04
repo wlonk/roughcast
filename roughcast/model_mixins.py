@@ -1,6 +1,7 @@
 from django.db import models
-from django.utils.text import slugify
 from hashid_field import HashidAutoField
+
+from .slugs import CustomSlugField, slugify
 
 
 class BasicModelMixin(models.Model):
@@ -16,7 +17,7 @@ class SimpleSlugMixin(models.Model):
     class Meta:
         abstract = True
 
-    slug = models.SlugField(max_length=255, blank=True, unique=True)
+    slug = CustomSlugField(max_length=255, blank=True)
     slug_field_name = "name"
 
     def save(self, *args, **kwargs):

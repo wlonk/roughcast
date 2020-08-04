@@ -113,7 +113,7 @@
     "fields": {
       "created_at": "2020-07-24T23:32:40.956Z",
       "edited_at": "2020-07-24T23:32:40.956Z",
-      "slug": "v010",
+      "slug": "v0.1.0",
       "created_by": 1,
       "game": "mBw6Q2q",
       "name": "v0.1.0",
@@ -130,7 +130,7 @@
     "fields": {
       "created_at": "2020-07-24T23:33:23.922Z",
       "edited_at": "2020-07-24T23:33:23.922Z",
-      "slug": "v020",
+      "slug": "v0.2.0",
       "created_by": 1,
       "game": "mBw6Q2q",
       "name": "v0.2.0",

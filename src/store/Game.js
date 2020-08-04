@@ -7,7 +7,10 @@ const Game = {
       state.all = games;
     },
     getGameById(state, game) {
-      state.all[game.id] = game;
+      state.all = {
+        ...state.all,
+        [game.id]: game,
+      }
     },
   },
   actions: {

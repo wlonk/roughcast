@@ -7,7 +7,10 @@ const Publisher = {
       state.all = publishers;
     },
     getPublisherById(state, publisher) {
-      state.all[publisher.id] = publisher;
+      state.all = {
+        ...state.all,
+        [publisher.id]: publisher,
+      }
     },
   },
   actions: {
