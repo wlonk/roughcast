@@ -18,7 +18,7 @@ import _ from 'lodash';
 import { mapState } from 'vuex';
 
 import Version from '@/components/Version';
-import VersionForm from '@/components/VersionForm';
+import VersionForm from '@/forms/VersionForm';
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 
 export default {

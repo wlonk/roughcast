@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 const Game = {
   state: () => ({
     all: {},
@@ -35,6 +37,23 @@ const Game = {
       if (response.ok) {
         const game = await response.json();
         commit('getGameById', game);
+      } else {
+        // TODO: Display lookup error toast?
+      }
+    },
+    async createNewGame({ commit, state }, data) {
+      const csrftoken = Vue.$cookies.get('csrftoken');
+      const response = await fetch('/api/game/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const newGame = await response.json();
+        commit('getGameById', newGame);
       } else {
         // TODO: Display lookup error toast?
       }

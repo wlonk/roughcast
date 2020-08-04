@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Dashboard</router-link>
+      <Breadcrumbs />
     </div>
     <div v-if="User.current">
       Logged in as

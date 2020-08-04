@@ -13,18 +13,18 @@
       <label for="changelog">changes</label>
       <textarea name="changelog" v-model="changelog" />
     </div>
-      <div>
-        <input type="checkbox" name="is_public" v-model="is_public">
-        <label for="is_public">public</label>
-      </div>
-      <div v-if="!is_public">
-        <label for="visible_to">visible to</label>
-        <input name="visible_to" v-model="visible_to" />
-      </div>
-      <div>
-        <input type="file" multiple name="files" />
-      </div>
-      <input type="submit" value="create" />
+    <div>
+      <input type="checkbox" name="is_public" v-model="is_public">
+      <label for="is_public">public</label>
+    </div>
+    <div v-if="!is_public">
+      <label for="visible_to">visible to</label>
+      <input name="visible_to" v-model="visible_to" />
+    </div>
+    <div>
+      <input type="file" multiple name="files" />
+    </div>
+    <input type="submit" value="create" />
   </form>
 </template>
 

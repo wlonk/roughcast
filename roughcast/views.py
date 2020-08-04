@@ -125,7 +125,7 @@ class VersionViewSet(ModelViewSet):
     filterset_fields = ("slug", "game__slug")
 
     @action(detail=True, methods=["get"])
-    def archive(self, request, slug=None):
+    def archive(self, request, pk=None):
         version = self.get_object()
         all_files = [af.attached_file for af in version.attachedfile_set.all()]
 

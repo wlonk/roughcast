@@ -161,6 +161,7 @@ class PublisherSerializer(serializers.ModelSerializer):
             "slug",
             "description",
             "url",
+            "user_can_add_games",
             # "members",
             # "members_id",
         )
@@ -171,6 +172,11 @@ class PublisherSerializer(serializers.ModelSerializer):
     # members_id = serializers.PrimaryKeyRelatedField(
     #     many=True, read_only=True, pk_field=serializers.CharField(), source="members"
     # )
+    user_can_add_games = serializers.SerializerMethodField()
+
+    def get_user_can_add_games(self, publisher):
+        user = getattr(self.context.get("request", None), "user")
+        return user in publisher.members.all()
 
 
 class PublisherMembershipSerializer(serializers.ModelSerializer):

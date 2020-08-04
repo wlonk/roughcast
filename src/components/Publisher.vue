@@ -8,6 +8,7 @@
     <RenderedMarkdown :body="description" />
     <div v-if="isDetail">
       <Game v-for="(game, id) in games" :key="id" v-bind="game" />
+      <GameForm v-if="user_can_add_games" :forPublisher="slug" />
     </div>
   </div>
 </template>
@@ -20,6 +21,7 @@ import RenderedMarkdown from '@/components/RenderedMarkdown';
 import IconCrown from '@/icons/Crown';
 import IconLink from '@/icons/Link';
 import Game from '@/components/Game';
+import GameForm from '@/forms/GameForm';
 
 export default {
   name: 'Publisher',
@@ -29,6 +31,7 @@ export default {
     slug: String,
     url: String,
     description: String,
+    user_can_add_games: Boolean,
     isOwner: Boolean,
     isDetail: {
       type: Boolean,
@@ -40,6 +43,7 @@ export default {
     IconLink,
     RenderedMarkdown,
     Game,
+    GameForm,
   },
   computed: {
     ...mapState(['Game']),
