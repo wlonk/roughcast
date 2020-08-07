@@ -1,27 +1,34 @@
 <template>
-  <form @submit.stop.prevent="createVersion">
+  <form @submit.stop.prevent="createVersion" class="ui form">
     <input type="hidden" name="game" :value="game" />
-    <div>
+    <div class="field">
       <label for="name">name</label>
       <input name="name" v-model="name" />
     </div>
-    <div>
+    <div class="field">
       <label for="slug">slug</label>
       <input name="slug" v-model="slug" />
     </div>
-    <div>
+    <div class="field">
       <label for="changelog">changes</label>
       <textarea name="changelog" v-model="changelog" />
     </div>
-    <div>
+    <div class="ui checkbox field">
       <input type="checkbox" name="is_public" v-model="is_public">
       <label for="is_public">public</label>
     </div>
-    <div v-if="!is_public">
+    <div v-if="!is_public" class="field">
       <label for="visible_to">visible to</label>
-      <input name="visible_to" v-model="visible_to" />
+      <sui-dropdown
+        :options="users"
+        v-model="visible_to"
+        placeholder="Visible to"
+        multiple
+        search
+        selection
+        />
     </div>
-    <div>
+    <div class="field">
       <input type="file" multiple name="files" />
     </div>
     <input type="submit" value="create" />
@@ -29,7 +36,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: "VersionForm",
@@ -42,9 +49,22 @@ export default {
       name: '',
       slug: '',
       changelog: '',
-      is_public: true,
+      is_public: false,
       visible_to: [],
     };
+  },
+  created() {
+    this.$store.dispatch('retrieveUsers');
+  },
+  computed: {
+    ...mapState(['User']),
+    users() {
+      return _.map(this.User.all, (u) => ({
+        key: u.id,
+        value: u.username,
+        text: `${u.get_full_name} (@${u.username})`,
+      }));
+    }
   },
   methods: {
     ...mapActions(['createNewVersion', 'createNewAttachedFile']),

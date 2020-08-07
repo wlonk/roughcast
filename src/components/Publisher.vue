@@ -1,14 +1,19 @@
 <template>
-  <div class="publisher">
-    <h4>
-      <IconCrown v-if="isOwner" />
-      <router-link :to="`/p/${slug}`">{{ name }}</router-link>
-      <a v-if="url" :href="url"><IconLink /></a>
-    </h4>
-    <RenderedMarkdown :body="description" />
-    <div v-if="isDetail">
-      <Game v-for="(game, id) in games" :key="id" v-bind="game" />
-      <GameForm v-if="user_can_add_games" :forPublisher="slug" />
+  <div class="ui card">
+    <div class="content">
+      <i class="right floated star icon" v-if="isOwner"></i>
+      <a v-if="url" :href="url"><i class="right floated linkify icon"></i></a>
+      <router-link :to="`/p/${slug}`" class="header">{{ name }}</router-link>
+      <div class="description">
+        <RenderedMarkdown :body="description" />
+      </div>
+      <div v-if="isDetail">
+        <Game v-for="(game, id) in games" :key="id" v-bind="game" />
+        <div v-if="user_can_add_games">
+          <h3 class="ui header">Add game</h3>
+          <GameForm v-if="user_can_add_games" :forPublisher="slug" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -18,8 +23,6 @@ import _ from 'lodash';
 import { mapState } from 'vuex';
 
 import RenderedMarkdown from '@/components/RenderedMarkdown';
-import IconCrown from '@/icons/Crown';
-import IconLink from '@/icons/Link';
 import Game from '@/components/Game';
 import GameForm from '@/forms/GameForm';
 
@@ -39,8 +42,6 @@ export default {
     },
   },
   components: {
-    IconCrown,
-    IconLink,
     RenderedMarkdown,
     Game,
     GameForm,
@@ -53,14 +54,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.publisher {
-  max-width: 900px;
-  margin: 0 auto 1rem;
-  border: 2px solid grey;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.1);
-}
-</style>

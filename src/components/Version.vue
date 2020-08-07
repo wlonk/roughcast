@@ -5,11 +5,11 @@
         {{ name }}
       </router-link>
       <a :href="archive_link">
-        <IconArchive />
+        <sui-icon name="archive" outline />
       </a>
       <ul v-if="isDetail">
         <li v-for="(file, i) in attachedFiles" :key="i">
-          <a :href="file.attached_file"> <IconPdf /> {{ file.name }} </a>
+          <a :href="file.attached_file"> <i class="file pdf outline icon"></i> {{ file.name }} </a>
         </li>
       </ul>
     </h4>
@@ -18,8 +18,6 @@
 
 <script>
 import _ from 'lodash';
-import IconArchive from '@/icons/Archive';
-import IconPdf from '@/icons/Pdf';
 
 import { mapState } from 'vuex';
 
@@ -38,10 +36,6 @@ export default {
       default: false,
     },
   },
-  components: {
-    IconArchive,
-    IconPdf,
-  },
   computed: {
     ...mapState(['AttachedFile']),
     attachedFiles() {
@@ -50,10 +44,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-ul {
-  padding-left: 0;
-  list-style: none;
-}
-</style>

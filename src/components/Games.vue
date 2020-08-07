@@ -1,8 +1,9 @@
 <template>
   <div>
     <h2>Games</h2>
-    <Game v-for="(game, id) in Game.all" :key="id" v-bind="game" />
-    <div>@@@ add game</div>
+    <div class="ui cards">
+      <Game v-for="(game, id) in Game.all" :key="id" v-bind="game" />
+    </div>
   </div>
 </template>
 

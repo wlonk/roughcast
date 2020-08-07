@@ -1,12 +1,15 @@
 <template>
   <div>
     <h2>Your Publishers</h2>
-    <Publisher
-      v-for="(membership, id) in hydratedMemberships"
-      :key="id"
-      v-bind="membership.publisher"
-      :isOwner="membership.is_owner"
-    />
+    <div class="ui cards">
+      <Publisher
+        v-for="(membership, id) in hydratedMemberships"
+        :key="id"
+        v-bind="membership.publisher"
+        :isOwner="membership.is_owner"
+        />
+    </div>
+    <h3 class="ui header">Add publisher</h3>
     <PublisherForm />
   </div>
 </template>

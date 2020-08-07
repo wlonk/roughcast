@@ -1,5 +1,5 @@
 <template>
-  <form @submit.stop.prevent="createGame">
+  <form @submit.stop.prevent="createGame" class="ui form">
     <input type="hidden" name="publisher" :value="publisher" />
     <div>
       <label for="name">name</label>

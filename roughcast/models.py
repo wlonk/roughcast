@@ -103,6 +103,7 @@ class Version(BasicModelMixin, SimpleSlugMixin, models.Model):
                 fields=("game", "slug"), name="unique_slug_per_game"
             ),
         )
+        ordering = ('-created_at',)
 
     def __str__(self):
         return f"{self.game} version {self.name}"

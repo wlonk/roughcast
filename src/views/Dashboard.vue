@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="ui raised text segment">
     <h1>This is the Dashboard</h1>
     <Games />
     <Memberships />

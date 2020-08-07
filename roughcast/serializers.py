@@ -227,6 +227,7 @@ class GameSerializer(serializers.ModelSerializer):
             "banner",
             "description",
             "user_can_add_versions",
+            "latest_version",
         )
 
     id = serializers.CharField(read_only=True)
@@ -238,10 +239,15 @@ class GameSerializer(serializers.ModelSerializer):
         read_only=True, pk_field=serializers.CharField(), source="publisher"
     )
     user_can_add_versions = serializers.SerializerMethodField()
+    latest_version = serializers.SerializerMethodField()
 
     def get_user_can_add_versions(self, game):
         user = getattr(self.context.get("request", None), "user")
         return user in game.publisher.members.all()
+
+    def get_latest_version(self, game):
+        version = game.version_set.first()
+        return version.name if version else "no versions"
 
 
 class VersionSerializer(serializers.ModelSerializer):

@@ -1,20 +1,24 @@
 <template>
-  <form @submit.stop.prevent="login">
-    <input name="username" placeholder="username" />
-    <ul v-if="User.errors.username" class="errors">
-      <li v-for="(error, i) in User.errors.username" :key="i">
-        {{ error }}
-      </li>
-    </ul>
-    <input name="password" type="password" placeholder="password" />
-    <ul v-if="User.errors.password" class="errors">
-      <li v-for="(error, i) in User.errors.password" :key="i">
-        {{ error }}
-      </li>
-    </ul>
-    <input type="submit" value="log in" />
-    <ul v-if="User.errors.non_field_errors" class="errors">
-      <li v-for="(error, i) in User.errors.non_field_errors" :key="i">
+  <form @submit.stop.prevent="login" class="ui mini form">
+    <div class="ui input">
+      <input name="username" placeholder="username" />
+      <ul v-if="User.errors.username">
+        <li v-for="(error, i) in User.errors.username" :key="i" class="ui error message">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+    <div class="ui input">
+      <input name="password" type="password" placeholder="password" class="ui input" />
+      <ul v-if="User.errors.password">
+        <li v-for="(error, i) in User.errors.password" :key="i" class="ui error message">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+    <input type="submit" value="log in" class="ui mini primary button" />
+    <ul v-if="User.errors.non_field_errors">
+      <li v-for="(error, i) in User.errors.non_field_errors" :key="i" class="ui error message">
         {{ error }}
       </li>
     </ul>
@@ -37,19 +41,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-form {
-  width: 200px;
-  margin: 0 auto 1rem;
-  border: 2px solid grey;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.1);
-}
-.errors {
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-}
-</style>

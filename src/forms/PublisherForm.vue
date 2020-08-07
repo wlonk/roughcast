@@ -1,5 +1,5 @@
 <template>
-  <form @submit.stop.prevent="createPublisher">
+  <form @submit.stop.prevent="createPublisher" class="ui form">
     <div>
       <label for="name">name</label>
       <input name="name" v-model="name" />
