@@ -13,7 +13,7 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'Logout',
+  name: 'LogOut',
   computed: mapState(['User']),
   methods: {
     logout() {

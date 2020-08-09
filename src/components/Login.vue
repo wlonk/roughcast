@@ -29,7 +29,7 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'Login',
+  name: 'LogIn',
   computed: mapState(['User']),
   methods: {
     login(e) {

@@ -7,8 +7,8 @@
       }}</router-link>
     </div>
     <div>
-      <Login v-if="!User.current" />
-      <Logout v-else />
+      <LogIn v-if="!User.current" />
+      <LogOut v-else />
     </div>
     <router-view />
   </div>
@@ -17,14 +17,14 @@
 <script>
 import { mapState } from 'vuex';
 
-import Login from '@/components/Login';
-import Logout from '@/components/Logout';
+import LogIn from '@/components/LogIn';
+import LogOut from '@/components/LogOut';
 
 export default {
   name: 'App',
   components: {
-    Login,
-    Logout,
+    LogIn,
+    LogOut,
   },
   computed: mapState(['User']),
 };

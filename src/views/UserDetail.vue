@@ -1,17 +1,17 @@
 <template>
   <div>
-    <User v-bind="user" :isDetail="true" />
+    <UserCard v-bind="user" :isDetail="true" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
-import User from '@/components/User';
+import UserCard from '@/components/UserCard';
 
 export default {
   name: 'UserDetail',
-  components: { User },
+  components: { UserCard },
   computed: {
     ...mapState(['User']),
     user() {
