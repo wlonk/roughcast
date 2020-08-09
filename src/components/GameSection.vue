@@ -20,9 +20,9 @@
           <RenderedMarkdown :body="description" />
         </div>
       </div>
-      <div class="two wide column">
-        <i class="right floated trash alternate icon" v-if="permissions['this:delete']"></i>
-        <i class="right floated pencil alternate icon" v-if="permissions['this:edit']"></i>
+      <div class="two wide column right aligned">
+        <i title="delete" class="trash alternate icon" v-if="permissions['this:delete']"></i>
+        <i title="edit" class="pencil alternate icon" v-if="permissions['this:edit']"></i>
       </div>
     </div>
   </div>

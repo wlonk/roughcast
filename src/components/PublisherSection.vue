@@ -7,9 +7,9 @@
       </router-link>
       <RenderedMarkdown :body="description" />
     </div>
-    <div class="four wide column">
-      <a v-if="url" :href="url"><i class="right floated linkify icon"></i></a>
-      <i class="right floated pencil alternate icon" v-if="permissions['this:edit']"></i>
+    <div class="four wide column right aligned">
+      <a v-if="url" :href="url"><i class="linkify icon"></i></a>
+      <i class="pencil alternate icon" v-if="permissions['this:edit']"></i>
     </div>
   </div>
 </template>

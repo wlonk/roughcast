@@ -13,6 +13,7 @@ from rest_framework import serializers
 
 from .models import AttachedFile, Game, Publisher, PublisherMembership, User, Version
 from .serializer_fields import SlugStringField, UserStringField, SlugField
+from .text import unmark
 
 
 class LoginSerializer(serializers.Serializer):
@@ -187,15 +188,15 @@ class PublisherSerializer(serializers.ModelSerializer):
         ).exists()
 
     def create(self, validated_data):
-        obj = super().create(validated_data)
+        publisher = super().create(validated_data)
         user = getattr(self.context.get("request", None), "user")
         if user:
             PublisherMembership.objets.create(
                 user=user,
-                publisher=obj,
+                publisher=publisher,
                 is_owner=True,
             )
-        return obj
+        return publisher
 
 
 class PublisherMembershipSerializer(serializers.ModelSerializer):
@@ -279,6 +280,7 @@ class VersionSerializer(serializers.ModelSerializer):
             "name",
             "slug",
             "changelog",
+            "changelog_short",
             "is_public",
             "visible_to",
             "archive_link",
@@ -302,8 +304,17 @@ class VersionSerializer(serializers.ModelSerializer):
     visible_to = UserStringField(queryset=User.objects.all(), many=True,)
     archive_link = serializers.SerializerMethodField()
 
-    def get_archive_link(self, obj):
-        return reverse("version-archive", kwargs={"pk": str(obj.pk)})
+    def get_archive_link(self, version):
+        return reverse("version-archive", kwargs={"pk": str(version.pk)})
+
+    changelog_short = serializers.SerializerMethodField()
+
+    def get_changelog_short(self, version):
+        cap = 60
+        unmarked = unmark(version.changelog)
+        if len(unmarked) > cap:
+            unmarked = unmarked[:cap] + "…"
+        return unmarked
 
     permissions = serializers.SerializerMethodField()
 
@@ -343,5 +354,5 @@ class AttachedFileSerializer(serializers.ModelSerializer):
     )
     name = serializers.SerializerMethodField()
 
-    def get_name(self, obj):
-        return basename(obj.attached_file.url)
+    def get_name(self, attached_file):
+        return basename(attached_file.attached_file.url)

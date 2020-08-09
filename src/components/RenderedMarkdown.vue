@@ -1,5 +1,5 @@
 <template>
-  <div class="body" v-html="renderedBody"></div>
+  <div v-html="renderedBody"></div>
 </template>
 
 <script>
@@ -8,7 +8,9 @@ import DOMPurify from 'dompurify';
 
 export default {
   name: 'RenderedMarkdown',
-  props: { body: String },
+  props: {
+    body: String,
+  },
   computed: {
     renderedBody() {
       const dirty = marked(this.body || '');
