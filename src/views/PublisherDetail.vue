@@ -1,6 +1,9 @@
 <template>
   <div>
-    <PublisherCard v-bind="publisher" />
+    <PublisherSection v-bind="publisher" />
+    <h3 class="ui horizontal divider">
+      Games
+    </h3>
     <GameList :userCanAddGames="publisher.permissions['game:add']" :games="games" />
   </div>
 </template>
@@ -9,12 +12,12 @@
 import _ from 'lodash';
 import { mapState } from 'vuex';
 
-import PublisherCard from '@/components/PublisherCard';
+import PublisherSection from '@/components/PublisherSection';
 import GameList from '@/components/GameList';
 
 export default {
   name: 'PublisherDetail',
-  components: { PublisherCard, GameList },
+  components: { PublisherSection, GameList },
   created() {
     this.$store.dispatch('getPublisherById', this.$route.params.publisher);
     this.$store.dispatch('retrieveGames');

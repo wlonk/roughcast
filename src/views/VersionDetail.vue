@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VersionCard v-bind="version" :isDetail="true" />
+    <VersionSection v-bind="version" />
   </div>
 </template>
 
@@ -8,11 +8,11 @@
 import _ from 'lodash';
 import { mapState } from 'vuex';
 
-import VersionCard from '@/components/VersionCard';
+import VersionSection from '@/components/VersionSection';
 
 export default {
   name: 'VersionDetail',
-  components: { VersionCard },
+  components: { VersionSection },
   computed: {
     ...mapState(['Version']),
     version() {

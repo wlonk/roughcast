@@ -1,17 +1,12 @@
 <template>
   <div>
     <h4>
-      <router-link :to="`/p/${publisher}/${game}/${slug}`">
-        {{ name }}
-      </router-link>
       <a :href="archive_link">
         <i class="right floated file archive outline icon"></i>
       </a>
-      <ul v-if="isDetail">
-        <li v-for="(file, i) in attachedFiles" :key="i">
-          <a :href="file.attached_file"> <i class="file pdf outline icon"></i> {{ file.name }} </a>
-        </li>
-      </ul>
+      <router-link :to="`/p/${publisher}/${game}/${slug}`">
+        {{ name }}
+      </router-link>
     </h4>
   </div>
 </template>
@@ -32,10 +27,6 @@ export default {
     slug: String,
     archive_link: String,
     permissions: Object,
-    isDetail: {
-      type: Boolean,
-      default: false,
-    },
   },
   computed: {
     ...mapState(['AttachedFile']),

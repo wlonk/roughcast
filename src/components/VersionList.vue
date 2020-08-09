@@ -1,7 +1,12 @@
 <template>
   <div>
     <VersionCard v-for="version in versions" :key="version.id" v-bind="version" />
-    <VersionForm v-if="userCanAddVersions" />
+    <div v-if="userCanAddVersions">
+      <h4 class="ui horizontal divider">
+        add a version
+      </h4>
+      <VersionForm />
+    </div>
   </div>
 </template>
 

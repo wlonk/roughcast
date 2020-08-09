@@ -253,13 +253,17 @@ class GameSerializer(serializers.ModelSerializer):
         return {
             "version:add": user in game.publisher.members.all(),
             "this:delete": user in game.publisher.members.all(),
+            "this:edit": user in game.publisher.members.all(),
         }
 
     latest_version = serializers.SerializerMethodField()
 
     def get_latest_version(self, game):
         version = game.version_set.first()
-        return version.name if version else "no versions"
+        return {
+            "name": version.name if version else None,
+            "slug": version.slug if version else None,
+        }
 
 
 class VersionSerializer(serializers.ModelSerializer):
@@ -307,8 +311,8 @@ class VersionSerializer(serializers.ModelSerializer):
         user = getattr(self.context.get("request", None), "user")
         return {
             "this:delete": user in version.game.publisher.members.all(),
+            "this:edit": user in version.game.publisher.members.all(),
         }
-
 
 class AttachedFileSerializer(serializers.ModelSerializer):
     class Meta:

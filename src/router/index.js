@@ -12,6 +12,13 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/',
+    name: 'Root',
+    meta: {
+      title: 'Roughcast',
+    },
+  },
+  {
     path: '/u/:id',
     name: 'User',
     component: UserDetail,

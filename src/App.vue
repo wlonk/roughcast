@@ -1,16 +1,24 @@
 <template>
-  <div id="app" class="ui raised very padded text container segment">
-    <div v-if="User.current">
-      Logged in as
-      <router-link :to="`/u/${User.current.username}`">{{
-        User.current.username
-      }}</router-link>
+  <div id="app">
+    <div class="ui borderless main menu">
+      <div class="header item">
+        <router-link to="/" class="ui link item">
+          Roughcast
+        </router-link>
+      </div>
+      <div v-if="User.current" class="ui right item">
+        <router-link :to="`/u/${User.current.username}`" class="ui link item">
+          @{{ User.current.username }}
+        </router-link>
+        <LogOut />
+      </div>
+      <div v-if="!User.current" class="ui right item">
+        <LogIn />
+      </div>
     </div>
-    <div>
-      <LogIn v-if="!User.current" />
-      <LogOut v-else />
+    <div class="ui raised very padded text container segment">
+      <router-view />
     </div>
-    <router-view />
   </div>
 </template>
 

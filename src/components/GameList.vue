@@ -1,7 +1,12 @@
 <template>
   <div>
     <GameCard v-for="game in games" :key="game.id" v-bind="game" />
-    <GameForm v-if="userCanAddGames" />
+    <div v-if="userCanAddGames">
+      <h4 class="ui horizontal divider">
+        add a game
+      </h4>
+      <GameForm />
+    </div>
   </div>
 </template>
 

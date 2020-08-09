@@ -14,7 +14,7 @@
       <textarea name="changelog" v-model="changelog" />
     </div>
     <div class="ui checkbox field">
-      <input type="checkbox" name="is_public" v-model="is_public">
+      <input type="checkbox" name="is_public" id="is_public" v-model="is_public">
       <label for="is_public">public</label>
     </div>
     <div v-if="!is_public" class="field">

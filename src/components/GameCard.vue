@@ -6,7 +6,7 @@
         {{ name }}
       </router-link>
       <div class="meta">
-        <span>{{ publisherName }}, @ {{ latest_version }}</span>
+        <span>{{ publisherName }}, @ {{ latest_version.name }}</span>
       </div>
       <div class="description">
         <RenderedMarkdown :body="description" />
@@ -30,7 +30,7 @@ export default {
     slug: String,
     description: String,
     publisher: String,
-    latest_version: String,
+    latest_version: Object,
     permissions: Object,
   },
   created() {

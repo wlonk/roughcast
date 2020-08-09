@@ -1,6 +1,9 @@
 <template>
   <div>
-    <GameCard v-bind="game" />
+    <GameSection v-bind="game" />
+    <h3 class="ui horizontal divider">
+      Versions
+    </h3>
     <VersionList :userCanAddVersions="game.permissions['version:add']" :versions="versions" />
   </div>
 </template>
@@ -9,12 +12,12 @@
 import _ from 'lodash';
 import { mapState } from 'vuex';
 
-import GameCard from '@/components/GameCard';
+import GameSection from '@/components/GameSection';
 import VersionList from '@/components/VersionList';
 
 export default {
   name: 'GameDetail',
-  components: { GameCard, VersionList },
+  components: { GameSection, VersionList },
   computed: {
     ...mapState(['Game', 'Version']),
     game() {
