@@ -16,6 +16,9 @@
         <LogIn />
       </div>
     </div>
+    <div class="ui text container">
+      <BreadCrumbs />
+    </div>
     <div class="ui raised very padded text container segment">
       <router-view />
     </div>
@@ -27,12 +30,14 @@ import { mapState } from 'vuex';
 
 import LogIn from '@/components/LogIn';
 import LogOut from '@/components/LogOut';
+import BreadCrumbs from '@/components/BreadCrumbs';
 
 export default {
   name: 'App',
   components: {
     LogIn,
     LogOut,
+    BreadCrumbs,
   },
   computed: mapState(['User']),
 };
