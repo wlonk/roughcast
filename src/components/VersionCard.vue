@@ -5,7 +5,7 @@
         {{ name }}
       </router-link>
       <a :href="archive_link">
-        <sui-icon name="archive" outline />
+        <i class="right floated file archive outline icon"></i>
       </a>
       <ul v-if="isDetail">
         <li v-for="(file, i) in attachedFiles" :key="i">
@@ -22,7 +22,7 @@ import _ from 'lodash';
 import { mapState } from 'vuex';
 
 export default {
-  name: 'Version',
+  name: 'VersionCard',
   props: {
     id: String,
     name: String,
@@ -31,6 +31,7 @@ export default {
     game: String,
     slug: String,
     archive_link: String,
+    permissions: Object,
     isDetail: {
       type: Boolean,
       default: false,

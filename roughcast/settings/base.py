@@ -141,6 +141,8 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_ROOT = str(BASE_DIR / "media")
 MEDIA_URL = "/media/"
 
+FONT_ROOT = str(BASE_DIR / "static" / "fonts")
+FONT_URL = "/fonts/"
 
 # Crispy Forms
 CRISPY_TEMPLATE_PACK = "bootstrap4"

@@ -52,7 +52,7 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("api/", include(router.urls)),
     re_path(
-        "^(?!accounts|api|static|media)",
+        "^(?!accounts|api|static|media|fonts)",
         TemplateView.as_view(template_name="base.html"),
         name="root",
     ),
@@ -60,3 +60,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.FONT_URL, document_root=settings.FONT_ROOT)

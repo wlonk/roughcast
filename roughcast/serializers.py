@@ -161,22 +161,30 @@ class PublisherSerializer(serializers.ModelSerializer):
             "slug",
             "description",
             "url",
-            "user_can_add_games",
-            # "members",
-            # "members_id",
+            "permissions",
+            "user_is_owner",
         )
 
     id = serializers.CharField(read_only=True)
     slug = SlugField()
-    # members = serializers.StringRelatedField(many=True, read_only=True)
-    # members_id = serializers.PrimaryKeyRelatedField(
-    #     many=True, read_only=True, pk_field=serializers.CharField(), source="members"
-    # )
-    user_can_add_games = serializers.SerializerMethodField()
+    permissions = serializers.SerializerMethodField()
 
-    def get_user_can_add_games(self, publisher):
+    def get_permissions(self, publisher):
         user = getattr(self.context.get("request", None), "user")
-        return user in publisher.members.all()
+        return {
+            "game:add": user in publisher.members.all(),
+            "this:edit": user in publisher.members.all(),
+        }
+
+    user_is_owner = serializers.SerializerMethodField()
+
+    def get_user_is_owner(self, publisher):
+        user = getattr(self.context.get("request", None), "user")
+        return PublisherMembership.objects.filter(
+            user=user,
+            publisher=publisher,
+            is_owner=True,
+        ).exists()
 
     def create(self, validated_data):
         obj = super().create(validated_data)
@@ -226,8 +234,8 @@ class GameSerializer(serializers.ModelSerializer):
             "slug",
             "banner",
             "description",
-            "user_can_add_versions",
             "latest_version",
+            "permissions",
         )
 
     id = serializers.CharField(read_only=True)
@@ -238,12 +246,16 @@ class GameSerializer(serializers.ModelSerializer):
     publisher_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="publisher"
     )
-    user_can_add_versions = serializers.SerializerMethodField()
-    latest_version = serializers.SerializerMethodField()
+    permissions = serializers.SerializerMethodField()
 
-    def get_user_can_add_versions(self, game):
+    def get_permissions(self, game):
         user = getattr(self.context.get("request", None), "user")
-        return user in game.publisher.members.all()
+        return {
+            "version:add": user in game.publisher.members.all(),
+            "this:delete": user in game.publisher.members.all(),
+        }
+
+    latest_version = serializers.SerializerMethodField()
 
     def get_latest_version(self, game):
         version = game.version_set.first()
@@ -266,6 +278,7 @@ class VersionSerializer(serializers.ModelSerializer):
             "is_public",
             "visible_to",
             "archive_link",
+            "permissions",
         )
 
     id = serializers.CharField(read_only=True)
@@ -287,6 +300,14 @@ class VersionSerializer(serializers.ModelSerializer):
 
     def get_archive_link(self, obj):
         return reverse("version-archive", kwargs={"pk": str(obj.pk)})
+
+    permissions = serializers.SerializerMethodField()
+
+    def get_permissions(self, version):
+        user = getattr(self.context.get("request", None), "user")
+        return {
+            "this:delete": user in version.game.publisher.members.all(),
+        }
 
 
 class AttachedFileSerializer(serializers.ModelSerializer):

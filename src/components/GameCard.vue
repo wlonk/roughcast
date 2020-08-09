@@ -1,6 +1,7 @@
 <template>
   <div class="ui card">
     <div class="content">
+      <i class="right floated trash alternate icon" v-if="permissions['this:delete']"></i>
       <router-link :to="`/p/${publisher}/${slug}`" class="header">
         {{ name }}
       </router-link>
@@ -10,14 +11,6 @@
       <div class="description">
         <RenderedMarkdown :body="description" />
       </div>
-
-      <div v-if="isDetail">
-        <Version v-for="(version, id) in versions" v-bind="version" :key="id" />
-        <div v-if="user_can_add_versions">
-          <h3 class="ui header">Add a version</h3>
-          <VersionForm :forGame="slug" />
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -26,13 +19,11 @@
 import _ from 'lodash';
 import { mapState } from 'vuex';
 
-import Version from '@/components/Version';
-import VersionForm from '@/forms/VersionForm';
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 
 export default {
-  name: 'Game',
-  components: { Version, VersionForm, RenderedMarkdown },
+  name: 'GameCard',
+  components: { RenderedMarkdown },
   props: {
     id: String,
     name: String,
@@ -40,11 +31,7 @@ export default {
     description: String,
     publisher: String,
     latest_version: String,
-    user_can_add_versions: Boolean,
-    isDetail: {
-      type: Boolean,
-      default: false,
-    },
+    permissions: Object,
   },
   created() {
     this.$store.dispatch('retrieveVersions');

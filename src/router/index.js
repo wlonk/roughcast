@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 
 import updatePageTitle from './updatePageTitle';
 
-import Dashboard from '@/views/Dashboard';
 import UserDetail from '@/views/UserDetail';
 import PublisherDetail from '@/views/PublisherDetail';
 import GameDetail from '@/views/GameDetail';
@@ -13,45 +12,35 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Dashboard',
-    component: Dashboard,
-    meta: {
-      title: 'Roughcast',
-      breadcrumb: 'Dashboard',
-    },
-  },
-  {
     path: '/u/:id',
     name: 'User',
     component: UserDetail,
     meta: {
       title: 'User | Roughcast',
-      breadcrumb: routeParams => routeParams.id,
     },
   },
   {
     path: '/p/:publisher',
+    name: 'Publisher',
     component: PublisherDetail,
     meta: {
       title: 'Publisher | Roughcast',
-      breadcrumb: routeParams => routeParams.publisher,
     },
   },
   {
     path: '/p/:publisher/:game',
+    name: 'Game',
     component: GameDetail,
     meta: {
       title: 'Game | Roughcast',
-      breadcrumb: routeParams => routeParams.game,
     },
   },
   {
     path: '/p/:publisher/:game/:version',
+    name: 'Version',
     component: VersionDetail,
     meta: {
       title: 'Version | Roughcast',
-      breadcrumb: routeParams => routeParams.version,
     },
   },
 ];

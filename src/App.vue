@@ -1,8 +1,5 @@
 <template>
   <div id="app" class="ui raised very padded text container segment">
-    <div id="nav">
-      <Breadcrumbs />
-    </div>
     <div v-if="User.current">
       Logged in as
       <router-link :to="`/u/${User.current.username}`">{{
@@ -24,7 +21,7 @@ import Login from '@/components/Login';
 import Logout from '@/components/Logout';
 
 export default {
-  name: 'Home',
+  name: 'App',
   components: {
     Login,
     Logout,

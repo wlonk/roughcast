@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Publisher v-bind="publisher" :isOwner="isOwner" :isDetail="true" />
+    <PublisherCard v-bind="publisher" />
+    <GameList :userCanAddGames="publisher.permissions['game:add']" :games="games" />
   </div>
 </template>
 
@@ -8,31 +9,30 @@
 import _ from 'lodash';
 import { mapState } from 'vuex';
 
-import Publisher from '@/components/Publisher';
+import PublisherCard from '@/components/PublisherCard';
+import GameList from '@/components/GameList';
 
 export default {
   name: 'PublisherDetail',
-  components: { Publisher },
+  components: { PublisherCard, GameList },
+  created() {
+    this.$store.dispatch('getPublisherById', this.$route.params.publisher);
+    this.$store.dispatch('retrieveGames');
+  },
   computed: {
-    ...mapState(['User', 'Publisher', 'PublisherMembership']),
-    isOwner() {
-      return (
-        _.find(
-          this.PublisherMembership.all,
-          pm => pm.user === this.User.current.id && pm.is_owner,
-        ) !== undefined
-      );
-    },
+    ...mapState(['Publisher', 'Game']),
     publisher() {
       return _.find(
         this.Publisher.all,
-        p => p.slug === this.$route.params.publisher,
+        (p) => p.slug === this.$route.params.publisher,
       );
     },
-  },
-  created() {
-    this.$store.dispatch('retrievePublisherMemberships');
-    this.$store.dispatch('getPublisherById', this.$route.params.publisher);
+    games() {
+      return _.filter(
+        this.Game.all,
+        (g) => g.publisher === this.publisher.slug
+      );
+    }
   },
 };
 </script>

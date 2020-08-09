@@ -1,27 +1,30 @@
 <template>
   <div>
-    <Game v-bind="game" :isDetail="true" />
+    <GameCard v-bind="game" />
+    <VersionList :userCanAddVersions="game.permissions['version:add']" :versions="versions" />
   </div>
 </template>
 
 <script>
-/*
- * TODO:
- * - Show latest version always
- * - Include all-files zip and each-file links
- */
 import _ from 'lodash';
 import { mapState } from 'vuex';
 
-import Game from '@/components/Game';
+import GameCard from '@/components/GameCard';
+import VersionList from '@/components/VersionList';
 
 export default {
   name: 'GameDetail',
-  components: { Game },
+  components: { GameCard, VersionList },
   computed: {
-    ...mapState(['Game']),
+    ...mapState(['Game', 'Version']),
     game() {
       return _.find(this.Game.all, g => g.slug === this.$route.params.game);
+    },
+    versions() {
+      return _.filter(
+        this.Version.all,
+        (v) => v.game === this.game.slug
+      );
     },
   },
   created() {
