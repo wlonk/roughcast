@@ -26,6 +26,9 @@
 </template>
 
 <script>
+// TODO: This component does not display errors right if it's in the header
+// bar. Maybe make it pop up as a modal, to allow better error reporting?
+
 import { mapState } from 'vuex';
 
 export default {
