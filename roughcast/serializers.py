@@ -164,6 +164,7 @@ class PublisherSerializer(serializers.ModelSerializer):
             "url",
             "permissions",
             "user_is_owner",
+            "user_is_member",
         )
 
     id = serializers.CharField(read_only=True)
@@ -185,6 +186,15 @@ class PublisherSerializer(serializers.ModelSerializer):
             user=user,
             publisher=publisher,
             is_owner=True,
+        ).exists()
+
+    user_is_member = serializers.SerializerMethodField()
+
+    def get_user_is_member(self, publisher):
+        user = getattr(self.context.get("request", None), "user")
+        return PublisherMembership.objects.filter(
+            user=user,
+            publisher=publisher,
         ).exists()
 
     def create(self, validated_data):

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <GameCard v-for="game in games" :key="game.id" v-bind="game" />
+    <div class="ui cards">
+      <GameCard v-for="game in games" :key="game.id" v-bind="game" />
+    </div>
     <div v-if="userCanAddGames">
       <h4 class="ui horizontal divider">
         add a game

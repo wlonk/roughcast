@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import updatePageTitle from './updatePageTitle';
 
+import RootPage from '@/views/RootPage';
 import UserDetail from '@/views/UserDetail';
 import PublisherDetail from '@/views/PublisherDetail';
 import GameDetail from '@/views/GameDetail';
@@ -14,6 +15,7 @@ const routes = [
   {
     path: '/',
     name: 'Root',
+    component: RootPage,
     meta: {
       title: 'Roughcast',
     },
