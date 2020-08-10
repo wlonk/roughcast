@@ -1,21 +1,6 @@
 <template>
   <div id="app">
-    <div class="ui borderless main menu">
-      <div class="header item">
-        <router-link to="/" class="ui link item">
-          Roughcast
-        </router-link>
-      </div>
-      <div v-if="User.current" class="ui right item">
-        <router-link :to="`/u/${User.current.username}`" class="ui link item">
-          @{{ User.current.username }}
-        </router-link>
-        <LogOut />
-      </div>
-      <div v-if="!User.current" class="ui right item">
-        <LogIn />
-      </div>
-    </div>
+    <MainMenu />
     <div class="ui text container">
       <BreadCrumbs />
     </div>
@@ -26,19 +11,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
-import LogIn from '@/components/LogIn';
-import LogOut from '@/components/LogOut';
 import BreadCrumbs from '@/components/BreadCrumbs';
+import MainMenu from '@/components/MainMenu';
 
 export default {
   name: 'App',
   components: {
-    LogIn,
-    LogOut,
     BreadCrumbs,
+    MainMenu,
   },
-  computed: mapState(['User']),
 };
 </script>
