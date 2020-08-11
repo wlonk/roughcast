@@ -57,8 +57,8 @@ class LoginView(generics.CreateAPIView):
                 {"non_field_errors": ["Invalid credentials."]},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-        login(request, user)
-        return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
+        user.token = user.get_or_create_token()
+        return Response(SelfUserSerializer(user).data, status=status.HTTP_200_OK)
 
 
 class LogoutView(generics.CreateAPIView):
@@ -79,7 +79,9 @@ class UserViewSet(ModelViewSet):
     @action(detail=False)
     def me(self, request):
         if request.user.is_authenticated:
-            serializer = SelfUserSerializer(instance=request.user)
+            user = request.user
+            user.token = user.get_or_create_token()
+            serializer = SelfUserSerializer(instance=user)
             return Response(serializer.data)
         return Response(None)
 

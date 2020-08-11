@@ -150,6 +150,7 @@ class SelfUserSerializer(serializers.ModelSerializer):
             "username",
             "get_full_name",
             "email",
+            "token",
         )
 
 

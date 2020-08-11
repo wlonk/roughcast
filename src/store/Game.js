@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import api from '../api';
 
 const Game = {
   state: () => ({
@@ -17,9 +18,9 @@ const Game = {
   },
   actions: {
     async retrieveGames({ commit }) {
-      const resp = await fetch('/api/game/');
+      const resp = await api.get('/game/');
       if (resp.ok) {
-        const games = await resp.json();
+        const games = resp.data;
         const gamesObj = games.reduce((acc, curr) => {
           acc[curr.id] = curr;
           return acc;
@@ -33,26 +34,18 @@ const Game = {
       if (state.all[id] !== undefined) {
         return;
       }
-      const response = await fetch(`/api/game/${id}/`);
+      const response = await api.get(`/game/${id}/`);
       if (response.ok) {
-        const game = await response.json();
+        const game = response.data;
         commit('getGameById', game);
       } else {
         // TODO: Display lookup error toast?
       }
     },
     async createNewGame({ commit, state }, data) {
-      const csrftoken = Vue.$cookies.get('csrftoken');
-      const response = await fetch('/api/game/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': csrftoken,
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await api.post('/game/', data);
       if (response.ok) {
-        const newGame = await response.json();
+        const newGame = response.data;
         commit('getGameById', newGame);
       } else {
         // TODO: Display lookup error toast?

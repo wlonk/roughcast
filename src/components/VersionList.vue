@@ -5,7 +5,7 @@
       <h4 class="ui horizontal divider">
         add a version
       </h4>
-      <VersionForm />
+      <VersionForm :forGame="game" />
     </div>
   </div>
 </template>
@@ -17,6 +17,7 @@ import VersionForm from '@/forms/VersionForm';
 export default {
   name: 'VersionList',
   props: {
+    game: String,
     versions: Array,
     userCanAddVersions: Boolean,
   },

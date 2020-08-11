@@ -35,11 +35,15 @@ export default {
   name: 'LogIn',
   computed: mapState(['User']),
   methods: {
-    login(e) {
+    async login(e) {
       const username = e.target.elements['username'].value;
       const password = e.target.elements['password'].value;
       const data = { username, password };
-      this.$store.dispatch('logIn', data);
+      await this.$store.dispatch('logIn', data);
+      this.$store.dispatch('retrievePublishers');
+      this.$store.dispatch('retrieveGames');
+      this.$store.dispatch('retrieveVersions');
+      this.$store.dispatch('retrieveAttachedFiles');
     },
   },
 };

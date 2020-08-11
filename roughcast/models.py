@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 from emoji import UNICODE_EMOJI
+from rest_framework.authtoken.models import Token
 
 from .fields import MarkdownField, StringField
 from .model_mixins import BasicModelMixin, SimpleSlugMixin
@@ -33,6 +34,11 @@ def is_emoji(value):
 class User(AbstractUser):
     def get_full_name(self):
         return self.first_name.strip()
+
+    token = None  # We only show a token on a user after auth'ing.
+
+    def get_or_create_token(self):
+        return Token.objects.get_or_create(user=self)[0].key
 
 
 class Publisher(BasicModelMixin, SimpleSlugMixin, models.Model):

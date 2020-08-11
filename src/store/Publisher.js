@@ -1,3 +1,6 @@
+import Vue from 'vue';
+import api from '../api';
+
 const Publisher = {
   state: () => ({
     all: {},
@@ -15,9 +18,9 @@ const Publisher = {
   },
   actions: {
     async retrievePublishers({ commit }) {
-      const resp = await fetch('/api/publisher/');
+      const resp = await api.get('/publisher/');
       if (resp.ok) {
-        const publishers = await resp.json();
+        const publishers = resp.data;
         const publishersObj = publishers.reduce((acc, curr) => {
           acc[curr.id] = curr;
           return acc;
@@ -31,26 +34,18 @@ const Publisher = {
       if (state.all[id] !== undefined) {
         return;
       }
-      const response = await fetch(`/api/publisher/${id}/`);
+      const response = await api.get(`/publisher/${id}/`);
       if (response.ok) {
-        const publisher = await response.json();
+        const publisher = response.data;
         commit('getPublisherById', publisher);
       } else {
         // TODO: Display lookup error toast?
       }
     },
     async createNewPublisher({ commit, state }, data) {
-      const csrftoken = Vue.$cookies.get('csrftoken');
-      const response = await fetch('/api/publisher/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': csrftoken,
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await api.post('/publisher/', data);
       if (response.ok) {
-        const newPublisher = await response.json();
+        const newPublisher = response.data;
         commit('getPublisherById', newPublisher);
         commit('retrievePublisherMemberships');
       } else {

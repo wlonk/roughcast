@@ -4,7 +4,11 @@
     <h3 class="ui horizontal divider">
       Versions
     </h3>
-    <VersionList :userCanAddVersions="game.permissions['version:add']" :versions="versions" />
+    <VersionList
+      :game="game.slug"
+      :userCanAddVersions="game.permissions['version:add']"
+      :versions="versions"
+    />
   </div>
 </template>
 

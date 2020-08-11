@@ -1,3 +1,5 @@
+import api from '../api';
+
 const PublisherMembership = {
   state: () => ({
     all: {},
@@ -9,9 +11,9 @@ const PublisherMembership = {
   },
   actions: {
     async retrievePublisherMemberships({ commit }) {
-      const resp = await fetch('/api/publishermembership/');
+      const resp = await api.get('/publishermembership/');
       if (resp.ok) {
-        const publisherMemberships = await resp.json();
+        const publisherMemberships = resp.data;
         const publisherMembershipsObj = publisherMemberships.reduce(
           (acc, curr) => {
             acc[curr.id] = curr;

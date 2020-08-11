@@ -3,12 +3,15 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
-import VueCookies from 'vue-cookies';
+import api from './api';
+
 import 'semantic-ui-css/semantic.min.css';
 import SuiVue from 'semantic-ui-vue';
 
-Vue.use(VueCookies);
+import VueAxios from 'vue-axios'
+ 
 Vue.use(SuiVue);
+Vue.use(VueAxios, api);
 
 Vue.config.productionTip = false;
 

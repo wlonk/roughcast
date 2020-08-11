@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import api from '../api';
 
 const User = {
   state: () => ({
@@ -37,20 +38,13 @@ const User = {
     async logIn({ commit }, data) {
       commit('setErrors', {});
       commit('loggingIn');
-      const csrftoken = Vue.$cookies.get('csrftoken');
-      const response = await fetch('/api/login/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': csrftoken,
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await api.post('/login/', data);
       if (response.ok) {
-        const user = await response.json();
+        const user = response.data;
+        Vue.axios.defaults.headers.common['Authorization'] = `Token ${user.token}`;
         commit('logIn', user);
       } else {
-        const errors = await response.json();
+        const errors = response.data;
         console.log(errors);
         commit('setErrors', errors);
         commit('logOut');
@@ -58,14 +52,7 @@ const User = {
       commit('doneLoggingIn');
     },
     async logOut({ commit }) {
-      // TODO: Actually clear the cookie, etc.
-      const csrftoken = Vue.$cookies.get('csrftoken');
-      const response = await fetch('/api/logout/', {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': csrftoken,
-        },
-      });
+      const response = await api.post('/logout/');
       commit('logOut');
       if (!response.ok) {
         const errors = {
@@ -77,9 +64,9 @@ const User = {
       }
     },
     async retrieveUsers({ commit }) {
-      const resp = await fetch('/api/user/');
+      const resp = await api.get('/user/');
       if (resp.ok) {
-        const users = await resp.json();
+        const users = resp.data;
         const usersObj = users.reduce((acc, curr) => {
           acc[curr.id] = curr;
           return acc;
@@ -93,9 +80,9 @@ const User = {
       if (state.all[id] !== undefined) {
         return;
       }
-      const response = await fetch(`/api/user/${id}/`);
+      const response = await api.get(`/user/${id}/`);
       if (response.ok) {
-        const user = await response.json();
+        const user = response.data;
         commit('getUserById', user);
       } else {
         // TODO: Display lookup error toast?

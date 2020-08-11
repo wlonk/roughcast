@@ -26,13 +26,16 @@ HASHID_FIELD_SALT = env("HASHID_FIELD_SALT")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DJANGO_DEBUG", type_=boolish)
 ALLOWED_HOSTS = [
-    "localhost",
-    "localhost:8000",
-    "127.0.0.1",
-    "127.0.0.1:8000",
-    ".ngrok.io",
     "roughcast.app",
 ]
+if DEBUG:
+    ALLOWED_HOSTS += [
+        "localhost",
+        "localhost:8000",
+        "127.0.0.1",
+        "127.0.0.1:8000",
+        ".ngrok.io",
+    ]
 
 # HTTPS and HSTS
 SECURE_SSL_REDIRECT = env("SECURE_SSL_REDIRECT", default=not DEBUG, type_=boolish)
@@ -53,6 +56,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "markdownify",
     "rest_framework",
+    "rest_framework.authtoken",
     "django_filters",
     "roughcast",
 ]
@@ -168,5 +172,10 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ],
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
 }

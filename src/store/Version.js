@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import api from '../api';
 
 const Version = {
   state: () => ({
@@ -17,9 +18,9 @@ const Version = {
   },
   actions: {
     async retrieveVersions({ commit }) {
-      const resp = await fetch('/api/version/');
+      const resp = await api.get('/version/');
       if (resp.ok) {
-        const versions = await resp.json();
+        const versions = resp.data;
         const versionsObj = versions.reduce((acc, curr) => {
           acc[curr.id] = curr;
           return acc;
@@ -34,9 +35,9 @@ const Version = {
         slug: version,
         game__slug: game,
       });
-      const response = await fetch(`/api/version/?${params.toString()}`);
+      const response = await api.get(`/version/?${params.toString()}`);
       if (response.ok) {
-        const versions = await response.json();
+        const versions = response.data;
         if (versions.length !== 1) {
           // TODO: Display lookup error toast?
         } else {
@@ -48,17 +49,9 @@ const Version = {
       }
     },
     async createNewVersion({ commit, state }, data) {
-      const csrftoken = Vue.$cookies.get('csrftoken');
-      const response = await fetch('/api/version/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': csrftoken,
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await api.post('/version/', data);
       if (response.ok) {
-        const newVersion = await response.json();
+        const newVersion = response.data;
         commit('getVersionById', newVersion);
         return newVersion;
       } else {

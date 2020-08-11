@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import api from '../api';
 
 const AttachedFile = {
   state: () => ({
@@ -17,9 +18,9 @@ const AttachedFile = {
   },
   actions: {
     async retrieveAttachedFiles({ commit }) {
-      const resp = await fetch('/api/attached_file/');
+      const resp = await api.get('/attached_file/');
       if (resp.ok) {
-        const attached_files = await resp.json();
+        const attached_files = resp.data;
         const attached_filesObj = attached_files.reduce((acc, curr) => {
           acc[curr.id] = curr;
           return acc;
@@ -33,9 +34,9 @@ const AttachedFile = {
       if (state.all[id] !== undefined) {
         return;
       }
-      const response = await fetch(`/api/attached_file/${id}/`);
+      const response = await api.get(`/attached_file/${id}/`);
       if (response.ok) {
-        const attached_file = await response.json();
+        const attached_file = response.data;
         commit('getAttachedFileById', attached_file);
       } else {
         // TODO: Display lookup error toast?
@@ -45,16 +46,9 @@ const AttachedFile = {
       const formData = new FormData();
       formData.append("version_id", data.version_id);
       formData.append("attached_file", data.attached_file);
-      const csrftoken = Vue.$cookies.get('csrftoken');
-      const response = await fetch('/api/attached_file/', {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': csrftoken,
-        },
-        body: formData,
-      });
+      const response = await api.post('/attached_file/', formData);
       if (response.ok) {
-        const newAttachedFile = await response.json();
+        const newAttachedFile = response.data;
         commit('getAttachedFileById', newAttachedFile);
       } else {
         // TODO: Display lookup error toast?
