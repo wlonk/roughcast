@@ -83,7 +83,7 @@ class UserViewSet(ModelViewSet):
             user.token = user.get_or_create_token()
             serializer = SelfUserSerializer(instance=user)
             return Response(serializer.data)
-        return Response(None)
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
     @action(detail=False, methods=["post"], permission_classes=(AllowAny,))
     def reset_password(self, request):

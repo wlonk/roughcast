@@ -183,7 +183,7 @@ class PublisherSerializer(serializers.ModelSerializer):
 
     def get_user_is_owner(self, publisher):
         user = getattr(self.context.get("request", None), "user")
-        return PublisherMembership.objects.filter(
+        return user and user.is_authenticated and PublisherMembership.objects.filter(
             user=user,
             publisher=publisher,
             is_owner=True,
@@ -193,7 +193,7 @@ class PublisherSerializer(serializers.ModelSerializer):
 
     def get_user_is_member(self, publisher):
         user = getattr(self.context.get("request", None), "user")
-        return PublisherMembership.objects.filter(
+        return user and user.is_authenticated and PublisherMembership.objects.filter(
             user=user,
             publisher=publisher,
         ).exists()
@@ -201,7 +201,7 @@ class PublisherSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         publisher = super().create(validated_data)
         user = getattr(self.context.get("request", None), "user")
-        if user:
+        if user and user.is_authenticated:
             PublisherMembership.objets.create(
                 user=user,
                 publisher=publisher,
@@ -321,6 +321,10 @@ class VersionSerializer(serializers.ModelSerializer):
     changelog_short = serializers.SerializerMethodField()
 
     def get_changelog_short(self, version):
+        """Render the changelog, strip it down to its text, and cut it off short.
+
+        We could probably do this on the frontend, but this was easier for me?
+        """
         cap = 60
         unmarked = unmark(version.changelog)
         if len(unmarked) > cap:
