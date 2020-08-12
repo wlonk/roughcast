@@ -15,9 +15,6 @@
 </template>
 
 <script>
-import _ from 'lodash';
-import { mapState } from 'vuex';
-
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 
 export default {
@@ -31,7 +28,7 @@ export default {
     description: String,
     user_is_owner: Boolean,
   },
-  components: { RenderedMarkdown }
+  components: { RenderedMarkdown },
 };
 </script>
 

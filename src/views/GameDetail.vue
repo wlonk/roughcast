@@ -28,10 +28,7 @@ export default {
       return _.find(this.Game.all, g => g.slug === this.$route.params.game);
     },
     versions() {
-      return _.filter(
-        this.Version.all,
-        (v) => v.game === this.game.slug
-      );
+      return _.filter(this.Version.all, v => v.game === this.game.slug);
     },
   },
   created() {

@@ -21,7 +21,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: "GameForm",
+  name: 'GameForm',
   props: {
     forPublisher: String,
   },
@@ -45,6 +45,6 @@ export default {
       };
       await this.createNewGame(data);
     },
-  }
-}
+  },
+};
 </script>

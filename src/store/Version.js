@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import api from '../api';
 
 const Version = {
@@ -13,7 +12,7 @@ const Version = {
       state.all = {
         ...state.all,
         [version.id]: version,
-      }
+      };
     },
   },
   actions: {
@@ -30,7 +29,7 @@ const Version = {
         // TODO display error
       }
     },
-    async getVersionBySlugs({ commit, state }, { game, version }) {
+    async getVersionBySlugs({ commit }, { game, version }) {
       const params = new URLSearchParams({
         slug: version,
         game__slug: game,
@@ -48,7 +47,7 @@ const Version = {
         // TODO: Display lookup error toast?
       }
     },
-    async createNewVersion({ commit, state }, data) {
+    async createNewVersion({ commit }, data) {
       const response = await api.post('/version/', data);
       if (response.ok) {
         const newVersion = response.data;

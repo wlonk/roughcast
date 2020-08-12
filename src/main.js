@@ -8,8 +8,8 @@ import api from './api';
 import 'semantic-ui-css/semantic.min.css';
 import SuiVue from 'semantic-ui-vue';
 
-import VueAxios from 'vue-axios'
- 
+import VueAxios from 'vue-axios';
+
 Vue.use(SuiVue);
 Vue.use(VueAxios, api);
 

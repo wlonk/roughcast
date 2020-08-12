@@ -3,7 +3,7 @@ from io import BytesIO
 from os.path import basename, splitext
 from zipfile import ZipFile
 
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout
 from django.http import HttpResponse
 from django.utils.text import slugify
 from rest_framework import generics, status

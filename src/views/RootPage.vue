@@ -16,5 +16,5 @@ export default {
   name: 'RootPage',
   components: { DashBoard },
   computed: mapState(['User']),
-}
+};
 </script>

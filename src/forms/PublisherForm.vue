@@ -24,7 +24,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: "PublisherForm",
+  name: 'PublisherForm',
   props: {
     forPublisher: String,
   },
@@ -48,6 +48,6 @@ export default {
       };
       await this.createNewPublisher(data);
     },
-  }
-}
+  },
+};
 </script>

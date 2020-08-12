@@ -4,7 +4,10 @@
     <h3 class="ui horizontal divider">
       Games
     </h3>
-    <GameList :userCanAddGames="publisher.permissions['game:add']" :games="games" />
+    <GameList
+      :userCanAddGames="publisher.permissions['game:add']"
+      :games="games"
+    />
   </div>
 </template>
 
@@ -27,15 +30,12 @@ export default {
     publisher() {
       return _.find(
         this.Publisher.all,
-        (p) => p.slug === this.$route.params.publisher,
+        p => p.slug === this.$route.params.publisher,
       );
     },
     games() {
-      return _.filter(
-        this.Game.all,
-        (g) => g.publisher === this.publisher.slug
-      );
-    }
+      return _.filter(this.Game.all, g => g.publisher === this.publisher.slug);
+    },
   },
 };
 </script>

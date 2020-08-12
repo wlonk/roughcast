@@ -32,5 +32,5 @@ export default {
     NotificationList,
   },
   computed: mapState(['User']),
-}
+};
 </script>

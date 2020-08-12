@@ -4,12 +4,7 @@ from django.contrib.auth import get_user_model
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
-from roughcast.models import (
-    Publisher,
-    PublisherMembership,
-    Game,
-    Version,
-)
+from roughcast.models import Game, Publisher, PublisherMembership, Version
 
 User = get_user_model()
 

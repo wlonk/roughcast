@@ -1,18 +1,19 @@
-import pytest
 import re
 from unittest.mock import MagicMock
-from roughcast.models import (
-    attached_file_upload_to,
-    is_emoji,
-)
+
+import pytest
+
+from roughcast.models import attached_file_upload_to, is_emoji
 
 
 def test_attached_file_upload_to():
-    instance = MagicMock(**{
-        "version.game.publisher.name": "publisher",
-        "version.game.name": "game",
-        "version.name": "version",
-    })
+    instance = MagicMock(
+        **{
+            "version.game.publisher.name": "publisher",
+            "version.game.name": "game",
+            "version.name": "version",
+        }
+    )
     filename = "test.pdf"
     actual = attached_file_upload_to(instance, filename)
     expected = r"publisher/game/game-version-[A-Za-z0-9]{8}.pdf"
@@ -46,7 +47,9 @@ class TestPublisher:
 class TestPublisherMembership:
     def test_str(self, publisher_membership):
         username = publisher_membership.user.username
-        assert str(publisher_membership) == f"{username} is a member of Transneptune Games"
+        assert (
+            str(publisher_membership) == f"{username} is a member of Transneptune Games"
+        )
 
 
 @pytest.mark.django_db

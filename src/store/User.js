@@ -31,7 +31,7 @@ const User = {
       state.all = {
         ...state.all,
         [user.id]: user,
-      }
+      };
     },
   },
   actions: {
@@ -41,7 +41,9 @@ const User = {
       const response = await api.post('/login/', data);
       if (response.ok) {
         const user = response.data;
-        Vue.axios.defaults.headers.common['Authorization'] = `Token ${user.token}`;
+        Vue.axios.defaults.headers.common[
+          'Authorization'
+        ] = `Token ${user.token}`;
         commit('logIn', user);
       } else {
         const errors = response.data;

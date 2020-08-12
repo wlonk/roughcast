@@ -10,7 +10,6 @@
       groups
     </h2>
     <PublisherList :publishers="publishers" />
-
   </div>
 </template>
 
@@ -34,6 +33,6 @@ export default {
     publishers() {
       return _.values(this.Publisher.all);
     },
-  }
-}
+  },
+};
 </script>

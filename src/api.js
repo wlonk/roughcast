@@ -1,18 +1,18 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const api = axios.create({
   baseURL: '/api',
   headers: {
-    common: {'Content-Type': 'application/json' },
+    common: { 'Content-Type': 'application/json' },
   },
 });
 
 api.interceptors.response.use(
-  (response) => {
+  response => {
     response.ok = true;
     return response;
   },
-  (error) => {
+  error => {
     return Promise.reject(error);
   },
 );

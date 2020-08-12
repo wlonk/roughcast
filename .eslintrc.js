@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
+    jest: true,
   },
   plugins: ['prettier'],
   extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],

@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import api from '../api';
 
 const Publisher = {
@@ -13,7 +12,7 @@ const Publisher = {
       state.all = {
         ...state.all,
         [publisher.id]: publisher,
-      }
+      };
     },
   },
   actions: {
@@ -42,7 +41,7 @@ const Publisher = {
         // TODO: Display lookup error toast?
       }
     },
-    async createNewPublisher({ commit, state }, data) {
+    async createNewPublisher({ commit }, data) {
       const response = await api.post('/publisher/', data);
       if (response.ok) {
         const newPublisher = response.data;

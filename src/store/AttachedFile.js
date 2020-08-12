@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import api from '../api';
 
 const AttachedFile = {
@@ -13,7 +12,7 @@ const AttachedFile = {
       state.all = {
         ...state.all,
         [attached_file.id]: attached_file,
-      }
+      };
     },
   },
   actions: {
@@ -44,8 +43,8 @@ const AttachedFile = {
     },
     async createNewAttachedFile({ commit }, data) {
       const formData = new FormData();
-      formData.append("version_id", data.version_id);
-      formData.append("attached_file", data.attached_file);
+      formData.append('version_id', data.version_id);
+      formData.append('attached_file', data.attached_file);
       const response = await api.post('/attached_file/', formData);
       if (response.ok) {
         const newAttachedFile = response.data;

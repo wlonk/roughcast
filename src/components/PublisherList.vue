@@ -1,6 +1,10 @@
 <template>
   <div class="ui cards">
-    <PublisherCard v-for="publisher in publishers" :key="publisher.id" v-bind="publisher" />
+    <PublisherCard
+      v-for="publisher in publishers"
+      :key="publisher.id"
+      v-bind="publisher"
+    />
   </div>
 </template>
 
@@ -15,5 +19,5 @@ export default {
   components: {
     PublisherCard,
   },
-}
+};
 </script>

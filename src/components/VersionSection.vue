@@ -7,7 +7,7 @@
           title="placeholder"
           alt="placeholder"
           src="/static/images/placeholder.png"
-          />
+        />
       </div>
       <div class="ten wide column">
         <h4>
@@ -23,8 +23,16 @@
         </div>
       </div>
       <div class="two wide column right aligned">
-        <i title="delete" class="trash alternate icon" v-if="permissions['this:delete']"></i>
-        <i title="edit" class="pencil alternate icon" v-if="permissions['this:edit']"></i>
+        <i
+          title="delete"
+          class="trash alternate icon"
+          v-if="permissions['this:delete']"
+        ></i>
+        <i
+          title="edit"
+          class="pencil alternate icon"
+          v-if="permissions['this:edit']"
+        ></i>
       </div>
     </div>
     <h4 class="ui horizontal divider">
@@ -32,7 +40,9 @@
     </h4>
     <ul>
       <li v-for="file in attachedFiles" :key="file.id">
-        <a :href="file.attached_file"> <i class="file pdf outline icon"></i> {{ file.name }} </a>
+        <a :href="file.attached_file">
+          <i class="file pdf outline icon"></i> {{ file.name }}
+        </a>
       </li>
     </ul>
     <h4 class="ui horizontal divider">

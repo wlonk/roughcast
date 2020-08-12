@@ -9,11 +9,14 @@ import DOMPurify from 'dompurify';
 export default {
   name: 'RenderedMarkdown',
   props: {
-    body: String,
+    body: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     renderedBody() {
-      const dirty = marked(this.body || '');
+      const dirty = marked(this.body);
       const clean = DOMPurify.sanitize(dirty);
       return clean;
     },

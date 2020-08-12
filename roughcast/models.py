@@ -4,11 +4,10 @@ from random import randint
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.urls import reverse
 from emoji import UNICODE_EMOJI
 from rest_framework.authtoken.models import Token
 
-from .fields import MarkdownField, StringField
+from .fields import StringField
 from .model_mixins import BasicModelMixin, SimpleSlugMixin
 
 
@@ -48,7 +47,7 @@ class User(AbstractUser):
 
 class Publisher(BasicModelMixin, SimpleSlugMixin, models.Model):
     name = StringField(unique=True)
-    description = MarkdownField()
+    description = models.TextField()
     url = models.URLField(blank=True)
 
     members = models.ManyToManyField(
@@ -78,7 +77,7 @@ class Game(BasicModelMixin, SimpleSlugMixin, models.Model):
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     name = StringField()
     banner = models.ImageField(null=True, blank=True)
-    description = MarkdownField()
+    description = models.TextField()
 
     class Meta:
         constraints = (
@@ -96,7 +95,7 @@ class Version(BasicModelMixin, SimpleSlugMixin, models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     name = StringField()
-    changelog = MarkdownField()
+    changelog = models.TextField()
     is_public = models.BooleanField(default=False)
     visible_to = models.ManyToManyField(
         User, related_name="accessible_versions", blank=True
@@ -139,7 +138,7 @@ class PlaytestReport(BasicModelMixin, models.Model):
 class PlaytestReportComment(BasicModelMixin, models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     playtest_report = models.ForeignKey(PlaytestReport, on_delete=models.CASCADE)
-    body = MarkdownField()
+    body = models.TextField()
 
     # def __str__(self):
     #     return f"Playtest comment from {self.created_by} for {self.playtest_report}"

@@ -14,7 +14,12 @@
       <textarea name="changelog" v-model="changelog" />
     </div>
     <div class="ui checkbox field">
-      <input type="checkbox" name="is_public" id="is_public" v-model="is_public">
+      <input
+        type="checkbox"
+        name="is_public"
+        id="is_public"
+        v-model="is_public"
+      />
       <label for="is_public">public</label>
     </div>
     <div v-if="!is_public" class="field">
@@ -26,7 +31,7 @@
         multiple
         search
         selection
-        />
+      />
     </div>
     <div class="field">
       <input type="file" multiple name="files" />
@@ -36,10 +41,11 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import { mapState, mapActions } from 'vuex';
 
 export default {
-  name: "VersionForm",
+  name: 'VersionForm',
   props: {
     forGame: String,
   },
@@ -59,12 +65,12 @@ export default {
   computed: {
     ...mapState(['User']),
     users() {
-      return _.map(this.User.all, (u) => ({
+      return _.map(this.User.all, u => ({
         key: u.id,
         value: u.username,
         text: `${u.get_full_name} (@${u.username})`,
       }));
-    }
+    },
   },
   methods: {
     ...mapActions(['createNewVersion', 'createNewAttachedFile']),
@@ -79,7 +85,7 @@ export default {
         visible_to: elements['visible_to']?.value || [],
       };
       const newVersion = await this.createNewVersion(data);
-      e.target.elements["files"].files.forEach(async (file) => {
+      e.target.elements['files'].files.forEach(async file => {
         const data = {
           version_id: newVersion.id,
           attached_file: file,
@@ -87,6 +93,6 @@ export default {
         await this.createNewAttachedFile(data);
       });
     },
-  }
-}
+  },
+};
 </script>

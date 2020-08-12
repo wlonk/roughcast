@@ -26,5 +26,5 @@ export default {
     GameCard,
     GameForm,
   },
-}
+};
 </script>

@@ -1,7 +1,10 @@
 <template>
   <div class="ui card">
     <div class="content">
-      <i class="right floated trash alternate icon" v-if="permissions['this:delete']"></i>
+      <i
+        class="right floated trash alternate icon"
+        v-if="permissions['this:delete']"
+      ></i>
       <router-link :to="`/p/${publisher}/${slug}`" class="header">
         {{ name }}
       </router-link>
@@ -42,8 +45,11 @@ export default {
       return _.pickBy(this.Version.all, v => v.game === this.slug);
     },
     publisherName() {
-      return _.find(this.Publisher.all, p => p.slug === this.publisher).name || 'unknown publisher';
-    }
+      return (
+        _.find(this.Publisher.all, p => p.slug === this.publisher).name ||
+        'unknown publisher'
+      );
+    },
   },
 };
 </script>

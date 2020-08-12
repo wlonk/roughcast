@@ -7,22 +7,33 @@
           title="placeholder"
           alt="placeholder"
           src="/static/images/placeholder.png"
-          />
+        />
       </div>
       <div class="ten wide column">
         <router-link :to="`/p/${publisher}/${slug}`" class="ui header">
           {{ name }} <span class="ui sub header">from {{ publisherName }}</span>
         </router-link>
         <div class="meta">
-          Latest: <router-link :to="`/p/${publisher}/${slug}/${latest_version.slug}`">{{ latest_version.name }}</router-link>
+          Latest:
+          <router-link :to="`/p/${publisher}/${slug}/${latest_version.slug}`">{{
+            latest_version.name
+          }}</router-link>
         </div>
         <div class="description">
           <RenderedMarkdown :body="description" />
         </div>
       </div>
       <div class="two wide column right aligned">
-        <i title="delete" class="trash alternate icon" v-if="permissions['this:delete']"></i>
-        <i title="edit" class="pencil alternate icon" v-if="permissions['this:edit']"></i>
+        <i
+          title="delete"
+          class="trash alternate icon"
+          v-if="permissions['this:delete']"
+        ></i>
+        <i
+          title="edit"
+          class="pencil alternate icon"
+          v-if="permissions['this:edit']"
+        ></i>
       </div>
     </div>
   </div>
@@ -55,8 +66,11 @@ export default {
       return _.pickBy(this.Version.all, v => v.game === this.slug);
     },
     publisherName() {
-      return _.find(this.Publisher.all, p => p.slug === this.publisher).name || 'unknown publisher';
-    }
+      return (
+        _.find(this.Publisher.all, p => p.slug === this.publisher).name ||
+        'unknown publisher'
+      );
+    },
   },
 };
 </script>

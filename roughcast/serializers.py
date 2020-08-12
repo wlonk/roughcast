@@ -12,7 +12,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from rest_framework import serializers
 
 from .models import AttachedFile, Game, Publisher, PublisherMembership, User, Version
-from .serializer_fields import SlugStringField, UserStringField, SlugField
+from .serializer_fields import SlugField, SlugStringField, UserStringField
 from .text import unmark
 
 
@@ -183,29 +183,32 @@ class PublisherSerializer(serializers.ModelSerializer):
 
     def get_user_is_owner(self, publisher):
         user = getattr(self.context.get("request", None), "user")
-        return user and user.is_authenticated and PublisherMembership.objects.filter(
-            user=user,
-            publisher=publisher,
-            is_owner=True,
-        ).exists()
+        return (
+            user
+            and user.is_authenticated
+            and PublisherMembership.objects.filter(
+                user=user, publisher=publisher, is_owner=True,
+            ).exists()
+        )
 
     user_is_member = serializers.SerializerMethodField()
 
     def get_user_is_member(self, publisher):
         user = getattr(self.context.get("request", None), "user")
-        return user and user.is_authenticated and PublisherMembership.objects.filter(
-            user=user,
-            publisher=publisher,
-        ).exists()
+        return (
+            user
+            and user.is_authenticated
+            and PublisherMembership.objects.filter(
+                user=user, publisher=publisher,
+            ).exists()
+        )
 
     def create(self, validated_data):
         publisher = super().create(validated_data)
         user = getattr(self.context.get("request", None), "user")
         if user and user.is_authenticated:
             PublisherMembership.objets.create(
-                user=user,
-                publisher=publisher,
-                is_owner=True,
+                user=user, publisher=publisher, is_owner=True,
             )
         return publisher
 
@@ -302,8 +305,7 @@ class VersionSerializer(serializers.ModelSerializer):
     slug = SlugField()
     created_by = UserStringField(read_only=True)
     created_by_setter = serializers.HiddenField(
-        default=serializers.CurrentUserDefault(),
-        source="created_by",
+        default=serializers.CurrentUserDefault(), source="created_by",
     )
     game = SlugStringField(model_class=Game, queryset=Game.objects.all(),)
     game_id = serializers.PrimaryKeyRelatedField(
@@ -340,6 +342,7 @@ class VersionSerializer(serializers.ModelSerializer):
             "this:edit": user in version.game.publisher.members.all(),
         }
 
+
 class AttachedFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = AttachedFile
@@ -354,14 +357,11 @@ class AttachedFileSerializer(serializers.ModelSerializer):
         )
 
     id = serializers.CharField(read_only=True)
-    version = SlugStringField(
-        model_class=Version,
-        read_only=True,
-    )
+    version = SlugStringField(model_class=Version, read_only=True,)
     version_id = serializers.PrimaryKeyRelatedField(
         queryset=Version.objects.all(),
         pk_field=serializers.CharField(),
-        source="version"
+        source="version",
     )
     game = SlugStringField(model_class=Game, read_only=True, source="version.game",)
     publisher = SlugStringField(

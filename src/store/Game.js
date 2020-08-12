@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import api from '../api';
 
 const Game = {
@@ -13,7 +12,7 @@ const Game = {
       state.all = {
         ...state.all,
         [game.id]: game,
-      }
+      };
     },
   },
   actions: {
@@ -42,7 +41,7 @@ const Game = {
         // TODO: Display lookup error toast?
       }
     },
-    async createNewGame({ commit, state }, data) {
+    async createNewGame({ commit }, data) {
       const response = await api.post('/game/', data);
       if (response.ok) {
         const newGame = response.data;
