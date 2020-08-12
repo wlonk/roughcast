@@ -23,5 +23,5 @@ export default new Vuex.Store({
     Version,
     AttachedFile,
   },
-  // plugins: [createPersistedState()],
+  plugins: [createPersistedState()],
 });
