@@ -11,8 +11,10 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import BreadCrumbs from '@/components/BreadCrumbs';
 import MainMenu from '@/components/MainMenu';
+import { mapState } from 'vuex';
 
 export default {
   name: 'App',
@@ -20,5 +22,14 @@ export default {
     BreadCrumbs,
     MainMenu,
   },
+  computed: mapState(['User']),
+  created() {
+    if (this.User.current) {
+      const user = this.User.current;
+      Vue.axios.defaults.headers.common[
+        'Authorization'
+      ] = `Token ${user.token}`;
+    }
+  }
 };
 </script>
