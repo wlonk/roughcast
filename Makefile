@@ -4,7 +4,7 @@ export $(shell sed 's/=.*//' .env)
 # Run server:
 .PHONY: default
 default:
-	python manage.py runserver
+	yarn serve
 
 # Deploy!
 .PHONY: deploy
@@ -44,9 +44,21 @@ merge-migrations:
 migrate:
 	python manage.py migrate
 
+.PHONY: migratezero
+migratezero:
+	python manage.py migrate roughcast zero
+
 .PHONY: user
 user:
 	python manage.py createsuperuser
+
+.PHONY: dumpdata
+dumpdata:
+	python manage.py dumpdata -o roughcast/fixtures/test.json roughcast
+
+.PHONY: loaddata
+loaddata:
+	python manage.py loaddata test.json
 
 # Manage static assets:
 .PHONY: static
@@ -57,6 +69,7 @@ static:
 .PHONY: test
 test:
 	pytest
+	yarn test
 
 # Run linting tools:
 .PHONY: lint
@@ -64,6 +77,7 @@ lint:
 	isort -rc manage.py roughcast tests
 	black manage.py roughcast tests
 	flake8 manage.py roughcast tests
+	yarn lint
 
 # Access Python shell
 .PHONY: shell

@@ -1,7 +1,8 @@
 [run]
 omit = 
+    roughcast/[aw]sgi.py
     roughcast/settings/*
     roughcast/migrations/*
 
 [report]
-fail_under = 29
+fail_under = 37

@@ -21,16 +21,21 @@ BASE_DIR = Path(__file__).absolute().parent.parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("DJANGO_SECRET_KEY")
+HASHID_FIELD_SALT = env("HASHID_FIELD_SALT")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DJANGO_DEBUG", type_=boolish)
 ALLOWED_HOSTS = [
-    "localhost",
-    "localhost:8000",
-    "127.0.0.1",
-    "127.0.0.1:8000",
     "roughcast.app",
 ]
+if DEBUG:
+    ALLOWED_HOSTS += [
+        "localhost",
+        "localhost:8000",
+        "127.0.0.1",
+        "127.0.0.1:8000",
+        ".ngrok.io",
+    ]
 
 # HTTPS and HSTS
 SECURE_SSL_REDIRECT = env("SECURE_SSL_REDIRECT", default=not DEBUG, type_=boolish)
@@ -49,6 +54,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "crispy_forms",
+    "markdownify",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "django_filters",
     "roughcast",
 ]
 MIDDLEWARE = [
@@ -115,6 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+LOGIN_REDIRECT_URL = "/dashboard/"
 
 
 # Internationalization
@@ -133,6 +143,13 @@ STATICFILES_DIRS = [str(BASE_DIR / "static"), str(BASE_DIR / "dist")]
 STATIC_ROOT = str(BASE_DIR / "staticfiles")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+MEDIA_ROOT = str(BASE_DIR / "media")
+MEDIA_URL = "/media/"
+
+FONT_ROOT = str(BASE_DIR / "static" / "fonts")
+FONT_URL = "/fonts/"
+
+# Crispy Forms
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 
@@ -148,3 +165,15 @@ else:
 
 # Django-registration
 ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window
+
+
+# Django REST Framework
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+}
