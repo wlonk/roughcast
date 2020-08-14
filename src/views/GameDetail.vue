@@ -5,6 +5,7 @@
       Versions
     </h3>
     <VersionList
+      :publisher="publisher.slug"
       :game="game.slug"
       :userCanAddVersions="game.permissions['version:add']"
       :versions="versions"
@@ -23,7 +24,10 @@ export default {
   name: 'GameDetail',
   components: { GameSection, VersionList },
   computed: {
-    ...mapState(['Game', 'Version']),
+    ...mapState(['Publisher', 'Game', 'Version']),
+    publisher() {
+      return _.find(this.Publisher.all, p => p.slug === this.$route.params.publisher);
+    },
     game() {
       return _.find(this.Game.all, g => g.slug === this.$route.params.game);
     },

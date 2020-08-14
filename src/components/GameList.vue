@@ -7,7 +7,7 @@
       <h4 class="ui horizontal divider">
         add a game
       </h4>
-      <GameForm />
+      <GameForm :forPublisher="publisher" />
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@ import GameForm from '@/forms/GameForm';
 export default {
   name: 'GameList',
   props: {
+    publisher: String,
     games: Array,
     userCanAddGames: Boolean,
   },

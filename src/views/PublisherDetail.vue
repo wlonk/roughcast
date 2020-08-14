@@ -5,6 +5,7 @@
       Games
     </h3>
     <GameList
+      :publisher="publisher.slug"
       :userCanAddGames="publisher.permissions['game:add']"
       :games="games"
     />
