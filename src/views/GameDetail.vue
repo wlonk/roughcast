@@ -5,8 +5,8 @@
       Versions
     </h3>
     <VersionList
-      :publisherSlug="publisherSlug"
-      :gameSlug="game.slug"
+      :publisher="publisherSlug"
+      :game="game.slug"
       :userCanAddVersions="game.permissions['version:add']"
       :versions="game.versions"
     />

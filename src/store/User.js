@@ -98,6 +98,12 @@ const getters = {
   currentUser: (state) => {
     return state.current;
   },
+  dryUser: (state) => (slug) => {
+    return _.find(
+      state.all,
+      (u) => u.username === username,
+    );
+  },
   hydratedUser: (state) => (username) => {
     const user = _.find(
       state.all,

@@ -62,6 +62,12 @@ const actions = {
 };
 
 const getters = {
+  dryVersion: (state) => (slug) => {
+    return _.find(
+      state.all,
+      (v) => v.slug === slug,
+    );
+  },
   hydratedVersion: (state, getters, rootState) => (slug) => {
     const version = _.find(
       state.all,

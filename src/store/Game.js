@@ -55,6 +55,15 @@ const actions = {
 };
 
 const getters = {
+  listGames: (state) => {
+    return _.values(state.all);
+  },
+  dryGame: (state) => (slug) => {
+    return _.find(
+      state.all,
+      (g) => g.slug === slug,
+    );
+  },
   hydratedGame: (state, getters, rootState) => (slug) => {
     const game = _.find(
       state.all,
