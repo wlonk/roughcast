@@ -21,7 +21,9 @@
       <label for="changelog">changes</label>
       <textarea name="changelog" v-model="changelog" />
       <div class="hint">
-        You can use <a href="https://www.markdownguide.org/cheat-sheet/">Markdown</a> here.
+        You can use
+        <a href="https://www.markdownguide.org/cheat-sheet/">Markdown</a>
+        here.
       </div>
     </div>
     <div class="ui checkbox field">
@@ -36,7 +38,7 @@
     <div v-if="!is_public" class="field">
       <label for="visible_to">visible to</label>
       <sui-dropdown
-        :options="users"
+        :options="dryUserOptionList"
         v-model="visible_to"
         placeholder="Visible to"
         multiple
@@ -52,8 +54,7 @@
 </template>
 
 <script>
-import _ from 'lodash';
-import { mapState, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import slugify from './slugify';
 
 export default {
@@ -77,14 +78,7 @@ export default {
     this.$store.dispatch('retrieveUsers');
   },
   computed: {
-    ...mapState(['User']),
-    users() {
-      return _.map(this.User.all, u => ({
-        key: u.id,
-        value: u.username,
-        text: `${u.get_full_name} (@${u.username})`,
-      }));
-    },
+    ...mapGetters(['dryUserOptionList']),
   },
   asyncComputed: {
     async slugError() {

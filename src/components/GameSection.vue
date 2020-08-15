@@ -10,12 +10,12 @@
         />
       </div>
       <div class="ten wide column">
-        <router-link :to="`/p/${publisher}/${slug}`" class="ui header">
-          {{ name }} <span class="ui sub header">from {{ publisherName }}</span>
+        <router-link :to="`/p/${publisher.slug}/${slug}`" class="ui header">
+          {{ name }} <span class="ui sub header">from {{ publisher.name }}</span>
         </router-link>
         <div class="meta">
           Latest:
-          <router-link :to="`/p/${publisher}/${slug}/${latest_version.slug}`">{{
+          <router-link :to="`/p/${publisher.slug}/${slug}/${latest_version.slug}`">{{
             latest_version.name
           }}</router-link>
         </div>
@@ -40,9 +40,6 @@
 </template>
 
 <script>
-import _ from 'lodash';
-import { mapState } from 'vuex';
-
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 
 export default {
@@ -53,24 +50,9 @@ export default {
     name: String,
     slug: String,
     description: String,
-    publisher: String,
+    publisher: Object,
     latest_version: Object,
     permissions: Object,
-  },
-  created() {
-    this.$store.dispatch('retrieveVersions');
-  },
-  computed: {
-    ...mapState(['Version', 'Publisher']),
-    versions() {
-      return _.pickBy(this.Version.all, v => v.game === this.slug);
-    },
-    publisherName() {
-      return (
-        _.find(this.Publisher.all, p => p.slug === this.publisher).name ||
-        'unknown publisher'
-      );
-    },
   },
 };
 </script>

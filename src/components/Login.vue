@@ -2,9 +2,9 @@
   <form @submit.stop.prevent="login" class="ui mini form">
     <div class="ui input">
       <input name="username" placeholder="username" />
-      <ul v-if="User.errors.username">
+      <ul v-if="loginErrors.username">
         <li
-          v-for="(error, i) in User.errors.username"
+          v-for="(error, i) in loginErrors.username"
           :key="i"
           class="ui error message"
         >
@@ -19,9 +19,9 @@
         placeholder="password"
         class="ui input"
       />
-      <ul v-if="User.errors.password">
+      <ul v-if="loginErrors.password">
         <li
-          v-for="(error, i) in User.errors.password"
+          v-for="(error, i) in loginErrors.password"
           :key="i"
           class="ui error message"
         >
@@ -30,9 +30,9 @@
       </ul>
     </div>
     <input type="submit" value="log in" class="ui mini primary button" />
-    <ul v-if="User.errors.non_field_errors">
+    <ul v-if="loginErrors.non_field_errors">
       <li
-        v-for="(error, i) in User.errors.non_field_errors"
+        v-for="(error, i) in loginErrors.non_field_errors"
         :key="i"
         class="ui error message"
       >
@@ -46,17 +46,21 @@
 // TODO: This component does not display errors right if it's in the header
 // bar. Maybe make it pop up as a modal, to allow better error reporting?
 
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'LogIn',
-  computed: mapState(['User']),
+  computed: mapGetters(['loginErrors']),
   methods: {
     async login(e) {
       const username = e.target.elements['username'].value;
       const password = e.target.elements['password'].value;
       const data = { username, password };
-      await this.$store.dispatch('logIn', data);
+      try {
+        await this.$store.dispatch('logIn', data);
+      } catch {
+        return;
+      }
       this.$store.dispatch('retrievePublishers');
       this.$store.dispatch('retrieveGames');
       this.$store.dispatch('retrieveVersions');

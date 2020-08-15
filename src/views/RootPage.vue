@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DashBoard v-if="User.current" />
+    <DashBoard v-if="currentUser" />
     <div v-else>
       <h1>Welcome to Roughcast</h1>
     </div>
@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 import DashBoard from '@/components/DashBoard';
 
 export default {
   name: 'RootPage',
   components: { DashBoard },
-  computed: mapState(['User']),
+  computed: mapGetters(['currentUser']),
 };
 </script>

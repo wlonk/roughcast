@@ -21,7 +21,7 @@ const routes = [
     },
   },
   {
-    path: '/u/:id',
+    path: '/u/:username',
     name: 'User',
     component: UserDetail,
     meta: {
