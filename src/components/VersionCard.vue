@@ -11,10 +11,6 @@
 </template>
 
 <script>
-import _ from 'lodash';
-
-import { mapState } from 'vuex';
-
 export default {
   name: 'VersionCard',
   props: {
@@ -28,12 +24,6 @@ export default {
     slug: String,
     archive_link: String,
     permissions: Object,
-  },
-  computed: {
-    ...mapState(['AttachedFile']),
-    attachedFiles() {
-      return _.filter(this.AttachedFile.all, af => af.version_id === this.id);
-    },
   },
 };
 </script>

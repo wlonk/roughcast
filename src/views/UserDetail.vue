@@ -1,11 +1,11 @@
 <template>
   <div>
-    <UserCard v-bind="user" :isDetail="true" />
+    <UserCard v-bind="user" />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 import UserCard from '@/components/UserCard';
 
@@ -13,13 +13,13 @@ export default {
   name: 'UserDetail',
   components: { UserCard },
   computed: {
-    ...mapState(['User']),
+    ...mapGetters(['hydratedUser']),
     user() {
-      return this.User.all[this.$route.params.id];
+      return this.hydratedUser(this.$route.params.username);
     },
   },
   created() {
-    this.$store.dispatch('getUserById', this.$route.params.id);
+    this.$store.dispatch('getUserById', this.$route.params.username);
   },
 };
 </script>

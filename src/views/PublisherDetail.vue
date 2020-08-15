@@ -5,16 +5,16 @@
       Games
     </h3>
     <GameList
-      :publisher="publisher.slug"
+      :publisher="publisher"
       :userCanAddGames="publisher.permissions['game:add']"
-      :games="games"
+      :games="publisher.games"
     />
   </div>
 </template>
 
 <script>
 import _ from 'lodash';
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 import PublisherSection from '@/components/PublisherSection';
 import GameList from '@/components/GameList';
@@ -27,15 +27,9 @@ export default {
     this.$store.dispatch('retrieveGames');
   },
   computed: {
-    ...mapState(['Publisher', 'Game']),
+    ...mapGetters(['hydratedPublisher']),
     publisher() {
-      return _.find(
-        this.Publisher.all,
-        p => p.slug === this.$route.params.publisher,
-      );
-    },
-    games() {
-      return _.filter(this.Game.all, g => g.publisher === this.publisher.slug);
+      return this.hydratedPublisher(this.$route.params.publisher);
     },
   },
 };

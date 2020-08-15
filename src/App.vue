@@ -14,7 +14,7 @@
 import Vue from 'vue';
 import BreadCrumbs from '@/components/BreadCrumbs';
 import MainMenu from '@/components/MainMenu';
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
@@ -22,10 +22,10 @@ export default {
     BreadCrumbs,
     MainMenu,
   },
-  computed: mapState(['User']),
+  computed: mapGetters(['currentUser']),
   created() {
-    if (this.User.current) {
-      const user = this.User.current;
+    if (this.currentUser) {
+      const user = this.currentUser;
       Vue.axios.defaults.headers.common[
         'Authorization'
       ] = `Token ${user.token}`;

@@ -5,21 +5,21 @@
         Roughcast
       </router-link>
     </div>
-    <div v-if="User.current" class="ui right item">
+    <div v-if="currentUser" class="ui right item">
       <NotificationList />
-      <router-link :to="`/u/${User.current.username}`" class="ui link item">
-        @{{ User.current.username }}
+      <router-link :to="`/u/${currentUser.username}`" class="ui link item">
+        @{{ currentUser.username }}
       </router-link>
       <LogOut />
     </div>
-    <div v-if="!User.current" class="ui right item">
+    <div v-else class="ui right item">
       <LogIn />
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import LogIn from '@/components/LogIn';
 import LogOut from '@/components/LogOut';
 import NotificationList from '@/components/NotificationList';
@@ -31,6 +31,6 @@ export default {
     LogOut,
     NotificationList,
   },
-  computed: mapState(['User']),
+  computed: mapGetters(['currentUser']),
 };
 </script>

@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <VersionSection v-bind="version" />
-  </div>
+  <VersionSection v-bind="version" />
 </template>
 
 <script>
 import _ from 'lodash';
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 import VersionSection from '@/components/VersionSection';
 
@@ -14,12 +12,9 @@ export default {
   name: 'VersionDetail',
   components: { VersionSection },
   computed: {
-    ...mapState(['Version']),
+    ...mapGetters(['hydratedVersion']),
     version() {
-      return _.find(
-        this.Version.all,
-        v => v.slug === this.$route.params.version,
-      );
+      return this.hydratedVersion(this.$route.params.version);
     },
   },
   created() {

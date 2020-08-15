@@ -8,7 +8,7 @@
 export default {
   name: 'UserCard',
   props: {
-    id: String,
+    id: Number,
     username: String,
   },
 };

@@ -13,12 +13,12 @@
 
 <script>
 import _ from 'lodash';
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'BreadCrumbs',
   computed: {
-    ...mapState(['User', 'Publisher', 'Game', 'Version']),
+    ...mapGetters(['dryUser', 'dryPublisher', 'dryGame', 'dryVersion']),
     crumbs() {
       const divider = {
         path: null,
@@ -57,11 +57,11 @@ export default {
         case 'publisher':
           return `/p/${value}`;
         case 'game':
-          game = _.find(this.Game.all, g => g.slug === value);
+          game = this.dryGame(value);
           return `/p/${game.publisher}/${value}`;
         case 'version':
-          version = _.find(this.Version.all, v => v.slug === value);
-          game = _.find(this.Game.all, g => g.slug === version.game);
+          version = this.dryVersion(value);
+          game = this.dryGame(version.game);
           return `/p/${game.publisher}/${version.game}/${value}`;
         case 'user':
           return `/u/${value}`;
@@ -72,13 +72,13 @@ export default {
     nameToObjectName(name, value) {
       switch (name) {
         case 'publisher':
-          return _.find(this.Publisher.all, p => p.slug === value).name;
+          return this.dryPublisher(value).name;
         case 'game':
-          return _.find(this.Game.all, g => g.slug === value).name;
+          return this.dryGame(value).name;
         case 'version':
-          return _.find(this.Version.all, v => v.slug === value).name;
+          return this.dryVersion(value).name;
         case 'user':
-          return this.User.all[value].username;
+          return this.dryUser(value).username;
         default:
           return value;
       }
