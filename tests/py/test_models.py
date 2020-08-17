@@ -9,14 +9,14 @@ from roughcast.models import attached_file_upload_to, is_emoji
 def test_attached_file_upload_to():
     instance = MagicMock(
         **{
-            "version.game.publisher.name": "publisher",
+            "version.game.team.name": "team",
             "version.game.name": "game",
             "version.name": "version",
         }
     )
     filename = "test.pdf"
     actual = attached_file_upload_to(instance, filename)
-    expected = r"publisher/game/game-version-[A-Za-z0-9]{8}.pdf"
+    expected = r"team/game/game-version-[A-Za-z0-9]{8}.pdf"
     assert re.match(expected, actual)
 
 
@@ -38,17 +38,17 @@ class TestUser:
 
 
 @pytest.mark.django_db
-class TestPublisher:
-    def test_str(self, publisher):
-        assert str(publisher) == "Transneptune Games"
+class TestTeam:
+    def test_str(self, team):
+        assert str(team) == "Transneptune Games"
 
 
 @pytest.mark.django_db
-class TestPublisherMembership:
-    def test_str(self, publisher_membership):
-        username = publisher_membership.user.username
+class TestTeamMembership:
+    def test_str(self, team_membership):
+        username = team_membership.user.username
         assert (
-            str(publisher_membership) == f"{username} is a member of Transneptune Games"
+            str(team_membership) == f"{username} is a member of Transneptune Games"
         )
 
 

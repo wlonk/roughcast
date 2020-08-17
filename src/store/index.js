@@ -3,8 +3,8 @@ import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 
 import User from './User';
-import PublisherMembership from './PublisherMembership';
-import Publisher from './Publisher';
+import TeamMembership from './TeamMembership';
+import Team from './Team';
 import Game from './Game';
 import Version from './Version';
 import AttachedFile from './AttachedFile';
@@ -17,8 +17,8 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     User,
-    PublisherMembership,
-    Publisher,
+    TeamMembership,
+    Team,
     Game,
     Version,
     AttachedFile,

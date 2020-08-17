@@ -18,7 +18,7 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'BreadCrumbs',
   computed: {
-    ...mapGetters(['dryUser', 'dryPublisher', 'dryGame', 'dryVersion']),
+    ...mapGetters(['dryUser', 'dryTeam', 'dryGame', 'dryVersion']),
     crumbs() {
       const divider = {
         path: null,
@@ -54,15 +54,15 @@ export default {
       let game;
       let version;
       switch (name) {
-        case 'publisher':
-          return `/p/${value}`;
+        case 'team':
+          return `/t/${value}`;
         case 'game':
           game = this.dryGame(value);
-          return `/p/${game.publisher}/${value}`;
+          return `/t/${game.team}/${value}`;
         case 'version':
           version = this.dryVersion(value);
           game = this.dryGame(version.game);
-          return `/p/${game.publisher}/${version.game}/${value}`;
+          return `/t/${game.team}/${version.game}/${value}`;
         case 'user':
           return `/u/${value}`;
         default:
@@ -71,8 +71,8 @@ export default {
     },
     nameToObjectName(name, value) {
       switch (name) {
-        case 'publisher':
-          return this.dryPublisher(value).name;
+        case 'team':
+          return this.dryTeam(value).name;
         case 'game':
           return this.dryGame(value).name;
         case 'version':

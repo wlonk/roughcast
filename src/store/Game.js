@@ -63,14 +63,14 @@ const getters = {
   },
   hydratedGame: (state, getters, rootState) => slug => {
     const game = _.find(state.all, g => g.slug === slug);
-    const publisher = _.find(
-      rootState.Publisher.all,
-      p => p.slug === game.publisher,
+    const team = _.find(
+      rootState.Team.all,
+      p => p.slug === game.team,
     );
     const versions = _.filter(rootState.Version.all, v => v.game === game.slug);
     return {
       ...game,
-      publisher,
+      team,
       versions,
     };
   },

@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
-from roughcast.models import Game, Publisher, PublisherMembership, Version
+from roughcast.models import Game, Team, TeamMembership, Version
 
 User = get_user_model()
 
@@ -21,21 +21,21 @@ class UserFactory(factory.django.DjangoModelFactory):
 
 
 @register
-class PublisherFactory(factory.django.DjangoModelFactory):
+class TeamFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = Publisher
+        model = Team
 
     name = "Transneptune Games"
     slug = "transneptune-games"
 
 
 @register
-class PublisherMembershipFactory(factory.django.DjangoModelFactory):
+class TeamMembershipFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = PublisherMembership
+        model = TeamMembership
 
     user = factory.SubFactory(UserFactory)
-    publisher = factory.SubFactory(PublisherFactory)
+    team = factory.SubFactory(TeamFactory)
     is_owner = False
 
 
@@ -44,7 +44,7 @@ class GameFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Game
 
-    publisher = factory.SubFactory(PublisherFactory)
+    team = factory.SubFactory(TeamFactory)
     name = "The Game"
     slug = "the-game"
 

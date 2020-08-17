@@ -10,7 +10,7 @@
         add a version
       </h4>
       <VersionForm
-        :forPublisher="publisher"
+        :forTeam="team"
         :forGame="game"
         :visibleTo="defaultVisibleTo"
       />
@@ -25,7 +25,7 @@ import VersionForm from '@/forms/VersionForm';
 export default {
   name: 'VersionList',
   props: {
-    publisher: String,
+    team: String,
     game: String,
     versions: Array,
     userCanAddVersions: Boolean,

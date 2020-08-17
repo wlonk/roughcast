@@ -61,7 +61,7 @@ export default {
       } catch {
         return;
       }
-      this.$store.dispatch('retrievePublishers');
+      this.$store.dispatch('retrieveTeams');
       this.$store.dispatch('retrieveGames');
       this.$store.dispatch('retrieveVersions');
       this.$store.dispatch('retrieveAttachedFiles');

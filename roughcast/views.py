@@ -12,7 +12,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from .models import AttachedFile, Game, Publisher, PublisherMembership, User, Version
+from .models import AttachedFile, Game, Team, TeamMembership, User, Version
 from .serializers import (
     AttachedFileSerializer,
     GameSerializer,
@@ -20,8 +20,8 @@ from .serializers import (
     LogoutSerializer,
     PasswordResetConfirmSerializer,
     PasswordResetSerializer,
-    PublisherMembershipSerializer,
-    PublisherSerializer,
+    TeamMembershipSerializer,
+    TeamSerializer,
     SelfUserSerializer,
     UserSerializer,
     VersionSerializer,
@@ -102,16 +102,16 @@ class UserViewSet(ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class PublisherViewSet(ModelViewSet):
-    queryset = Publisher.objects.all()
-    serializer_class = PublisherSerializer
+class TeamViewSet(ModelViewSet):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
     lookup_field = "slug"
     lookup_value_regex = "[^/]+"
 
 
-class PublisherMembershipViewSet(ModelViewSet):
-    queryset = PublisherMembership.objects.all()
-    serializer_class = PublisherMembershipSerializer
+class TeamMembershipViewSet(ModelViewSet):
+    queryset = TeamMembership.objects.all()
+    serializer_class = TeamMembershipSerializer
 
 
 class GameViewSet(ModelViewSet):

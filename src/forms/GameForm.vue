@@ -1,6 +1,6 @@
 <template>
   <form @submit.stop.prevent="createGame" class="ui form">
-    <input type="hidden" name="publisher" :value="publisher" />
+    <input type="hidden" name="team" :value="team" />
     <div class="field">
       <label for="name">name</label>
       <input name="name" v-model="name" @change="updateSlug" />
@@ -8,7 +8,7 @@
     <div class="field">
       <label for="slug">slug</label>
       <div :class="['ui', 'labeled', 'input', slugError ? 'error' : '']">
-        <div class="ui label">roughcast.app/p/{{ forPublisher }}/</div>
+        <div class="ui label">roughcast.app/t/{{ forTeam }}/</div>
         <input name="slug" v-model="slug" @change="markSlugEdited" />
         <div v-if="slugError" class="ui corner label">
           <i class="asterisk icon"></i>
@@ -45,11 +45,11 @@ import slugify from './slugify';
 export default {
   name: 'GameForm',
   props: {
-    forPublisher: String,
+    forTeam: String,
   },
   data() {
     return {
-      publisher: this.forPublisher,
+      team: this.forTeam,
       name: '',
       slug: '',
       slugEdited: false,
@@ -76,7 +76,7 @@ export default {
     async createGame(e) {
       const elements = e.target.elements;
       const data = {
-        publisher: elements['publisher'].value,
+        team: elements['team'].value,
         name: elements['name'].value,
         slug: elements['slug'].value,
         description: elements['description'].value,

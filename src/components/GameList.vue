@@ -2,7 +2,7 @@
   <div>
     <div class="ui cards">
       <GameCard
-        v-for="game in gamesWithPublisher"
+        v-for="game in gamesWithTeam"
         :key="game.id"
         v-bind="game"
       />
@@ -11,7 +11,7 @@
       <h4 class="ui horizontal divider">
         add a game
       </h4>
-      <GameForm :forPublisher="publisher.slug" />
+      <GameForm :forTeam="team.slug" />
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ import GameForm from '@/forms/GameForm';
 export default {
   name: 'GameList',
   props: {
-    publisher: Object,
+    team: Object,
     games: Array,
     userCanAddGames: Boolean,
   },
@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     ...mapGetters(['hydratedGame']),
-    gamesWithPublisher() {
+    gamesWithTeam() {
       return this.games.map(g => this.hydratedGame(g.slug));
     },
   },

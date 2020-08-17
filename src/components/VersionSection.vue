@@ -14,7 +14,7 @@
           <a :href="archive_link">
             <i class="right floated file archive outline icon"></i>
           </a>
-          <router-link :to="`/p/${publisher}/${gameSlug}/${slug}`">
+          <router-link :to="`/t/${team}/${gameSlug}/${slug}`">
             {{ name }}
           </router-link>
         </h4>
@@ -95,7 +95,7 @@ export default {
   props: {
     id: String,
     name: String,
-    publisher: String,
+    team: String,
     game: Object,
     gameSlug: String,
     slug: String,
