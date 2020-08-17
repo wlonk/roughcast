@@ -1,0 +1,14 @@
+.welcome-block {
+  display: flex;
+  align-items: center;
+  h1 {
+    font-family: $accent-font;
+    font-size: 4rem;
+    letter-spacing: 0.15em;
+    line-height: 1.25em;
+    width: 80%;
+  }
+  p {
+    margin: 1.5rem 0 4rem;
+  }
+}
