@@ -11,7 +11,7 @@
     margin-right: 0.5rem;
     width: 1.5rem; height: 1.5rem;
     &:checked ~ p::before {
-      background-position: 50% 45%;
+      background-position: center;
       background-size: 50%;
       background-repeat: no-repeat;
     }
@@ -19,11 +19,12 @@
   p {
     cursor: pointer;
     font-weight: 300;
+    line-height: 1.5em;
     margin: 0;
     &::before {
       content: '';
       position: absolute;
-      left: 0;
+      left: 0; top: 0;
       width: 1.5rem; height: 1.5rem;
       border: 2px solid transparent;
     }

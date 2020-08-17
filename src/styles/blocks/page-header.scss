@@ -12,7 +12,10 @@
   }
   .logo-title {
     font-family: $accent-font;
-    font-size: $medium-font;
+    font-size: 1.5rem;
+  }
+  img[alt="logo"] {
+    width: 1.5rem;
   }
   .header-link {
     font-weight: 700;
