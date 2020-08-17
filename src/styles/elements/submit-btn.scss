@@ -1,5 +1,7 @@
 .submit-btn {
+  cursor: pointer;
   font-family: $button-font;
   font-weight: 700;
   padding: 1.25rem 3rem;
+  min-width: 12.5rem;
 }

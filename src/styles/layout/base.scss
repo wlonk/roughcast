@@ -1,5 +1,9 @@
-p, a, button, input {
+p, a, button, input, label {
   font-family: $base-font !important;
   letter-spacing: 0.05em !important;
   line-height: 1.5em !important;
+}
+
+input {
+  border: none;
 }
