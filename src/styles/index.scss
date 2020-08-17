@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Kurale&family=Merriweather:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Kurale&family=Patua+One&display=swap');
 
 // Layout
 @import "./layout/variables.scss";
@@ -7,7 +7,7 @@
 
 // Blocks
 @import "./blocks/page-header.scss";
-@import "./blocks/welcome-block.scss";
+@import "./blocks/main-block.scss";
 
 // Elements
 @import "./elements/submit-btn.scss";
