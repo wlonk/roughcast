@@ -22,7 +22,8 @@
     background-image: url('./assets/user-dm.svg');
   }
   .welcome-block,
-  .auth-block {
+  .auth-block,
+  .verification-block {
     * {
       color: $dm-main-font-color;
     }

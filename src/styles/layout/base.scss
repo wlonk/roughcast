@@ -7,6 +7,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"] {
   font-family: $base-font !important;
+  font-size: 16px;
   letter-spacing: 0.05em !important;
   line-height: 1.5em !important;
 }
