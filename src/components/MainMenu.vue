@@ -15,7 +15,7 @@
     </div>
     <div v-else class="ui right item">
       <router-link to="/auth/login" class="ui link item header-link">
-        Login
+        Log In
       </router-link>
     </div>
   </div>

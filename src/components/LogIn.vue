@@ -13,7 +13,7 @@
         </li>
       </ul>
     </div>
-    <div class="">
+    <div>
       <label for="password">Password</label>
       <input
         name="password"
@@ -42,7 +42,7 @@
       </router-link>
     </div>
     <div class="submit-row row">
-      <input type="submit" value="Login" class="submit-btn" />
+      <input type="submit" value="Log In" class="submit-btn" />
       <p> Don’t have an account?
         <router-link to="/auth/signup" class="accent-link">
           Sign Up!
