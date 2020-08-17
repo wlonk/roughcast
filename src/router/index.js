@@ -9,6 +9,7 @@ import TeamDetail from '@/views/TeamDetail';
 import GameDetail from '@/views/GameDetail';
 import VersionDetail from '@/views/VersionDetail';
 import AuthorizationPage from '@/views/AuthorizationPage';
+import VerificationDetail from '@/views/VerificationDetail';
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,14 @@ const routes = [
     component: AuthorizationPage,
     meta: {
       title: 'Authorization | Roughcast',
+    },
+  },
+  {
+    path: '/verification',
+    name: 'Verification',
+    component: VerificationDetail,
+    meta: {
+      title: 'Verification | Roughcast',
     },
   },
   {
