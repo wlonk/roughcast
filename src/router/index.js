@@ -8,6 +8,7 @@ import UserDetail from '@/views/UserDetail';
 import PublisherDetail from '@/views/PublisherDetail';
 import GameDetail from '@/views/GameDetail';
 import VersionDetail from '@/views/VersionDetail';
+import AuthorizationPage from '@/views/AuthorizationPage';
 
 Vue.use(VueRouter);
 
@@ -18,6 +19,14 @@ const routes = [
     component: RootPage,
     meta: {
       title: 'Roughcast',
+    },
+  },
+  {
+    path: '/auth/:type',
+    name: 'Authorization',
+    component: AuthorizationPage,
+    meta: {
+      title: 'Authorization | Roughcast',
     },
   },
   {
