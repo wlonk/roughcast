@@ -1,7 +1,7 @@
 <template>
   <div id="app" data-theme="dark">
     <MainMenu />
-    <div class="ui text container">
+    <div class="ui container">
       <BreadCrumbs />
     </div>
     <div class="ui container">
