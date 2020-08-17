@@ -1,0 +1,24 @@
+[data-theme="dark"] {
+  background-color: $dm-main-bg-color;
+  min-height: 100vh;
+  .page-header {
+    * {
+      color: $dm-main-font-color;
+    }
+    a:hover {
+      color: $dm-accent-bg-color;
+    }
+  }
+  .header-link::before {
+    background-image: url('./assets/user-dm.svg');
+  }
+  .welcome-block {
+    * {
+      color: $dm-main-font-color;
+    }
+  }
+  .submit-btn {
+    background-color: $dm-accent-bg-color;
+    color: $dm-dark-font-color;
+  }
+}
