@@ -1,6 +1,15 @@
 [data-theme="dark"] {
   background-color: $dm-main-bg-color;
   min-height: 100vh;
+  .breadcrumb {
+    .router-link-active,
+    .divider  {
+      color: transparentize($dm-main-font-color, 0.4);
+      &:hover {
+        color: $dm-main-font-color;
+      }
+    }
+  }
   .page-header {
     * {
       color: $dm-main-font-color;
@@ -12,7 +21,8 @@
   .header-link::before {
     background-image: url('./assets/user-dm.svg');
   }
-  .welcome-block {
+  .welcome-block,
+  .auth-block {
     * {
       color: $dm-main-font-color;
     }
