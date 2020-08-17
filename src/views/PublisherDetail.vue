@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import _ from 'lodash';
 import { mapGetters } from 'vuex';
 
 import PublisherSection from '@/components/PublisherSection';

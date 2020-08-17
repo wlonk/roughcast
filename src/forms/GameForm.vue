@@ -7,10 +7,8 @@
     </div>
     <div class="field">
       <label for="slug">slug</label>
-      <div :class="['ui', 'labeled', 'input', slugError ? 'error' : '' ]">
-        <div class="ui label">
-          roughcast.app/p/{{ forPublisher }}/
-        </div>
+      <div :class="['ui', 'labeled', 'input', slugError ? 'error' : '']">
+        <div class="ui label">roughcast.app/p/{{ forPublisher }}/</div>
         <input name="slug" v-model="slug" @change="markSlugEdited" />
         <div v-if="slugError" class="ui corner label">
           <i class="asterisk icon"></i>
@@ -21,15 +19,27 @@
       <label for="description">description</label>
       <textarea name="description" v-model="description" />
       <div class="hint">
-        You can use <a href="https://www.markdownguide.org/cheat-sheet/">Markdown</a> here.
+        You can use
+        <a href="https://www.markdownguide.org/cheat-sheet/">Markdown</a> here.
       </div>
+    </div>
+    <div class="field">
+      <label for="default_visible_to">visible to</label>
+      <sui-dropdown
+        :options="dryUserOptionList"
+        v-model="default_visible_to"
+        placeholder="Visible to"
+        multiple
+        search
+        selection
+      />
     </div>
     <input class="ui button" type="submit" value="create" />
   </form>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import slugify from './slugify';
 
 export default {
@@ -44,6 +54,7 @@ export default {
       slug: '',
       slugEdited: false,
       description: '',
+      default_visible_to: [],
     };
   },
   asyncComputed: {
@@ -59,6 +70,7 @@ export default {
       }
     },
   },
+  computed: mapGetters(['dryUserOptionList']),
   methods: {
     ...mapActions(['createNewGame']),
     async createGame(e) {
@@ -84,9 +96,8 @@ export default {
 </script>
 
 <style scoped>
-.ui.input.error > input, 
-.ui.input.error > div.ui.label
-{
+.ui.input.error > input,
+.ui.input.error > div.ui.label {
   background-color: #fff6f6;
   border-color: #e0b4b4;
   color: #9f3a38;

@@ -30,6 +30,6 @@ export default {
         'Authorization'
       ] = `Token ${user.token}`;
     }
-  }
+  },
 };
 </script>

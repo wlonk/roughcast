@@ -78,6 +78,9 @@ class Game(BasicModelMixin, SimpleSlugMixin, models.Model):
     name = StringField()
     banner = models.ImageField(null=True, blank=True)
     description = models.TextField()
+    default_visible_to = models.ManyToManyField(
+        User, related_name="accessible_games", blank=True
+    )
 
     class Meta:
         constraints = (
