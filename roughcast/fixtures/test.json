@@ -36,7 +36,7 @@
     }
   },
   {
-    "model": "roughcast.publisher",
+    "model": "roughcast.team",
     "pk": "mBw6Q2q",
     "fields": {
       "created_at": "2020-07-24T23:29:33.037Z",
@@ -48,7 +48,7 @@
     }
   },
   {
-    "model": "roughcast.publisher",
+    "model": "roughcast.team",
     "pk": "B72lnjE",
     "fields": {
       "created_at": "2020-07-24T23:29:42.940Z",
@@ -60,24 +60,24 @@
     }
   },
   {
-    "model": "roughcast.publishermembership",
+    "model": "roughcast.teammembership",
     "pk": "mBw6Q2q",
     "fields": {
       "created_at": "2020-07-24T23:30:21.604Z",
       "edited_at": "2020-07-24T23:30:21.604Z",
       "user": 1,
-      "publisher": "mBw6Q2q",
+      "team": "mBw6Q2q",
       "is_owner": true
     }
   },
   {
-    "model": "roughcast.publishermembership",
+    "model": "roughcast.teammembership",
     "pk": "B72lnjE",
     "fields": {
       "created_at": "2020-07-24T23:30:28.691Z",
       "edited_at": "2020-07-24T23:30:28.691Z",
       "user": 2,
-      "publisher": "B72lnjE",
+      "team": "B72lnjE",
       "is_owner": true
     }
   },
@@ -88,7 +88,7 @@
       "created_at": "2020-07-24T23:31:20.557Z",
       "edited_at": "2020-07-24T23:31:20.557Z",
       "slug": "coven",
-      "publisher": "mBw6Q2q",
+      "team": "mBw6Q2q",
       "name": "Coven",
       "banner": "",
       "description": "A game about witches."
@@ -101,7 +101,7 @@
       "created_at": "2020-07-24T23:32:07.431Z",
       "edited_at": "2020-07-24T23:32:07.431Z",
       "slug": "swords-n-blades",
-      "publisher": "B72lnjE",
+      "team": "B72lnjE",
       "name": "Swords 'n' Blades",
       "banner": "",
       "description": "Stabby stabby?"

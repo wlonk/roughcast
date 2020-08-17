@@ -2,7 +2,7 @@
   <div class="ui grid">
     <div class="twelve wide column">
       <i class="small sun icon rc-left-gutter" v-if="user_is_owner"></i>
-      <router-link :to="`/p/${slug}`" class="ui header">
+      <router-link :to="`/t/${slug}`" class="ui header">
         {{ name }}
       </router-link>
       <RenderedMarkdown :body="description" />
@@ -18,7 +18,7 @@
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 
 export default {
-  name: 'PublisherSection',
+  name: 'TeamSection',
   props: {
     id: String,
     name: String,

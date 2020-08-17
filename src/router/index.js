@@ -5,7 +5,7 @@ import updatePageTitle from './updatePageTitle';
 
 import RootPage from '@/views/RootPage';
 import UserDetail from '@/views/UserDetail';
-import PublisherDetail from '@/views/PublisherDetail';
+import TeamDetail from '@/views/TeamDetail';
 import GameDetail from '@/views/GameDetail';
 import VersionDetail from '@/views/VersionDetail';
 
@@ -29,15 +29,15 @@ const routes = [
     },
   },
   {
-    path: '/p/:publisher',
-    name: 'Publisher',
-    component: PublisherDetail,
+    path: '/t/:team',
+    name: 'Team',
+    component: TeamDetail,
     meta: {
-      title: 'Publisher | Roughcast',
+      title: 'Team | Roughcast',
     },
   },
   {
-    path: '/p/:publisher/:game',
+    path: '/t/:team/:game',
     name: 'Game',
     component: GameDetail,
     meta: {
@@ -45,7 +45,7 @@ const routes = [
     },
   },
   {
-    path: '/p/:publisher/:game/:version',
+    path: '/t/:team/:game/:version',
     name: 'Version',
     component: VersionDetail,
     meta: {

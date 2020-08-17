@@ -11,7 +11,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from rest_framework import serializers
 
-from .models import AttachedFile, Game, Publisher, PublisherMembership, User, Version
+from .models import AttachedFile, Game, Team, TeamMembership, User, Version
 from .serializer_fields import SlugField, SlugStringField, UserStringField
 from .text import unmark
 
@@ -154,9 +154,9 @@ class SelfUserSerializer(serializers.ModelSerializer):
         )
 
 
-class PublisherSerializer(serializers.ModelSerializer):
+class TeamSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Publisher
+        model = Team
         fields = (
             "id",
             "name",
@@ -172,56 +172,56 @@ class PublisherSerializer(serializers.ModelSerializer):
     slug = SlugField()
     permissions = serializers.SerializerMethodField()
 
-    def get_permissions(self, publisher):
+    def get_permissions(self, team):
         user = getattr(self.context.get("request", None), "user")
         return {
-            "game:add": user in publisher.members.all(),
-            "this:edit": user in publisher.members.all(),
+            "game:add": user in team.members.all(),
+            "this:edit": user in team.members.all(),
         }
 
     user_is_owner = serializers.SerializerMethodField()
 
-    def get_user_is_owner(self, publisher):
+    def get_user_is_owner(self, team):
         user = getattr(self.context.get("request", None), "user")
         return (
             user
             and user.is_authenticated
-            and PublisherMembership.objects.filter(
-                user=user, publisher=publisher, is_owner=True,
+            and TeamMembership.objects.filter(
+                user=user, team=team, is_owner=True,
             ).exists()
         )
 
     user_is_member = serializers.SerializerMethodField()
 
-    def get_user_is_member(self, publisher):
+    def get_user_is_member(self, team):
         user = getattr(self.context.get("request", None), "user")
         return (
             user
             and user.is_authenticated
-            and PublisherMembership.objects.filter(
-                user=user, publisher=publisher,
+            and TeamMembership.objects.filter(
+                user=user, team=team,
             ).exists()
         )
 
     def create(self, validated_data):
-        publisher = super().create(validated_data)
+        team = super().create(validated_data)
         user = getattr(self.context.get("request", None), "user")
         if user and user.is_authenticated:
-            PublisherMembership.objets.create(
-                user=user, publisher=publisher, is_owner=True,
+            TeamMembership.objets.create(
+                user=user, team=team, is_owner=True,
             )
-        return publisher
+        return team
 
 
-class PublisherMembershipSerializer(serializers.ModelSerializer):
+class TeamMembershipSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PublisherMembership
+        model = TeamMembership
         fields = (
             "id",
             "user",
             "user_id",
-            "publisher",
-            "publisher_id",
+            "team",
+            "team_id",
             "is_owner",
         )
 
@@ -230,11 +230,11 @@ class PublisherMembershipSerializer(serializers.ModelSerializer):
     user_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="user"
     )
-    publisher = SlugStringField(
-        model_class=Publisher, queryset=Publisher.objects.all(),
+    team = SlugStringField(
+        model_class=Team, queryset=Team.objects.all(),
     )
-    publisher_id = serializers.PrimaryKeyRelatedField(
-        read_only=True, pk_field=serializers.CharField(), source="publisher"
+    team_id = serializers.PrimaryKeyRelatedField(
+        read_only=True, pk_field=serializers.CharField(), source="team"
     )
 
 
@@ -243,8 +243,8 @@ class GameSerializer(serializers.ModelSerializer):
         model = Game
         fields = (
             "id",
-            "publisher",
-            "publisher_id",
+            "team",
+            "team_id",
             "name",
             "slug",
             "banner",
@@ -256,11 +256,11 @@ class GameSerializer(serializers.ModelSerializer):
 
     id = serializers.CharField(read_only=True)
     slug = SlugField()
-    publisher = SlugStringField(
-        model_class=Publisher, queryset=Publisher.objects.all(),
+    team = SlugStringField(
+        model_class=Team, queryset=Team.objects.all(),
     )
-    publisher_id = serializers.PrimaryKeyRelatedField(
-        read_only=True, pk_field=serializers.CharField(), source="publisher"
+    team_id = serializers.PrimaryKeyRelatedField(
+        read_only=True, pk_field=serializers.CharField(), source="team"
     )
     default_visible_to = UserStringField(queryset=User.objects.all(), many=True)
     permissions = serializers.SerializerMethodField()
@@ -268,9 +268,9 @@ class GameSerializer(serializers.ModelSerializer):
     def get_permissions(self, game):
         user = getattr(self.context.get("request", None), "user")
         return {
-            "version:add": user in game.publisher.members.all(),
-            "this:delete": user in game.publisher.members.all(),
-            "this:edit": user in game.publisher.members.all(),
+            "version:add": user in game.team.members.all(),
+            "this:delete": user in game.team.members.all(),
+            "this:edit": user in game.team.members.all(),
         }
 
     latest_version = serializers.SerializerMethodField()
@@ -292,7 +292,7 @@ class VersionSerializer(serializers.ModelSerializer):
             "created_by_setter",
             "game",
             "game_id",
-            "publisher",
+            "team",
             "name",
             "slug",
             "changelog",
@@ -313,8 +313,8 @@ class VersionSerializer(serializers.ModelSerializer):
     game_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="game"
     )
-    publisher = SlugStringField(
-        model_class=Publisher, read_only=True, source="game.publisher",
+    team = SlugStringField(
+        model_class=Team, read_only=True, source="game.team",
     )
     visible_to = UserStringField(queryset=User.objects.all(), many=True)
     archive_link = serializers.SerializerMethodField()
@@ -340,8 +340,8 @@ class VersionSerializer(serializers.ModelSerializer):
     def get_permissions(self, version):
         user = getattr(self.context.get("request", None), "user")
         return {
-            "this:delete": user in version.game.publisher.members.all(),
-            "this:edit": user in version.game.publisher.members.all(),
+            "this:delete": user in version.game.team.members.all(),
+            "this:edit": user in version.game.team.members.all(),
         }
 
 
@@ -353,7 +353,7 @@ class AttachedFileSerializer(serializers.ModelSerializer):
             "version",
             "version_id",
             "game",
-            "publisher",
+            "team",
             "attached_file",
             "name",
         )
@@ -366,8 +366,8 @@ class AttachedFileSerializer(serializers.ModelSerializer):
         source="version",
     )
     game = SlugStringField(model_class=Game, read_only=True, source="version.game")
-    publisher = SlugStringField(
-        model_class=Publisher, read_only=True, source="version.game.publisher",
+    team = SlugStringField(
+        model_class=Team, read_only=True, source="version.game.team",
     )
     name = serializers.SerializerMethodField()
 

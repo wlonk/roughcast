@@ -9,7 +9,7 @@
       <label for="slug">slug</label>
       <div :class="['ui', 'labeled', 'input', slugError ? 'error' : '']">
         <div class="ui label">
-          roughcast.app/p/{{ forPublisher }}/{{ forGame }}/
+          roughcast.app/t/{{ forTeam }}/{{ forGame }}/
         </div>
         <input name="slug" v-model="slug" @change="markSlugEdited" />
         <div v-if="slugError" class="ui corner label">
@@ -60,7 +60,7 @@ import slugify from './slugify';
 export default {
   name: 'VersionForm',
   props: {
-    forPublisher: String,
+    forTeam: String,
     forGame: String,
     visibleTo: Array,
   },

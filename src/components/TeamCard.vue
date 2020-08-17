@@ -6,7 +6,7 @@
         class="right floated card outline icon"
       ></i>
       <i v-if="user_is_owner" class="right floated sun outline icon"></i>
-      <router-link :to="`/p/${slug}`" class="header">
+      <router-link :to="`/t/${slug}`" class="header">
         {{ name }}
       </router-link>
       <div class="description">
@@ -20,7 +20,7 @@
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 
 export default {
-  name: 'PublisherCard',
+  name: 'TeamCard',
   components: { RenderedMarkdown },
   props: {
     id: String,

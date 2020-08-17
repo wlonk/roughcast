@@ -1,5 +1,5 @@
 <template>
-  <form @submit.stop.prevent="createPublisher" class="ui form">
+  <form @submit.stop.prevent="createTeam" class="ui form">
     <div>
       <label for="name">name</label>
       <input name="name" v-model="name" />
@@ -24,9 +24,9 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'PublisherForm',
+  name: 'TeamForm',
   props: {
-    forPublisher: String,
+    forTeam: String,
   },
   data() {
     return {
@@ -37,8 +37,8 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['createNewPublisher']),
-    async createPublisher(e) {
+    ...mapActions(['createNewTeam']),
+    async createTeam(e) {
       const elements = e.target.elements;
       const data = {
         name: elements['name'].value,
@@ -46,7 +46,7 @@ export default {
         description: elements['description'].value,
         url: elements['url'].value,
       };
-      await this.createNewPublisher(data);
+      await this.createNewTeam(data);
     },
   },
 };

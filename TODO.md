@@ -1,6 +1,5 @@
 # To do
 
-- [ ] Rename Publisher to Group everywhere
 - [ ] Backfill tests
 - [ ] Notifications! Email + in-app
 - [ ] User profiles

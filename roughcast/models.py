@@ -21,7 +21,7 @@ def attached_file_upload_to(instance, filename):
         "utf-8"
     )
     return (
-        f"{instance.version.game.publisher.name}/{instance.version.game.name}/"
+        f"{instance.version.game.team.name}/{instance.version.game.name}/"
         f"{instance.version.game.name}-{instance.version.name}-{random_hash}{ext}"
     )
 
@@ -45,36 +45,36 @@ class User(AbstractUser):
         return f"{self.get_full_name()} (@{self.username})"
 
 
-class Publisher(BasicModelMixin, SimpleSlugMixin, models.Model):
+class Team(BasicModelMixin, SimpleSlugMixin, models.Model):
     name = StringField(unique=True)
     description = models.TextField()
     url = models.URLField(blank=True)
 
     members = models.ManyToManyField(
-        User, through="PublisherMembership", related_name="publisher_memberships",
+        User, through="TeamMembership", related_name="team_memberships",
     )
 
     class Meta:
         constraints = (
-            models.UniqueConstraint(fields=("name",), name="unique_publisher_name"),
-            models.UniqueConstraint(fields=("slug",), name="unique_publisher_slug"),
+            models.UniqueConstraint(fields=("name",), name="unique_team_name"),
+            models.UniqueConstraint(fields=("slug",), name="unique_team_slug"),
         )
 
     def __str__(self):
         return self.name
 
 
-class PublisherMembership(BasicModelMixin, models.Model):
+class TeamMembership(BasicModelMixin, models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
     is_owner = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.user.username} is a member of {self.publisher.name}"
+        return f"{self.user.username} is a member of {self.team.name}"
 
 
 class Game(BasicModelMixin, SimpleSlugMixin, models.Model):
-    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
     name = StringField()
     banner = models.ImageField(null=True, blank=True)
     description = models.TextField()
@@ -85,13 +85,13 @@ class Game(BasicModelMixin, SimpleSlugMixin, models.Model):
     class Meta:
         constraints = (
             models.UniqueConstraint(
-                fields=("publisher", "name"), name="unique_name_per_publisher",
+                fields=("team", "name"), name="unique_name_per_team",
             ),
             models.UniqueConstraint(fields=("slug",), name="unique_game_slug"),
         )
 
     def __str__(self):
-        return f"{self.name} by {self.publisher.name}"
+        return f"{self.name} by {self.team.name}"
 
 
 class Version(BasicModelMixin, SimpleSlugMixin, models.Model):

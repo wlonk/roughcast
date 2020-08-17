@@ -5,11 +5,11 @@
         class="right floated trash alternate icon"
         v-if="permissions['this:delete']"
       ></i>
-      <router-link :to="`/p/${publisher.slug}/${slug}`" class="header">
+      <router-link :to="`/t/${team.slug}/${slug}`" class="header">
         {{ name }}
       </router-link>
       <div class="meta">
-        <span>{{ publisher.name }}, @ {{ latest_version.name }}</span>
+        <span>{{ team.name }}, @ {{ latest_version.name }}</span>
       </div>
       <div class="description">
         <RenderedMarkdown :body="description" />
@@ -29,7 +29,7 @@ export default {
     name: String,
     slug: String,
     description: String,
-    publisher: Object,
+    team: Object,
     latest_version: Object,
     permissions: Object,
   },

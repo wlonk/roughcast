@@ -10,14 +10,14 @@
         />
       </div>
       <div class="ten wide column">
-        <router-link :to="`/p/${publisher.slug}/${slug}`" class="ui header">
+        <router-link :to="`/t/${team.slug}/${slug}`" class="ui header">
           {{ name }}
-          <span class="ui sub header">from {{ publisher.name }}</span>
+          <span class="ui sub header">from {{ team.name }}</span>
         </router-link>
         <div class="meta">
           Latest:
           <router-link
-            :to="`/p/${publisher.slug}/${slug}/${latest_version.slug}`"
+            :to="`/t/${team.slug}/${slug}/${latest_version.slug}`"
             >{{ latest_version.name }}</router-link
           >
         </div>
@@ -52,7 +52,7 @@ export default {
     name: String,
     slug: String,
     description: String,
-    publisher: Object,
+    team: Object,
     latest_version: Object,
     permissions: Object,
   },
