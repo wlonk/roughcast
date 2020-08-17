@@ -1,0 +1,31 @@
+.checkbox-label {
+  &[for="checkbox"] {
+    display: flex;
+    align-items: center;
+  }
+  font-weight: 300;
+  margin-bottom: 0;
+  position: relative;
+  input[type="checkbox"] {
+    visibility: hidden;
+    margin-right: 0.5rem;
+    width: 1.5rem; height: 1.5rem;
+    &:checked ~ p::before {
+      background-position: 50% 45%;
+      background-size: 50%;
+      background-repeat: no-repeat;
+    }
+  }
+  p {
+    cursor: pointer;
+    font-weight: 300;
+    margin: 0;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 1.5rem; height: 1.5rem;
+      border: 2px solid transparent;
+    }
+  }
+}

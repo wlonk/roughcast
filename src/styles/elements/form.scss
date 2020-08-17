@@ -1,0 +1,34 @@
+.page-form {
+  &>div {
+    &.row {
+      display: flex;
+    }
+    &.submit-row {
+      align-items: flex-end;
+    }
+    &.check-row {
+      align-items: center;
+      justify-content: space-between;
+      margin: 0.5rem 0 2rem;
+    }
+    &>* {
+      display: block;
+    }
+  }
+  label {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    margin-left: 1rem;
+  }
+  .accent-link {
+    font-weight: 700;
+  }
+}
