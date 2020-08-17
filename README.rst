@@ -1,7 +1,9 @@
 Roughcast
 =========
 
-Share drafts, get feedback.
+We help you get the playtests you want, to make the game you envision.
+
+Project managed at https://trello.com/b/7Zmo8d2w/roughcast
 
 Setting up local development
 ----------------------------
