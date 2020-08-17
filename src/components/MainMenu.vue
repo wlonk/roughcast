@@ -1,7 +1,8 @@
 <template>
-  <div class="ui borderless main menu">
+  <div class="page-header" id="page-header">
     <div class="header item">
-      <router-link to="/" class="ui link item">
+      <img src="../assets/logo.svg" alt="logo">
+      <router-link to="/" class="ui link item logo-title">
         Roughcast
       </router-link>
     </div>
@@ -13,7 +14,9 @@
       <LogOut />
     </div>
     <div v-else class="ui right item">
-      <LogIn />
+      <router-link to="/login" class="ui link item header-link">
+        Login
+      </router-link>
     </div>
   </div>
 </template>

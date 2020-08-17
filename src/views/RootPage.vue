@@ -1,8 +1,15 @@
 <template>
   <div>
     <DashBoard v-if="currentUser" />
-    <div v-else>
-      <h1>Welcome to Roughcast</h1>
+    <div v-else class="welcome-block">
+      <div>
+        <h1>Welcome to Roughcast</h1>
+        <p>Roughcast is a tool to help tabletop game designers disseminate playtest documents, and manage conversations around those documents.</p>
+        <router-link to="/signup" class="submit-btn">
+          Get Started!
+        </router-link>
+      </div>
+      <img src="../assets/player.svg" alt="player">
     </div>
   </div>
 </template>
