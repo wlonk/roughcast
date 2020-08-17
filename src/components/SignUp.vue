@@ -42,7 +42,7 @@
     <div class="submit-row row">
       <input type="submit" value="Sign Up" class="submit-btn" />
       <p> Already have an account?
-        <router-link to="/auth/signup" class="accent-link">
+        <router-link to="/auth/login" class="accent-link">
           Log In!
         </router-link>
       </p>
