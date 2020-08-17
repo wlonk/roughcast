@@ -23,8 +23,8 @@
   }
   .page-form {
     input[type="text"],
-    input[type="password"],
-    input[type="checkbox"] {
+    input[type="email"],
+    input[type="password"] {
       background-color: $dm-dark-font-color;
       border: 2px solid transparent;
       color: $dm-main-font-color;
