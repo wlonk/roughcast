@@ -1,13 +1,11 @@
 <template>
   <div>
-    <div v-if="$route.params.type==='signup'" class="welcome-block">
-      <div>
+    <div class="welcome-block">
+      <div v-if="$route.params.type==='signup'">
         <h2>Create account</h2>
+        <SignUp />
       </div>
-      <img src="../assets/player.svg" alt="player">
-    </div>
-    <div v-if="$route.params.type==='login'" class="welcome-block">
-      <div>
+      <div v-if="$route.params.type==='login'">
         <h2>Welcome back</h2>
         <LogIn />
       </div>
@@ -18,9 +16,10 @@
 
 <script>
 import LogIn from '@/components/LogIn';
+import SignUp from '@/components/SignUp';
 
 export default {
   name: 'AuthorizationPage',
-  components: { LogIn }
+  components: { LogIn, SignUp }
 };
 </script>

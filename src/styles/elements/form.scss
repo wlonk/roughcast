@@ -20,6 +20,7 @@
     margin-bottom: 0.5rem;
   }
   input[type="text"],
+  input[type="email"],
   input[type="password"] {
     width: 100%;
     padding: 1.25rem;
@@ -30,5 +31,20 @@
   }
   .accent-link {
     font-weight: 700;
+    margin-left: 0.5rem;
+  }
+  .psw-row {
+    &>div {
+      width: 50%;
+      * {
+        display: block;
+      }
+      &:first-child {
+        margin-right: 0.75rem;
+      }
+      &:last-child {
+        margin-left: 0.75rem;
+      }
+    }
   }
 }
