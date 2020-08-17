@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import api from '../api';
 
 const state = () => ({
@@ -30,8 +29,7 @@ const actions = {
   },
 };
 
-const getters = {
-};
+const getters = {};
 
 const PublisherMembership = {
   state,

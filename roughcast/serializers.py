@@ -251,6 +251,7 @@ class GameSerializer(serializers.ModelSerializer):
             "description",
             "latest_version",
             "permissions",
+            "default_visible_to",
         )
 
     id = serializers.CharField(read_only=True)
@@ -261,6 +262,7 @@ class GameSerializer(serializers.ModelSerializer):
     publisher_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="publisher"
     )
+    default_visible_to = UserStringField(queryset=User.objects.all(), many=True)
     permissions = serializers.SerializerMethodField()
 
     def get_permissions(self, game):
@@ -307,14 +309,14 @@ class VersionSerializer(serializers.ModelSerializer):
     created_by_setter = serializers.HiddenField(
         default=serializers.CurrentUserDefault(), source="created_by",
     )
-    game = SlugStringField(model_class=Game, queryset=Game.objects.all(),)
+    game = SlugStringField(model_class=Game, queryset=Game.objects.all())
     game_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="game"
     )
     publisher = SlugStringField(
         model_class=Publisher, read_only=True, source="game.publisher",
     )
-    visible_to = UserStringField(queryset=User.objects.all(), many=True,)
+    visible_to = UserStringField(queryset=User.objects.all(), many=True)
     archive_link = serializers.SerializerMethodField()
 
     def get_archive_link(self, version):
@@ -357,13 +359,13 @@ class AttachedFileSerializer(serializers.ModelSerializer):
         )
 
     id = serializers.CharField(read_only=True)
-    version = SlugStringField(model_class=Version, read_only=True,)
+    version = SlugStringField(model_class=Version, read_only=True)
     version_id = serializers.PrimaryKeyRelatedField(
         queryset=Version.objects.all(),
         pk_field=serializers.CharField(),
         source="version",
     )
-    game = SlugStringField(model_class=Game, read_only=True, source="version.game",)
+    game = SlugStringField(model_class=Game, read_only=True, source="version.game")
     publisher = SlugStringField(
         model_class=Publisher, read_only=True, source="version.game.publisher",
     )

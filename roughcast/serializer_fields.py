@@ -10,7 +10,7 @@ class UserStringField(serializers.RelatedField):
         return User.objects.get(username=data)
 
     def to_representation(self, value):
-        return str(value)
+        return value.username
 
 
 class SlugStringField(serializers.RelatedField):

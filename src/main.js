@@ -11,7 +11,7 @@ import AsyncComputed from 'vue-async-computed';
 import VueAxios from 'vue-axios';
 
 Vue.use(SuiVue);
-Vue.use(AsyncComputed)
+Vue.use(AsyncComputed);
 Vue.use(VueAxios, api);
 
 Vue.config.productionTip = false;

@@ -88,7 +88,6 @@
 </template>
 
 <script>
-import _ from 'lodash';
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 
 export default {

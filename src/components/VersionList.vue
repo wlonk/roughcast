@@ -9,7 +9,11 @@
       <h4 class="ui horizontal divider">
         add a version
       </h4>
-      <VersionForm :forPublisher="publisher" :forGame="game" />
+      <VersionForm
+        :forPublisher="publisher"
+        :forGame="game"
+        :visibleTo="defaultVisibleTo"
+      />
     </div>
   </div>
 </template>
@@ -25,6 +29,7 @@ export default {
     game: String,
     versions: Array,
     userCanAddVersions: Boolean,
+    defaultVisibleTo: Array,
   },
   components: {
     VersionCard,

@@ -1,13 +1,11 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
-import VueRouter from 'vue-router';
+import { shallowMount } from '@vue/test-utils';
 import App from '@/App.vue';
-
-const localVue = createLocalVue();
-localVue.use(VueRouter);
+import { getStore, localVue } from './utils';
 
 describe('App.vue', () => {
   it('renders', () => {
-    const wrapper = shallowMount(App, { localVue });
+    const store = getStore('User', {});
+    const wrapper = shallowMount(App, { localVue, store });
     expect(
       wrapper.find('.ui.raised.very.padded.text.container.segment').exists(),
     ).toBe(true);

@@ -7,7 +7,7 @@
     </div>
     <div class="field">
       <label for="slug">slug</label>
-      <div :class="['ui', 'labeled', 'input', slugError ? 'error' : '' ]">
+      <div :class="['ui', 'labeled', 'input', slugError ? 'error' : '']">
         <div class="ui label">
           roughcast.app/p/{{ forPublisher }}/{{ forGame }}/
         </div>
@@ -62,6 +62,7 @@ export default {
   props: {
     forPublisher: String,
     forGame: String,
+    visibleTo: Array,
   },
   data() {
     return {
@@ -71,7 +72,7 @@ export default {
       slugEdited: false,
       changelog: '',
       is_public: false,
-      visible_to: [],
+      visible_to: this.visibleTo,
     };
   },
   created() {
@@ -131,9 +132,8 @@ export default {
 </script>
 
 <style scoped>
-.ui.input.error > input, 
-.ui.input.error > div.ui.label
-{
+.ui.input.error > input,
+.ui.input.error > div.ui.label {
   background-color: #fff6f6;
   border-color: #e0b4b4;
   color: #9f3a38;

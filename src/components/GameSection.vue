@@ -11,13 +11,15 @@
       </div>
       <div class="ten wide column">
         <router-link :to="`/p/${publisher.slug}/${slug}`" class="ui header">
-          {{ name }} <span class="ui sub header">from {{ publisher.name }}</span>
+          {{ name }}
+          <span class="ui sub header">from {{ publisher.name }}</span>
         </router-link>
         <div class="meta">
           Latest:
-          <router-link :to="`/p/${publisher.slug}/${slug}/${latest_version.slug}`">{{
-            latest_version.name
-          }}</router-link>
+          <router-link
+            :to="`/p/${publisher.slug}/${slug}/${latest_version.slug}`"
+            >{{ latest_version.name }}</router-link
+          >
         </div>
         <div class="description">
           <RenderedMarkdown :body="description" />

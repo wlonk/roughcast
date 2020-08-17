@@ -56,23 +56,17 @@ const actions = {
 };
 
 const getters = {
-  listPublishers: (state) => {
+  listPublishers: state => {
     return _.values(state.all);
   },
-  dryPublisher: (state) => (slug) => {
-    return _.find(
-      state.all,
-      (p) => p.slug === slug,
-    );
+  dryPublisher: state => slug => {
+    return _.find(state.all, p => p.slug === slug);
   },
-  hydratedPublisher: (state, getters, rootState) => (slug) => {
-    const publisher = _.find(
-      state.all,
-      (p) => p.slug === slug,
-    );
+  hydratedPublisher: (state, getters, rootState) => slug => {
+    const publisher = _.find(state.all, p => p.slug === slug);
     const games = _.filter(
       rootState.Game.all,
-      (g) => g.publisher === publisher.slug,
+      g => g.publisher === publisher.slug,
     );
     return {
       ...publisher,

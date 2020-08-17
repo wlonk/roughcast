@@ -27,7 +27,7 @@ export default {
   computed: {
     ...mapGetters(['listGames', 'hydratedGame', 'listPublishers']),
     gamesWithPublisher() {
-      return this.listGames.map((g) => this.hydratedGame(g.slug));
+      return this.listGames.map(g => this.hydratedGame(g.slug));
     },
   },
 };
