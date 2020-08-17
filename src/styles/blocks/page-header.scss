@@ -1,0 +1,30 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  a {
+    margin-left: 0.5rem;
+  }
+  &>div {
+    display: flex;
+    align-items: center;
+  }
+  .logo-title {
+    font-family: $accent-font;
+    font-size: $medium-font;
+  }
+  .header-link {
+    font-weight: 700;
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 1rem; height: 1rem;
+      background-image: url('./assets/user-dm.svg');
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-right: 0.5rem;
+    }
+  }
+}
