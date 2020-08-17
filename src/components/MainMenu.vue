@@ -2,7 +2,7 @@
   <div class="page-header" id="page-header">
     <div class="header item">
       <img src="../assets/logo.svg" alt="logo">
-      <router-link to="/" class="ui link item logo-title">
+      <router-link to="/" class="logo-title">
         Roughcast
       </router-link>
     </div>

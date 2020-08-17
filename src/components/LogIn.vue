@@ -37,14 +37,14 @@
         <input type="checkbox" id="checkbox" checked="true"/>
         <p>Remember me</p>
       </label>
-      <router-link to="/auth/reset" class="accent-link">
+      <router-link to="/auth/reset" class="accent-link link">
         Forgot password?
       </router-link>
     </div>
     <div class="submit-row row">
       <input type="submit" value="Log In" class="submit-btn" />
       <p> Don’t have an account?
-        <router-link to="/auth/signup" class="accent-link">
+        <router-link to="/auth/signup" class="accent-link link">
           Sign Up!
         </router-link>
       </p>
