@@ -1,6 +1,5 @@
 [data-theme="dark"] {
   background-color: $dm-main-bg-color;
-  min-height: 100vh;
   .breadcrumb {
     .router-link-active,
     .divider  {
@@ -31,6 +30,12 @@
   .submit-btn {
     background-color: $dm-accent-bg-color;
     color: $dm-dark-font-color;
+    &:hover {
+      box-shadow: $dm-focus-shadow;
+    }
+  }
+  input:focus {
+    box-shadow: $dm-focus-shadow;
   }
   .page-form {
     input[type="text"],
@@ -46,10 +51,15 @@
     }
     .checkbox-label {
       color: $dm-main-font-color;
-      input[type="checkbox"]:checked {
-        & ~ p::before {
-          border-color: $dm-accent-bg-color;
-          background-image: url('./assets/close-dm.svg');
+      input[type="checkbox"] {
+        &:focus ~ p::before {
+          box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4);
+        }
+        &:checked {
+          & ~ p::before {
+            border-color: $dm-accent-bg-color;
+            background-image: url('./assets/close-dm.svg');
+          }
         }
       }
       p::before {

@@ -10,3 +10,6 @@ $button-font: 'Patua One', serif;
 
 // Font sizes
 $medium-font: 2rem;
+
+// Shadows
+$dm-focus-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.6);
