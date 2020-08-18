@@ -34,7 +34,11 @@
     </div>
     <div class="check-row row">
       <label for="checkbox" class="checkbox-label">
-        <input type="checkbox" id="checkbox" checked="true"/>
+        <input
+          type="checkbox"
+          id="checkbox"
+          checked="true"
+          disabled="disabled"/>
         <p>Remember me</p>
       </label>
       <router-link to="/auth/reset" class="accent-link link">
