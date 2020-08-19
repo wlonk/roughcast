@@ -5,7 +5,7 @@
       <div>
         <h1>Welcome to Roughcast</h1>
         <p>Roughcast is a tool to help tabletop game designers disseminate playtest documents, and manage conversations around those documents.</p>
-        <router-link to="/auth/signup" class="submit-btn">
+        <router-link to="/signup" class="submit-btn">
           Get Started!
         </router-link>
       </div>

@@ -7,7 +7,7 @@
     <div class="submit-row row">
       <input type="submit" value="Reset password" class="submit-btn" />
       <p> Back to
-        <router-link to="/auth/login" class="accent-link">
+        <router-link to="/login" class="accent-link">
           Log In
         </router-link>
       </p>
