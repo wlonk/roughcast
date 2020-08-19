@@ -70,4 +70,20 @@
   .accent-link {
     color: $dm-accent-bg-color;
   }
+  .dropdown-menu {
+    .notification-item {
+      color: $dm-main-font-color;
+      &.new {
+        color: $dm-accent-bg-color;
+      }
+    }
+    .ui.label {
+      background-color: $dm-accent-bg-color;
+      color: $dm-dark-font-color;
+    }
+    .menu.transition,
+    .menu.transition::after {
+      background-color: $dm-dark-font-color !important;
+    }
+  }
 }
