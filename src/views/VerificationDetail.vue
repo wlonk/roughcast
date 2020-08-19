@@ -1,12 +1,12 @@
 <template>
-  <div v-if="currentUser" class="verification-block">
-    <div v-if="currentUser.is_active">
+  <div class="verification-block">
+    <div v-if="!currentUser.is_active">
       <h2>Welcome to Roughcast</h2>
       <img src="../assets/mailbox.svg" alt="mailbox">
       <div class="text-block">
         <p>
           <router-link :to="`/u/${currentUser.username}`" class="accent-link link">
-            {{ `${currentUser.first_name} ${currentUser.last_name}` }}
+            @{{ currentUser.username }}
           </router-link>
           , to start using Roughcast, we need to verify your email. <br>
           We’ve sent an email with a confirmation link to<br>

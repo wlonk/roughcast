@@ -81,6 +81,7 @@ export default {
       const data = { username, password };
       try {
         await this.$store.dispatch('logIn', data);
+        this.$router.push('/');
       } catch {
         return;
       }

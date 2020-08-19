@@ -1,5 +1,5 @@
 <template>
-  <form class="page-form">
+  <form @submit.stop.prevent="signup" class="page-form">
     <div>
       <label for="username">Username</label>
       <input type="text" name="username" placeholder="Username" id="username" />
@@ -52,6 +52,11 @@
 
 <script>
 export default {
-  name: 'SignUp'
+  name: 'SignUp',
+  methods: {
+    async signup(e) {
+      this.$router.push('/verification');
+    },
+  },
 };
 </script>
