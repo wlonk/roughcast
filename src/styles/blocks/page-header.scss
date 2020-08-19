@@ -4,6 +4,7 @@
   justify-content: space-between;
   padding: 2rem;
   a {
+    font-weight: 700;
     margin-left: 0.5rem;
   }
   &>div {
@@ -15,7 +16,7 @@
     font-size: 1.5rem;
   }
   img[alt="logo"] {
-    width: 1.5rem;
+    height: 2.75rem;
   }
   .header-link {
     font-weight: 700;

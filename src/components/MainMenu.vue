@@ -8,10 +8,7 @@
     </div>
     <div v-if="currentUser" class="ui right item">
       <NotificationList />
-      <router-link :to="`/u/${currentUser.username}`" class="ui link item">
-        @{{ currentUser.username }}
-      </router-link>
-      <LogOut />
+      <UserPanel />
     </div>
     <div v-else class="ui right item">
       <router-link to="/login" class="ui link item header-link">
@@ -26,6 +23,7 @@ import { mapGetters } from 'vuex';
 import LogIn from '@/components/LogIn';
 import LogOut from '@/components/LogOut';
 import NotificationList from '@/components/NotificationList';
+import UserPanel from '@/components/UserPanel';
 
 export default {
   name: 'MainMenu',
@@ -33,6 +31,7 @@ export default {
     LogIn,
     LogOut,
     NotificationList,
+    UserPanel
   },
   computed: mapGetters(['currentUser']),
 };
