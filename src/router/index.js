@@ -8,7 +8,10 @@ import UserDetail from '@/views/UserDetail';
 import TeamDetail from '@/views/TeamDetail';
 import GameDetail from '@/views/GameDetail';
 import VersionDetail from '@/views/VersionDetail';
-import AuthorizationPage from '@/views/AuthorizationPage';
+import LogInPage from '@/views/LogInPage';
+import SignUpPage from '@/views/SignUpPage';
+import ResetPasswordPage from '@/views/ResetPasswordPage';
+import SetNewPasswordPage from '@/views/SetNewPasswordPage';
 import VerificationDetail from '@/views/VerificationDetail';
 
 Vue.use(VueRouter);
@@ -23,11 +26,35 @@ const routes = [
     },
   },
   {
-    path: '/auth/:type',
-    name: 'Authorization',
-    component: AuthorizationPage,
+    path: '/login',
+    name: 'Log In',
+    component: LogInPage,
     meta: {
-      title: 'Authorization | Roughcast',
+      title: 'Log In | Roughcast',
+    },
+  },
+  {
+    path: '/signup',
+    name: 'Sign Up',
+    component: SignUpPage,
+    meta: {
+      title: 'Sign Up | Roughcast',
+    },
+  },
+  {
+    path: '/reset',
+    name: 'Reset Password',
+    component: ResetPasswordPage,
+    meta: {
+      title: 'Reset Password | Roughcast',
+    },
+  },
+  {
+    path: '/change',
+    name: 'Change Password',
+    component: SetNewPasswordPage,
+    meta: {
+      title: 'Change Password | Roughcast',
     },
   },
   {
