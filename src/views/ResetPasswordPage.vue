@@ -3,7 +3,7 @@
     <div class="auth-block">
       <div>
         <h2>Forgot password?</h2>
-        <ResetPsw />
+        <ResetPasswordForm />
       </div>
       <img src="../assets/player.svg" alt="player">
     </div>
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import ResetPsw from '@/components/ResetPsw';
+import ResetPasswordForm from '@/components/ResetPasswordForm';
 
 export default {
   name: 'ResetPasswordPage',
-  components: { ResetPsw }
+  components: { ResetPasswordForm }
 };
 </script>

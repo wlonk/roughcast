@@ -28,6 +28,6 @@
 
 <script>
 export default {
-  name: 'NewPsw'
+  name: 'CreateNewPasswordForm'
 };
 </script>

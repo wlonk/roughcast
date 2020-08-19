@@ -17,6 +17,6 @@
 
 <script>
 export default {
-  name: 'ResetPsw'
+  name: 'ResetPasswordForm'
 };
 </script>

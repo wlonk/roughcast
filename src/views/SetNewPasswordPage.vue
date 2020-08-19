@@ -3,7 +3,7 @@
     <div class="auth-block">
       <div>
         <h2>Create new password</h2>
-        <NewPsw />
+        <CreateNewPasswordForm />
       </div>
       <img src="../assets/player.svg" alt="player">
     </div>
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import NewPsw from '@/components/NewPsw';
+import CreateNewPasswordForm from '@/components/CreateNewPasswordForm';
 
 export default {
   name: 'SetNewPasswordPage',
-  components: { NewPsw }
+  components: { CreateNewPasswordForm }
 };
 </script>
