@@ -7,7 +7,7 @@
         </router-link>
       </sui-dropdown-item>
       <sui-dropdown-item>
-        <router-link :to="`/add-new-game`" class="ui link item">
+        <router-link to="/add-new-game" class="ui link item">
           Add New Game
         </router-link>
       </sui-dropdown-item>

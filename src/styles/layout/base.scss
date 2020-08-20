@@ -12,6 +12,10 @@ input[type="password"] {
   line-height: 1.5em !important;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 0.05em !important;
+}
+
 input {
   border: none;
   border-radius: 0.5rem;
@@ -19,4 +23,14 @@ input {
 
 #app {
   min-height: 100vh;
+}
+
+.accent-link {
+  font-weight: 700;
+}
+
+.card-title {
+  font-family: $accent-font;
+  font-size: 2rem;
+  margin-bottom: 0;
 }
