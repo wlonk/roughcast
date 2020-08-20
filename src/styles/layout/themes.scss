@@ -1,5 +1,11 @@
 [data-theme="dark"] {
   background-color: $dm-main-bg-color;
+  a.link {
+    &:hover,
+    &.active {
+      color: $dm-accent-bg-color;
+    }
+  }
   .breadcrumb {
     .router-link-active,
     .divider  {
@@ -13,7 +19,7 @@
     * {
       color: $dm-main-font-color;
     }
-    a:hover {
+    .logo-title:hover {
       color: $dm-accent-bg-color;
     }
   }
@@ -22,7 +28,8 @@
   }
   .welcome-block,
   .auth-block,
-  .verification-block {
+  .verification-block,
+  .edit-block {
     * {
       color: $dm-main-font-color;
     }
