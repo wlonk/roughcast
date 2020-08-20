@@ -1,0 +1,37 @@
+.user-profile-card {
+  display: flex;
+  background-color: $dm-dark-font-color;
+  border-radius: 1rem;
+  min-height: 12.5rem;
+  padding: 2rem;
+  margin-top: 4rem;
+  position: relative;
+  img[alt="avatar"] {
+    border-radius: 0.5rem;
+    position: absolute;
+    top: -2rem;
+    width: 12.5rem;
+  }
+  &>div {
+    margin-left: 14.5rem;
+    &>div:first-child {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 1rem;
+      p {
+        margin-bottom: 0.25em;
+        margin-left: 0.5rem;
+      }
+    }
+    &>div:last-child {
+      h5 {
+        margin-bottom: 0.5rem;
+        font-family: $base-font;
+        letter-spacing: 0.05em;
+      }
+      .no-bio {
+        opacity: 0.3;
+      }
+    }
+  }
+}

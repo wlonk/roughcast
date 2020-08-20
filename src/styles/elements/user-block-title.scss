@@ -1,0 +1,15 @@
+.user-block-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  h5 {
+    font-family: $accent-font;
+    font-size: 1.5rem;
+    padding-bottom: 0.25rem;
+  }
+  p {
+    font-weight: 700;
+    padding-bottom: 1rem;
+    margin-left: 0.5rem;
+  }
+}

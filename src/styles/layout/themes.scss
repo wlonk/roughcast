@@ -86,4 +86,26 @@
       background-color: $dm-dark-font-color !important;
     }
   }
+  .user-profile-card {
+    * {
+      color: $dm-main-font-color;
+    }
+    h5 {
+      color: transparentize($dm-main-font-color, 0.5);
+    }
+  }
+  .card-title {
+    color: $dm-accent-bg-color;
+  }
+  .user-elements * {
+    color: $dm-main-font-color;
+  }
+  .user-block-title {
+    h5 {
+      border-bottom: 2px solid $dm-accent-bg-color;
+    }
+    p {
+      color: $dm-accent-bg-color;
+    }
+  }
 }
