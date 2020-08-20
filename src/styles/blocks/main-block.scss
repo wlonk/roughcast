@@ -1,17 +1,13 @@
 .welcome-block,
 .auth-block,
-.verification-block {
+.verification-block,
+.edit-block {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70vh;
   h1, h2 {
     font-family: $accent-font;
-    letter-spacing: 0.15em;
   }
   h1 {
     font-size: 4rem;
-    line-height: 1em;
   }
   h2 {
     font-size: 2.5rem;
@@ -27,9 +23,16 @@
   width: 50%;
 }
 
+.welcome-block,
+.auth-block,
+.verification-block {
+  align-items: center;
+  justify-content: space-between;
+  height: 70vh;
+}
+
 .verification-block {
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   height: 60vh;
   text-align: center;
@@ -37,6 +40,23 @@
     margin-top: 1.5rem;
     * {
       margin: 0;
+    }
+  }
+}
+
+.edit-block {
+  flex-direction: column;
+  &>div {
+    display: flex;
+  }
+  .scrolling-menu {
+    position: sticky;
+    top: 5rem;
+    height: fit-content;
+    * {
+      display: block;
+      font-weight: 700;
+      margin: 0.5rem 0;
     }
   }
 }
