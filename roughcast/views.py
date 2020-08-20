@@ -11,6 +11,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from django_registration.exceptions import ActivationError
 
 from .models import AttachedFile, Game, Team, TeamMembership, User, Version
 from .serializers import (
@@ -25,7 +26,22 @@ from .serializers import (
     SelfUserSerializer,
     UserSerializer,
     VersionSerializer,
+    RegisterSerializer,
+    VerifyEmailSerializer,
 )
+
+
+class RegisterView(generics.CreateAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterSerializer
+
+    def create(self, request):
+        serializer = self.get_serializer(data=request.data, context={"request": request})
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        user = serializer.save()
+        user.token = user.get_or_create_token()
+        return Response(SelfUserSerializer(user).data, status=status.HTTP_201_CREATED)
 
 
 class LoginView(generics.CreateAPIView):
@@ -84,6 +100,17 @@ class UserViewSet(ModelViewSet):
             serializer = SelfUserSerializer(instance=user)
             return Response(serializer.data)
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+    @action(detail=False, methods=["post"], permission_classes=(AllowAny,))
+    def verify_email(self, request):
+        serializer = VerifyEmailSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            serializer.save()
+        except ActivationError:
+            return Response({"non_field_errors": ["Error verifying email."]}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     @action(detail=False, methods=["post"], permission_classes=(AllowAny,))
     def reset_password(self, request):

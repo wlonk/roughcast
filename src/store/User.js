@@ -37,6 +37,12 @@ const mutations = {
 };
 
 const actions = {
+  setCurrentUser({ commit }, user) {
+    Vue.axios.defaults.headers.common[
+      'Authorization'
+    ] = `Token ${user.token}`;
+    commit('logIn', user);
+  },
   async logIn({ commit }, data) {
     commit('setErrors', {});
     commit('loggingIn');

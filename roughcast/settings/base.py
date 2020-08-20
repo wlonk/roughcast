@@ -165,6 +165,7 @@ else:
 
 # Django-registration
 ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window
+REGISTRATION_SALT = HASHID_FIELD_SALT
 
 
 # Django REST Framework

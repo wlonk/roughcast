@@ -20,6 +20,9 @@ export default {
   computed: {
     ...mapGetters(['dryUser', 'dryTeam', 'dryGame', 'dryVersion']),
     crumbs() {
+      if (!/^\/(t|u)\//.test(this.$route.path)) {
+        return [];
+      }
       const divider = {
         path: null,
         name: ' / ',

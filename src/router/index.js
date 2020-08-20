@@ -41,6 +41,7 @@ const routes = [
       title: 'Sign Up | Roughcast',
     },
   },
+  // @@@ TODO: Maybe scope these all under `/accounts`?
   {
     path: '/reset',
     name: 'Reset Password',
@@ -50,7 +51,7 @@ const routes = [
     },
   },
   {
-    path: '/change',
+    path: '/change/:uid/:token',
     name: 'Change Password',
     component: SetNewPasswordPage,
     meta: {
@@ -58,7 +59,7 @@ const routes = [
     },
   },
   {
-    path: '/verification',
+    path: '/verification/:key?',
     name: 'Verification',
     component: VerificationDetail,
     meta: {

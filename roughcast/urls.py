@@ -26,6 +26,7 @@ from .forms import CustomAuthenticationForm, CustomRegistrationForm
 from .routers import ExtensibleDefaultRouter
 
 router = ExtensibleDefaultRouter()
+router.non_resource_register("register", views.RegisterView.as_view())
 router.non_resource_register("login", views.LoginView.as_view())
 router.non_resource_register("logout", views.LogoutView.as_view())
 router.register("user", views.UserViewSet)
