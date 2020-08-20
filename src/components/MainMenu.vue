@@ -1,19 +1,19 @@
 <template>
-  <div class="ui borderless main menu">
+  <div class="page-header" id="page-header">
     <div class="header item">
-      <router-link to="/" class="ui link item">
+      <img src="../assets/logo.svg" alt="logo">
+      <router-link to="/" class="logo-title">
         Roughcast
       </router-link>
     </div>
     <div v-if="currentUser" class="ui right item">
       <NotificationList />
-      <router-link :to="`/u/${currentUser.username}`" class="ui link item">
-        @{{ currentUser.username }}
-      </router-link>
-      <LogOut />
+      <UserPanel />
     </div>
     <div v-else class="ui right item">
-      <LogIn />
+      <router-link to="/login" class="ui link item header-link">
+        Log In
+      </router-link>
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@ import { mapGetters } from 'vuex';
 import LogIn from '@/components/LogIn';
 import LogOut from '@/components/LogOut';
 import NotificationList from '@/components/NotificationList';
+import UserPanel from '@/components/UserPanel';
 
 export default {
   name: 'MainMenu',
@@ -30,6 +31,7 @@ export default {
     LogIn,
     LogOut,
     NotificationList,
+    UserPanel
   },
   computed: mapGetters(['currentUser']),
 };

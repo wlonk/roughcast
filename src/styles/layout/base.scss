@@ -1,0 +1,22 @@
+:root {
+  font-size: 16px;
+}
+
+p, a.link, button, label,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  font-family: $base-font !important;
+  font-size: 16px;
+  letter-spacing: 0.05em !important;
+  line-height: 1.5em !important;
+}
+
+input {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+#app {
+  min-height: 100vh;
+}

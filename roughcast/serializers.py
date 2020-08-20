@@ -1,6 +1,7 @@
 from os.path import basename
 
 from django.conf import settings
+from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ValidationError as DjangoValidationError
@@ -11,9 +12,59 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from rest_framework import serializers
 
-from .models import AttachedFile, Game, Team, TeamMembership, User, Version
+from .models import AlphaTestEmail, AttachedFile, Game, Team, TeamMembership, User, Version
 from .serializer_fields import SlugField, SlugStringField, UserStringField
 from .text import unmark
+
+from . import email_verification
+
+
+class RegisterSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    email = serializers.EmailField()
+    password1 = serializers.CharField()
+    password2 = serializers.CharField()
+    tos = serializers.BooleanField()
+
+    def validate_username(self, value):
+        if User.objects.filter(username__iexact=value).exists():
+            raise serializers.ValidationError("This username is taken.")
+        return value
+
+    def validate_email(self, value):
+        if User.objects.filter(email__iexact=value).exists():
+            raise serializers.ValidationError("This email is taken.")
+        if not AlphaTestEmail.objects.filter(email__iexact=value).exists():
+            raise serializers.ValidationError("Sorry, this email is not in the alpha test yet.")
+        return value
+
+    def validate_tos(self, value):
+        if not value:
+            raise serializers.ValidationError("You must accept the terms of service.")
+        return value
+
+    def validate(self, data):
+        if data["password1"] != data["password2"]:
+            raise serializers.ValidationError("Passwords don't match.")
+        validate_password(data["password1"])
+        return data
+
+    def create(self, validated_data):
+        user = User.objects.create(
+            username=validated_data["username"],
+            email=validated_data["email"],
+            password=validated_data["password1"],
+        )
+        email_verification.send_activation_email(user, self.context["request"])
+        return user
+
+
+class VerifyEmailSerializer(serializers.Serializer):
+    key = serializers.CharField()
+
+    def save(self):
+        key = self.validated_data["key"]
+        email_verification.activate(key)
 
 
 class LoginSerializer(serializers.Serializer):

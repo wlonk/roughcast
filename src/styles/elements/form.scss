@@ -1,0 +1,50 @@
+.page-form {
+  &>div {
+    &.row {
+      display: flex;
+    }
+    &.submit-row {
+      align-items: flex-end;
+    }
+    &.check-row {
+      align-items: center;
+      justify-content: space-between;
+      margin: 0.5rem 0 0;
+    }
+    &>* {
+      display: block;
+    }
+  }
+  label {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    margin-left: 1rem;
+  }
+  .accent-link {
+    font-weight: 700;
+    margin-left: 0.25rem;
+  }
+  .psw-row {
+    &>div {
+      width: 50%;
+      * {
+        display: block;
+      }
+      &:first-child {
+        margin-right: 0.5rem;
+      }
+      &:last-child {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}

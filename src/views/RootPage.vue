@@ -1,8 +1,15 @@
 <template>
   <div>
     <DashBoard v-if="currentUser" />
-    <div v-else>
-      <h1>Welcome to Roughcast</h1>
+    <div v-else class="welcome-block">
+      <div>
+        <h1>Welcome to Roughcast</h1>
+        <p>Get the playtests you want, to make the game you envision.</p>
+        <router-link to="/signup" class="submit-btn">
+          Get started!
+        </router-link>
+      </div>
+      <img src="../assets/player.svg" alt="player">
     </div>
   </div>
 </template>

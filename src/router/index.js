@@ -8,6 +8,11 @@ import UserDetail from '@/views/UserDetail';
 import TeamDetail from '@/views/TeamDetail';
 import GameDetail from '@/views/GameDetail';
 import VersionDetail from '@/views/VersionDetail';
+import LogInPage from '@/views/LogInPage';
+import SignUpPage from '@/views/SignUpPage';
+import ResetPasswordPage from '@/views/ResetPasswordPage';
+import SetNewPasswordPage from '@/views/SetNewPasswordPage';
+import VerificationDetail from '@/views/VerificationDetail';
 
 Vue.use(VueRouter);
 
@@ -18,6 +23,47 @@ const routes = [
     component: RootPage,
     meta: {
       title: 'Roughcast',
+    },
+  },
+  {
+    path: '/login',
+    name: 'Log In',
+    component: LogInPage,
+    meta: {
+      title: 'Log In | Roughcast',
+    },
+  },
+  {
+    path: '/signup',
+    name: 'Sign Up',
+    component: SignUpPage,
+    meta: {
+      title: 'Sign Up | Roughcast',
+    },
+  },
+  // @@@ TODO: Maybe scope these all under `/accounts`?
+  {
+    path: '/reset',
+    name: 'Reset Password',
+    component: ResetPasswordPage,
+    meta: {
+      title: 'Reset Password | Roughcast',
+    },
+  },
+  {
+    path: '/change/:uid/:token',
+    name: 'Change Password',
+    component: SetNewPasswordPage,
+    meta: {
+      title: 'Change Password | Roughcast',
+    },
+  },
+  {
+    path: '/verification/:key?',
+    name: 'Verification',
+    component: VerificationDetail,
+    meta: {
+      title: 'Verification | Roughcast',
     },
   },
   {

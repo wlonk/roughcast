@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" data-theme="dark">
     <MainMenu />
-    <div class="ui text container">
+    <div class="ui container">
       <BreadCrumbs />
     </div>
-    <div class="ui raised very padded text container segment">
+    <div class="ui container">
       <router-view />
     </div>
   </div>
@@ -33,3 +33,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "@/styles/index.scss";
+</style>

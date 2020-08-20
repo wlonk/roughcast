@@ -1,0 +1,15 @@
+$dm-main-bg-color: hsl(246, 28, 37);
+$dm-accent-bg-color: hsl(47, 97, 54);
+$dm-main-font-color: hsl(60, 11, 96);
+$dm-dark-font-color: hsl(244, 28, 20);
+
+// Font variables
+$accent-font: 'Kurale', serif;
+$base-font: 'Arvo', serif;
+$button-font: 'Patua One', serif;
+
+// Font sizes
+$medium-font: 2rem;
+
+// Shadows
+$dm-focus-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.6);

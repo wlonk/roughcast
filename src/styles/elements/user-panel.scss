@@ -1,0 +1,15 @@
+.user-panel {
+  display: flex;
+  align-items: center;
+  margin: 0 2rem;
+  a {
+    display: flex;
+    align-items: center;
+    margin-right: 1.5rem;
+  }
+  img[alt="avatar"] {
+    border-radius: 50%;
+    width: 2.75rem;
+    margin-right: 0.5rem;
+  }
+}

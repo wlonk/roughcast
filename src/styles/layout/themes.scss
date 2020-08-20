@@ -1,0 +1,89 @@
+[data-theme="dark"] {
+  background-color: $dm-main-bg-color;
+  .breadcrumb {
+    .router-link-active,
+    .divider  {
+      color: transparentize($dm-main-font-color, 0.4);
+      &:hover {
+        color: $dm-main-font-color;
+      }
+    }
+  }
+  .page-header {
+    * {
+      color: $dm-main-font-color;
+    }
+    a:hover {
+      color: $dm-accent-bg-color;
+    }
+  }
+  .header-link::before {
+    background-image: url('./assets/user-dm.svg');
+  }
+  .welcome-block,
+  .auth-block,
+  .verification-block {
+    * {
+      color: $dm-main-font-color;
+    }
+  }
+  .submit-btn {
+    background-color: $dm-accent-bg-color;
+    color: $dm-dark-font-color;
+    &:hover {
+      box-shadow: $dm-focus-shadow;
+    }
+  }
+  input:focus {
+    box-shadow: $dm-focus-shadow;
+  }
+  .page-form {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      background-color: $dm-dark-font-color;
+      border: 2px solid transparent;
+      color: $dm-main-font-color;
+      &:focus {
+        outline: $dm-accent-bg-color;
+        border: 2px solid $dm-accent-bg-color;
+      }
+    }
+    .checkbox-label {
+      color: $dm-main-font-color;
+      input[type="checkbox"] {
+        &:focus ~ p::before {
+          box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4);
+        }
+        &:checked {
+          & ~ p::before {
+            border-color: $dm-accent-bg-color;
+            background-image: url('./assets/close-dm.svg');
+          }
+        }
+      }
+      p::before {
+        background-color: $dm-dark-font-color;
+      }
+    }
+  }
+  .accent-link {
+    color: $dm-accent-bg-color;
+  }
+  .dropdown-menu {
+    .notification-item {
+      color: $dm-main-font-color;
+      &.new {
+        color: $dm-accent-bg-color;
+      }
+    }
+    .ui.label {
+      background-color: $dm-accent-bg-color;
+      color: $dm-dark-font-color;
+    }
+    .menu.transition,
+    .menu.transition::after {
+      background-color: $dm-dark-font-color !important;
+    }
+  }
+}

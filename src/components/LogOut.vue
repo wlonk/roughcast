@@ -1,6 +1,6 @@
 <template>
-  <form @submit.stop.prevent="logout" class="ui mini form">
-    <input type="submit" value="log out" class="ui primary button" />
+  <form @submit.stop.prevent="logout">
+    <input type="submit" value="Log Out" class="accent-link" />
   </form>
 </template>
 

@@ -1,0 +1,36 @@
+.checkbox-label {
+  &[for="checkbox"] {
+    display: flex;
+    align-items: center;
+  }
+  font-weight: 300;
+  margin-bottom: 0;
+  position: relative;
+  input[type="checkbox"] {
+    opacity: 0;
+    margin-right: 0.5rem;
+    width: 1.5rem; height: 1.5rem;
+    &:checked ~ p::before {
+      background-position: center;
+      background-size: 50%;
+      background-repeat: no-repeat;
+    }
+    &:disabled ~ p {
+      opacity: 0.5;
+    }
+  }
+  p {
+    cursor: pointer;
+    font-weight: 300;
+    line-height: 1.5em;
+    margin: 0;
+    &::before {
+      content: '';
+      border: 2px solid transparent;
+      border-radius: 0.25rem;
+      position: absolute;
+      left: 0; top: 0;
+      width: 1.5rem; height: 1.5rem;
+    }
+  }
+}

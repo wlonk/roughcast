@@ -32,8 +32,17 @@ def is_emoji(value):
     return value in UNICODE_EMOJI
 
 
+class AlphaTestEmail(models.Model):
+    email = models.EmailField(unique=True)
+
+    def __str__(self):
+        return self.email
+
+
 class User(AbstractUser):
     token = None  # We only show a token on a user after auth'ing.
+    is_email_verified = models.BooleanField(default=False)
+    email = models.EmailField(unique=True)
 
     def get_or_create_token(self):
         return Token.objects.get_or_create(user=self)[0].key
@@ -43,6 +52,9 @@ class User(AbstractUser):
 
     def __str__(self):
         return f"{self.get_full_name()} (@{self.username})"
+
+    def notify(self, message):
+        print(f"Notifying {self} that {message}")
 
 
 class Team(BasicModelMixin, SimpleSlugMixin, models.Model):

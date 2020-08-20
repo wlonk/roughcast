@@ -1,7 +1,8 @@
 <template>
-  <form @submit.stop.prevent="login" class="ui mini form">
-    <div class="ui input">
-      <input name="username" placeholder="username" />
+  <form @submit.stop.prevent="login" class="page-form">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" name="username" placeholder="Username" id="username" />
       <ul v-if="loginErrors.username">
         <li
           v-for="(error, i) in loginErrors.username"
@@ -12,11 +13,13 @@
         </li>
       </ul>
     </div>
-    <div class="ui input">
+    <div>
+      <label for="password">Password</label>
       <input
         name="password"
         type="password"
-        placeholder="password"
+        id="password"
+        placeholder="Password"
         class="ui input"
       />
       <ul v-if="loginErrors.password">
@@ -29,16 +32,36 @@
         </li>
       </ul>
     </div>
-    <input type="submit" value="log in" class="ui mini primary button" />
-    <ul v-if="loginErrors.non_field_errors">
-      <li
-        v-for="(error, i) in loginErrors.non_field_errors"
-        :key="i"
-        class="ui error message"
-      >
-        {{ error }}
-      </li>
-    </ul>
+    <div class="check-row row">
+      <label for="checkbox" class="checkbox-label">
+        <input
+          type="checkbox"
+          id="checkbox"
+          checked="true"
+          disabled="disabled"/>
+        <p>Remember me</p>
+      </label>
+      <router-link to="/reset" class="accent-link link">
+        Forgot password?
+      </router-link>
+    </div>
+    <div class="submit-row row">
+      <input type="submit" value="Log In" class="submit-btn" />
+      <p> Don’t have an account?
+        <router-link to="/signup" class="accent-link link">
+          Sign Up!
+        </router-link>
+      </p>
+      <ul v-if="loginErrors.non_field_errors">
+        <li
+          v-for="(error, i) in loginErrors.non_field_errors"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
+    </div>
   </form>
 </template>
 
@@ -58,6 +81,7 @@ export default {
       const data = { username, password };
       try {
         await this.$store.dispatch('logIn', data);
+        this.$router.push('/');
       } catch {
         return;
       }
