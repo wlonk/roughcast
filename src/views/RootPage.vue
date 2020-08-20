@@ -4,9 +4,9 @@
     <div v-else class="welcome-block">
       <div>
         <h1>Welcome to Roughcast</h1>
-        <p>Roughcast is a tool to help tabletop game designers disseminate playtest documents, and manage conversations around those documents.</p>
+        <p>Get the playtests you want, to make the game you envision.</p>
         <router-link to="/signup" class="submit-btn">
-          Get Started!
+          Get started!
         </router-link>
       </div>
       <img src="../assets/player.svg" alt="player">
