@@ -1,6 +1,18 @@
 <template>
-  <div>
-    <h4>{{ username }}</h4>
+  <div class="user-profile-card">
+    <img v-if="avatar" :src="avatar" alt="avatar">
+    <img v-else src="../assets/no-avatar.svg" alt="avatar">
+    <div>
+      <div>
+        <h4 class="card-title">{{ get_full_name }}</h4>
+        <p>@{{ username }}</p>
+      </div>
+      <div>
+        <h5>Bio</h5>
+        <p v-if="bio">{{bio}}</p>
+        <p v-else class="no-bio">There is no user's bio yet...</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -10,6 +22,10 @@ export default {
   props: {
     id: Number,
     username: String,
+    avatar: String,
+    get_full_name: String,
+    bio: String,
+
   },
 };
 </script>

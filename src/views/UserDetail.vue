@@ -1,6 +1,8 @@
 <template>
   <div>
     <UserCard v-bind="user" />
+    <div class="user-elements">
+    </div>
   </div>
 </template>
 
@@ -11,7 +13,9 @@ import UserCard from '@/components/UserCard';
 
 export default {
   name: 'UserDetail',
-  components: { UserCard },
+  components: {
+    UserCard
+  },
   computed: {
     ...mapGetters(['hydratedUser']),
     user() {
