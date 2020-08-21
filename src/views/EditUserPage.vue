@@ -1,6 +1,6 @@
 <template>
-  <div v-if="user">
-    <div class="edit-block">
+  <div>
+    <div v-if="user" class="edit-block">
       <h2 >Edit Profile</h2>
       <div>
         <ScrollingEditMenu />
@@ -12,7 +12,9 @@
         </div>
       </div>
     </div>
+    <NoPageNotification v-else />
   </div>
+
 </template>
 
 <script>
@@ -21,6 +23,7 @@ import ScrollingEditMenu from '@/components/ScrollingEditMenu';
 import PublicProfileBlock from '@/components/PublicProfileBlock';
 import AccountSettingsBlock from '@/components/AccountSettingsBlock';
 import ChangePasswordForm from '@/components/ChangePasswordForm';
+import NoPageNotification from '@/components/NoPageNotification';
 
 export default {
   name: 'EditUserPage',
@@ -29,6 +32,7 @@ export default {
     PublicProfileBlock,
     AccountSettingsBlock,
     ChangePasswordForm,
+    NoPageNotification
   },
   computed: {
     ...mapGetters(['hydratedUser']),
