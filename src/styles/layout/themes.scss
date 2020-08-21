@@ -47,7 +47,8 @@
   .page-form {
     input[type="text"],
     input[type="email"],
-    input[type="password"] {
+    input[type="password"],
+    textarea {
       background-color: $dm-dark-font-color;
       border: 2px solid transparent;
       color: $dm-main-font-color;
@@ -114,5 +115,24 @@
     p {
       color: $dm-accent-bg-color;
     }
+  }
+  .box-title {
+    h5 {
+      border-bottom: 2px solid $dm-accent-bg-color;
+    }
+    .icon:hover {
+      color: $dm-accent-bg-color;
+    }
+  }
+  .edit-box {
+    .remove:hover {
+      color: $dm-accent-bg-color;
+    }
+  }
+  .custom-file-upload:focus ~ .file-loader-label {
+    box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4)
+  }
+  .verfc {
+    color: $dm-error-color;
   }
 }
