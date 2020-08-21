@@ -1,5 +1,8 @@
 .edit-box {
-  margin-bottom: 2.5rem;
+  padding-top: 2.5rem;
+  &:first-child {
+    padding-top: 0;
+  }
   div {
     &>div {
       margin-bottom: 1.5rem;
@@ -66,4 +69,8 @@
   .page-form {
     max-width: 60%;
   }
+}
+
+#notifications {
+  height: 40vh;
 }
