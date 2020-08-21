@@ -1,4 +1,69 @@
 .edit-box {
-  height: 70vh; width: 50vw;
-  background-color: #fff;
+  margin-bottom: 2.5rem;
+  div {
+    &>div {
+      margin-bottom: 1.5rem;
+    }
+    h6 {
+      display: flex;
+      align-items: flex-end;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      margin: 0;
+    }
+  }
+  .public {
+    &.info-block,
+    &.page-form {
+      display: grid;
+      grid-column-gap: 2rem;
+    }
+    &.info-block {
+      grid-template-areas: 'name avatar''bio avatar' 'd avatar';
+    }
+    &.page-form {
+      grid-template-areas: 'fname avatar''lname avatar' 'bio avatar';
+    }
+  }
+
+  .avatar {
+    grid-area: avatar;
+    img {
+      border-radius: 0.5rem;
+      width: 12.5rem;
+    }
+    div {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+  .bio {
+    grid-area: bio;
+    min-width: 23rem;
+  }
+  textarea {
+    margin-bottom: 0;
+  }
+  .remove {
+    background: none;
+    border: none;
+    margin-left: 1rem;
+  }
+  .buttons {
+    display: flex;
+    align-items: flex-end;
+  }
+  .mail {
+    display: flex;
+    align-items: center;
+    .verfc {
+      font-size: 0.75rem;
+      margin-left: 1rem;
+    }
+  }
+  .page-form {
+    max-width: 60%;
+  }
 }

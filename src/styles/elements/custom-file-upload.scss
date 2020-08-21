@@ -1,0 +1,19 @@
+.file-loader-label {
+  @extend .submit-btn;
+  cursor: pointer;
+  font-family: $button-font !important;
+  // letter-spacing: 0.1em !important;
+  margin: 0;
+  text-align: center;
+  max-width: 12.5rem;
+  margin-bottom: 0 !important;
+  margin-top: 1rem;
+}
+
+.custom-file-upload {
+  opacity: 0;
+  position: absolute;
+  &:focus ~ .file-loader-label {
+    box-shadow: 0 0 12px $dm-accent-bg-color;
+  }
+}
