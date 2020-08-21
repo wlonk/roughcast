@@ -80,7 +80,7 @@ const routes = [
     name: 'Edit User',
     component: EditUserPage,
     meta: {
-      title: 'Edit User | Roughcast',
+      title: 'Edit User Profile | Roughcast',
     },
   },
   {
