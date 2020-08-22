@@ -8,7 +8,7 @@
           <PublicProfileBlock />
           <AccountSettingsBlock />
           <ChangePasswordForm />
-          <div class="edit-box" id="notifications"></div>
+          <NotificationPreferences />
         </div>
       </div>
     </div>
@@ -22,6 +22,7 @@ import ScrollingEditMenu from '@/components/ScrollingEditMenu';
 import PublicProfileBlock from '@/components/PublicProfileBlock';
 import AccountSettingsBlock from '@/components/AccountSettingsBlock';
 import ChangePasswordForm from '@/components/ChangePasswordForm';
+import NotificationPreferences from '@/components/NotificationPreferences';
 import NoPageNotification from '@/components/NoPageNotification';
 
 export default {
@@ -31,7 +32,8 @@ export default {
     PublicProfileBlock,
     AccountSettingsBlock,
     ChangePasswordForm,
-    NoPageNotification
+    NotificationPreferences,
+    NoPageNotification,
   },
   computed: {
     ...mapGetters(['hydratedUser']),
