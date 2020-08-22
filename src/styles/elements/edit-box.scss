@@ -71,9 +71,9 @@
   }
   .row {
     display: flex;
-    justify-content: space-between;
-    margin: 1rem 0 0;
-    width: 16rem;
+    align-items: center;
+    // justify-content: space-between;
+    // width: 16rem;
     .checkbox-label {
       margin-right: 2rem;
     }

@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="check-row row">
-      <label for="checkbox" class="checkbox-label">
+      <label for="tos" class="checkbox-label inline">
         <input type="checkbox" id="tos" name="tos" />
         <p>
           I agree to

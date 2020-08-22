@@ -33,7 +33,7 @@
       </ul>
     </div>
     <div class="check-row row">
-      <label for="checkbox" class="checkbox-label">
+      <label for="checkbox" class="checkbox-label inline">
         <input
           type="checkbox"
           id="checkbox"

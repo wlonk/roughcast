@@ -1,7 +1,5 @@
 .checkbox-label {
-  &[for="checkbox"],
-  &[for="email-checkbox"],
-  &[for="inapp-checkbox"] {
+  &.inline {
     display: flex;
     align-items: center;
   }
