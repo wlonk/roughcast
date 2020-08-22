@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="user" class="edit-block">
-      <h2 >Edit Profile</h2>
+      <h2>Edit Profile</h2>
       <div>
         <ScrollingEditMenu />
         <div>

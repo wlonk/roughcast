@@ -7,14 +7,18 @@
         class="pencil alternate icon"
         @click="handleState"></i>
     </div>
-    <PublicProfileInfo v-if="!edited" />
+    <PublicProfileInfo v-if="!edited" v-bind="currentUser" />
     <EditPublicProfileForm v-else
       @created="handleState"
-      :edited="edited" />
+      :edited="edited"
+      :avatar="currentUser.avatar"
+      :bio="currentUser.bio"
+      :name="currentUser.get_full_name" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import PublicProfileInfo from '@/components/PublicProfileInfo';
 import EditPublicProfileForm from '@/components/EditPublicProfileForm';
 
@@ -26,14 +30,15 @@ export default {
   },
   data () {
     return {
-      edited: false
+      edited: false,
     }
   },
   methods: {
     handleState () {
       this.edited = !this.edited;
-    }
+    },
   },
+  computed: mapGetters(['currentUser']),
   created() {
     this.$on('created');
   }

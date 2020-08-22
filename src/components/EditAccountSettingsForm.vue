@@ -2,11 +2,11 @@
   <form class="page-form">
     <div>
       <label for="username">Username</label>
-      <input type="text" value="Username" placeholder="Username" id="username" />
+      <input type="text" :value="username" placeholder="Username" id="username" />
     </div>
     <div>
       <label for="email">Email</label>
-      <input type="email" value="Email" placeholder="Email" id="email" />
+      <input type="email" :value="email" placeholder="Email" id="email" />
     </div>
     <div class="buttons">
       <input type="submit" class="submit-btn" value="Update settings" />
@@ -20,7 +20,9 @@
 export default {
   name: 'EditPublicProfileForm',
   props: {
-    edited: Boolean
+    edited: Boolean,
+    email: String,
+    username: String
   },
   methods: {
     changeParentState: function() {

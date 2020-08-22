@@ -7,14 +7,17 @@
         class="pencil alternate icon"
         @click="handleState"></i>
     </div>
-    <AccountSettingsInfo v-if="!edited" />
+    <AccountSettingsInfo v-if="!edited" v-bind="currentUser" />
     <EditAccountSettingsForm v-else
       @created="handleState"
-      :edited="edited" />
+      :edited="edited"
+      :username="currentUser.username"
+      :email="currentUser.email" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import AccountSettingsInfo from '@/components/AccountSettingsInfo';
 import EditAccountSettingsForm from '@/components/EditAccountSettingsForm';
 
@@ -34,6 +37,7 @@ export default {
       this.edited = !this.edited;
     }
   },
+  computed: mapGetters(['currentUser']),
   created() {
     this.$on('created');
   }

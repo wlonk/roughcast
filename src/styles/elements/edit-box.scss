@@ -22,12 +22,7 @@
     &.page-form {
       display: grid;
       grid-column-gap: 2rem;
-    }
-    &.info-block {
       grid-template-areas: 'name avatar''bio avatar' 'd avatar';
-    }
-    &.page-form {
-      grid-template-areas: 'fname avatar''lname avatar' 'bio avatar';
     }
   }
 
@@ -46,6 +41,9 @@
     grid-area: bio;
     min-width: 23rem;
   }
+  .no-data {
+    opacity: 0.3;
+  }
   textarea {
     margin-bottom: 0;
   }
@@ -53,6 +51,8 @@
     background: none;
     border: none;
     margin-left: 1rem;
+    position: relative;
+    z-index: 3;
   }
   .buttons {
     display: flex;
