@@ -1,0 +1,38 @@
+.custom-toggle {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 2rem;
+  width: 16rem;
+  border-radius: 0.25rem;
+  margin: 1rem 0;
+  .toggle-label {
+    cursor: pointer;
+    font-size: 0.75rem;
+  	text-align: center;
+  	position: relative;
+  	z-index: 2;
+  	width: 10rem;
+  }
+  .toggle-input {
+    position: absolute;
+    opacity: 0;
+    &:checked + .toggle-label {
+      font-weight: 700;
+    	transition: 0.15s ease-out;
+    	transition-property: color;
+    }
+    &:checked + .toggle-label-wk ~ .selection-indicator {
+    	left: 8rem;
+    }
+  }
+  .selection-indicator {
+  	position: absolute;
+  	z-index: 1;
+  	left: 0;
+  	width: 8rem;
+  	height: 2rem;
+  	border-radius: 0.25rem;
+  	transition: left 0.15s ease-out;
+  }
+}
