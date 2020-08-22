@@ -10,7 +10,7 @@
     h6 {
       display: flex;
       align-items: flex-end;
-      font-size: 1rem;
+      font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
     p {
@@ -69,8 +69,13 @@
   .page-form {
     max-width: 60%;
   }
-}
-
-#notifications {
-  height: 40vh;
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0 0;
+    width: 16rem;
+    .checkbox-label {
+      margin-right: 2rem;
+    }
+  }
 }
