@@ -2,13 +2,6 @@
   <div>
     <h6>{{ name }}</h6>
     <div class="row">
-      <label :for="`email-checkbox-${order}`" class="checkbox-label inline">
-        <input
-          type="checkbox"
-          :id="`email-checkbox-${order}`"
-          checked="true"/>
-        <p>Email</p>
-      </label>
       <label :for="`inapp-checkbox-${order}`" class="checkbox-label inline">
         <input
           type="checkbox"
@@ -16,13 +9,20 @@
           checked="true"/>
         <p>In-App</p>
       </label>
-      <div class="custom-toggle">
-        <input type="radio" class="toggle-input" :name="`frequency-${order}`" :id="`real-time-${order}`" checked>
-        <label :for="`real-time-${order}`" class="toggle-label toggle-label-rt">Real-time</label>
-        <input type="radio" class="toggle-input" :name="`frequency-${order}`" :id="`weekly-${order}`">
-        <label :for="`weekly-${order}`" class="toggle-label toggle-label-wk">Weekly</label>
-        <span class="selection-indicator"></span>
-      </div>
+      <label :for="`instant-email-checkbox-${order}`" class="checkbox-label inline">
+        <input
+          type="checkbox"
+          :id="`instant-email-checkbox-${order}`"
+          checked="true"/>
+        <p>Instant Email</p>
+      </label>
+      <label :for="`weekly-email-checkbox-${order}`" class="checkbox-label inline">
+        <input
+          type="checkbox"
+          :id="`weekly-email-checkbox-${order}`"
+          checked="true"/>
+        <p>Weekly Email</p>
+      </label>
     </div>
 
   </div>
