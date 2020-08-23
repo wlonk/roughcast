@@ -139,7 +139,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [str(BASE_DIR / "static"), str(BASE_DIR / "dist")]
+STATICFILES_DIRS = [
+    # For things we make by hand:
+    str(BASE_DIR / "static"),
+    # For things Vue makes that it considers "the app":
+    str(BASE_DIR / "dist"),
+    # For things Vue makes that it considers "assets", like
+    # chunk-vendor.js:
+    str(BASE_DIR / "dist" / "static"),
+]
 STATIC_ROOT = str(BASE_DIR / "staticfiles")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
