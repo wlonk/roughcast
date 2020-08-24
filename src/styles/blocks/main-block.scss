@@ -60,5 +60,15 @@
       margin: 0.5rem 0;
     }
   }
-  padding-bottom: 10rem;
+  padding-bottom: 22rem;
+}
+
+.user-game-block {
+  margin-top: 2.5rem;
+  padding-bottom: 4rem;
+  .games {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+  }
 }
