@@ -248,4 +248,29 @@
       }
     }
   }
+  .game-card {
+    color: $dm-main-font-color;
+    background-color: $dm-dark-font-color;
+    .header {
+      color: $dm-accent-bg-color;
+    }
+    .team {
+      border-bottom: 2px solid $dm-accent-bg-color;
+    }
+  }
+  .group-tabs {
+    .chevron:hover {
+      color: $dm-accent-bg-color;
+    }
+    &>div>* {
+      background-color: $dm-dark-font-color;
+      &:hover {
+        box-shadow: $dm-focus-shadow;
+      }
+      &.chosen {
+        background-color: $dm-accent-bg-color;
+        color: $dm-dark-font-color;
+      }
+    }
+  }
 }
