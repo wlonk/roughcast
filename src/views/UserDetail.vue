@@ -2,6 +2,7 @@
   <div>
     <UserCard v-bind="user" />
     <div class="user-elements">
+      <GroupTabs :groups="groups" />
     </div>
   </div>
 </template>
@@ -10,11 +11,24 @@
 import { mapGetters } from 'vuex';
 
 import UserCard from '@/components/UserCard';
+import GroupTabs from '@/components/GroupTabs';
 
 export default {
   name: 'UserDetail',
+  data() {
+    return {
+      groups: [
+        'First group',
+        'Second group',
+        'Another group',
+        'One more group',
+        'Best group',
+      ]
+    }
+  },
   components: {
-    UserCard
+    UserCard,
+    GroupTabs,
   },
   computed: {
     ...mapGetters(['hydratedUser']),
