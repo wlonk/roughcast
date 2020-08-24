@@ -44,25 +44,6 @@
   }
 }
 
-.edit-block {
-  flex-direction: column;
-  &>div {
-    display: flex;
-  }
-  .scrolling-menu {
-    position: sticky;
-    top: 5rem;
-    height: fit-content;
-    margin-right: 4rem;
-    * {
-      display: block;
-      font-weight: 700;
-      margin: 0.5rem 0;
-    }
-  }
-  padding-bottom: 22rem;
-}
-
 .user-game-block {
   margin-top: 2.5rem;
   padding-bottom: 4rem;

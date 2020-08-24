@@ -1,0 +1,18 @@
+.edit-block {
+  flex-direction: column;
+  padding-bottom: 22rem;
+  &>div {
+    display: flex;
+  }
+  .scrolling-menu {
+    position: sticky;
+    top: 5rem;
+    height: fit-content;
+    margin-right: 4rem;
+    * {
+      display: block;
+      font-weight: 700;
+      margin: 0.5rem 0;
+    }
+  }
+}
