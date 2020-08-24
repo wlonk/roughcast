@@ -3,9 +3,15 @@
     <div>
       <img v-if="avatar" :src="avatar" alt="no game avatar">
       <img v-else src="../assets/no-game-image.svg" alt="no game avatar">
-      <div>
-        <p class="likes">{{ likes || 0 }}</p>
-        <p class="comments">{{ comments || 0 }}</p>
+      <div class="states">
+        <div>
+          <i class="heart icon"></i>
+          <p class="likes">{{ likes || 0 }}</p>
+        </div>
+        <div>
+          <i class="comment icon"></i>
+          <p class="comments">{{ comments || 0 }}</p>
+        </div>
       </div>
     </div>
     <div>

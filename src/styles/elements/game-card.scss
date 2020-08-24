@@ -16,6 +16,13 @@
       display: inline-block;
     }
   }
+  .states {
+    display: flex;
+    justify-content: space-between;
+    &>* {
+      margin: 0 0.5rem;
+    }
+  }
   .header {
     font-family: $accent-font;
     font-size: 1.5rem;
