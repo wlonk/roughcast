@@ -2,7 +2,7 @@
   font-size: 16px;
 }
 
-span, p, a.link, button, label, h6,
+span, div, p, a.link, button, label, h6,
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -34,6 +34,7 @@ button {
 
 .accent-link {
   cursor: pointer;
+  font-family: $button-font !important;
   font-weight: 700;
 }
 

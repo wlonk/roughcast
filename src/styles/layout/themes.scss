@@ -262,7 +262,7 @@
     .chevron:hover {
       color: $dm-accent-bg-color;
     }
-    &>div>* {
+    .tab-content * {
       background-color: $dm-dark-font-color;
       &:hover {
         box-shadow: $dm-focus-shadow;
