@@ -1,12 +1,12 @@
 <template>
   <div class="user-game-block">
     <div class="box-title">
-      <h5>All games</h5>
+      <h5>{{ group }}</h5>
     </div>
     <div class="games">
-      <GameCard v-for="(game, index) in games" :key="index" v-bind="game"/>
-      <GameCard v-for="(game, index) in games" :key="index" v-bind="game"/>
-      <GameCard v-for="(game, index) in games" :key="index" v-bind="game"/>
+      <GameCard v-for="(game, index) in games" :key="0" v-bind="game"/>
+      <GameCard v-for="(game, index) in games" :key="1" v-bind="game"/>
+      <GameCard v-for="(game, index) in games" :key="2" v-bind="game"/>
     </div>
   </div>
 </template>
@@ -16,6 +16,12 @@ import GameCard from '@/components/GameCard';
 
 export default {
   name: 'UserGames',
+  components: {
+    GameCard
+  },
+  props: {
+    group: String
+  },
   data() {
     return {
       games: [{
@@ -29,8 +35,5 @@ export default {
       }]
     }
   },
-  components: {
-    GameCard
-  }
 };
 </script>

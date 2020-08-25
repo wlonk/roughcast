@@ -2,8 +2,11 @@
   <div>
     <UserCard v-bind="user" />
     <div class="user-elements">
-      <GroupTabs :groups="groups" />
-      <UserGames />
+      <GroupTabs
+        @chooseGroup="changeActiveGroup"
+        :groups="groups"
+        :chosen="chosenGroup"  />
+      <UserGames :group="chosenGroup" />
     </div>
   </div>
 </template>
@@ -17,21 +20,31 @@ import UserGames from '@/components/UserGames';
 
 export default {
   name: 'UserDetail',
+  components: {
+    UserCard,
+    GroupTabs,
+    UserGames
+  },
   data() {
     return {
+      chosenGroup: "All games",
       groups: [
+        'All games',
         'First group',
         'Second group',
         'Another group',
         'One more group',
         'Best group',
-      ]
+        'more group',
+        'One one more group',
+        'one Best group',
+      ],
     }
   },
-  components: {
-    UserCard,
-    GroupTabs,
-    UserGames
+  methods: {
+    changeActiveGroup(group)  {
+      return this.chosenGroup = group;
+    }
   },
   computed: {
     ...mapGetters(['hydratedUser']),
@@ -41,6 +54,7 @@ export default {
   },
   created() {
     this.$store.dispatch('getUserById', this.$route.params.username);
+    this.$on('chooseGroup');
   },
 };
 </script>
