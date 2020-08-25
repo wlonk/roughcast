@@ -3,31 +3,25 @@
     <div>
       <img v-if="avatar" :src="avatar" alt="no game avatar">
       <img v-else src="../assets/no-game-image.svg" alt="no game avatar">
-      <div class="states">
-        <div>
+      <div class="header">
+        <div class="states">
           <i class="heart icon"></i>
           <p class="likes">{{ likes || 0 }}</p>
-        </div>
-        <div>
           <i class="comment icon"></i>
           <p class="comments">{{ comments || 0 }}</p>
+          <GameCardMenu />
+        </div>
+        <div class="team">
+          <p>{{ team.name }}</p>
         </div>
       </div>
     </div>
-    <div>
-      <!-- <i
-        class="right floated trash alternate icon"
-        v-if="permissions['this:delete']"
-      ></i> -->
-      <!-- card menu here -->
+    <div class="content">
       <div>
-        <router-link :to="`/t/${team.slug}/${slug}`" class="header">
+        <router-link :to="`/t/${team.slug}/${slug}`" class="game-card-title">
           {{ name }}
         </router-link>
         <span>@{{ latest_version.name }}</span>
-      </div>
-      <div class="team">
-        <p>{{ team.name }}</p>
       </div>
       <div class="description">
         <RenderedMarkdown :body="description" />
@@ -38,10 +32,11 @@
 
 <script>
 import RenderedMarkdown from '@/components/RenderedMarkdown';
+import GameCardMenu from '@/components/GameCardMenu';
 
 export default {
   name: 'GameCard',
-  components: { RenderedMarkdown },
+  components: { RenderedMarkdown, GameCardMenu },
   props: {
     avatar: String,
     id: String,

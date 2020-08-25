@@ -2,7 +2,7 @@
   font-size: 16px;
 }
 
-span, div, p, a.link, button, label, h6,
+p, a.link, button, label, h6,
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -12,6 +12,12 @@ textarea {
   letter-spacing: 0.05em !important;
   line-height: 1.5em !important;
   margin: 0; padding: 0;
+}
+
+span, div {
+  font-family: $base-font !important;
+  font-size: 16px;
+  letter-spacing: 0.05em !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
