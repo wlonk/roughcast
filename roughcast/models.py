@@ -56,7 +56,26 @@ class User(AbstractUser):
         return f"{self.get_full_name()} (@{self.username})"
 
     def notify(self, message):
-        print(f"Notifying {self} that {message}")
+        """
+        message: {
+            "type": "comments" | "mentions" | "versions" | "games",
+            "path": <path on roughcast to relevant data>,
+            "subject": <string subject. this is also the short form for in-app>,
+            "email_template": <string to the email template to use>,
+            "email_context": <dict of additional context to put in email>,
+        }
+        """
+        if self.profile._should_notify(message["type"], NotificationPreferences.IN_APP):
+            # @TODO: create in-app notification model instance.
+            pass
+        if self.profile._should_notify(message["type"], NotificationPreferences.INSTANT_EMAIL):
+            # @TODO: send email right away
+            pass
+        if self.profile._should_notify(message["type"], NotificationPreferences.DIGEST_EMAIL):
+            # @TODO: create digest-email model instance.
+            # @TODO: run weekly job to scoop up digest emails models and
+            # build and send an email.
+            pass
 
 
 class NotificationPreferences(IntFlag):
