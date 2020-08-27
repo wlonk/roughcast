@@ -28,6 +28,7 @@ from .serializers import (
     VersionSerializer,
     RegisterSerializer,
     VerifyEmailSerializer,
+    UserProfileSerializer,
 )
 
 
@@ -92,14 +93,25 @@ class UserViewSet(ModelViewSet):
     lookup_field = "username"
     lookup_value_regex = "[^/]+"
 
-    @action(detail=False)
-    def me(self, request):
-        if request.user.is_authenticated:
-            user = request.user
-            user.token = user.get_or_create_token()
-            serializer = SelfUserSerializer(instance=user)
-            return Response(serializer.data)
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    def get_object(self):
+        if self.kwargs["username"] == "me":
+            self.kwargs["username"] = self.request.user.username
+        return super().get_object()
+        # TODO: always serialize self with token and SelfUserSerializer
+
+    # The following are detail-false because they only ever apply to the
+    # current user; this does mean that they also all create invalid
+    # usernames, as a side-effect.
+    @action(detail=False, methods=["get", "put"])
+    def profile(self, request):
+        profile = request.user.profile
+        if request.method == "GET":
+            return Response(UserProfileSerializer(instance=profile).data)
+        serializer = UserProfileSerializer(instance=profile, data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.save()
+        return Response(UserProfileSerializer(instance=profile).data)
 
     @action(detail=False, methods=["post"], permission_classes=(AllowAny,))
     def verify_email(self, request):

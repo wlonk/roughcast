@@ -12,8 +12,8 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from rest_framework import serializers
 
-from .models import AlphaTestEmail, AttachedFile, Game, Team, TeamMembership, User, Version
-from .serializer_fields import SlugField, SlugStringField, UserStringField
+from .models import AlphaTestEmail, AttachedFile, Game, Team, TeamMembership, User, Version, UserProfile
+from .serializer_fields import SlugField, SlugStringField, UserStringField, NotificationMaskField
 from .text import unmark
 
 from . import email_verification
@@ -203,6 +203,25 @@ class SelfUserSerializer(serializers.ModelSerializer):
             "email",
             "token",
         )
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = (
+            "user",
+            "bio",
+            "notif_comments",
+            "notif_mentions",
+            "notif_versions",
+            "notif_games",
+        )
+
+    notif_comments = NotificationMaskField()
+    notif_mentions = NotificationMaskField()
+    notif_versions = NotificationMaskField()
+    notif_games = NotificationMaskField()
+    user = UserStringField(read_only=True)
 
 
 class TeamSerializer(serializers.ModelSerializer):

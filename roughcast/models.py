@@ -1,9 +1,11 @@
+from enum import IntFlag
 from base64 import b64encode
 from os.path import splitext
 from random import randint
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.core.validators import MaxValueValidator
 from emoji import UNICODE_EMOJI
 from rest_framework.authtoken.models import Token
 
@@ -55,6 +57,42 @@ class User(AbstractUser):
 
     def notify(self, message):
         print(f"Notifying {self} that {message}")
+
+
+class NotificationPreferences(IntFlag):
+    NONE = 0
+    IN_APP = 1
+    INSTANT_EMAIL = 2
+    DIGEST_EMAIL = 4
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, primary_key=True, related_name="profile"
+    )
+    bio = models.TextField(blank=True)
+    notif_comments = models.PositiveSmallIntegerField(
+        default=NotificationPreferences.IN_APP,
+        validators=[MaxValueValidator(sum(NotificationPreferences))],
+    )
+    notif_mentions = models.PositiveSmallIntegerField(
+        default=NotificationPreferences.IN_APP,
+        validators=[MaxValueValidator(sum(NotificationPreferences))],
+    )
+    notif_versions = models.PositiveSmallIntegerField(
+        default=NotificationPreferences.IN_APP | NotificationPreferences.INSTANT_EMAIL,
+        validators=[MaxValueValidator(sum(NotificationPreferences))],
+    )
+    notif_games = models.PositiveSmallIntegerField(
+        default=NotificationPreferences.IN_APP | NotificationPreferences.INSTANT_EMAIL,
+        validators=[MaxValueValidator(sum(NotificationPreferences))],
+    )
+
+    def _should_notify(self, notification_type, notification_method):
+        return bool(getattr(self, f"notif_{notification_type}") & notification_method)
+
+    def __str__(self):
+        return f"UserProfile for {self.user.username}"
 
 
 class Team(BasicModelMixin, SimpleSlugMixin, models.Model):
