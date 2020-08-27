@@ -36,7 +36,7 @@ class NotificationMaskField(serializers.Field):
     def to_representation(self, value):
         """Makes something JSONable out of a Python object"""
         return {
-            name: bool(member & value)
+            name.lower(): bool(member & value)
             for name, member in NotificationPreferences.__members__.items()
             if member != NotificationPreferences.NONE
         }
@@ -44,7 +44,7 @@ class NotificationMaskField(serializers.Field):
     def to_internal_value(self, data):
         """Makes a Python object out of something JSONable"""
         vals = [
-            NotificationPreferences[key]
+            NotificationPreferences[key.upper()]
             for key, val
             in data.items()
             if val
