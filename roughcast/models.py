@@ -10,7 +10,16 @@ from emoji import UNICODE_EMOJI
 from rest_framework.authtoken.models import Token
 
 from .fields import StringField
-from .model_mixins import BasicModelMixin, SimpleSlugMixin
+from .model_mixins import BasicModelMixin, SimpleSlugMixin, SubscribableMixin
+
+
+class Subscribable(models.Model):
+    pass
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    subscribable = models.ForeignKey(Subscribable, on_delete=models.CASCADE)
 
 
 # Used in Version:
@@ -85,6 +94,14 @@ class NotificationPreferences(IntFlag):
     DIGEST_EMAIL = 4
 
 
+NOTIFICATION_TYPES = (
+    ("comments", "comments"),
+    ("mentions", "mentions"),
+    ("versions", "versions"),
+    ("games", "games"),
+)
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name="profile"
@@ -114,7 +131,23 @@ class UserProfile(models.Model):
         return f"UserProfile for {self.user.username}"
 
 
-class Team(BasicModelMixin, SimpleSlugMixin, models.Model):
+class InAppNotification(BasicModelMixin, models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    seen_at = models.DateTimeField(null=True, blank=True)
+    notification_type = models.CharField(max_length=32, choices=NOTIFICATION_TYPES)
+    path = models.CharField(max_length=128)
+    additional_context = models.JSONField(blank=True, null=True)
+
+
+class DigestEmailElement(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    sent_at = models.DateTimeField(null=True, blank=True)
+    notification_type = models.CharField(max_length=32, choices=NOTIFICATION_TYPES)
+    path = models.CharField(max_length=128)
+    additional_context = models.JSONField(blank=True, null=True)
+
+
+class Team(SubscribableMixin, BasicModelMixin, SimpleSlugMixin, models.Model):
     name = StringField(unique=True)
     description = models.TextField()
     url = models.URLField(blank=True)
@@ -122,6 +155,8 @@ class Team(BasicModelMixin, SimpleSlugMixin, models.Model):
     members = models.ManyToManyField(
         User, through="TeamMembership", related_name="team_memberships",
     )
+
+    subscribable = models.OneToOneField(Subscribable, on_delete=models.CASCADE)
 
     class Meta:
         constraints = (
@@ -142,7 +177,7 @@ class TeamMembership(BasicModelMixin, models.Model):
         return f"{self.user.username} is a member of {self.team.name}"
 
 
-class Game(BasicModelMixin, SimpleSlugMixin, models.Model):
+class Game(SubscribableMixin, BasicModelMixin, SimpleSlugMixin, models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     name = StringField()
     banner = models.ImageField(null=True, blank=True)
@@ -150,6 +185,8 @@ class Game(BasicModelMixin, SimpleSlugMixin, models.Model):
     default_visible_to = models.ManyToManyField(
         User, related_name="accessible_games", blank=True
     )
+
+    subscribable = models.OneToOneField(Subscribable, on_delete=models.CASCADE)
 
     class Meta:
         constraints = (
@@ -186,6 +223,29 @@ class Version(BasicModelMixin, SimpleSlugMixin, models.Model):
 
     def __str__(self):
         return f"{self.game} version {self.name}"
+
+    def get_notification_message(self):
+        slug = self.slug
+        game = self.game
+        publisher = game.publisher
+        return {
+            "type": "versions",
+            "path": "/t/{publisher.slug}/{game.slug}/{slug}",
+            "subject": "Check out {game.name} {version.name}",
+            "email_template": "new_version.html",
+            "email_context": {
+                "publisher": publisher.id,
+                "game": game.id,
+                "version": self.id,
+            },
+        }
+
+    def save(self, *args, **kwargs):
+        ret = super().save(*args, **kwargs)
+        message = self.get_notification_message()
+        for subscription in self.game.subscribable.subscription_set.all():
+            subscription.user.notify(message)
+        return ret
 
 
 class AttachedFile(BasicModelMixin, models.Model):

@@ -12,7 +12,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from rest_framework import serializers
 
-from .models import AlphaTestEmail, AttachedFile, Game, Team, TeamMembership, User, Version, UserProfile
+from .models import AlphaTestEmail, AttachedFile, Game, Team, TeamMembership, User, Version, UserProfile, InAppNotification
 from .serializer_fields import SlugField, SlugStringField, UserStringField, NotificationMaskField
 from .text import unmark
 
@@ -222,6 +222,20 @@ class UserProfileSerializer(serializers.ModelSerializer):
     notif_versions = NotificationMaskField()
     notif_games = NotificationMaskField()
     user = UserStringField(read_only=True)
+
+
+class InAppNotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InAppNotification
+        fields = (
+            "id",
+            "seen_at",
+            "notification_type",
+            "path",
+            "additional_context",
+        )
+
+    id = serializers.CharField(read_only=True)
 
 
 class TeamSerializer(serializers.ModelSerializer):

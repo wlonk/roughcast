@@ -13,7 +13,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from django_registration.exceptions import ActivationError
 
-from .models import AttachedFile, Game, Team, TeamMembership, User, Version
+from .models import AttachedFile, Game, Team, TeamMembership, User, Version, InAppNotification
 from .serializers import (
     AttachedFileSerializer,
     GameSerializer,
@@ -29,6 +29,7 @@ from .serializers import (
     RegisterSerializer,
     VerifyEmailSerializer,
     UserProfileSerializer,
+    InAppNotificationSerializer,
 )
 
 
@@ -139,6 +140,14 @@ class UserViewSet(ModelViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         serializer.save(request=request)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class InAppNotificationViewSet(ModelViewSet):
+    serializer_class = InAppNotificationSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return InAppNotification.objects.filter(user=self.request.user)
 
 
 class TeamViewSet(ModelViewSet):
