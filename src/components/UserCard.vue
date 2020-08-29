@@ -4,7 +4,7 @@
     <img v-else src="../assets/no-avatar.svg" alt="avatar">
     <div>
       <div>
-        <h4 class="card-title">{{ get_full_name }}</h4>
+        <h4 class="card-title">{{ first_name }}</h4>
         <p>@{{ username }}</p>
       </div>
       <div>
@@ -23,7 +23,7 @@ export default {
     id: Number,
     username: String,
     avatar: String,
-    get_full_name: String,
+    first_name: String,
     bio: String,
 
   },

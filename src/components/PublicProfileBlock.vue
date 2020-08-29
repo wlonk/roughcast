@@ -3,17 +3,16 @@
     <div class="box-title">
       <h5>Public Profile</h5>
       <i
-        v-if="!edited"
+        v-if="!editFormOpen"
         class="pencil alternate icon"
-        @click="handleState"></i>
+        @click="toggleEditState"></i>
     </div>
-    <PublicProfileInfo v-if="!edited" v-bind="currentUser" />
+    <PublicProfileInfo v-if="!editFormOpen" v-bind="currentUser" />
     <EditPublicProfileForm v-else
-      @created="handleState"
-      :edited="edited"
+      @close-edit="toggleEditState"
       :avatar="currentUser.avatar"
       :bio="currentUser.bio"
-      :name="currentUser.get_full_name" />
+      :name="currentUser.first_name" />
   </div>
 </template>
 
@@ -30,17 +29,14 @@ export default {
   },
   data () {
     return {
-      edited: false,
+      editFormOpen: false,
     }
   },
   methods: {
-    handleState () {
-      this.edited = !this.edited;
+    toggleEditState () {
+      this.editFormOpen = !this.editFormOpen;
     },
   },
   computed: mapGetters(['currentUser']),
-  created() {
-    this.$on('created');
-  }
 };
 </script>

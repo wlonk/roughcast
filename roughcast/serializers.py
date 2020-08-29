@@ -189,7 +189,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "username",
-            "get_full_name",
+            "first_name",
+            "bio",
         )
 
 
@@ -199,7 +200,7 @@ class SelfUserSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "username",
-            "get_full_name",
+            "first_name",
             "email",
             "token",
         )
@@ -210,7 +211,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = (
             "user",
-            "bio",
             "notif_comments",
             "notif_mentions",
             "notif_versions",

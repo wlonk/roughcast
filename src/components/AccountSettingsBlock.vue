@@ -3,14 +3,13 @@
     <div class="box-title">
       <h5>Account Settings</h5>
       <i
-        v-if="!edited"
+        v-if="!editFormOpen"
         class="pencil alternate icon"
-        @click="handleState"></i>
+        @click="toggleEditState"></i>
     </div>
-    <AccountSettingsInfo v-if="!edited" v-bind="currentUser" />
+    <AccountSettingsInfo v-if="!editFormOpen" v-bind="currentUser" />
     <EditAccountSettingsForm v-else
-      @created="handleState"
-      :edited="edited"
+      @close-edit="toggleEditState"
       :username="currentUser.username"
       :email="currentUser.email" />
   </div>
@@ -29,17 +28,14 @@ export default {
   },
   data () {
     return {
-      edited: false
+      editFormOpen: false
     }
   },
   methods: {
-    handleState () {
-      this.edited = !this.edited;
+    toggleEditState () {
+      this.editFormOpen = !this.editFormOpen;
     }
   },
   computed: mapGetters(['currentUser']),
-  created() {
-    this.$on('created');
-  }
 };
 </script>

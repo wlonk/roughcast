@@ -34,6 +34,34 @@ const mutations = {
       [user.id]: user,
     };
   },
+  updateDisplayName(state, displayName) {
+    const currentUserId = state.current.id;
+    state.current = {
+      ...state.current,
+      first_name: displayName,
+    };
+    state.all = {
+      ...state.all,
+      [currentUserId]: {
+        ...state.all[currentUserId],
+        first_name: displayName,
+      },
+    }
+  },
+  updateBio(state, bio) {
+    const currentUserId = state.current.id;
+    state.current = {
+      ...state.current,
+      bio,
+    };
+    state.all = {
+      ...state.all,
+      [currentUserId]: {
+        ...state.all[currentUserId],
+        bio,
+      },
+    }
+  },
 };
 
 const actions = {
@@ -98,6 +126,12 @@ const actions = {
       // TODO: Display lookup error toast?
     }
   },
+  updateDisplayName({ commit, state }, displayName) {
+    commit('updateDisplayName', displayName);
+  },
+  updateBio({ commit, state }, bio) {
+    commit('updateBio', bio);
+  },
 };
 
 const getters = {
@@ -118,7 +152,7 @@ const getters = {
     return _.map(state.all, u => ({
       key: u.id,
       value: u.username,
-      text: `${u.get_full_name} (@${u.username})`,
+      text: `${u.first_name} (@${u.username})`,
     }));
   },
 };

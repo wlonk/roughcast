@@ -54,6 +54,7 @@ class User(AbstractUser):
     token = None  # We only show a token on a user after auth'ing.
     is_email_verified = models.BooleanField(default=False)
     email = models.EmailField(unique=True)
+    bio = models.TextField(blank=True)
 
     def get_or_create_token(self):
         return Token.objects.get_or_create(user=self)[0].key
@@ -106,7 +107,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name="profile"
     )
-    bio = models.TextField(blank=True)
     notif_comments = models.PositiveSmallIntegerField(
         default=NotificationPreferences.IN_APP,
         validators=[MaxValueValidator(sum(NotificationPreferences))],
