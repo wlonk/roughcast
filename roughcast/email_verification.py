@@ -1,8 +1,8 @@
-from django.contrib.auth import get_user_model
-from django.template.loader import render_to_string
-from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.contrib.sites.shortcuts import get_current_site
 from django.core import signing
+from django.template.loader import render_to_string
 from django_registration.exceptions import ActivationError
 
 
@@ -39,19 +39,16 @@ def send_activation_email(user, request):
     context = _get_email_context(request, activation_key)
     context["user"] = user
     subject = render_to_string(
-        template_name=email_subject_template,
-        context=context,
-        request=request,
+        template_name=email_subject_template, context=context, request=request,
     )
     # Force subject to a single line to avoid header-injection
     # issues.
     subject = "".join(subject.splitlines())
     message = render_to_string(
-        template_name=email_body_template,
-        context=context,
-        request=request,
+        template_name=email_body_template, context=context, request=request,
     )
     user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
+
 
 # Activation:
 def _validate_key(activation_key):
@@ -75,6 +72,7 @@ def _validate_key(activation_key):
             code="invalid_key",
             params={"activation_key": activation_key},
         )
+
 
 def _get_user(username):
     """

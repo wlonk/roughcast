@@ -16,10 +16,9 @@
         </router-link>
         <div class="meta">
           Latest:
-          <router-link
-            :to="`/t/${team.slug}/${slug}/${latest_version.slug}`"
-            >{{ latest_version.name }}</router-link
-          >
+          <router-link :to="`/t/${team.slug}/${slug}/${latest_version.slug}`">{{
+            latest_version.name
+          }}</router-link>
         </div>
         <div class="description">
           <RenderedMarkdown :body="description" />

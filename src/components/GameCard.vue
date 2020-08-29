@@ -1,8 +1,8 @@
 <template>
   <div class="game-card">
     <div>
-      <img v-if="avatar" :src="avatar" alt="no game avatar">
-      <img v-else src="../assets/no-game-image.svg" alt="no game avatar">
+      <img v-if="avatar" :src="avatar" alt="no game avatar" />
+      <img v-else src="../assets/no-game-image.svg" alt="no game avatar" />
       <div class="header">
         <div class="states">
           <i class="heart icon"></i>
@@ -47,7 +47,7 @@ export default {
     latest_version: Object,
     permissions: Object,
     likes: Number,
-    comments: Number
+    comments: Number,
   },
 };
 </script>

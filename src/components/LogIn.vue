@@ -38,7 +38,8 @@
           type="checkbox"
           id="checkbox"
           checked="true"
-          disabled="disabled"/>
+          disabled="disabled"
+        />
         <p>Remember me</p>
       </label>
       <router-link to="/reset" class="accent-link link">
@@ -47,7 +48,8 @@
     </div>
     <div class="submit-row row">
       <input type="submit" value="Log In" class="submit-btn" />
-      <p> Don’t have an account?
+      <p>
+        Don’t have an account?
         <router-link to="/signup" class="accent-link link">
           Sign Up!
         </router-link>

@@ -5,14 +5,17 @@
       <i
         v-if="!editFormOpen"
         class="pencil alternate icon"
-        @click="toggleEditState"></i>
+        @click="toggleEditState"
+      ></i>
     </div>
     <PublicProfileInfo v-if="!editFormOpen" v-bind="currentUser" />
-    <EditPublicProfileForm v-else
+    <EditPublicProfileForm
+      v-else
       @close-edit="toggleEditState"
       :avatar="currentUser.avatar"
       :bio="currentUser.bio"
-      :name="currentUser.first_name" />
+      :name="currentUser.first_name"
+    />
   </div>
 </template>
 
@@ -25,15 +28,15 @@ export default {
   name: 'PublicProfileBlock',
   components: {
     PublicProfileInfo,
-    EditPublicProfileForm
+    EditPublicProfileForm,
   },
-  data () {
+  data() {
     return {
       editFormOpen: false,
-    }
+    };
   },
   methods: {
-    toggleEditState () {
+    toggleEditState() {
       this.editFormOpen = !this.editFormOpen;
     },
   },

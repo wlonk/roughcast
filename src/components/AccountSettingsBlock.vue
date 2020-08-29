@@ -5,13 +5,16 @@
       <i
         v-if="!editFormOpen"
         class="pencil alternate icon"
-        @click="toggleEditState"></i>
+        @click="toggleEditState"
+      ></i>
     </div>
     <AccountSettingsInfo v-if="!editFormOpen" v-bind="currentUser" />
-    <EditAccountSettingsForm v-else
+    <EditAccountSettingsForm
+      v-else
       @close-edit="toggleEditState"
       :username="currentUser.username"
-      :email="currentUser.email" />
+      :email="currentUser.email"
+    />
   </div>
 </template>
 
@@ -24,17 +27,17 @@ export default {
   name: 'AccountSettingsBlock',
   components: {
     AccountSettingsInfo,
-    EditAccountSettingsForm
+    EditAccountSettingsForm,
   },
-  data () {
+  data() {
     return {
-      editFormOpen: false
-    }
+      editFormOpen: false,
+    };
   },
   methods: {
-    toggleEditState () {
+    toggleEditState() {
       this.editFormOpen = !this.editFormOpen;
-    }
+    },
   },
   computed: mapGetters(['currentUser']),
 };

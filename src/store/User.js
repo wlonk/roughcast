@@ -51,7 +51,7 @@ const mutations = {
         ...state.all[currentUserId],
         first_name: displayName,
       },
-    }
+    };
   },
   updateBio(state, bio) {
     const currentUserId = state.current.id;
@@ -65,15 +65,13 @@ const mutations = {
         ...state.all[currentUserId],
         bio,
       },
-    }
+    };
   },
 };
 
 const actions = {
   async setCurrentUser({ commit }, user) {
-    Vue.axios.defaults.headers.common[
-      'Authorization'
-    ] = `Token ${user.token}`;
+    Vue.axios.defaults.headers.common['Authorization'] = `Token ${user.token}`;
     const response = await api.get('/user/profile/');
     commit('logIn', user);
     commit('setProfile', response.data);
@@ -135,10 +133,10 @@ const actions = {
       // TODO: Display lookup error toast?
     }
   },
-  updateDisplayName({ commit, state }, displayName) {
+  updateDisplayName({ commit }, displayName) {
     commit('updateDisplayName', displayName);
   },
-  updateBio({ commit, state }, bio) {
+  updateBio({ commit }, bio) {
     commit('updateBio', bio);
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="page-header" id="page-header">
     <div class="header item">
-      <img src="../assets/logo.svg" alt="logo">
+      <img src="../assets/logo.svg" alt="logo" />
       <router-link to="/" class="logo-title">
         Roughcast
       </router-link>
@@ -20,18 +20,14 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import LogIn from '@/components/LogIn';
-import LogOut from '@/components/LogOut';
 import NotificationList from '@/components/NotificationList';
 import UserPanel from '@/components/UserPanel';
 
 export default {
   name: 'MainMenu',
   components: {
-    LogIn,
-    LogOut,
     NotificationList,
-    UserPanel
+    UserPanel,
   },
   computed: mapGetters(['currentUser']),
 };

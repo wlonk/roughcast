@@ -4,7 +4,7 @@
       <h5>{{ group.name }}</h5>
     </div>
     <div class="games">
-      <GameCard v-for="game in games" :key="game.slug" v-bind="game"/>
+      <GameCard v-for="game in games" :key="game.slug" v-bind="game" />
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ import GameCard from '@/components/GameCard';
 export default {
   name: 'UserGames',
   components: {
-    GameCard
+    GameCard,
   },
   props: {
     group: Object,

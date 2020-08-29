@@ -1,11 +1,11 @@
-from enum import IntFlag
 from base64 import b64encode
+from enum import IntFlag
 from os.path import splitext
 from random import randint
 
 from django.contrib.auth.models import AbstractUser
-from django.db import models
 from django.core.validators import MaxValueValidator
+from django.db import models
 from emoji import UNICODE_EMOJI
 from rest_framework.authtoken.models import Token
 
@@ -78,10 +78,14 @@ class User(AbstractUser):
         if self.profile._should_notify(message["type"], NotificationPreferences.IN_APP):
             # @TODO: create in-app notification model instance.
             pass
-        if self.profile._should_notify(message["type"], NotificationPreferences.INSTANT_EMAIL):
+        if self.profile._should_notify(
+            message["type"], NotificationPreferences.INSTANT_EMAIL
+        ):
             # @TODO: send email right away
             pass
-        if self.profile._should_notify(message["type"], NotificationPreferences.DIGEST_EMAIL):
+        if self.profile._should_notify(
+            message["type"], NotificationPreferences.DIGEST_EMAIL
+        ):
             # @TODO: create digest-email model instance.
             # @TODO: run weekly job to scoop up digest emails models and
             # build and send an email.
@@ -225,12 +229,11 @@ class Version(BasicModelMixin, SimpleSlugMixin, models.Model):
         return f"{self.game} version {self.name}"
 
     def get_notification_message(self):
-        slug = self.slug
         game = self.game
         publisher = game.publisher
         return {
             "type": "versions",
-            "path": "/t/{publisher.slug}/{game.slug}/{slug}",
+            "path": f"/t/{publisher.slug}/{game.slug}/{self.slug}",
             "subject": "Check out {game.name} {version.name}",
             "email_template": "new_version.html",
             "email_context": {

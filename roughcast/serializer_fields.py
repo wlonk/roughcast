@@ -1,8 +1,9 @@
 from functools import reduce
+
 from rest_framework import serializers
 from rest_framework.fields import SlugField as BaseSlugField
 
-from .models import User, NotificationPreferences
+from .models import NotificationPreferences, User
 from .slugs import validate_slug
 
 
@@ -44,10 +45,7 @@ class NotificationMaskField(serializers.Field):
     def to_internal_value(self, data):
         """Makes a Python object out of something JSONable"""
         vals = [
-            NotificationPreferences[key.upper()]
-            for key, val
-            in data.items()
-            if val
+            NotificationPreferences[key.upper()] for key, val in data.items() if val
         ]
         mask = reduce(lambda a, b: a | b, vals, NotificationPreferences.NONE)
         return mask

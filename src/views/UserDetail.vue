@@ -5,11 +5,9 @@
       <GroupTabs
         @choose-group="changeActiveGroup"
         :groups="groups"
-        :chosen="chosenGroup"  />
-      <UserGames
-        :group="chosenGroup"
-        :games="filteredGames"
+        :chosen="chosenGroup"
       />
+      <UserGames :group="chosenGroup" :games="filteredGames" />
     </div>
   </div>
 </template>
@@ -28,17 +26,17 @@ export default {
   components: {
     UserCard,
     GroupTabs,
-    UserGames
+    UserGames,
   },
   data() {
     return {
       chosenGroup: allGames,
-    }
+    };
   },
   methods: {
-    changeActiveGroup(group)  {
-      return this.chosenGroup = group;
-    }
+    changeActiveGroup(group) {
+      return (this.chosenGroup = group);
+    },
   },
   computed: {
     ...mapGetters(['hydratedUser', 'myTeams', 'listGames', 'gamesForTeam']),

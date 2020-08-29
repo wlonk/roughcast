@@ -6,30 +6,38 @@ from zipfile import ZipFile
 from django.contrib.auth import authenticate, logout
 from django.http import HttpResponse
 from django.utils.text import slugify
+from django_registration.exceptions import ActivationError
 from rest_framework import generics, status
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from django_registration.exceptions import ActivationError
 
-from .models import AttachedFile, Game, Team, TeamMembership, User, Version, InAppNotification
+from .models import (
+    AttachedFile,
+    Game,
+    InAppNotification,
+    Team,
+    TeamMembership,
+    User,
+    Version,
+)
 from .serializers import (
     AttachedFileSerializer,
     GameSerializer,
+    InAppNotificationSerializer,
     LoginSerializer,
     LogoutSerializer,
     PasswordResetConfirmSerializer,
     PasswordResetSerializer,
+    RegisterSerializer,
+    SelfUserSerializer,
     TeamMembershipSerializer,
     TeamSerializer,
-    SelfUserSerializer,
-    UserSerializer,
-    VersionSerializer,
-    RegisterSerializer,
-    VerifyEmailSerializer,
     UserProfileSerializer,
-    InAppNotificationSerializer,
+    UserSerializer,
+    VerifyEmailSerializer,
+    VersionSerializer,
 )
 
 
@@ -38,7 +46,9 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
     def create(self, request):
-        serializer = self.get_serializer(data=request.data, context={"request": request})
+        serializer = self.get_serializer(
+            data=request.data, context={"request": request}
+        )
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         user = serializer.save()
@@ -122,7 +132,10 @@ class UserViewSet(ModelViewSet):
         try:
             serializer.save()
         except ActivationError:
-            return Response({"non_field_errors": ["Error verifying email."]}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"non_field_errors": ["Error verifying email."]},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     @action(detail=False, methods=["post"], permission_classes=(AllowAny,))

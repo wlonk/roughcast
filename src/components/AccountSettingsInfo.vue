@@ -24,7 +24,7 @@ export default {
   props: {
     email: String,
     username: String,
-    is_verified: Boolean
+    is_verified: Boolean,
   },
 };
 </script>

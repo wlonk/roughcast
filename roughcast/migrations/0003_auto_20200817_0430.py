@@ -7,46 +7,50 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('roughcast', '0002_game_default_visible_to'),
+        ("roughcast", "0002_game_default_visible_to"),
     ]
 
     operations = [
         migrations.RemoveConstraint(
-            model_name='game',
-            name='unique_name_per_publisher',
+            model_name="game", name="unique_name_per_publisher",
         ),
         migrations.RemoveConstraint(
-            model_name='publisher',
-            name='unique_publisher_name',
+            model_name="publisher", name="unique_publisher_name",
         ),
         migrations.RemoveConstraint(
-            model_name='publisher',
-            name='unique_publisher_slug',
+            model_name="publisher", name="unique_publisher_slug",
         ),
         migrations.RenameField(
-            model_name='game',
-            old_name='publisher',
-            new_name='team',
+            model_name="game", old_name="publisher", new_name="team",
         ),
         migrations.RenameField(
-            model_name='publishermembership',
-            old_name='publisher',
-            new_name='team',
+            model_name="publishermembership", old_name="publisher", new_name="team",
         ),
         migrations.AlterField(
-            model_name='publisher',
-            name='members',
-            field=models.ManyToManyField(related_name='team_memberships', through='roughcast.PublisherMembership', to=settings.AUTH_USER_MODEL),
+            model_name="publisher",
+            name="members",
+            field=models.ManyToManyField(
+                related_name="team_memberships",
+                through="roughcast.PublisherMembership",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AddConstraint(
-            model_name='game',
-            constraint=models.UniqueConstraint(fields=('team', 'name'), name='unique_name_per_team'),
+            model_name="game",
+            constraint=models.UniqueConstraint(
+                fields=("team", "name"), name="unique_name_per_team"
+            ),
         ),
         migrations.AddConstraint(
-            model_name='publisher',
-            constraint=models.UniqueConstraint(fields=('name',), name='unique_team_name'),
+            model_name="publisher",
+            constraint=models.UniqueConstraint(
+                fields=("name",), name="unique_team_name"
+            ),
         ),
         migrations.AddConstraint(
-            model_name='publisher',
-            constraint=models.UniqueConstraint(fields=('slug',), name='unique_team_slug'),),
+            model_name="publisher",
+            constraint=models.UniqueConstraint(
+                fields=("slug",), name="unique_team_slug"
+            ),
+        ),
     ]

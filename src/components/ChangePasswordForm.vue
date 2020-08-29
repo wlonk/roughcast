@@ -21,7 +21,7 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'ChangePasswordForm',
   props: {
-    edited: Boolean
+    edited: Boolean,
   },
   data() {
     return {
@@ -31,20 +31,24 @@ export default {
   },
   computed: mapGetters(['currentUser']),
   methods: {
-    async requestResetLink(e) {
+    async requestResetLink() {
       const email = this.currentUser.email;
       const data = { email };
       try {
-        const response = await this.$http.post('user/reset_password/', data);
-        this.successMessage = "Reset email sent.";
+        await this.$http.post('user/reset_password/', data);
+        this.successMessage = 'Reset email sent.';
       } catch (error) {
         if (error.response) {
           this.errors = error.response.data;
         } else {
-          this.errors = {non_field_errors: ['There was an error communicating with the server']};
+          this.errors = {
+            non_field_errors: [
+              'There was an error communicating with the server',
+            ],
+          };
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>

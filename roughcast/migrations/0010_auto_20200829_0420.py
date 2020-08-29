@@ -6,17 +6,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('roughcast', '0009_auto_20200828_0229'),
+        ("roughcast", "0009_auto_20200828_0229"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='userprofile',
-            name='bio',
-        ),
+        migrations.RemoveField(model_name="userprofile", name="bio",),
         migrations.AddField(
-            model_name='user',
-            name='bio',
-            field=models.TextField(blank=True),
+            model_name="user", name="bio", field=models.TextField(blank=True),
         ),
     ]

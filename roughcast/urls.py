@@ -30,7 +30,9 @@ router.non_resource_register("register", views.RegisterView.as_view())
 router.non_resource_register("login", views.LoginView.as_view())
 router.non_resource_register("logout", views.LogoutView.as_view())
 router.register("user", views.UserViewSet)
-router.register("notifications", views.InAppNotificationViewSet, basename="notifications")
+router.register(
+    "notifications", views.InAppNotificationViewSet, basename="notifications"
+)
 router.register("team", views.TeamViewSet)
 router.register("teammembership", views.TeamMembershipViewSet)
 router.register("game", views.GameViewSet)

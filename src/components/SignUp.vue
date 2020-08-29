@@ -6,7 +6,12 @@
     </div>
     <div>
       <label for="email">Email</label>
-      <input type="email" name="email" placeholder="example@mail.com" id="email" />
+      <input
+        type="email"
+        name="email"
+        placeholder="example@mail.com"
+        id="email"
+      />
     </div>
     <div class="psw-row row">
       <div>
@@ -43,7 +48,8 @@
     </div>
     <div class="submit-row row">
       <input type="submit" value="Sign Up" class="submit-btn" />
-      <p> Already have an account?
+      <p>
+        Already have an account?
         <router-link to="/login" class="accent-link">
           Log In!
         </router-link>
@@ -56,7 +62,7 @@
 export default {
   name: 'SignUp',
   data() {
-    return {errors: {}};
+    return { errors: {} };
   },
   methods: {
     async signup(e) {
@@ -81,7 +87,11 @@ export default {
         if (error.response) {
           this.errors = error.response.data;
         } else {
-          this.errors = {non_field_errors: ['There was an error communicating with the server']};
+          this.errors = {
+            non_field_errors: [
+              'There was an error communicating with the server',
+            ],
+          };
         }
       }
     },

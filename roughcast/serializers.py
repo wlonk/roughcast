@@ -12,11 +12,25 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from rest_framework import serializers
 
-from .models import AlphaTestEmail, AttachedFile, Game, Team, TeamMembership, User, Version, UserProfile, InAppNotification
-from .serializer_fields import SlugField, SlugStringField, UserStringField, NotificationMaskField
-from .text import unmark
-
 from . import email_verification
+from .models import (
+    AlphaTestEmail,
+    AttachedFile,
+    Game,
+    InAppNotification,
+    Team,
+    TeamMembership,
+    User,
+    UserProfile,
+    Version,
+)
+from .serializer_fields import (
+    NotificationMaskField,
+    SlugField,
+    SlugStringField,
+    UserStringField,
+)
+from .text import unmark
 
 
 class RegisterSerializer(serializers.Serializer):
@@ -35,7 +49,9 @@ class RegisterSerializer(serializers.Serializer):
         if User.objects.filter(email__iexact=value).exists():
             raise serializers.ValidationError("This email is taken.")
         if not AlphaTestEmail.objects.filter(email__iexact=value).exists():
-            raise serializers.ValidationError("Sorry, this email is not in the alpha test yet.")
+            raise serializers.ValidationError(
+                "Sorry, this email is not in the alpha test yet."
+            )
         return value
 
     def validate_tos(self, value):
@@ -283,9 +299,7 @@ class TeamSerializer(serializers.ModelSerializer):
         return (
             user
             and user.is_authenticated
-            and TeamMembership.objects.filter(
-                user=user, team=team,
-            ).exists()
+            and TeamMembership.objects.filter(user=user, team=team,).exists()
         )
 
     def create(self, validated_data):
@@ -315,9 +329,7 @@ class TeamMembershipSerializer(serializers.ModelSerializer):
     user_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="user"
     )
-    team = SlugStringField(
-        model_class=Team, queryset=Team.objects.all(),
-    )
+    team = SlugStringField(model_class=Team, queryset=Team.objects.all(),)
     team_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="team"
     )
@@ -341,9 +353,7 @@ class GameSerializer(serializers.ModelSerializer):
 
     id = serializers.CharField(read_only=True)
     slug = SlugField()
-    team = SlugStringField(
-        model_class=Team, queryset=Team.objects.all(),
-    )
+    team = SlugStringField(model_class=Team, queryset=Team.objects.all(),)
     team_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="team"
     )
@@ -398,9 +408,7 @@ class VersionSerializer(serializers.ModelSerializer):
     game_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="game"
     )
-    team = SlugStringField(
-        model_class=Team, read_only=True, source="game.team",
-    )
+    team = SlugStringField(model_class=Team, read_only=True, source="game.team",)
     visible_to = UserStringField(queryset=User.objects.all(), many=True)
     archive_link = serializers.SerializerMethodField()
 

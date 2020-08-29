@@ -4,22 +4,25 @@
       <i
         v-if="count > 0"
         class="chevron left icon pagination-left"
-        v-on:click="decreaseCount"></i>
+        v-on:click="decreaseCount"
+      ></i>
     </div>
     <div class="tab-content">
       <div
         v-for="group in tabs"
         :key="group.slug"
         v-on:click="() => selectGroup(group)"
-        v-bind:class="[group.slug === chosen.slug ? 'chosen' : '']">
-         {{ group.name }}
+        v-bind:class="[group.slug === chosen.slug ? 'chosen' : '']"
+      >
+        {{ group.name }}
       </div>
     </div>
     <div>
       <i
         v-if="rightPagination"
         class="chevron right icon pagination-right"
-        v-on:click="increaseCount"></i>
+        v-on:click="increaseCount"
+      ></i>
     </div>
   </div>
 </template>
@@ -30,7 +33,7 @@ export default {
   data() {
     return {
       count: 0,
-    }
+    };
   },
   props: {
     groups: Array,
@@ -38,14 +41,14 @@ export default {
   },
   methods: {
     decreaseCount() {
-      return this.count = this.count - 5;
+      return (this.count = this.count - 5);
     },
     increaseCount() {
-      return this.count = this.count + 5;
+      return (this.count = this.count + 5);
     },
     selectGroup(slug) {
       this.$emit('choose-group', slug);
-    }
+    },
   },
   computed: {
     tabs() {

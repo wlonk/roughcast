@@ -2,18 +2,19 @@
   <form @submit.stop.prevent="submit" class="page-form public">
     <div>
       <label for="name">Display name</label>
-      <input type="text" :value="name" placeholder="Display name" id="name" />
+      <input type="text" v-model="name" placeholder="Display name" id="name" />
     </div>
     <div class="bio">
       <label for="bio-info">Bio</label>
-      <textarea placeholder="Add your bio" id="bio-info" rows="5">{{ bio }}</textarea>
+      <textarea placeholder="Add your bio" id="bio-info" rows="5" v-model="bio">
+      </textarea>
     </div>
     <div class="avatar">
       <h6>Avatar</h6>
-      <img v-if="avatar" :src="avatar" alt="avatar">
-      <img v-else src="../assets/no-avatar.svg" alt="avatar">
+      <img v-if="avatar" :src="avatar" alt="avatar" />
+      <img v-else src="../assets/no-avatar.svg" alt="avatar" />
       <div>
-        <input class="custom-file-upload" type="file" id="file-loader">
+        <input class="custom-file-upload" type="file" id="file-loader" />
         <label for="file-loader" class="file-loader-label">Upload</label>
         <button v-if="avatar" class="remove">Remove</button>
       </div>
@@ -23,7 +24,6 @@
       <button class="remove" @click="cancel">Cancel</button>
     </div>
   </form>
-
 </template>
 
 <script>
@@ -51,7 +51,11 @@ export default {
         if (error.response) {
           this.errors = error.response.data;
         } else {
-          this.errors = {non_field_errors: ['There was an error communicating with the server']};
+          this.errors = {
+            non_field_errors: [
+              'There was an error communicating with the server',
+            ],
+          };
         }
       }
     },

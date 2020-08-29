@@ -10,7 +10,10 @@
         />
         <p>In-App</p>
       </label>
-      <label :for="`instant-email-checkbox-${order}`" class="checkbox-label inline">
+      <label
+        :for="`instant-email-checkbox-${order}`"
+        class="checkbox-label inline"
+      >
         <input
           type="checkbox"
           :id="`instant-email-checkbox-${order}`"
@@ -18,7 +21,10 @@
         />
         <p>Instant Email</p>
       </label>
-      <label :for="`weekly-email-checkbox-${order}`" class="checkbox-label inline">
+      <label
+        :for="`weekly-email-checkbox-${order}`"
+        class="checkbox-label inline"
+      >
         <input
           type="checkbox"
           :id="`weekly-email-checkbox-${order}`"
@@ -27,7 +33,6 @@
         <p>Weekly Email</p>
       </label>
     </div>
-
   </div>
 </template>
 

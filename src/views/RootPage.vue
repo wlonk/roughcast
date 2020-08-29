@@ -9,7 +9,7 @@
           Get started!
         </router-link>
       </div>
-      <img src="../assets/player.svg" alt="player">
+      <img src="../assets/player.svg" alt="player" />
     </div>
   </div>
 </template>

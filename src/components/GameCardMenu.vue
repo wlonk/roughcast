@@ -1,5 +1,9 @@
 <template>
-  <sui-dropdown icon="ellipsis vertical" pointing="top right" class="dropdown-menu">
+  <sui-dropdown
+    icon="ellipsis vertical"
+    pointing="top right"
+    class="dropdown-menu"
+  >
     <sui-dropdown-menu>
       <sui-dropdown-item>
         Edit game
@@ -16,6 +20,6 @@
 
 <script>
 export default {
-  name: 'GameCardMenu'
+  name: 'GameCardMenu',
 };
 </script>

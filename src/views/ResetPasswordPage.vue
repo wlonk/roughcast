@@ -5,7 +5,7 @@
         <h2>Forgot password?</h2>
         <ResetPasswordForm />
       </div>
-      <img src="../assets/player.svg" alt="player">
+      <img src="../assets/player.svg" alt="player" />
     </div>
   </div>
 </template>
@@ -15,6 +15,6 @@ import ResetPasswordForm from '@/components/ResetPasswordForm';
 
 export default {
   name: 'ResetPasswordPage',
-  components: { ResetPasswordForm }
+  components: { ResetPasswordForm },
 };
 </script>

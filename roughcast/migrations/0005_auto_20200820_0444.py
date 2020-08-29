@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('roughcast', '0004_auto_20200817_0431'),
+        ("roughcast", "0004_auto_20200817_0431"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='is_email_verified',
+            model_name="user",
+            name="is_email_verified",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='email',
+            model_name="user",
+            name="email",
             field=models.EmailField(max_length=254, unique=True),
         ),
     ]

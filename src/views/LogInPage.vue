@@ -5,7 +5,7 @@
         <h2>Welcome back</h2>
         <LogIn />
       </div>
-      <img src="../assets/player.svg" alt="player">
+      <img src="../assets/player.svg" alt="player" />
     </div>
   </div>
 </template>
@@ -15,6 +15,6 @@ import LogIn from '@/components/LogIn';
 
 export default {
   name: 'LogInPage',
-  components: { LogIn }
+  components: { LogIn },
 };
 </script>

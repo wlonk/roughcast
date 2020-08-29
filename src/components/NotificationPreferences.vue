@@ -9,7 +9,8 @@
       :apiName="item.apiName"
       :order="index"
       :notifs="profile[`notif_${item.apiName}`]"
-      :key="index" />
+      :key="index"
+    />
   </div>
 </template>
 
@@ -19,14 +20,14 @@ import NotificationTypeCard from '@/components/NotificationTypeCard';
 
 export default {
   name: 'NotificationPreferences',
-  data () {
+  data() {
     return {
       notifications: [
-        { name: "Conversation comments", apiName: "comments" },
-        { name: "Mentions", apiName: "mentions" },
-        { name: "New games", apiName: "games" },
-        { name: "New versions", apiName: "versions" },
-      ]
+        { name: 'Conversation comments', apiName: 'comments' },
+        { name: 'Mentions', apiName: 'mentions' },
+        { name: 'New games', apiName: 'games' },
+        { name: 'New versions', apiName: 'versions' },
+      ],
     };
   },
   computed: {

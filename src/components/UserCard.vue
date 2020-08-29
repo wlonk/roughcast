@@ -1,7 +1,7 @@
 <template>
   <div class="user-profile-card">
-    <img v-if="avatar" :src="avatar" alt="avatar">
-    <img v-else src="../assets/no-avatar.svg" alt="avatar">
+    <img v-if="avatar" :src="avatar" alt="avatar" />
+    <img v-else src="../assets/no-avatar.svg" alt="avatar" />
     <div>
       <div>
         <h4 class="card-title">{{ first_name }}</h4>
@@ -9,7 +9,7 @@
       </div>
       <div>
         <h5>Bio</h5>
-        <p v-if="bio">{{bio}}</p>
+        <p v-if="bio">{{ bio }}</p>
         <p v-else class="no-bio">There is no user's bio yet...</p>
       </div>
     </div>
@@ -25,7 +25,6 @@ export default {
     avatar: String,
     first_name: String,
     bio: String,
-
   },
 };
 </script>

@@ -6,15 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('roughcast', '0005_auto_20200820_0444'),
+        ("roughcast", "0005_auto_20200820_0444"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AlphaTestEmail',
+            name="AlphaTestEmail",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=254, unique=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254, unique=True)),
             ],
         ),
     ]
