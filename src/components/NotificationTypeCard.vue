@@ -6,21 +6,24 @@
         <input
           type="checkbox"
           :id="`inapp-checkbox-${order}`"
-          checked="true"/>
+          v-model="inApp"
+        />
         <p>In-App</p>
       </label>
       <label :for="`instant-email-checkbox-${order}`" class="checkbox-label inline">
         <input
           type="checkbox"
           :id="`instant-email-checkbox-${order}`"
-          checked="true"/>
+          v-model="instantEmail"
+        />
         <p>Instant Email</p>
       </label>
       <label :for="`weekly-email-checkbox-${order}`" class="checkbox-label inline">
         <input
           type="checkbox"
           :id="`weekly-email-checkbox-${order}`"
-          checked="true"/>
+          v-model="digestEmail"
+        />
         <p>Weekly Email</p>
       </label>
     </div>
@@ -33,7 +36,16 @@ export default {
   name: 'NotificationTypeCard',
   props: {
     name: String,
-    order: Number
-  }
+    apiName: String,
+    order: Number,
+    notifs: Object,
+  },
+  data: function() {
+    return {
+      inApp: this.notifs.in_app,
+      instantEmail: this.notifs.instant_email,
+      digestEmail: this.notifs.digest_email,
+    };
+  },
 };
 </script>

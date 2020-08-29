@@ -4,6 +4,7 @@ import api from '../api';
 
 const state = () => ({
   current: null,
+  profile: null,
   loggingIn: false,
   errors: {},
   all: {},
@@ -15,6 +16,7 @@ const mutations = {
   },
   logOut(state) {
     state.current = null;
+    state.profile = null;
   },
   loggingIn(state) {
     state.loggingIn = true;
@@ -24,6 +26,9 @@ const mutations = {
   },
   setErrors(state, errors) {
     state.errors = errors;
+  },
+  setProfile(state, profile) {
+    state.profile = profile;
   },
   setUsers(state, users) {
     state.all = users;
@@ -65,11 +70,13 @@ const mutations = {
 };
 
 const actions = {
-  setCurrentUser({ commit }, user) {
+  async setCurrentUser({ commit }, user) {
     Vue.axios.defaults.headers.common[
       'Authorization'
     ] = `Token ${user.token}`;
+    const response = await api.get('/user/profile/');
     commit('logIn', user);
+    commit('setProfile', response.data);
   },
   async logIn({ commit }, data) {
     commit('setErrors', {});
@@ -80,7 +87,9 @@ const actions = {
       Vue.axios.defaults.headers.common[
         'Authorization'
       ] = `Token ${user.token}`;
+      const profileResponse = await api.get('/user/profile/');
       commit('logIn', user);
+      commit('setProfile', profileResponse.data);
     } else {
       const errors = response.data;
       console.log(errors);
@@ -137,6 +146,9 @@ const actions = {
 const getters = {
   currentUser: state => {
     return state.current;
+  },
+  profile: state => {
+    return state.profile;
   },
   dryUser: state => username => {
     return _.find(state.all, u => u.username === username);

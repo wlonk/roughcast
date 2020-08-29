@@ -5,13 +5,16 @@
     </div>
     <NotificationTypeCard
       v-for="(item, index) in notifications"
-      :name="item"
+      :name="item.name"
+      :apiName="item.apiName"
       :order="index"
+      :notifs="profile[`notif_${item.apiName}`]"
       :key="index" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import NotificationTypeCard from '@/components/NotificationTypeCard';
 
 export default {
@@ -19,12 +22,15 @@ export default {
   data () {
     return {
       notifications: [
-        "Conversation comments",
-        "Mentions",
-        "New versions",
-        "New games",
+        { name: "Conversation comments", apiName: "comments" },
+        { name: "Mentions", apiName: "mentions" },
+        { name: "New games", apiName: "games" },
+        { name: "New versions", apiName: "versions" },
       ]
-    }
+    };
+  },
+  computed: {
+    ...mapGetters(['profile']),
   },
   components: {
     NotificationTypeCard,
