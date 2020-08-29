@@ -9,7 +9,7 @@
           <p class="likes">{{ likes || 0 }}</p>
           <i class="comment icon"></i>
           <p class="comments">{{ comments || 0 }}</p>
-          <GameCardMenu />
+          <GameCardMenu v-if="permissions['this:edit']" />
         </div>
         <div class="team">
           <p>{{ team.name }}</p>

@@ -58,6 +58,12 @@ const getters = {
   listGames: state => {
     return _.values(state.all);
   },
+  gamesForTeam: state => team => {
+    return _.filter(
+      state.all,
+      g => g.team === team,
+    );
+  },
   dryGame: state => slug => {
     return _.find(state.all, g => g.slug === slug);
   },

@@ -8,11 +8,11 @@
     </div>
     <div class="tab-content">
       <div
-        v-for="(group, index) in tabs"
-        :key="index"
-        v-on:click="selectGroup"
-        v-bind:class="[group === chosen ? 'chosen' : '']">
-         {{ group }}
+        v-for="group in tabs"
+        :key="group.slug"
+        v-on:click="() => selectGroup(group)"
+        v-bind:class="[group.slug === chosen.slug ? 'chosen' : '']">
+         {{ group.name }}
       </div>
     </div>
     <div>
@@ -43,8 +43,8 @@ export default {
     increaseCount() {
       return this.count = this.count + 5;
     },
-    selectGroup(e) {
-      this.$emit('chooseGroup', e.target.innerText);
+    selectGroup(slug) {
+      this.$emit('choose-group', slug);
     }
   },
   computed: {
@@ -56,9 +56,6 @@ export default {
       const timesNumber = this.count / 5 + 1;
       return groupNumber > timesNumber;
     },
-    activeClass() {
-      return (group === chosen) ? "chosen" : ""
-    }
   },
 };
 </script>

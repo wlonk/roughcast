@@ -201,6 +201,7 @@ class SelfUserSerializer(serializers.ModelSerializer):
             "id",
             "username",
             "first_name",
+            "bio",
             "email",
             "token",
         )

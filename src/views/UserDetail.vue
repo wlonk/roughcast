@@ -3,10 +3,13 @@
     <UserCard v-bind="user" />
     <div class="user-elements">
       <GroupTabs
-        @chooseGroup="changeActiveGroup"
+        @choose-group="changeActiveGroup"
         :groups="groups"
         :chosen="chosenGroup"  />
-      <UserGames :group="chosenGroup" />
+      <UserGames
+        :group="chosenGroup"
+        :games="filteredGames"
+      />
     </div>
   </div>
 </template>
@@ -18,6 +21,8 @@ import UserCard from '@/components/UserCard';
 import GroupTabs from '@/components/GroupTabs';
 import UserGames from '@/components/UserGames';
 
+const allGames = { name: 'All games', slug: '*' };
+
 export default {
   name: 'UserDetail',
   components: {
@@ -27,18 +32,7 @@ export default {
   },
   data() {
     return {
-      chosenGroup: "All games",
-      groups: [
-        'All games',
-        'First group',
-        'Second group',
-        'Another group',
-        'One more group',
-        'Best group',
-        'more group',
-        'One one more group',
-        'one Best group',
-      ],
+      chosenGroup: allGames,
     }
   },
   methods: {
@@ -47,14 +41,26 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['hydratedUser']),
+    ...mapGetters(['hydratedUser', 'myTeams', 'listGames', 'gamesForTeam']),
     user() {
       return this.hydratedUser(this.$route.params.username);
+    },
+    groups() {
+      return [
+        allGames,
+        ...this.myTeams.map(t => ({ name: t.name, slug: t.slug })),
+      ];
+    },
+    filteredGames() {
+      if (this.chosenGroup.slug === '*') {
+        return this.listGames;
+      }
+      return this.gamesForTeam(this.chosenGroup.slug);
     },
   },
   created() {
     this.$store.dispatch('getUserById', this.$route.params.username);
-    this.$on('chooseGroup');
+    this.$store.dispatch('retrieveTeams');
   },
 };
 </script>

@@ -1,35 +1,49 @@
 <template>
   <div class="edit-box" id="password-change">
-    <form class="page-form">
+    <form @submit.stop.prevent="submit" class="page-form">
       <div class="box-title">
         <h5>Change password</h5>
       </div>
-      <div>
-        <label for="old-psw">Old password</label>
-        <input type="password" placeholder="Old password" id="old-psw" />
-      </div>
-      <div>
-        <label for="new-psw">New password</label>
-        <input type="password" placeholder="New password" id="new-psw" />
-      </div>
-      <div>
-        <label for="cf-new-psw">Repeat new password</label>
-        <input type="password" placeholder="New password" id="cf-new-psw" />
-      </div>
-      <input type="submit" class="submit-btn" value="Change password" />
+      <input
+        type="button"
+        @click="requestResetLink"
+        value="Request reset link"
+        class="submit-btn"
+      />
+      <div v-if="successMessage" class="accent-link">{{ successMessage }}</div>
     </form>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'ChangePasswordForm',
   props: {
     edited: Boolean
   },
+  data() {
+    return {
+      errors: null,
+      successMessage: null,
+    };
+  },
+  computed: mapGetters(['currentUser']),
   methods: {
-    changeParentState: function() {
-      this.$emit('created');
+    async requestResetLink(e) {
+      const email = this.currentUser.email;
+      const data = { email };
+      try {
+        const response = await this.$http.post('user/reset_password/', data);
+        this.successMessage = "Reset email sent.";
+      } catch (error) {
+        if (error.response) {
+          this.errors = error.response.data;
+        } else {
+          this.errors = {non_field_errors: ['There was an error communicating with the server']};
+        }
+      }
     }
   }
 };

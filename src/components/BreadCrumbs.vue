@@ -66,7 +66,7 @@ export default {
           version = this.dryVersion(value);
           game = this.dryGame(version.game);
           return `/t/${game.team}/${version.game}/${value}`;
-        case 'user':
+        case 'username':
           return `/u/${value}`;
         default:
           return value;
@@ -80,7 +80,7 @@ export default {
           return this.dryGame(value).name;
         case 'version':
           return this.dryVersion(value).name;
-        case 'user':
+        case 'username':
           return this.dryUser(value).username;
         default:
           return value;

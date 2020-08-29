@@ -59,6 +59,12 @@ const getters = {
   listTeams: state => {
     return _.values(state.all);
   },
+  myTeams: state => {
+    return _.filter(
+      state.all,
+      t => t.user_is_member,
+    );
+  },
   dryTeam: state => slug => {
     return _.find(state.all, p => p.slug === slug);
   },
@@ -66,7 +72,7 @@ const getters = {
     const team = _.find(state.all, p => p.slug === slug);
     const games = _.filter(
       rootState.Game.all,
-      g => g.team === team.slug,
+      t => t.team === team.slug,
     );
     return {
       ...team,
