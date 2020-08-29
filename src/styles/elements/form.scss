@@ -16,15 +16,22 @@
     }
   }
   label {
+    font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
   }
   input[type="text"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],
+  textarea {
     width: 100%;
     padding: 1rem;
     margin-bottom: 1rem;
+  }
+  textarea {
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 7rem;
   }
   p {
     margin-left: 1rem;

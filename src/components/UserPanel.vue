@@ -1,8 +1,9 @@
 <template>
   <div class="user-panel">
     <router-link :to="`/u/${currentUser.username}`" class="ui link item">
-      <img src="../assets/no-avatar.svg" alt="avatar">
-      {{ currentUser.get_full_name }}
+      <img v-if="currentUser.avatar" :src="currentUser.avatar" alt="avatar" />
+      <img v-else src="../assets/no-avatar.svg" alt="avatar" />
+      {{ currentUser.first_name }}
     </router-link>
     <UserControlMenu />
   </div>
@@ -15,7 +16,7 @@ import UserControlMenu from '@/components/UserControlMenu';
 export default {
   name: 'MainMenu',
   components: {
-    UserControlMenu
+    UserControlMenu,
   },
   computed: mapGetters(['currentUser']),
 };

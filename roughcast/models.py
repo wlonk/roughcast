@@ -1,14 +1,25 @@
 from base64 import b64encode
+from enum import IntFlag
 from os.path import splitext
 from random import randint
 
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxValueValidator
 from django.db import models
 from emoji import UNICODE_EMOJI
 from rest_framework.authtoken.models import Token
 
 from .fields import StringField
-from .model_mixins import BasicModelMixin, SimpleSlugMixin
+from .model_mixins import BasicModelMixin, SimpleSlugMixin, SubscribableMixin
+
+
+class Subscribable(models.Model):
+    pass
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    subscribable = models.ForeignKey(Subscribable, on_delete=models.CASCADE)
 
 
 # Used in Version:
@@ -43,6 +54,7 @@ class User(AbstractUser):
     token = None  # We only show a token on a user after auth'ing.
     is_email_verified = models.BooleanField(default=False)
     email = models.EmailField(unique=True)
+    bio = models.TextField(blank=True)
 
     def get_or_create_token(self):
         return Token.objects.get_or_create(user=self)[0].key
@@ -54,10 +66,92 @@ class User(AbstractUser):
         return f"{self.get_full_name()} (@{self.username})"
 
     def notify(self, message):
-        print(f"Notifying {self} that {message}")
+        """
+        message: {
+            "type": "comments" | "mentions" | "versions" | "games",
+            "path": <path on roughcast to relevant data>,
+            "subject": <string subject. this is also the short form for in-app>,
+            "email_template": <string to the email template to use>,
+            "email_context": <dict of additional context to put in email>,
+        }
+        """
+        if self.profile._should_notify(message["type"], NotificationPreferences.IN_APP):
+            # @TODO: create in-app notification model instance.
+            pass
+        if self.profile._should_notify(
+            message["type"], NotificationPreferences.INSTANT_EMAIL
+        ):
+            # @TODO: send email right away
+            pass
+        if self.profile._should_notify(
+            message["type"], NotificationPreferences.DIGEST_EMAIL
+        ):
+            # @TODO: create digest-email model instance.
+            # @TODO: run weekly job to scoop up digest emails models and
+            # build and send an email.
+            pass
 
 
-class Team(BasicModelMixin, SimpleSlugMixin, models.Model):
+class NotificationPreferences(IntFlag):
+    NONE = 0
+    IN_APP = 1
+    INSTANT_EMAIL = 2
+    DIGEST_EMAIL = 4
+
+
+NOTIFICATION_TYPES = (
+    ("comments", "comments"),
+    ("mentions", "mentions"),
+    ("versions", "versions"),
+    ("games", "games"),
+)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, primary_key=True, related_name="profile"
+    )
+    notif_comments = models.PositiveSmallIntegerField(
+        default=NotificationPreferences.IN_APP,
+        validators=[MaxValueValidator(sum(NotificationPreferences))],
+    )
+    notif_mentions = models.PositiveSmallIntegerField(
+        default=NotificationPreferences.IN_APP,
+        validators=[MaxValueValidator(sum(NotificationPreferences))],
+    )
+    notif_versions = models.PositiveSmallIntegerField(
+        default=NotificationPreferences.IN_APP | NotificationPreferences.INSTANT_EMAIL,
+        validators=[MaxValueValidator(sum(NotificationPreferences))],
+    )
+    notif_games = models.PositiveSmallIntegerField(
+        default=NotificationPreferences.IN_APP | NotificationPreferences.INSTANT_EMAIL,
+        validators=[MaxValueValidator(sum(NotificationPreferences))],
+    )
+
+    def _should_notify(self, notification_type, notification_method):
+        return bool(getattr(self, f"notif_{notification_type}") & notification_method)
+
+    def __str__(self):
+        return f"UserProfile for {self.user.username}"
+
+
+class InAppNotification(BasicModelMixin, models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    seen_at = models.DateTimeField(null=True, blank=True)
+    notification_type = models.CharField(max_length=32, choices=NOTIFICATION_TYPES)
+    path = models.CharField(max_length=128)
+    additional_context = models.JSONField(blank=True, null=True)
+
+
+class DigestEmailElement(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    sent_at = models.DateTimeField(null=True, blank=True)
+    notification_type = models.CharField(max_length=32, choices=NOTIFICATION_TYPES)
+    path = models.CharField(max_length=128)
+    additional_context = models.JSONField(blank=True, null=True)
+
+
+class Team(SubscribableMixin, BasicModelMixin, SimpleSlugMixin, models.Model):
     name = StringField(unique=True)
     description = models.TextField()
     url = models.URLField(blank=True)
@@ -65,6 +159,8 @@ class Team(BasicModelMixin, SimpleSlugMixin, models.Model):
     members = models.ManyToManyField(
         User, through="TeamMembership", related_name="team_memberships",
     )
+
+    subscribable = models.OneToOneField(Subscribable, on_delete=models.CASCADE)
 
     class Meta:
         constraints = (
@@ -85,7 +181,7 @@ class TeamMembership(BasicModelMixin, models.Model):
         return f"{self.user.username} is a member of {self.team.name}"
 
 
-class Game(BasicModelMixin, SimpleSlugMixin, models.Model):
+class Game(SubscribableMixin, BasicModelMixin, SimpleSlugMixin, models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     name = StringField()
     banner = models.ImageField(null=True, blank=True)
@@ -93,6 +189,8 @@ class Game(BasicModelMixin, SimpleSlugMixin, models.Model):
     default_visible_to = models.ManyToManyField(
         User, related_name="accessible_games", blank=True
     )
+
+    subscribable = models.OneToOneField(Subscribable, on_delete=models.CASCADE)
 
     class Meta:
         constraints = (
@@ -129,6 +227,28 @@ class Version(BasicModelMixin, SimpleSlugMixin, models.Model):
 
     def __str__(self):
         return f"{self.game} version {self.name}"
+
+    def get_notification_message(self):
+        game = self.game
+        publisher = game.publisher
+        return {
+            "type": "versions",
+            "path": f"/t/{publisher.slug}/{game.slug}/{self.slug}",
+            "subject": "Check out {game.name} {version.name}",
+            "email_template": "new_version.html",
+            "email_context": {
+                "publisher": publisher.id,
+                "game": game.id,
+                "version": self.id,
+            },
+        }
+
+    def save(self, *args, **kwargs):
+        ret = super().save(*args, **kwargs)
+        message = self.get_notification_message()
+        for subscription in self.game.subscribable.subscription_set.all():
+            subscription.user.notify(message)
+        return ret
 
 
 class AttachedFile(BasicModelMixin, models.Model):

@@ -1,5 +1,5 @@
 .checkbox-label {
-  &[for="checkbox"] {
+  &.inline {
     display: flex;
     align-items: center;
   }

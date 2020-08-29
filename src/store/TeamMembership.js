@@ -15,13 +15,10 @@ const actions = {
     const resp = await api.get('/teammembership/');
     if (resp.ok) {
       const teamMemberships = resp.data;
-      const teamMembershipsObj = teamMemberships.reduce(
-        (acc, curr) => {
-          acc[curr.id] = curr;
-          return acc;
-        },
-        {},
-      );
+      const teamMembershipsObj = teamMemberships.reduce((acc, curr) => {
+        acc[curr.id] = curr;
+        return acc;
+      }, {});
       commit('setTeamMemberships', teamMembershipsObj);
     } else {
       // TODO display error

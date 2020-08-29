@@ -13,6 +13,7 @@ import SignUpPage from '@/views/SignUpPage';
 import ResetPasswordPage from '@/views/ResetPasswordPage';
 import SetNewPasswordPage from '@/views/SetNewPasswordPage';
 import VerificationDetail from '@/views/VerificationDetail';
+import EditUserPage from '@/views/EditUserPage';
 
 Vue.use(VueRouter);
 
@@ -72,6 +73,14 @@ const routes = [
     component: UserDetail,
     meta: {
       title: 'User | Roughcast',
+    },
+  },
+  {
+    path: '/u/:username/edit',
+    name: 'Edit User',
+    component: EditUserPage,
+    meta: {
+      title: 'Edit User Profile | Roughcast',
     },
   },
   {

@@ -5,7 +5,7 @@
         <h2>Create new password</h2>
         <CreateNewPasswordForm />
       </div>
-      <img src="../assets/player.svg" alt="player">
+      <img src="../assets/player.svg" alt="player" />
     </div>
   </div>
 </template>
@@ -15,6 +15,6 @@ import CreateNewPasswordForm from '@/components/CreateNewPasswordForm';
 
 export default {
   name: 'SetNewPasswordPage',
-  components: { CreateNewPasswordForm }
+  components: { CreateNewPasswordForm },
 };
 </script>

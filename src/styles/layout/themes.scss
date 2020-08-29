@@ -1,5 +1,11 @@
 [data-theme="dark"] {
   background-color: $dm-main-bg-color;
+  a.link {
+    &:hover,
+    &.active {
+      color: $dm-accent-bg-color;
+    }
+  }
   .breadcrumb {
     .router-link-active,
     .divider  {
@@ -13,7 +19,7 @@
     * {
       color: $dm-main-font-color;
     }
-    a:hover {
+    .logo-title:hover {
       color: $dm-accent-bg-color;
     }
   }
@@ -22,7 +28,8 @@
   }
   .welcome-block,
   .auth-block,
-  .verification-block {
+  .verification-block,
+  .edit-block {
     * {
       color: $dm-main-font-color;
     }
@@ -40,7 +47,8 @@
   .page-form {
     input[type="text"],
     input[type="email"],
-    input[type="password"] {
+    input[type="password"],
+    textarea {
       background-color: $dm-dark-font-color;
       border: 2px solid transparent;
       color: $dm-main-font-color;
@@ -49,33 +57,39 @@
         border: 2px solid $dm-accent-bg-color;
       }
     }
-    .checkbox-label {
-      color: $dm-main-font-color;
-      input[type="checkbox"] {
-        &:focus ~ p::before {
-          box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4);
-        }
-        &:checked {
-          & ~ p::before {
-            border-color: $dm-accent-bg-color;
-            background-image: url('./assets/close-dm.svg');
-          }
+  }
+  .checkbox-label {
+    color: $dm-main-font-color;
+    input[type="checkbox"] {
+      &:focus ~ p::before {
+        box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4);
+      }
+      &:checked {
+        & ~ p::before {
+          border-color: $dm-accent-bg-color;
+          background-image: url('./assets/close-dm.svg');
         }
       }
-      p::before {
-        background-color: $dm-dark-font-color;
-      }
+    }
+    p::before {
+      background-color: $dm-dark-font-color;
     }
   }
   .accent-link {
     color: $dm-accent-bg-color;
   }
+  .game-card .header .dropdown-menu {
+    .menu.transition,
+    .menu.transition::after {
+      background-color: $dm-main-bg-color !important;
+    }
+  }
   .dropdown-menu {
-    .notification-item {
-      color: $dm-main-font-color;
-      &.new {
-        color: $dm-accent-bg-color;
-      }
+    .item {
+      color: $dm-main-font-color !important;
+    }
+    .notification-item.new {
+      color: $dm-accent-bg-color;
     }
     .ui.label {
       background-color: $dm-accent-bg-color;
@@ -84,6 +98,76 @@
     .menu.transition,
     .menu.transition::after {
       background-color: $dm-dark-font-color !important;
+    }
+  }
+  .user-profile-card {
+    * {
+      color: $dm-main-font-color;
+    }
+    h5 {
+      color: transparentize($dm-main-font-color, 0.5);
+    }
+  }
+  .card-title {
+    color: $dm-accent-bg-color;
+  }
+  .user-elements * {
+    color: $dm-main-font-color;
+  }
+  .user-block-title {
+    h5 {
+      border-bottom: 2px solid $dm-accent-bg-color;
+    }
+    p {
+      color: $dm-accent-bg-color;
+    }
+  }
+  .box-title {
+    h5 {
+      border-bottom: 2px solid $dm-accent-bg-color;
+    }
+    .icon:hover {
+      color: $dm-accent-bg-color;
+    }
+  }
+  .edit-box {
+    .remove:hover {
+      color: $dm-accent-bg-color;
+    }
+  }
+  .custom-file-upload:focus ~ .file-loader-label {
+    box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4)
+  }
+  .verfc {
+    color: $dm-error-color;
+  }
+  .game-card {
+    color: $dm-main-font-color;
+    background-color: $dm-dark-font-color;
+    .game-card-title {
+      color: $dm-accent-bg-color;
+    }
+    .team {
+      border-bottom: 2px solid $dm-accent-bg-color;
+      &:before {
+        background-image: url('./assets/dice-dm.svg');
+      }
+    }
+
+  }
+  .group-tabs {
+    .chevron:hover {
+      color: $dm-accent-bg-color;
+    }
+    .tab-content * {
+      background-color: $dm-dark-font-color;
+      &:hover {
+        box-shadow: $dm-focus-shadow;
+      }
+      &.chosen {
+        background-color: $dm-accent-bg-color;
+        color: $dm-dark-font-color;
+      }
     }
   }
 }

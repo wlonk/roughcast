@@ -4,6 +4,7 @@ import api from '../api';
 
 const state = () => ({
   current: null,
+  profile: null,
   loggingIn: false,
   errors: {},
   all: {},
@@ -15,6 +16,7 @@ const mutations = {
   },
   logOut(state) {
     state.current = null;
+    state.profile = null;
   },
   loggingIn(state) {
     state.loggingIn = true;
@@ -25,6 +27,9 @@ const mutations = {
   setErrors(state, errors) {
     state.errors = errors;
   },
+  setProfile(state, profile) {
+    state.profile = profile;
+  },
   setUsers(state, users) {
     state.all = users;
   },
@@ -34,14 +39,42 @@ const mutations = {
       [user.id]: user,
     };
   },
+  updateDisplayName(state, displayName) {
+    const currentUserId = state.current.id;
+    state.current = {
+      ...state.current,
+      first_name: displayName,
+    };
+    state.all = {
+      ...state.all,
+      [currentUserId]: {
+        ...state.all[currentUserId],
+        first_name: displayName,
+      },
+    };
+  },
+  updateBio(state, bio) {
+    const currentUserId = state.current.id;
+    state.current = {
+      ...state.current,
+      bio,
+    };
+    state.all = {
+      ...state.all,
+      [currentUserId]: {
+        ...state.all[currentUserId],
+        bio,
+      },
+    };
+  },
 };
 
 const actions = {
-  setCurrentUser({ commit }, user) {
-    Vue.axios.defaults.headers.common[
-      'Authorization'
-    ] = `Token ${user.token}`;
+  async setCurrentUser({ commit }, user) {
+    Vue.axios.defaults.headers.common['Authorization'] = `Token ${user.token}`;
+    const response = await api.get('/user/profile/');
     commit('logIn', user);
+    commit('setProfile', response.data);
   },
   async logIn({ commit }, data) {
     commit('setErrors', {});
@@ -52,7 +85,9 @@ const actions = {
       Vue.axios.defaults.headers.common[
         'Authorization'
       ] = `Token ${user.token}`;
+      const profileResponse = await api.get('/user/profile/');
       commit('logIn', user);
+      commit('setProfile', profileResponse.data);
     } else {
       const errors = response.data;
       console.log(errors);
@@ -98,11 +133,20 @@ const actions = {
       // TODO: Display lookup error toast?
     }
   },
+  updateDisplayName({ commit }, displayName) {
+    commit('updateDisplayName', displayName);
+  },
+  updateBio({ commit }, bio) {
+    commit('updateBio', bio);
+  },
 };
 
 const getters = {
   currentUser: state => {
     return state.current;
+  },
+  profile: state => {
+    return state.profile;
   },
   dryUser: state => username => {
     return _.find(state.all, u => u.username === username);
@@ -118,7 +162,7 @@ const getters = {
     return _.map(state.all, u => ({
       key: u.id,
       value: u.username,
-      text: `${u.get_full_name} (@${u.username})`,
+      text: `${u.first_name} (@${u.username})`,
     }));
   },
 };

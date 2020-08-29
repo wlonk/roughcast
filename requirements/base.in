@@ -4,7 +4,7 @@ django-crispy-forms==1.9.1
 django-markdownify==0.8.0 
 django-registration==3.1
 django-sendgrid==1.0.1
-django==3.0.7
+django==3.1.0
 emoji==0.5.4 
 gunicorn==20.0.4
 markdown==3.2.2

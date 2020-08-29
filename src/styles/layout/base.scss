@@ -2,21 +2,50 @@
   font-size: 16px;
 }
 
-p, a.link, button, label,
+p, a.link, button, label, h6,
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
   font-family: $base-font !important;
   font-size: 16px;
   letter-spacing: 0.05em !important;
   line-height: 1.5em !important;
+  margin: 0; padding: 0;
 }
 
-input {
+span, div {
+  font-family: $base-font !important;
+  font-size: 16px;
+  letter-spacing: 0.05em !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 0.1em !important;
+}
+
+input, textarea {
   border: none;
   border-radius: 0.5rem;
 }
 
+button {
+  cursor: pointer;
+  font-size: 1rem !important;
+}
+
 #app {
   min-height: 100vh;
+}
+
+.accent-link {
+  cursor: pointer;
+  font-family: $button-font !important;
+  font-weight: 700;
+}
+
+.card-title {
+  font-family: $accent-font;
+  font-size: 2rem;
+  margin-bottom: 0;
 }

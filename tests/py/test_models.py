@@ -47,9 +47,7 @@ class TestTeam:
 class TestTeamMembership:
     def test_str(self, team_membership):
         username = team_membership.user.username
-        assert (
-            str(team_membership) == f"{username} is a member of Transneptune Games"
-        )
+        assert str(team_membership) == f"{username} is a member of Transneptune Games"
 
 
 @pytest.mark.django_db

@@ -1,17 +1,13 @@
 .welcome-block,
 .auth-block,
-.verification-block {
+.verification-block,
+.edit-block {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70vh;
   h1, h2 {
     font-family: $accent-font;
-    letter-spacing: 0.15em;
   }
   h1 {
     font-size: 4rem;
-    line-height: 1em;
   }
   h2 {
     font-size: 2.5rem;
@@ -21,24 +17,42 @@
     margin: 1.5rem 0 4rem;
     letter-spacing: 0.2em;
   }
-  .accent-link {
-    font-weight: 700;
-  }
 }
 
 .welcome-block>div {
   width: 50%;
 }
 
+.welcome-block,
+.auth-block,
+.verification-block {
+  align-items: center;
+  justify-content: space-between;
+  height: 70vh;
+}
+
 .verification-block {
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   height: 60vh;
   text-align: center;
   .text-block {
     margin-top: 1.5rem;
     * {
+      margin: 0;
+    }
+  }
+}
+
+.user-game-block {
+  margin-top: 2.5rem;
+  padding-bottom: 4rem;
+  .games {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-top: 2.5rem;
+    &>* {
       margin: 0;
     }
   }

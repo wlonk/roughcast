@@ -5,7 +5,7 @@
         <h2>Create account</h2>
         <SignUp />
       </div>
-      <img src="../assets/player.svg" alt="player">
+      <img src="../assets/player.svg" alt="player" />
     </div>
   </div>
 </template>
@@ -15,6 +15,6 @@ import SignUp from '@/components/SignUp';
 
 export default {
   name: 'SignUpPage',
-  components: { SignUp }
+  components: { SignUp },
 };
 </script>

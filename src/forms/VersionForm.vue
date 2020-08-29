@@ -8,9 +8,7 @@
     <div class="field">
       <label for="slug">slug</label>
       <div :class="['ui', 'labeled', 'input', slugError ? 'error' : '']">
-        <div class="ui label">
-          roughcast.app/t/{{ forTeam }}/{{ forGame }}/
-        </div>
+        <div class="ui label">roughcast.app/t/{{ forTeam }}/{{ forGame }}/</div>
         <input name="slug" v-model="slug" @change="markSlugEdited" />
         <div v-if="slugError" class="ui corner label">
           <i class="asterisk icon"></i>

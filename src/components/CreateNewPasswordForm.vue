@@ -30,7 +30,7 @@
 export default {
   name: 'CreateNewPasswordForm',
   data() {
-    return {errors: {}};
+    return { errors: {} };
   },
   methods: {
     async setNewPassword(e) {
@@ -39,14 +39,18 @@ export default {
       const password2 = e.target.elements['password2'].value;
       const data = { uid, token, password1, password2 };
       try {
-        const response = await this.$http.post('user/reset_password_confirm/', data);
+        await this.$http.post('user/reset_password_confirm/', data);
         // TODO: show "thanks, you can log in now!"
       } catch (error) {
         // TODO: Actually display errors in the form!
         if (error.response) {
           this.errors = error.response.data;
         } else {
-          this.errors = {non_field_errors: ['There was an error communicating with the server']};
+          this.errors = {
+            non_field_errors: [
+              'There was an error communicating with the server',
+            ],
+          };
         }
       }
     },
