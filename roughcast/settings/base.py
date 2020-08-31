@@ -162,7 +162,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 
 # Email
-DEFAULT_FROM_EMAIL = "no-reply@wheretofind.me"
+DEFAULT_FROM_EMAIL = "no-reply@roughcast.app"
+DEFAULT_SUPPORT_EMAIL = "support@roughcast.app"
 # @@@ TODO: get rid of conditionals in settings. Move to .dev?
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

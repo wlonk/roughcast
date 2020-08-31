@@ -16,13 +16,10 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.views import LoginView
 from django.urls import include, path, re_path
 from django.views.generic.base import TemplateView
-from django_registration.backends.activation.views import RegistrationView
 
 from . import views
-from .forms import CustomAuthenticationForm, CustomRegistrationForm
 from .routers import ExtensibleDefaultRouter
 
 router = ExtensibleDefaultRouter()
@@ -42,26 +39,19 @@ router.register("attached_file", views.AttachedFileViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path(
-        "accounts/login/",
-        LoginView.as_view(authentication_form=CustomAuthenticationForm),
-        name="login",
-    ),
-    path(
-        "accounts/register/",
-        RegistrationView.as_view(form_class=CustomRegistrationForm),
-        name="django_registration_register",
-    ),
-    path("accounts/", include("django_registration.backends.activation.urls")),
-    path("accounts/", include("django.contrib.auth.urls")),
     path("api/", include(router.urls)),
     re_path(
-        "^(?!accounts|api|static|media|fonts)",
+        "^(?!api|static|media|fonts)",
         TemplateView.as_view(template_name="base.html"),
         name="root",
     ),
+    path(
+        "/change/<uidb64>/<token>",
+        TemplateView.as_view(template_name="base.html"),
+        name="password_reset_confirm",
+    ),
 ]
 
-if settings.DEBUG:
+if settings.DEBUG:  # pragma: nocover
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.FONT_URL, document_root=settings.FONT_ROOT)
