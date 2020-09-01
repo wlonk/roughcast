@@ -10,9 +10,19 @@
           My Profile
         </sui-dropdown-item>
       </router-link>
+      <router-link :to="`/u/${currentUser.username}/edit#invitations`" class="ui link item">
+        <sui-dropdown-item>
+          My Invitations
+        </sui-dropdown-item>
+      </router-link>
       <router-link to="/add-new-game" class="ui link item">
         <sui-dropdown-item>
-          Add New Game
+          Create Group
+        </sui-dropdown-item>
+      </router-link>
+      <router-link to="/add-new-game" class="ui link item">
+        <sui-dropdown-item>
+          New Game
         </sui-dropdown-item>
       </router-link>
       <router-link
