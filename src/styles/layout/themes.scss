@@ -97,7 +97,14 @@
     }
     .menu.transition,
     .menu.transition::after {
+      box-shadow: 0 0 2rem 0 $dm-dark-font-color;
       background-color: $dm-dark-font-color !important;
+    }
+    form:hover {
+      background-color: darken($dm-dark-font-color, 1%);
+      input {
+        color: $dm-accent-bg-color;
+      }
     }
   }
   .user-profile-card {

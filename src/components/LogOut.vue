@@ -1,6 +1,8 @@
 <template>
   <form @submit.stop.prevent="logout">
-    <input type="submit" value="Log Out" class="accent-link" />
+    <sui-dropdown-item>
+      <input type="submit" value="Log Out" />
+    </sui-dropdown-item>
   </form>
 </template>
 
@@ -10,6 +12,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('logOut');
+      this.$router.push('/');
     },
   },
 };

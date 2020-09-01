@@ -1,31 +1,29 @@
 <template>
   <sui-dropdown
-    icon="large ellipsis vertical"
+    icon="ellipsis vertical"
     pointing="top right"
     class="dropdown-menu"
   >
     <sui-dropdown-menu>
-      <sui-dropdown-item>
-        <router-link :to="`/u/${currentUser.username}`" class="ui link item">
+      <router-link :to="`/u/${currentUser.username}`" class="ui link item">
+        <sui-dropdown-item>
           My Profile
-        </router-link>
-      </sui-dropdown-item>
-      <sui-dropdown-item>
-        <router-link to="/add-new-game" class="ui link item">
+        </sui-dropdown-item>
+      </router-link>
+      <router-link to="/add-new-game" class="ui link item">
+        <sui-dropdown-item>
           Add New Game
-        </router-link>
-      </sui-dropdown-item>
-      <sui-dropdown-item>
-        <router-link
-          :to="`/u/${currentUser.username}/edit`"
-          class="ui link item"
-        >
+        </sui-dropdown-item>
+      </router-link>
+      <router-link
+        :to="`/u/${currentUser.username}/edit`"
+        class="ui link item"
+      >
+        <sui-dropdown-item>
           Settings
-        </router-link>
-      </sui-dropdown-item>
-      <sui-dropdown-item>
-        <LogOut />
-      </sui-dropdown-item>
+        </sui-dropdown-item>
+      </router-link>
+      <LogOut />
     </sui-dropdown-menu>
   </sui-dropdown>
 </template>
