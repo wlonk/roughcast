@@ -178,4 +178,10 @@
       }
     }
   }
+  .invitation-card {
+    background-color: $dm-dark-color;
+    i:hover {
+      color: $dm-accent-bg-color;
+    }
+  }
 }
