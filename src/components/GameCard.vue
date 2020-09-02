@@ -27,13 +27,15 @@
       </div>
       <div class="authors">
         <!-- <router-link
-          v-for="(author, index) in authors"
+          v-for="(author, index) in shorted_authors"
           :key="index"
           :to="`/u/${author.username}`">
-          <img
-            :src="item.avatar"
+          <img v-if="author.avatar"
+            :src="author.avatar"
             alt="author avatar">
+          <img v-else src="../assets/no-avatar.svg" alt="author avatar">
         </router-link> -->
+        <!-- Don't forget to remove it: -->
         <img src="../assets/no-avatar.svg" alt="author avatar">
         <img src="../assets/no-avatar.svg" alt="author avatar">
       </div>
@@ -61,7 +63,7 @@ export default {
     permissions: Object,
     likes: Number,
     comments: Number,
-    authors: Array
+    // authors: Array
   },
   computed: {
     ...mapGetters(['hydratedTeam']),
@@ -80,7 +82,12 @@ export default {
       return (this.description.length > 82)
         ? this.description.substring(0, 82) + '...'
         : this.description;
-    }
+    },
+    shorted_authors() {
+      return (this.authors && this.authors.length > 5)
+        ? this.authors.slice(0, 5)
+        : this.authors;
+    },
   },
 };
 </script>
