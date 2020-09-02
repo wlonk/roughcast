@@ -3,9 +3,6 @@
   padding: 1rem;
   width: 100%;
   position: relative;
-  p {
-    font-size: 0.85rem;
-  }
   &>div:first-child {
     display: flex;
     margin-right: 1rem;
@@ -15,18 +12,19 @@
       margin: -2rem 1rem 1rem 0;
     }
   }
-  .states p {
-    display: inline-block;
-    font-size: 0.75rem;
-    margin-right: 1rem;
-    margin-bottom: 0;
+  .states {
+    display: flex;
+    align-items: center;
+    p {
+      margin: 0.75rem 1rem 0.5rem 0;
+    }
   }
   .header {
     .dropdown-menu {
       position: absolute;
       top: 1rem; right: 0.5rem;
       .item {
-        font-size: 0.85rem !important;
+        padding: 1rem 1.5rem;
       }
     }
   }
@@ -48,23 +46,25 @@
     font-family: $accent-font;
     font-size: 1.5rem;
   }
+  .game-card-title, p {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
   .description {
     margin-top: 0.5rem;
-  }
-  .content {
-    padding: 0 0.5rem;
+    height: 2.8rem;
   }
   .footer {
     display: flex;
     justify-content: space-between;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
   }
   .authors {
     display: flex;
     justify-content: flex-end;
     img {
       cursor: pointer;
-      width: 1.75rem;
+      width: 2.5rem;
       border-radius: 50%;
       margin-right: -0.75rem;
       position: relative;
