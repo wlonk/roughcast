@@ -8,7 +8,7 @@
       <div class="header">
         <GameCardMenu v-if="permissions['this:edit']" />
         <router-link :to="`/t/${team.slug}/${slug}`" class="game-card-title">
-          {{ name }}
+          {{ shorted_title }}
         </router-link>
         <div class="team">
           <p>{{ team_name }}</p>
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="description">
-      <RenderedMarkdown :body="description" />
+      <RenderedMarkdown :body="shorted_description" />
     </div>
     <div class="footer">
       <div class="states">
@@ -34,7 +34,6 @@
             :src="item.avatar"
             alt="author avatar">
         </router-link> -->
-        <img src="../assets/no-avatar.svg" alt="author avatar">
         <img src="../assets/no-avatar.svg" alt="author avatar">
         <img src="../assets/no-avatar.svg" alt="author avatar">
       </div>
@@ -67,8 +66,21 @@ export default {
   computed: {
     ...mapGetters(['hydratedTeam']),
     team_name() {
-      return this.hydratedTeam(this.team).name;
+      const team = this.hydratedTeam(this.team).name;
+      return (team.length > 20)
+        ? team.substring(0, 20) + '...'
+        : team;
     },
+    shorted_title() {
+      return (this.name.length > 19)
+        ? this.name.substring(0, 19) + '...'
+        : this.name;
+    },
+    shorted_description() {
+      return (this.description.length > 82)
+        ? this.description.substring(0, 82) + '...'
+        : this.description;
+    }
   },
 };
 </script>
