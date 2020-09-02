@@ -5,11 +5,12 @@
     letter-spacing: 0.1rem;
   }
   .menu.transition {
-    .item * {
-      display: inline-block;
-      // font-size: 0.85rem;
+    .item {
+      line-height: 1.5rem !important;
       font-weight: 300;
-      letter-spacing: 0.1rem;
+      * {
+        display: inline-block;
+      }
     }
     input[type="submit"] {
       background: none;

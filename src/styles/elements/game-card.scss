@@ -19,14 +19,9 @@
       margin: 0.75rem 1rem 0.5rem 0;
     }
   }
-  .header {
-    .dropdown-menu {
-      position: absolute;
-      top: 1rem; right: 0.5rem;
-      .item {
-        padding: 1rem 1.5rem;
-      }
-    }
+  .header .dropdown-menu {
+    position: absolute;
+    top: 1rem; right: 0.5rem;
   }
   .team {
     display: flex;
