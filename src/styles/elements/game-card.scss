@@ -12,16 +12,14 @@
     img {
       border-radius: 0.5rem;
       width: 6rem;
-      margin-top: -2rem;
-      margin-right: 1rem;
-      margin-bottom: 1rem;
+      margin: -2rem 1rem 1rem 0;
     }
-    .states p {
-      display: inline-block;
-      font-size: 0.75rem;
-      margin-right: 1rem;
-      margin-bottom: 0;
-    }
+  }
+  .states p {
+    display: inline-block;
+    font-size: 0.75rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
   }
   .header {
     .dropdown-menu {
@@ -55,5 +53,27 @@
   }
   .content {
     padding: 0 0.5rem;
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+  .authors {
+    display: flex;
+    justify-content: flex-end;
+    img {
+      cursor: pointer;
+      width: 1.75rem;
+      border-radius: 50%;
+      margin-right: -0.75rem;
+      position: relative;
+      &:last-child {
+        margin-right: 0;
+      }
+      &:hover {
+        z-index: 5;
+      }
+    }
   }
 }

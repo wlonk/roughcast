@@ -80,12 +80,6 @@
   .accent-link {
     color: $dm-accent-bg-color;
   }
-  .game-card .header .dropdown-menu {
-    .menu.transition,
-    .menu.transition::after {
-      background-color: $dm-main-bg-color !important;
-    }
-  }
   .dropdown-menu {
     .item {
       color: $dm-main-font-color !important;
@@ -157,13 +151,12 @@
     .game-card-title {
       color: $dm-accent-bg-color;
     }
-    .team {
-      border-bottom: 2px solid $dm-accent-bg-color;
-      &:before {
-        background-image: url('./assets/group-dm.svg');
-      }
+    .team:before {
+      background-image: url('./assets/group-dm.svg');
     }
-
+    .authors img {
+      border: 2px solid $dm-dark-color;
+    }
   }
   .group-tabs {
     .chevron:hover {
