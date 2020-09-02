@@ -2,9 +2,11 @@
   background-color: $dm-main-bg-color;
   a.link {
     &:hover,
-    &.active {
+    &.active,
+    p:hover {
       color: $dm-accent-bg-color;
     }
+
   }
   .breadcrumb {
     .router-link-active,

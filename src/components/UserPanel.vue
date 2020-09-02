@@ -3,7 +3,8 @@
     <router-link :to="`/u/${currentUser.username}`" class="ui link item">
       <img v-if="currentUser.avatar" :src="currentUser.avatar" alt="avatar" />
       <img v-else src="../assets/no-avatar.svg" alt="avatar" />
-      {{ currentUser.first_name }}
+      <p v-if="currentUser.get_full_name">{{ currentUser.get_full_name }}</p>
+      <p v-else>@{{ currentUser.username }}</p>
     </router-link>
     <UserControlMenu />
   </div>
