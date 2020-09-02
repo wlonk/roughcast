@@ -12,7 +12,7 @@
           <GameCardMenu v-if="permissions['this:edit']" />
         </div>
         <div class="team">
-          <p>{{ team.name }}</p>
+          <p>{{ team }}</p>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@ export default {
     name: String,
     slug: String,
     description: String,
-    team: Object,
+    team: String,
     latest_version: Object,
     permissions: Object,
     likes: Number,

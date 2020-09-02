@@ -37,7 +37,7 @@ export default {
   },
   props: {
     groups: Array,
-    chosen: String,
+    chosen: Object,
   },
   methods: {
     decreaseCount() {
