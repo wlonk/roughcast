@@ -1,5 +1,5 @@
 .edit-box {
-  padding-top: 2.5rem;
+  padding-top: 4rem;
   &:first-child {
     padding-top: 0;
   }
@@ -39,7 +39,7 @@
   }
   .bio {
     grid-area: bio;
-    min-width: 23rem;
+    width: 23rem;
   }
   .no-data {
     opacity: 0.3;
@@ -72,10 +72,13 @@
   .row {
     display: flex;
     align-items: center;
-    // justify-content: space-between;
-    // width: 16rem;
     .checkbox-label {
       margin-right: 2rem;
+    }
+  }
+  &#password-change {
+    .submit-btn {
+      margin: 0;
     }
   }
 }
