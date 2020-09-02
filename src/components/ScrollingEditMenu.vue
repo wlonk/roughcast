@@ -12,6 +12,9 @@
     <router-link to="#notifications" class="link scrollactive-item">
       Notification preferences
     </router-link>
+    <router-link to="#invitations" class="link scrollactive-item">
+      Invitations
+    </router-link>
   </scrollactive>
 </template>
 

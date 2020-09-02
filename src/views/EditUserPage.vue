@@ -9,6 +9,7 @@
           <AccountSettingsBlock />
           <ChangePasswordForm />
           <NotificationPreferences />
+          <Invitations />
         </div>
       </div>
     </div>
@@ -23,6 +24,7 @@ import PublicProfileBlock from '@/components/PublicProfileBlock';
 import AccountSettingsBlock from '@/components/AccountSettingsBlock';
 import ChangePasswordForm from '@/components/ChangePasswordForm';
 import NotificationPreferences from '@/components/NotificationPreferences';
+import Invitations from '@/components/Invitations';
 import NoPageNotification from '@/components/NoPageNotification';
 
 export default {
@@ -34,6 +36,7 @@ export default {
     ChangePasswordForm,
     NotificationPreferences,
     NoPageNotification,
+    Invitations
   },
   computed: {
     ...mapGetters(['hydratedUser']),
