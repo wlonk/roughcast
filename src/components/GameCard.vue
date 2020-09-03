@@ -19,25 +19,19 @@
       <RenderedMarkdown :body="shorted_description" />
     </div>
     <div class="footer">
-      <div class="states">
-        <i class="heart icon"></i>
-        <p class="likes">{{ likes || 0 }}</p>
-        <i class="comment icon"></i>
-        <p class="comments">{{ comments || 0 }}</p>
-      </div>
+      <CardStatistic :likes="likes" :comments="comments" />
       <div class="authors">
-        <!-- <router-link
+        <AuthorPreview
           v-for="(author, index) in shorted_authors"
           :key="index"
-          :to="`/u/${author.username}`">
-          <img v-if="author.avatar"
-            :src="author.avatar"
-            alt="author avatar">
-          <img v-else src="../assets/no-avatar.svg" alt="author avatar">
-        </router-link> -->
-        <!-- Don't forget to remove it: -->
-        <img src="../assets/no-avatar.svg" alt="author avatar">
-        <img src="../assets/no-avatar.svg" alt="author avatar">
+          :username="author.username"
+          :avatar="author.avatar"
+        />
+        <!-- Hardcoded -->
+        <AuthorPreview
+          username="mayzee"
+          :avatar="null"
+        />
       </div>
     </div>
   </div>
@@ -48,10 +42,17 @@ import { mapGetters } from 'vuex';
 
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 import GameCardMenu from '@/components/GameCardMenu';
+import AuthorPreview from '@/components/AuthorPreview';
+import CardStatistic from '@/components/CardStatistic';
 
 export default {
   name: 'GameCard',
-  components: { RenderedMarkdown, GameCardMenu },
+  components: {
+    RenderedMarkdown,
+    GameCardMenu,
+    AuthorPreview,
+    CardStatistic
+  },
   props: {
     banner: String,
     id: String,
@@ -63,12 +64,15 @@ export default {
     permissions: Object,
     likes: Number,
     comments: Number,
-    // authors: Array
+    authors: Array
   },
   computed: {
     ...mapGetters(['hydratedTeam']),
     team_name() {
-      const team = this.hydratedTeam(this.team).name;
+      return this.hydratedTeam(this.team).name
+    },
+    shorted_team_name() {
+      const team = this.team_name;
       return (team.length > 20)
         ? team.substring(0, 20) + '...'
         : team;
