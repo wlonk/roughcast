@@ -1,11 +1,10 @@
 <template>
-  <div>
+  <div class="dashboard">
     <h1>Dashboard</h1>
     <h2 class="ui horizontal divider header">
       games
     </h2>
     <GameList :userCanAddGames="false" :games="gamesWithTeam" />
-
     <h2 class="ui horizontal divider header">
       groups
     </h2>

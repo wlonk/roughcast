@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="ui cards">
+    <div class="game-list">
       <GameCard v-for="game in gamesWithTeam" :key="game.id" v-bind="game" />
     </div>
     <div v-if="userCanAddGames">
