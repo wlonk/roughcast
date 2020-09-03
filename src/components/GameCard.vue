@@ -7,7 +7,7 @@
       </div>
       <div class="header">
         <GameCardMenu v-if="permissions['this:edit']" />
-        <router-link :to="`/t/${team}/${slug}`" class="game-card-title">
+        <router-link :to="`/t/${team_slug}/${slug}`" class="game-card-title">
           {{ shorted_title }}
           <div  v-if="name.length > 19" class="inline">
             <div class="ui pointing label">
@@ -69,7 +69,7 @@ export default {
     name: String,
     slug: String,
     description: String,
-    team: String,
+    team: [String, Object],
     latest_version: Object,
     permissions: Object,
     likes: Number,
@@ -79,7 +79,14 @@ export default {
   computed: {
     ...mapGetters(['hydratedTeam']),
     team_name() {
-      return this.hydratedTeam(this.team).name
+      return(typeof this.team === 'string')
+        ? this.hydratedTeam(this.team).name
+        : this.team.name;
+    },
+    team_slug() {
+      return(typeof this.team !== 'string')
+        ? this.team.slug
+        : this.team;
     },
     shorted_team_name() {
       const team = this.team_name;
