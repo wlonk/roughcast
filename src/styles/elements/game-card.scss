@@ -1,6 +1,7 @@
 .game-card {
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 1.25rem;
+  padding-bottom: 5rem;
   width: 100%;
   position: relative;
   &>div:first-child {
@@ -9,7 +10,8 @@
     img {
       border-radius: 0.5rem;
       width: 6rem;
-      margin: -2rem 1rem 1rem 0;
+      margin-top: -2.5rem;
+      margin-right: 1.25rem;
     }
   }
   .states {
@@ -55,12 +57,23 @@
   }
   .description {
     margin-top: 0.5rem;
-    height: 2.8rem;
+    p {
+      max-height: 4.5rem;
+      min-width: 23.5rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
   }
   .footer {
     display: flex;
     justify-content: space-between;
     margin-top: 1rem;
+    padding: 1rem 1.25rem;
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
   }
   .authors {
     display: flex;

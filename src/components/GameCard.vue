@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="description">
-      <RenderedMarkdown :body="shorted_description" />
+      <RenderedMarkdown :body="description" />
     </div>
     <div class="footer">
       <CardStatistic :likes="likes" :comments="comments" />
@@ -91,11 +91,6 @@ export default {
       return (this.name.length > 19)
         ? this.name.substring(0, 19) + '...'
         : this.name;
-    },
-    shorted_description() {
-      return (this.description.length > 82)
-        ? this.description.substring(0, 82) + '...'
-        : this.description;
     },
     shorted_authors() {
       return (this.authors && this.authors.length > 5)
