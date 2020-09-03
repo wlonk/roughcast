@@ -154,10 +154,14 @@
     .team:before {
       background-image: url('./assets/group-dm.svg');
     }
-    .authors img {
-      border: 2px solid $dm-dark-color;
-      &:hover {
-        border: 2px solid $dm-accent-bg-color;
+    .authors a {
+      img {
+        border: 2px solid $dm-dark-color;
+      }
+      &:hover, &:focus {
+        img {
+          border: 2px solid $dm-accent-bg-color;
+        }
       }
     }
     .label {

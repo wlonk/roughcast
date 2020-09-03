@@ -15,7 +15,7 @@
             </div>
           </div>
         </router-link>
-        <div class="team">
+        <div tabindex=0 class="team">
           {{ shorted_team_name }}
           <div  v-if="team.length > 20" class="inline">
             <div class="ui pointing label">
