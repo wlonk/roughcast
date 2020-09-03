@@ -7,11 +7,21 @@
       </div>
       <div class="header">
         <GameCardMenu v-if="permissions['this:edit']" />
-        <router-link :to="`/t/${team.slug}/${slug}`" class="game-card-title">
+        <router-link :to="`/t/${team}/${slug}`" class="game-card-title">
           {{ shorted_title }}
+          <div  v-if="name.length > 19" class="inline">
+            <div class="ui pointing label">
+              {{ name }}
+            </div>
+          </div>
         </router-link>
         <div class="team">
-          <p>{{ team_name }}</p>
+          {{ shorted_team_name }}
+          <div  v-if="team.length > 20" class="inline">
+            <div class="ui pointing label">
+              {{ team_name }}
+            </div>
+          </div>
         </div>
       </div>
     </div>

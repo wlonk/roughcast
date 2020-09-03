@@ -156,6 +156,13 @@
     }
     .authors img {
       border: 2px solid $dm-dark-color;
+      &:hover {
+        border: 2px solid $dm-accent-bg-color;
+      }
+    }
+    .label {
+      background-color: $dm-accent-bg-color;
+      color: $dm-dark-color;
     }
   }
   .group-tabs {
