@@ -16,6 +16,8 @@ textarea {
 
 .accent-link {
   letter-spacing: 0.1em !important;
+  cursor: pointer;
+  font-weight: 700;
 }
 
 span, div {
@@ -36,16 +38,12 @@ input, textarea {
 button {
   cursor: pointer;
   font-size: 1rem !important;
+  background: none;
+  border: none;
 }
 
 #app {
   min-height: 100vh;
-}
-
-.accent-link {
-  cursor: pointer;
-  font-family: $button-font !important;
-  font-weight: 700;
 }
 
 .card-title {

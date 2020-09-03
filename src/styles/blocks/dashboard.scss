@@ -1,4 +1,41 @@
 .dashboard {
+  &>.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    h2 {
+      a {
+        font-family: $accent-font;
+      }
+    }
+    .dashboard-tabs  {
+      position: relative;
+      margin-bottom: 2rem;
+      .bottom-border {
+        background-color: $dm-dark-color;
+        width: 14rem; height: 2px;
+        position: absolute;
+        bottom: 0; right: 0;
+        z-index: 0;
+      }
+    }
+    button {
+      font-weight: 700;
+      border-bottom: 2px solid transparent;
+      position: relative;
+      z-index: 1;
+      padding-bottom: 0.5rem;
+      padding-left: 0.75rem;
+      &:first-child {
+        padding-right: 0.75em;
+      }
+      &:hover, &:focus, &.active {
+        color: $dm-accent-bg-color;
+        border-bottom: 2px solid $dm-accent-bg-color;
+      }
+    }
+  }
   .game-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
