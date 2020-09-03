@@ -58,11 +58,11 @@
   .description {
     margin-top: 0.5rem;
     p {
-      max-height: 4.5rem;
+      max-height: 2.85rem;
       min-width: 23.5rem;
       overflow: hidden;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
   }
