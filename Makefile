@@ -25,6 +25,9 @@ requirements/dev.txt: requirements/base.txt
 .PHONY: install
 install:
 	pip install -r requirements/base.txt
+
+.PHONY: install-dev
+install-dev: install
 	pip install -r requirements/dev.txt
 
 # Handle DB state, making and applying migrations
@@ -65,6 +68,10 @@ loaddata:
 static:
 	python manage.py collectstatic --noinput
 
+.PHONY: build
+build:
+	yarn build
+
 # Run tests:
 .PHONY: test
 test:
@@ -93,3 +100,6 @@ dbshell:
 .PHONY: show_urls
 show_urls:
 	python manage.py show_urls
+
+.PHONY: prepare-prod
+prepare-prod: install migrate build static

@@ -143,11 +143,8 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     # For things we make by hand:
     str(BASE_DIR / "static"),
-    # For things Vue makes that it considers "the app":
+    # For things Vue makes:
     str(BASE_DIR / "dist"),
-    # For things Vue makes that it considers "assets", like
-    # chunk-vendor.js:
-    str(BASE_DIR / "dist" / "static"),
 ]
 STATIC_ROOT = str(BASE_DIR / "staticfiles")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -155,7 +152,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_ROOT = str(BASE_DIR / "media")
 MEDIA_URL = "/media/"
 
-FONT_ROOT = str(BASE_DIR / "static" / "fonts")
+FONT_ROOT = str(BASE_DIR / "dist" / "fonts")
 FONT_URL = "/fonts/"
 
 # Crispy Forms
