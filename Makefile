@@ -1,10 +1,19 @@
-include .env
-export $(shell sed 's/=.*//' .env)
+-include .env
+export $(shell sed 's/=.*//' .env 2> /dev/null || true)
 
 # Run server:
 .PHONY: default
 default:
 	yarn serve
+
+# Cleanup:
+.PHONY: clean
+clean:
+	rm -rf staticfiles/*
+	rm -rf dist/*
+	rm -rf coverage/
+	rm -rf .coverage
+	rm -rf htmlcov/
 
 # Deploy!
 .PHONY: deploy
@@ -24,7 +33,11 @@ requirements/dev.txt: requirements/base.txt
 # (make sure to activate that virtual environment!)
 .PHONY: install
 install:
+	yarn install
 	pip install -r requirements/base.txt
+
+.PHONY: install-dev
+install-dev: install
 	pip install -r requirements/dev.txt
 
 # Handle DB state, making and applying migrations
@@ -65,6 +78,10 @@ loaddata:
 static:
 	python manage.py collectstatic --noinput
 
+.PHONY: build
+build:
+	yarn build
+
 # Run tests:
 .PHONY: test
 test:
@@ -93,3 +110,6 @@ dbshell:
 .PHONY: show_urls
 show_urls:
 	python manage.py show_urls
+
+.PHONY: prepare-prod
+prepare-prod: install migrate build static
