@@ -7,7 +7,7 @@
       </div>
       <div class="header">
         <GameCardMenu v-if="permissions['this:edit']" />
-        <router-link :to="`/t/${team_slug}/${slug}`" class="game-card-title">
+        <router-link :to="`/t/${team_slug}/${slug}`" class="small-card-title">
           {{ shorted_title }}
           <div  v-if="name.length > 19" class="inline">
             <div class="ui pointing label">
@@ -17,7 +17,7 @@
         </router-link>
         <div tabindex=0 class="team">
           {{ shorted_team_name }}
-          <div  v-if="team.length > 20" class="inline">
+          <div  v-if="team_name.length > 18" class="inline">
             <div class="ui pointing label">
               {{ team_name }}
             </div>
@@ -72,8 +72,14 @@ export default {
     team: [String, Object],
     latest_version: Object,
     permissions: Object,
-    likes: Number,
-    comments: Number,
+    likes: {
+      type: String,
+      default: '0'
+    },
+    comments: {
+      type: String,
+      default: '0'
+    },
     authors: Array
   },
   computed: {
@@ -90,8 +96,8 @@ export default {
     },
     shorted_team_name() {
       const team = this.team_name;
-      return (team.length > 20)
-        ? team.substring(0, 20) + '...'
+      return (team.length > 18)
+        ? team.substring(0, 18) + '...'
         : team;
     },
     shorted_title() {
