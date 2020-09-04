@@ -143,7 +143,9 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     # For things we make by hand:
     str(BASE_DIR / "static"),
-    # For things Vue makes:
+    # For things Vue makes that are "assets":
+    str(BASE_DIR / "dist" / "static"),
+    # For things Vue makes that are "core":
     str(BASE_DIR / "dist"),
 ]
 STATIC_ROOT = str(BASE_DIR / "staticfiles")

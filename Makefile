@@ -6,6 +6,15 @@ export $(shell sed 's/=.*//' .env 2> /dev/null || true)
 default:
 	yarn serve
 
+# Cleanup:
+.PHONY: clean
+clean:
+	rm -rf staticfiles/*
+	rm -rf dist/*
+	rm -rf coverage/
+	rm -rf .coverage
+	rm -rf htmlcov/
+
 # Deploy!
 .PHONY: deploy
 deploy:
