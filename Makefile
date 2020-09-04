@@ -24,6 +24,7 @@ requirements/dev.txt: requirements/base.txt
 # (make sure to activate that virtual environment!)
 .PHONY: install
 install:
+	yarn install
 	pip install -r requirements/base.txt
 
 .PHONY: install-dev
