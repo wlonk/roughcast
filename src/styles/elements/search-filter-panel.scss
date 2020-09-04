@@ -1,0 +1,28 @@
+.search-filter-panel {
+  margin-bottom: 3.25rem;
+  display: flex;
+  justify-content: space-between;
+  .page-form {
+    display: flex;
+    width: 50%;
+    input {
+      margin: 0;
+    }
+    .submit-btn {
+      margin-left: 1rem;
+    }
+  }
+  .filters {
+    display: flex;
+    &>div {
+      background-color: $dm-dark-color;
+      border-radius: 0.5rem;
+      padding: 1.25rem 2rem;
+      margin-left: 1rem;
+    }
+    select {
+      background-color: $dm-dark-color;
+
+    }
+  }
+}

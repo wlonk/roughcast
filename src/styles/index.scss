@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Kurale&family=Patua+One&display=swap');
+@import "vue-select/src/scss/vue-select.scss";
 
 // Layout
 @import "./layout/variables.scss";
@@ -26,3 +27,4 @@
 @import "./elements/group-tabs.scss";
 @import "./elements/small-card.scss";
 @import "./elements/invitation-card.scss";
+@import "./elements/search-filter-panel.scss";

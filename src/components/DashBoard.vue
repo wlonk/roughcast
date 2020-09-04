@@ -26,8 +26,9 @@
         <div class="bottom-border"></div>
       </div>
     </div>
+    <SearchAndFiltersPanel />
     <GameList
-      v-if="active_tab === 'games'" 
+      v-if="active_tab === 'games'"
       :userCanAddGames="false"
       :games="gamesWithTeam" />
     <TeamList
@@ -40,6 +41,7 @@
 import { mapGetters } from 'vuex';
 import GameList from '@/components/GameList';
 import TeamList from '@/components/TeamList';
+import SearchAndFiltersPanel from '@/components/SearchAndFiltersPanel';
 
 export default {
   name: 'DashBoard',
@@ -51,6 +53,7 @@ export default {
   components: {
     GameList,
     TeamList,
+    SearchAndFiltersPanel,
   },
   computed: {
     ...mapGetters(['listGames', 'hydratedGame', 'listTeams', 'currentUser']),

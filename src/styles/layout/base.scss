@@ -6,7 +6,7 @@ p, a.link, button, label, h6,
 input[type="text"],
 input[type="email"],
 input[type="password"],
-textarea {
+textarea, select {
   font-family: $base-font !important;
   font-size: 1rem;
   letter-spacing: 0.1em !important;
@@ -50,4 +50,8 @@ button {
   font-family: $accent-font;
   font-size: 2rem;
   margin-bottom: 0;
+}
+
+select {
+  border: none;
 }
