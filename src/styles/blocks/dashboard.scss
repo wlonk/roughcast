@@ -36,7 +36,8 @@
       }
     }
   }
-  .game-list {
+  .game-list,
+  .team-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 2.25rem;
