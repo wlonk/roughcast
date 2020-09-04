@@ -1,5 +1,5 @@
 <template>
-  <div class="ui cards">
+  <div class="team-list">
     <TeamCard v-for="team in teams" :key="team.id" v-bind="team" />
   </div>
 </template>
