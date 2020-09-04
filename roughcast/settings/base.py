@@ -147,7 +147,7 @@ STATICFILES_DIRS = [
     str(BASE_DIR / "dist"),
 ]
 STATIC_ROOT = str(BASE_DIR / "staticfiles")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 MEDIA_ROOT = str(BASE_DIR / "media")
 MEDIA_URL = "/media/"
