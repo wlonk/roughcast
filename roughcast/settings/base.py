@@ -90,6 +90,11 @@ TEMPLATES = [
 ]
 
 
+ADMINS = (
+    ("Kit", "kit@transneptune.net"),
+)
+
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {"default": dj_database_url.config(default="postgres:///roughcast")}
