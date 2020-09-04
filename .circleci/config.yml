@@ -1,0 +1,157 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/python:latest'
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - roughcast-py-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/dev.txt" }}
+            - roughcast-py-
+      - restore_cache:
+          keys:
+            - roughcast-npm-{{ checksum "yarn.lock" }}
+            - roughcast-npm-
+      - run:
+          name: Install Dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            make install
+      - run:
+          name: Compile Front-End Assets
+          command: make build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./dist
+            - ./venv
+            - ./node_modules
+      - save_cache:
+          key: roughcast-py-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/dev.txt" }}
+          paths:
+            - ./venv
+      - save_cache:
+          key: roughcast-npm-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+
+  lint:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/python:latest'
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Lint
+          command: |
+            . venv/bin/activate
+            make lint
+
+  test-client:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/python:latest'
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test JS
+          command: make test-js
+      - store_artifacts:
+          path: coverage
+          destination: js-reports
+      - store_test_results:
+          path: coverage
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./coverage
+
+  test-python:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/python:latest'
+      - image: 'circleci/node:latest'
+        environment:
+          DATABASE_URL: postgres://ubuntu:circle_test@localhost:5432/circle_test
+          DJANGO_DEBUG: False
+          DJANGO_HASHID_SALT: test_hash_id
+          DJANGO_SECRET_KEY: test_secret_key
+          DJANGO_SETTINGS_MODULE: config.settings.test
+          SECURE_SSL_REDIRECT: False
+      - image: circleci/redis:5.0
+      - image: circleci/postgres:12.3
+        environment:
+          POSTGRES_DB: circle_test
+          POSTGRES_PASSWORD: circle_test
+          POSTGRES_USER: ubuntu
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run Database Migrations
+          command: |
+            . venv/bin/activate
+            python manage.py migrate --no-input
+      - run:
+          name: Test Python
+          command: |
+            . venv/bin/activate
+            pytest --junitxml=pycov/pytest-junit.xml
+      - store_artifacts:
+          path: htmlcov
+          destination: py-reports
+      - store_test_results:
+          path: pycov
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./.coverage
+
+  check-test-coverage:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/python:latest'
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Check JS Test Coverage
+          command: make test-js-check-coverage
+      - run:
+          name: Check Python Test Coverage
+          command: |
+            . venv/bin/activate
+            make test-py-check-coverage
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - lint:
+          requires:
+            - build
+      - test-client:
+          requires:
+            - build
+      - test-python:
+          requires:
+            - build
+      - check-test-coverage:
+          requires:
+            - test-client
+            - test-python
