@@ -21,7 +21,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            make install
+            make install-py-dev
       - run:
           name: Compile Front-End Assets
           command: make build
@@ -67,15 +67,6 @@ jobs:
       - run:
           name: Test JS
           command: make test-js
-      - store_artifacts:
-          path: coverage
-          destination: js-reports
-      - store_test_results:
-          path: coverage
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./coverage
 
   test-python:
     working_directory: ~/roughcast
@@ -85,12 +76,11 @@ jobs:
         environment:
           DATABASE_URL: postgres://ubuntu:circle_test@localhost:5432/circle_test
           DJANGO_DEBUG: False
-          DJANGO_HASHID_SALT: test_hash_id
+          HASHID_FIELD_SALT: test_hash_id
           DJANGO_SECRET_KEY: test_secret_key
-          DJANGO_SETTINGS_MODULE: config.settings.test
+          DJANGO_SETTINGS_MODULE: roughcast.settings.base
           SECURE_SSL_REDIRECT: False
-      - image: circleci/redis:5.0
-      - image: circleci/postgres:12.3
+      - image: circleci/postgres:12.4
         environment:
           POSTGRES_DB: circle_test
           POSTGRES_PASSWORD: circle_test
@@ -100,42 +90,10 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Run Database Migrations
-          command: |
-            . venv/bin/activate
-            python manage.py migrate --no-input
-      - run:
           name: Test Python
           command: |
             . venv/bin/activate
-            pytest --junitxml=pycov/pytest-junit.xml
-      - store_artifacts:
-          path: htmlcov
-          destination: py-reports
-      - store_test_results:
-          path: pycov
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./.coverage
-
-  check-test-coverage:
-    working_directory: ~/roughcast
-    docker:
-      - image: 'circleci/python:latest'
-      - image: 'circleci/node:latest'
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Check JS Test Coverage
-          command: make test-js-check-coverage
-      - run:
-          name: Check Python Test Coverage
-          command: |
-            . venv/bin/activate
-            make test-py-check-coverage
+            make test-py
 
 workflows:
   version: 2
@@ -151,7 +109,3 @@ workflows:
       - test-python:
           requires:
             - build
-      - check-test-coverage:
-          requires:
-            - test-client
-            - test-python
