@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="version-section">
     <div class="ui grid">
       <div class="four wide column">
         <img
@@ -96,7 +96,6 @@ export default {
     id: String,
     name: String,
     team: String,
-    game: Object,
     gameSlug: String,
     slug: String,
     changelog: String,

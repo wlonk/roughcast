@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="version-list">
     <VersionCard
       v-for="version in versions"
       :key="version.id"

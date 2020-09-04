@@ -4,9 +4,27 @@ from django.contrib.auth import get_user_model
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
-from roughcast.models import Game, Team, TeamMembership, Version
+from roughcast.models import (
+    AlphaTestEmail,
+    AttachedFile,
+    Game,
+    InAppNotification,
+    Subscription,
+    Team,
+    TeamMembership,
+    Version,
+)
 
 User = get_user_model()
+
+
+# @TODO: Remove when out of Alpha:
+@register
+class AlphaTestEmailFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = AlphaTestEmail
+
+    email = factory.Sequence("user_{}@example.com".format)
 
 
 @register
@@ -17,7 +35,14 @@ class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Sequence("user_{}@example.com".format)
     username = factory.Sequence("user_{}".format)
     first_name = "Alex Rodriguez"
-    password = factory.PostGenerationMethodCall("set_password", "foobar")
+
+
+@register
+class SubscriptionFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Subscription
+
+    user = factory.SubFactory(UserFactory)
 
 
 @register
@@ -60,10 +85,30 @@ class VersionFactory(factory.django.DjangoModelFactory):
     created_by = factory.SubFactory(UserFactory)
 
 
+@register
+class AttachedFileFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = AttachedFile
+
+    version = factory.SubFactory(VersionFactory)
+    attached_file = factory.django.FileField()
+
+
+@register
+class InAppNotificationFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = InAppNotification
+
+    user = factory.SubFactory(UserFactory)
+    notification_type = "comments"
+    path = "/test/path"
+
+
 @pytest.fixture
 def client(user_factory):
     user = user_factory()
-    client = APIClient()
+    token = user.get_or_create_token()
+    client = APIClient(HTTP_AUTHORIZATION=f"Token {token}")
     client.force_login(user)
     client.user = user
     return client

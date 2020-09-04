@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="game-list">
     <div class="ui cards">
       <GameCard v-for="game in gamesWithTeam" :key="game.id" v-bind="game" />
     </div>

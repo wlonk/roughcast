@@ -6,6 +6,8 @@ from random import randint
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from emoji import UNICODE_EMOJI
 from rest_framework.authtoken.models import Token
 
@@ -46,7 +48,7 @@ def is_emoji(value):
 class AlphaTestEmail(models.Model):
     email = models.EmailField(unique=True)
 
-    def __str__(self):
+    def __str__(self):  # pragma: nocover
         return self.email
 
 
@@ -75,17 +77,26 @@ class User(AbstractUser):
             "email_context": <dict of additional context to put in email>,
         }
         """
-        if self.profile._should_notify(message["type"], NotificationPreferences.IN_APP):
-            # @TODO: create in-app notification model instance.
-            pass
-        if self.profile._should_notify(
+        in_app = self.profile._should_notify(
+            message["type"], NotificationPreferences.IN_APP
+        )
+        instant_email = self.profile._should_notify(
             message["type"], NotificationPreferences.INSTANT_EMAIL
-        ):
+        )
+        digest_email = self.profile._should_notify(
+            message["type"], NotificationPreferences.DIGEST_EMAIL
+        )
+        if in_app:
+            InAppNotification.objects.create(
+                user=self,
+                notification_type=message.pop("type"),
+                path=message.pop("path"),
+                additional_context=message,
+            )
+        if instant_email:  # pragma: nocover
             # @TODO: send email right away
             pass
-        if self.profile._should_notify(
-            message["type"], NotificationPreferences.DIGEST_EMAIL
-        ):
+        if digest_email:  # pragma: nocover
             # @TODO: create digest-email model instance.
             # @TODO: run weekly job to scoop up digest emails models and
             # build and send an email.
@@ -133,6 +144,12 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"UserProfile for {self.user.username}"
+
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
 
 
 class InAppNotification(BasicModelMixin, models.Model):
@@ -230,16 +247,16 @@ class Version(BasicModelMixin, SimpleSlugMixin, models.Model):
 
     def get_notification_message(self):
         game = self.game
-        publisher = game.publisher
+        team = game.team
         return {
             "type": "versions",
-            "path": f"/t/{publisher.slug}/{game.slug}/{self.slug}",
+            "path": f"/t/{team.slug}/{game.slug}/{self.slug}",
             "subject": "Check out {game.name} {version.name}",
             "email_template": "new_version.html",
             "email_context": {
-                "publisher": publisher.id,
-                "game": game.id,
-                "version": self.id,
+                "team": str(team.id),
+                "game": str(game.id),
+                "version": str(self.id),
             },
         }
 

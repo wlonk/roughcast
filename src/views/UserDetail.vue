@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     changeActiveGroup(group) {
-      return (this.chosenGroup = group);
+      this.chosenGroup = group;
     },
   },
   computed: {

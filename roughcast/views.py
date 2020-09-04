@@ -1,6 +1,5 @@
-from collections import defaultdict
 from io import BytesIO
-from os.path import basename, splitext
+from os.path import basename
 from zipfile import ZipFile
 
 from django.contrib.auth import authenticate, logout
@@ -195,28 +194,21 @@ class VersionViewSet(ModelViewSet):
         in_memory = BytesIO()
         zip = ZipFile(in_memory, "a")
 
-        file_names = defaultdict(int)
         for file in all_files:
             name = basename(file.name)
-            name_count = file_names[name]
-            file_names[name] += 1
             content = file.read()
-            formatted_name = name
-            if name_count > 0:
-                name, ext = splitext(name)
-                formatted_name = f"{name} ({name_count}){ext}"
-            zip.writestr(formatted_name, content)
+            zip.writestr(name, content)
 
         # fix for Linux zip files read in Windows
         for file in zip.filelist:
             file.create_system = 0
         zip.close()
 
-        filename = f"{version.game.name} {version.name}.zip"
+        filename = f"{version.game.name} {version.name}"
 
         response = HttpResponse(content_type="application/zip")
         slug_name = slugify(filename)
-        response["Content-Disposition"] = f"attachment; filename={slug_name}_files.zip"
+        response["Content-Disposition"] = f"attachment; filename={slug_name}.zip"
         in_memory.seek(0)
         response.write(in_memory.read())
 

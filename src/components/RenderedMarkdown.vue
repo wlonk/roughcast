@@ -1,5 +1,5 @@
 <template>
-  <div v-html="renderedBody"></div>
+  <div class="rendered" v-html="renderedBody"></div>
 </template>
 
 <script>

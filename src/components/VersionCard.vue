@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="version-card">
     <a :href="archive_link">
       <i class="right floated file archive outline icon"></i>
     </a>
