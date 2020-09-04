@@ -24,9 +24,10 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 HASHID_FIELD_SALT = env("HASHID_FIELD_SALT")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DJANGO_DEBUG", type_=boolish)
+DEBUG = env("DJANGO_DEBUG", type_=boolish, default=False)
 ALLOWED_HOSTS = [
     "roughcast.app",
+    "roughcast.onrender.com",
 ]
 if DEBUG:
     ALLOWED_HOSTS += [
