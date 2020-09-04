@@ -3,9 +3,13 @@ import GroupTabs from '@/components/GroupTabs.vue';
 
 describe('App.vue', () => {
   it('renders', () => {
-    const wrapper = shallowMount(GroupTabs);
-    expect(
-      wrapper.find('.group-tabs').exists(),
-    ).toBe(true);
+    const allGames = { name: 'All games', slug: '*' };
+    const wrapper = shallowMount(GroupTabs, {
+      propsData: {
+        groups: [],
+        chosen: allGames,
+      },
+    });
+    expect(wrapper.find('.group-tabs').exists()).toBe(true);
   });
 });

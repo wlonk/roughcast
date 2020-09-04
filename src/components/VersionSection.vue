@@ -96,7 +96,6 @@ export default {
     id: String,
     name: String,
     team: String,
-    game: Object,
     gameSlug: String,
     slug: String,
     changelog: String,

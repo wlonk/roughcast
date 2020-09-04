@@ -8,4 +8,4 @@ localVue.use(VueRouter);
 localVue.use(Vuex);
 
 export const getStore = (module, storeOpts = {}) =>
-  new Store({ modules: { [module]: { namespaced: true, ...storeOpts } } });
+  new Store({ modules: { [module]: storeOpts } });
