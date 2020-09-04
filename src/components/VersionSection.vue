@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="version-section">
     <div class="ui grid">
       <div class="four wide column">
         <img

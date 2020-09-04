@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="dashboard">
     <h1>Dashboard</h1>
     <h2 class="ui horizontal divider header">
       games
