@@ -1,5 +1,5 @@
-include .env
-export $(shell sed 's/=.*//' .env)
+-include .env
+export $(shell sed 's/=.*//' .env 2> /dev/null || true)
 
 # Run server:
 .PHONY: default
