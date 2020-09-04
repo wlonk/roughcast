@@ -146,16 +146,17 @@
   .verfc {
     color: $dm-error-color;
   }
-  .game-card {
+  .game-card, .team-card {
     color: $dm-main-font-color;
     background-color: $dm-dark-color;
-    .game-card-title {
+    .small-card-title {
       color: $dm-accent-bg-color;
     }
     .team:before {
       background-image: url('./assets/group-dm.svg');
     }
-    .authors a {
+    .authors a,
+    .owners a {
       img {
         border: 2px solid $dm-dark-color;
       }
