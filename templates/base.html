@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.png' %}"/>
 
+    <link href="{% static "css/app.css" %}" rel=preload as=style>
+    <link href="{% static "css/chunk-vendors.css" %}" rel=preload as=style>
     <link href="{% static "js/chunk-vendors.js" %}" rel="preload" as="script">
+    <link href="{% static "css/chunk-vendors.css" %}" rel=stylesheet>
+    <link href="{% static "css/app.css" %}" rel=stylesheet>
     <link rel="manifest" href="{% static "manifest.json" %}">
 
     <title>Roughcast</title>
