@@ -1,50 +1,58 @@
 version: 2.1
 
 jobs:
-  build:
+  build-py:
     working_directory: ~/roughcast
     docker:
       - image: 'circleci/python:latest'
-      - image: 'circleci/node:latest'
     steps:
       - checkout
       - restore_cache:
           keys:
             - roughcast-py-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/dev.txt" }}
             - roughcast-py-
-      - restore_cache:
-          keys:
-            - roughcast-npm-{{ checksum "yarn.lock" }}
-            - roughcast-npm-
       - run:
           name: Install Dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
             make install-py-dev
-      - run:
-          name: Compile Front-End Assets
-          command: make build
       - persist_to_workspace:
           root: .
           paths:
-            - ./dist
             - ./venv
-            - ./node_modules
       - save_cache:
           key: roughcast-py-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/dev.txt" }}
           paths:
             - ./venv
+
+  build-js:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - roughcast-npm-{{ checksum "yarn.lock" }}
+            - roughcast-npm-
+      - run:
+          name: Compile Front-End Assets
+          command: make install-js build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./dist
+            - ./node_modules
       - save_cache:
           key: roughcast-npm-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
 
-  lint:
+  lint-py:
     working_directory: ~/roughcast
     docker:
       - image: 'circleci/python:latest'
-      - image: 'circleci/node:latest'
     steps:
       - checkout
       - attach_workspace:
@@ -53,26 +61,25 @@ jobs:
           name: Lint
           command: |
             . venv/bin/activate
-            make lint
+            make lint-py
 
-  test-client:
+  lint-js:
     working_directory: ~/roughcast
     docker:
-      - image: 'circleci/python:latest'
       - image: 'circleci/node:latest'
     steps:
       - checkout
       - attach_workspace:
           at: .
       - run:
-          name: Test JS
-          command: make test-js
+          name: Lint
+          command: |
+            make lint-js
 
   test-python:
     working_directory: ~/roughcast
     docker:
       - image: 'circleci/python:latest'
-      - image: 'circleci/node:latest'
         environment:
           DATABASE_URL: postgres://ubuntu:circle_test@localhost:5432/circle_test
           DJANGO_DEBUG: False
@@ -95,17 +102,33 @@ jobs:
             . venv/bin/activate
             make test-py
 
+  test-js:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test JS
+          command: make test-js
+
 workflows:
   version: 2
   build-and-test:
     jobs:
-      - build
-      - lint:
+      - build-py
+      - build-js
+      - lint-py:
           requires:
-            - build
-      - test-client:
+            - build-py
+      - lint-js:
           requires:
-            - build
+            - build-js
       - test-python:
           requires:
-            - build
+            - build-py
+      - test-js:
+          requires:
+            - build-js
