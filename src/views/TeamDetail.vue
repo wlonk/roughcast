@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TeamSection v-bind="team" />
+    <TeamProfileCard v-bind="team" />
     <h3 class="ui horizontal divider">
       Games
     </h3>
@@ -15,12 +15,12 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import TeamSection from '@/components/TeamSection';
+import TeamProfileCard from '@/components/TeamProfileCard';
 import GameList from '@/components/GameList';
 
 export default {
   name: 'TeamDetail',
-  components: { TeamSection, GameList },
+  components: { TeamProfileCard, GameList },
   created() {
     this.$store.dispatch('getTeamById', this.$route.params.team);
     this.$store.dispatch('retrieveGames');

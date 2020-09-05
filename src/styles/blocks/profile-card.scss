@@ -1,5 +1,6 @@
 .user-profile-card,
-.game-profile-card {
+.game-profile-card,
+.team-profile-card {
   display: flex;
   border-radius: 1rem;
   min-height: 12.5rem;
@@ -23,14 +24,16 @@
       &.header {
         align-items: flex-start;
         justify-content: space-between;
-        // width: 100%;
       }
       p {
         margin-bottom: 0.25em;
         margin-left: 0.5rem;
       }
     }
-
+    h4 {
+      max-width: 70%;
+      word-break: break-word;
+    }
     &>div:last-child {
       width: 70%;
       h5 {
@@ -48,15 +51,6 @@
     align-items: center;
     padding: 0.5rem;
     padding-left: 0;
-    max-width: 30%;
-    a {
-      word-break: break-word;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      line-height: 1.4rem;
-    }
     &:before {
       content: "";
       background-size: 100%;
@@ -73,6 +67,18 @@
       text-align: right;
       margin: 0;
       margin-left: 1rem;
+    }
+  }
+  .round-link {
+    background-color: $dm-addt-dark-color;
+    background-image: url('./assets/link.svg');
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 2.25rem; height: 2.25rem;
+    &:hover {
+      transform: scale(1.1);
     }
   }
 }
