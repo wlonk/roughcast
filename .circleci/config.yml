@@ -87,6 +87,7 @@ jobs:
           DJANGO_SECRET_KEY: test_secret_key
           DJANGO_SETTINGS_MODULE: roughcast.settings.base
           SECURE_SSL_REDIRECT: False
+          SENDGRID_API_KEY: test_sendgrid_key
       - image: circleci/postgres:12.4
         environment:
           POSTGRES_DB: circle_test
