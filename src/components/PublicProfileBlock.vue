@@ -22,7 +22,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import PublicProfileInfo from '@/components/PublicProfileInfo';
-import EditPublicProfileForm from '@/components/EditPublicProfileForm';
+import EditPublicProfileForm from '@/forms/EditPublicProfileForm';
 
 export default {
   name: 'PublicProfileBlock',

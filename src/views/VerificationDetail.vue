@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      errors: null,
+      errors: {},
       shouldSendVerification: this.$route.params.key,
       verificationPending: Boolean(this.$route.params.key),
     };

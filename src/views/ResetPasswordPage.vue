@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ResetPasswordForm from '@/components/ResetPasswordForm';
+import ResetPasswordForm from '@/forms/ResetPasswordForm';
 
 export default {
   name: 'ResetPasswordPage',

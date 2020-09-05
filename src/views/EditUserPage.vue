@@ -21,7 +21,7 @@ import { mapGetters } from 'vuex';
 import ScrollingEditMenu from '@/components/ScrollingEditMenu';
 import PublicProfileBlock from '@/components/PublicProfileBlock';
 import AccountSettingsBlock from '@/components/AccountSettingsBlock';
-import ChangePasswordForm from '@/components/ChangePasswordForm';
+import ChangePasswordForm from '@/forms/ChangePasswordForm';
 import NotificationPreferences from '@/components/NotificationPreferences';
 import NoPageNotification from '@/components/NoPageNotification';
 

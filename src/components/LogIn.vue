@@ -3,9 +3,9 @@
     <div>
       <label for="username">Username</label>
       <input type="text" name="username" placeholder="Username" id="username" />
-      <ul v-if="loginErrors.username">
+      <ul v-if="errors.username">
         <li
-          v-for="(error, i) in loginErrors.username"
+          v-for="(error, i) in errors.username"
           :key="i"
           class="ui error message"
         >
@@ -22,9 +22,9 @@
         placeholder="Password"
         class="ui input"
       />
-      <ul v-if="loginErrors.password">
+      <ul v-if="errors.password">
         <li
-          v-for="(error, i) in loginErrors.password"
+          v-for="(error, i) in errors.password"
           :key="i"
           class="ui error message"
         >
@@ -47,16 +47,21 @@
       </router-link>
     </div>
     <div class="submit-row row">
-      <input type="submit" value="Log In" class="submit-btn" />
+      <input
+        :disabled="submitting"
+        type="submit"
+        value="Log In"
+        class="submit-btn"
+      />
       <p>
         Don’t have an account?
         <router-link to="/signup" class="accent-link link">
           Sign Up!
         </router-link>
       </p>
-      <ul v-if="loginErrors.non_field_errors">
+      <ul v-if="errors.non_field_errors">
         <li
-          v-for="(error, i) in loginErrors.non_field_errors"
+          v-for="(error, i) in errors.non_field_errors"
           :key="i"
           class="ui error message"
         >
@@ -68,25 +73,34 @@
 </template>
 
 <script>
-// TODO: This component does not display errors right if it's in the header
-// bar. Maybe make it pop up as a modal, to allow better error reporting?
-
-import { mapGetters } from 'vuex';
-
 export default {
   name: 'LogIn',
-  computed: mapGetters(['loginErrors']),
+  data() {
+    return { errors: {}, submitting: false };
+  },
   methods: {
     async login(e) {
+      this.submitting = true;
+      this.errors = {};
       const username = e.target.elements['username'].value;
       const password = e.target.elements['password'].value;
       const data = { username, password };
       try {
-        await this.$store.dispatch('logIn', data);
-        this.$router.push('/');
-      } catch {
+        const response = await this.$http.post('/login/', data);
+        await this.$store.dispatch('setCurrentUser', response.data);
+      } catch (error) {
+        this.submitting = false;
+        if (error.response) {
+          this.errors = error.response.data;
+        } else {
+          this.errors = {
+            non_field_errors: ['There was error communicating with the server'],
+          };
+        }
         return;
       }
+      this.submitting = false;
+      this.$router.push('/');
       this.$store.dispatch('retrieveTeams');
       this.$store.dispatch('retrieveGames');
       this.$store.dispatch('retrieveVersions');

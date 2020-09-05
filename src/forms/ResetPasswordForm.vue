@@ -8,6 +8,15 @@
         placeholder="example@mail.com"
         id="email"
       />
+      <ul v-if="errors.email">
+        <li
+          v-for="(error, i) in errors.email"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </div>
     <div class="submit-row row">
       <input type="submit" value="Reset password" class="submit-btn" />
@@ -18,6 +27,15 @@
           Log In
         </router-link>
       </p>
+      <ul v-if="errors.non_field_errors">
+        <li
+          v-for="(error, i) in errors.non_field_errors"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </div>
   </form>
 </template>
@@ -27,7 +45,7 @@ export default {
   name: 'ResetPasswordForm',
   data() {
     return {
-      errors: null,
+      errors: {},
       successMessage: null,
     };
   },

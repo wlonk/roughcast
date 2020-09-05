@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import CreateNewPasswordForm from '@/components/CreateNewPasswordForm.vue';
+import CreateNewPasswordForm from '@/forms/CreateNewPasswordForm.vue';
 
 describe('App.vue', () => {
   it('renders', () => {

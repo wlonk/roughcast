@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import EditPublicProfileForm from '@/components/EditPublicProfileForm.vue';
+import EditPublicProfileForm from '@/forms/EditPublicProfileForm.vue';
 
 describe('App.vue', () => {
   it('renders', () => {

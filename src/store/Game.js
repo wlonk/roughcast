@@ -44,12 +44,19 @@ const actions = {
     }
   },
   async createNewGame({ commit }, data) {
-    const response = await api.post('/game/', data);
-    if (response.ok) {
+    try {
+      const response = await api.post('/game/', data);
       const newGame = response.data;
       commit('getGameById', newGame);
-    } else {
-      // TODO: Display lookup error toast?
+      return {};
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      } else {
+        return {
+          non_field_errors: ['There was error communicating with the server'],
+        };
+      }
     }
   },
 };

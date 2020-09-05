@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import CreateNewPasswordForm from '@/components/CreateNewPasswordForm';
+import CreateNewPasswordForm from '@/forms/CreateNewPasswordForm';
 
 export default {
   name: 'SetNewPasswordPage',

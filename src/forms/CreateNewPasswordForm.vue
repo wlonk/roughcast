@@ -9,6 +9,15 @@
         placeholder="Password"
         class="ui input"
       />
+      <ul v-if="errors.password1">
+        <li
+          v-for="(error, i) in errors.password1"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </div>
     <div>
       <label for="password2">Repeat Password</label>
@@ -19,9 +28,27 @@
         placeholder="Password"
         class="ui input"
       />
+      <ul v-if="errors.password2">
+        <li
+          v-for="(error, i) in errors.password2"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </div>
     <div class="submit-row row">
       <input type="submit" value="Reset password" class="submit-btn" />
+      <ul v-if="errors.non_field_errors">
+        <li
+          v-for="(error, i) in errors.non_field_errors"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </div>
   </form>
 </template>

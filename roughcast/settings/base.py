@@ -90,9 +90,7 @@ TEMPLATES = [
 ]
 
 
-ADMINS = (
-    ("Kit", "kit@transneptune.net"),
-)
+ADMINS = (("Kit", "kit@transneptune.net"),)
 
 
 # Database
@@ -158,9 +156,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 MEDIA_ROOT = str(BASE_DIR / "media")
 MEDIA_URL = "/media/"
-
-FONT_ROOT = str(BASE_DIR / "dist" / "fonts")
-FONT_URL = "/fonts/"
 
 # Crispy Forms
 CRISPY_TEMPLATE_PACK = "bootstrap4"
