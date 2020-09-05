@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'UserCard',
+  name: 'UserProfileCard',
   props: {
     id: Number,
     username: String,

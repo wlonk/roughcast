@@ -1,6 +1,6 @@
 <template>
   <div>
-    <UserCard v-bind="user" />
+    <UserProfileCard v-bind="user" />
     <div class="user-elements">
       <GroupTabs
         @choose-group="changeActiveGroup"
@@ -15,7 +15,7 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import UserCard from '@/components/UserCard';
+import UserProfileCard from '@/components/UserProfileCard';
 import GroupTabs from '@/components/GroupTabs';
 import UserGames from '@/components/UserGames';
 
@@ -24,7 +24,7 @@ const allGames = { name: 'All games', slug: '*' };
 export default {
   name: 'UserDetail',
   components: {
-    UserCard,
+    UserProfileCard,
     GroupTabs,
     UserGames,
   },
