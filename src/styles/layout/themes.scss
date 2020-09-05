@@ -149,7 +149,7 @@
     }
   }
   .custom-file-upload:focus ~ .file-loader-label {
-    box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4)
+    box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4);
   }
   .verfc {
     color: $dm-error-color;
@@ -174,10 +174,11 @@
         }
       }
     }
-    .label {
-      background-color: $dm-accent-bg-color;
-      color: $dm-dark-color;
-    }
+  }
+  .inline .label {
+    background-color: $dm-accent-bg-color;
+    color: $dm-dark-color;
+    box-shadow: 0 0 0.5rem 0 transparentize($dm-dark-color, 0.4);
   }
   .group-tabs {
     .chevron:hover {
