@@ -21,7 +21,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import AccountSettingsInfo from '@/components/AccountSettingsInfo';
-import EditAccountSettingsForm from '@/components/EditAccountSettingsForm';
+import EditAccountSettingsForm from '@/forms/EditAccountSettingsForm';
 
 export default {
   name: 'AccountSettingsBlock',

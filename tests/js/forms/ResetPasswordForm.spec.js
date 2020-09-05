@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import ResetPasswordForm from '@/components/ResetPasswordForm.vue';
+import ResetPasswordForm from '@/forms/ResetPasswordForm.vue';
 
 describe('App.vue', () => {
   it('renders', () => {

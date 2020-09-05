@@ -63,7 +63,7 @@ export default {
         return false;
       }
       try {
-        const response = await this.axios.get(`/game/${this.slug}/`);
+        const response = await this.$http.get(`/game/${this.slug}/`);
         return response.status !== 404;
       } catch {
         return false;

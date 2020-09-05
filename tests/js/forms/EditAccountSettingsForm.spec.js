@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import EditAccountSettingsForm from '@/components/EditAccountSettingsForm.vue';
+import EditAccountSettingsForm from '@/forms/EditAccountSettingsForm.vue';
 
 describe('App.vue', () => {
   it('renders', () => {

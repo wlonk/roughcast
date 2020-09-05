@@ -41,12 +41,12 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
     re_path(
-        "^(?!api|static|media|fonts)",
+        "^(?!api|static|media)",
         TemplateView.as_view(template_name="base.html"),
         name="root",
     ),
     path(
-        "/change/<uidb64>/<token>",
+        "change/<uidb64>/<token>",
         TemplateView.as_view(template_name="base.html"),
         name="password_reset_confirm",
     ),
@@ -54,4 +54,3 @@ urlpatterns = [
 
 if settings.DEBUG:  # pragma: nocover
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.FONT_URL, document_root=settings.FONT_ROOT)

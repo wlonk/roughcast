@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'EditPublicProfileForm',
+  name: 'EditAccountSettingsForm',
   props: {
     email: String,
     username: String,

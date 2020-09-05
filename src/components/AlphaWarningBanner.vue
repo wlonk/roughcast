@@ -1,10 +1,12 @@
 <!-- @TODO Destroy this when out of alpha! -->
 <template>
   <div class="alpha-warning-banner">
+    <p>
     This is in early alpha. We're still adding features and working on
     design, and want your feedback! Please,
     <a href="mailto:kit+roughcast@transneptune.net?subject=Roughcast">
       get in touch</a>.
+    </p>
   </div>
 </template>
 
