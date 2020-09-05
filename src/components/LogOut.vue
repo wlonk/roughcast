@@ -6,7 +6,7 @@
         v-for="(error, i) in errors.non_field_errors"
         :key="i"
         class="ui error message"
-        >
+      >
         {{ error }}
       </li>
     </ul>
@@ -22,7 +22,7 @@ export default {
   methods: {
     async logout() {
       try {
-        await api.post('/logout/');
+        await this.$http.post('/logout/');
         this.$store.dispatch('logOut');
       } catch (error) {
         this.errors = {

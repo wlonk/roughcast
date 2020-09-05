@@ -11,6 +11,15 @@
         class="submit-btn"
       />
       <div v-if="successMessage" class="accent-link">{{ successMessage }}</div>
+      <ul v-if="errors.non_field_errors">
+        <li
+          v-for="(error, i) in errors.non_field_errors"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </form>
   </div>
 </template>
@@ -25,7 +34,7 @@ export default {
   },
   data() {
     return {
-      errors: null,
+      errors: {},
       successMessage: null,
     };
   },

@@ -3,11 +3,21 @@
     <div>
       <label for="name">Display name</label>
       <input type="text" v-model="name" placeholder="Display name" id="name" />
+      <ul v-if="errors.name">
+        <li v-for="(error, i) in errors.name" :key="i" class="ui error message">
+          {{ error }}
+        </li>
+      </ul>
     </div>
     <div class="bio">
       <label for="bio-info">Bio</label>
       <textarea placeholder="Add your bio" id="bio-info" rows="5" v-model="bio">
       </textarea>
+      <ul v-if="errors.bio">
+        <li v-for="(error, i) in errors.bio" :key="i" class="ui error message">
+          {{ error }}
+        </li>
+      </ul>
     </div>
     <div class="avatar">
       <h6>Avatar</h6>
@@ -22,6 +32,15 @@
     <div class="buttons">
       <input type="submit" class="submit-btn" value="Update profile" />
       <button class="remove" @click="cancel">Cancel</button>
+      <ul v-if="errors.non_field_errors">
+        <li
+          v-for="(error, i) in errors.non_field_errors"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </div>
   </form>
 </template>
@@ -35,7 +54,7 @@ export default {
     name: String,
   },
   data() {
-    return { errors: null };
+    return { errors: {} };
   },
   methods: {
     async submit(e) {

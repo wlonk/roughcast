@@ -47,7 +47,12 @@
       </router-link>
     </div>
     <div class="submit-row row">
-      <input :disabled="submitting" type="submit" value="Log In" class="submit-btn" />
+      <input
+        :disabled="submitting"
+        type="submit"
+        value="Log In"
+        class="submit-btn"
+      />
       <p>
         Don’t have an account?
         <router-link to="/signup" class="accent-link link">
@@ -89,9 +94,7 @@ export default {
           this.errors = error.response.data;
         } else {
           this.errors = {
-            non_field_errors: [
-              'There was error communicating with the server',
-            ],
+            non_field_errors: ['There was error communicating with the server'],
           };
         }
         return;

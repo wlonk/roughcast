@@ -90,9 +90,7 @@ TEMPLATES = [
 ]
 
 
-ADMINS = (
-    ("Kit", "kit@transneptune.net"),
-)
+ADMINS = (("Kit", "kit@transneptune.net"),)
 
 
 # Database
