@@ -1,10 +1,17 @@
-.submit-btn {
+.submit-btn,
+.subscribed-label {
   cursor: pointer;
   border-radius: 0.5rem;
   font-family: $button-font;
+  font-weight: 700;
   font-size: 1rem;
   letter-spacing: 0.1em;
+  text-align: center;
   padding: 1.25rem 3rem;
   margin-top: 2rem;
   min-width: 12.5rem;
+  &.small,
+  &.subscribed-label {
+    padding: 0.5rem 3rem;
+  }
 }

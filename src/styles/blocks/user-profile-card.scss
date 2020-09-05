@@ -1,4 +1,5 @@
-.user-profile-card {
+.user-profile-card,
+.game-profile-card {
   display: flex;
   border-radius: 1rem;
   min-height: 12.5rem;
@@ -6,7 +7,7 @@
   margin-top: 4rem;
   margin-bottom: 2.5rem;
   position: relative;
-  img[alt="avatar"] {
+  &>img {
     border-radius: 0.5rem;
     position: absolute;
     top: -2rem;
@@ -14,16 +15,24 @@
   }
   &>div {
     margin-left: 14.5rem;
+    width: 100%;
     &>div:first-child {
       display: flex;
       align-items: flex-end;
       margin-bottom: 1rem;
+      &.header {
+        align-items: flex-start;
+        justify-content: space-between;
+        // width: 100%;
+      }
       p {
         margin-bottom: 0.25em;
         margin-left: 0.5rem;
       }
     }
+
     &>div:last-child {
+      width: 70%;
       h5 {
         margin-bottom: 0.5rem;
         font-family: $base-font;
@@ -32,6 +41,34 @@
       .no-bio {
         opacity: 0.3;
       }
+    }
+  }
+  .team {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    padding-left: 0;
+    &:before {
+      content: "";
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 1rem; height: 1rem;
+      margin-right: 0.5rem;
+    }
+    &:hover .label,
+    &:focus .label {
+      display: block;
+      top: 4rem; left: 8rem;
+    }
+  }
+  .controls {
+    position: absolute;
+    bottom: 2rem; right: 2rem;
+    * {
+      text-align: right;
+      margin: 0;
+      margin-left: 1rem;
     }
   }
 }

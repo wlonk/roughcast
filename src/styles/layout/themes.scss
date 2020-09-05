@@ -39,10 +39,14 @@
   }
   .submit-btn {
     background-color: $dm-accent-bg-color;
-    color: $dm-dark-color;
+    color: $dm-dark-color !important;
     &:hover {
       box-shadow: $dm-focus-shadow;
     }
+  }
+  .subscribed-label {
+    border: 2px solid $dm-accent-bg-color;
+    color: $dm-accent-bg-color !important;
   }
   input:focus {
     box-shadow: $dm-focus-shadow;
@@ -79,7 +83,7 @@
     }
   }
   .accent-link {
-    color: $dm-accent-bg-color;
+    color: $dm-accent-bg-color !important;
   }
   .dropdown-menu {
     .item {
@@ -104,13 +108,17 @@
       }
     }
   }
-  .user-profile-card {
+  .user-profile-card,
+  .game-profile-card {
     background-color: $dm-dark-color;
     * {
       color: $dm-main-font-color;
     }
     h5 {
       color: transparentize($dm-main-font-color, 0.5);
+    }
+    .team:before {
+      background-image: url('./assets/group-dm.svg');
     }
   }
   .card-title {
