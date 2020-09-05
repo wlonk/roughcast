@@ -7,7 +7,7 @@
         <h4 class="card-title">{{ name }}</h4>
         <div class="team">
           <router-link :to="`/t/${team.slug}`" class="link">
-            {{ team.name }}
+            {{ shorted_team_name }}
           </router-link>
         </div>
       </div>
@@ -62,5 +62,13 @@ export default {
     is_subscribed: Boolean,
     is_owner: Boolean,
   },
+  computed: {
+    shorted_team_name() {
+      const team_name = this.team.name;
+      return (team_name.length > 20)
+        ? team_name.substring(0, 20) + '...'
+        : team_name;
+    },
+  }
 };
 </script>
