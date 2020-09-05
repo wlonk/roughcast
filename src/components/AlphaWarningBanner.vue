@@ -26,7 +26,7 @@ export default {
     rgb(20, 20, 20) 10px,
     rgb(20, 20, 20) 20px
   );
-  color: #fbca18;
+  color: #d9ffff;
   text-shadow: 3px 0 3px #000, 0 -3px 3px #000, 0 3px 3px #000, -3px 0 3px #000;
   height: 2em;
   display: flex;
