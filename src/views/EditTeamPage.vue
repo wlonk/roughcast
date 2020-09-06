@@ -1,7 +1,11 @@
 <template>
   <div>
     <div v-if="team" class="edit-block">
-      <h2>Edit Team</h2>
+      <h2>Edit
+        <router-link :to="`/t/${team.slug}`" class="accent-link">
+          "{{ team.name }}"
+        </router-link>
+      </h2>
       <div>
         <ScrollingEditTeamMenu />
         <div>
