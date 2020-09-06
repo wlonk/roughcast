@@ -14,4 +14,10 @@
   &.subscribed-label {
     padding: 0.5rem 3rem;
   }
+  &.no-top {
+    margin-top: 1rem;
+  }
+  &.single {
+    margin-top: 0;
+  }
 }

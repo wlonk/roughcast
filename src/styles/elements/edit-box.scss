@@ -47,6 +47,9 @@
   textarea {
     margin-bottom: 0;
   }
+  label[for="slug"] {
+    margin-top: 1rem;
+  }
   .remove {
     background: none;
     border: none;
