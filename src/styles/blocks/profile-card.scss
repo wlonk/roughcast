@@ -1,6 +1,7 @@
 .user-profile-card,
 .game-profile-card,
-.team-profile-card {
+.team-profile-card,
+.version-profile-card {
   display: flex;
   border-radius: 1rem;
   min-height: 12.5rem;
@@ -90,6 +91,32 @@
 }
 
 .game-profile-card,
-.team-profile-card {
+.team-profile-card,
+.version-profile-card {
   padding-bottom: 6rem;
+}
+
+.version-profile-card {
+  padding-bottom: 3em;
+  .header {
+    margin-bottom: 0 !important;
+    span {
+      font-family: $accent-font !important;
+      font-size: 1.5rem;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      * {
+        margin-bottom: 0 !important;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  .team {
+    margin-bottom: 1rem;
+  }
+  .round-link {
+    background-image: url('./assets/file.svg');
+  }
 }
