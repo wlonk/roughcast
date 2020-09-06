@@ -70,16 +70,7 @@
     }
   }
   .round-link {
-    background-color: $dm-addt-dark-color;
     background-image: url('./assets/link.svg');
-    background-size: 50%;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    width: 2.25rem; height: 2.25rem;
-    &:hover {
-      transform: scale(1.1);
-    }
   }
   .invitation {
     p {
@@ -96,4 +87,9 @@
       }
     }
   }
+}
+
+.game-profile-card,
+.team-profile-card {
+  padding-bottom: 6rem;
 }

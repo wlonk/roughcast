@@ -66,3 +66,15 @@ select {
     margin: 0;
   }
 }
+
+.round-link {
+  background-color: $dm-addt-dark-color;
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  min-width: 2.25rem; min-height: 2.25rem;
+  &:hover {
+    transform: scale(1.1);
+  }
+}

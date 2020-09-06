@@ -7,15 +7,13 @@
         alt="author avatar">
       <img v-else src="../assets/no-avatar.svg" alt="author avatar">
       <div class="ui right pointing label">
-        Author Name
+        {{ user_name || 'Author Name'}}
       </div>
     </div>
   </router-link>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 import GameCardMenu from '@/components/GameCardMenu';
 
@@ -24,6 +22,7 @@ export default {
   props: {
     username: String,
     avatar: String,
+    user_name: String
   },
 };
 </script>

@@ -6,7 +6,6 @@
     p:hover {
       color: $dm-accent-bg-color;
     }
-
   }
   .breadcrumb {
     .router-link-active,
@@ -113,7 +112,8 @@
   }
   .user-profile-card,
   .game-profile-card,
-  .team-profile-card {
+  .team-profile-card,
+  .version-card {
     background-color: $dm-dark-color;
     * {
       color: $dm-main-font-color;
@@ -159,7 +159,7 @@
   .verfc {
     color: $dm-error-color;
   }
-  .game-card, .team-card {
+  .game-card, .team-card, .version-card {
     color: $dm-main-font-color;
     background-color: $dm-dark-color;
     .small-card-title {
@@ -205,5 +205,8 @@
     i:hover {
       color: $dm-accent-bg-color;
     }
+  }
+  .sort.down {
+    color: $dm-accent-bg-color;
   }
 }

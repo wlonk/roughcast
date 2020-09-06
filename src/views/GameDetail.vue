@@ -1,16 +1,13 @@
 <template>
   <div>
     <GameProfileCard v-bind="game" />
-    <!-- <div class="box-title">
-      <h5>Recent version</h5>
-    </div> -->
-    <!-- <VersionList
+    <VersionList
       :team="teamSlug"
       :game="game.slug"
       :userCanAddVersions="game.permissions['version:add']"
       :versions="game.versions"
       :defaultVisibleTo="game.default_visible_to"
-    /> -->
+    />
   </div>
 </template>
 
