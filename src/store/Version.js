@@ -19,7 +19,7 @@ const mutations = {
 
 const actions = {
   async retrieveVersions({ commit }) {
-    const resp = await api.get('/version/');
+    const resp = await api.get('versions/');
     if (resp.ok) {
       const versions = resp.data;
       const versionsObj = versions.reduce((acc, curr) => {
@@ -36,7 +36,7 @@ const actions = {
       slug: version,
       game__slug: game,
     });
-    const response = await api.get(`/version/?${params.toString()}`);
+    const response = await api.get(`versions/?${params.toString()}`);
     if (response.ok) {
       const versions = response.data;
       if (versions.length !== 1) {
@@ -50,7 +50,7 @@ const actions = {
     }
   },
   async createNewVersion({ commit }, data) {
-    const response = await api.post('/version/', data);
+    const response = await api.post('versions/', data);
     if (response.ok) {
       const newVersion = response.data;
       commit('getVersionById', newVersion);

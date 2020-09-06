@@ -19,7 +19,7 @@ const mutations = {
 
 const actions = {
   async retrieveTeams({ commit }) {
-    const resp = await api.get('/team/');
+    const resp = await api.get('teams/');
     if (resp.ok) {
       const teams = resp.data;
       const teamsObj = teams.reduce((acc, curr) => {
@@ -35,7 +35,7 @@ const actions = {
     if (state.all[id] !== undefined) {
       return;
     }
-    const response = await api.get(`/team/${id}/`);
+    const response = await api.get(`teams/${id}/`);
     if (response.ok) {
       const team = response.data;
       commit('getTeamById', team);
@@ -44,7 +44,7 @@ const actions = {
     }
   },
   async createNewTeam({ commit }, data) {
-    const response = await api.post('/team/', data);
+    const response = await api.post('teams/', data);
     if (response.ok) {
       const newTeam = response.data;
       commit('getTeamById', newTeam);

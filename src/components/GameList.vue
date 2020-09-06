@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="block-content">
+    <div class="block-content game-list">
       <GameCard
         v-for="game in gamesWithTeam"
         :key="game.id"

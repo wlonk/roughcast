@@ -1,0 +1,135 @@
+version: 2.1
+
+jobs:
+  build-py:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/python:latest'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - roughcast-py-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/dev.txt" }}
+            - roughcast-py-
+      - run:
+          name: Install Dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            make install-py-dev
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./venv
+      - save_cache:
+          key: roughcast-py-{{ checksum "requirements/base.txt" }}-{{ checksum "requirements/dev.txt" }}
+          paths:
+            - ./venv
+
+  build-js:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - roughcast-npm-{{ checksum "yarn.lock" }}
+            - roughcast-npm-
+      - run:
+          name: Compile Front-End Assets
+          command: make install-js build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./dist
+            - ./node_modules
+      - save_cache:
+          key: roughcast-npm-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+
+  lint-py:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/python:latest'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Lint
+          command: |
+            . venv/bin/activate
+            make lint-py
+
+  lint-js:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Lint
+          command: |
+            make lint-js
+
+  test-python:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/python:latest'
+        environment:
+          DATABASE_URL: postgres://ubuntu:circle_test@localhost:5432/circle_test
+          DJANGO_DEBUG: False
+          HASHID_FIELD_SALT: test_hash_id
+          DJANGO_SECRET_KEY: test_secret_key
+          DJANGO_SETTINGS_MODULE: roughcast.settings.base
+          SECURE_SSL_REDIRECT: False
+          SENDGRID_API_KEY: test_sendgrid_key
+      - image: circleci/postgres:12.4
+        environment:
+          POSTGRES_DB: circle_test
+          POSTGRES_PASSWORD: circle_test
+          POSTGRES_USER: ubuntu
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test Python
+          command: |
+            . venv/bin/activate
+            make test-py
+
+  test-js:
+    working_directory: ~/roughcast
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test JS
+          command: make test-js
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build-py
+      - build-js
+      - lint-py:
+          requires:
+            - build-py
+      - lint-js:
+          requires:
+            - build-js
+      - test-python:
+          requires:
+            - build-py
+      - test-js:
+          requires:
+            - build-js

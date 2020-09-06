@@ -34,7 +34,7 @@ Set up a virtualenv, via something like::
 
    mkvirtualenv roughcast
    setvirtualenvproject .
-   make install
+   make install-dev
 
 Create a database and initialize it::
 

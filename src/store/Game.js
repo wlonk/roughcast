@@ -19,7 +19,7 @@ const mutations = {
 
 const actions = {
   async retrieveGames({ commit }) {
-    const resp = await api.get('/game/');
+    const resp = await api.get('games/');
     if (resp.ok) {
       const games = resp.data;
       const gamesObj = games.reduce((acc, curr) => {
@@ -35,7 +35,7 @@ const actions = {
     if (state.all[id] !== undefined) {
       return;
     }
-    const response = await api.get(`/game/${id}/`);
+    const response = await api.get(`games/${id}/`);
     if (response.ok) {
       const game = response.data;
       commit('getGameById', game);
@@ -44,12 +44,19 @@ const actions = {
     }
   },
   async createNewGame({ commit }, data) {
-    const response = await api.post('/game/', data);
-    if (response.ok) {
+    try {
+      const response = await api.post('games/', data);
       const newGame = response.data;
       commit('getGameById', newGame);
-    } else {
-      // TODO: Display lookup error toast?
+      return {};
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      } else {
+        return {
+          non_field_errors: ['There was error communicating with the server'],
+        };
+      }
     }
   },
 };

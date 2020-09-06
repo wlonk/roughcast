@@ -46,8 +46,8 @@ export default {
     increaseCount() {
       return (this.count = this.count + 5);
     },
-    selectGroup(slug) {
-      this.$emit('choose-group', slug);
+    selectGroup(group) {
+      this.$emit('choose-group', group);
     },
   },
   computed: {

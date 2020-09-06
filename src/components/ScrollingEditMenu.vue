@@ -1,5 +1,5 @@
 <template>
-  <scrollactive active-class="active" class="my-nav scrolling-menu">
+  <scrollactive active-class="active" class="scrolling-menu">
     <router-link to="#public" class="link scrollactive-item">
       Public profile
     </router-link>

@@ -67,10 +67,10 @@ class RegisterSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         user = User.objects.create(
-            username=validated_data["username"],
-            email=validated_data["email"],
-            password=validated_data["password1"],
+            username=validated_data["username"], email=validated_data["email"],
         )
+        user.set_password(validated_data["password1"])
+        user.save()
         email_verification.send_activation_email(user, self.context["request"])
         return user
 
@@ -86,10 +86,6 @@ class VerifyEmailSerializer(serializers.Serializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
-
-
-class LogoutSerializer(serializers.Serializer):
-    pass
 
 
 class PasswordResetSerializer(serializers.Serializer):
@@ -274,7 +270,7 @@ class TeamSerializer(serializers.ModelSerializer):
     permissions = serializers.SerializerMethodField()
 
     def get_permissions(self, team):
-        user = getattr(self.context.get("request", None), "user")
+        user = getattr(self.context.get("request", None), "user", None)
         return {
             "game:add": user in team.members.all(),
             "this:edit": user in team.members.all(),
@@ -283,7 +279,7 @@ class TeamSerializer(serializers.ModelSerializer):
     user_is_owner = serializers.SerializerMethodField()
 
     def get_user_is_owner(self, team):
-        user = getattr(self.context.get("request", None), "user")
+        user = getattr(self.context.get("request", None), "user", None)
         return (
             user
             and user.is_authenticated
@@ -295,7 +291,7 @@ class TeamSerializer(serializers.ModelSerializer):
     user_is_member = serializers.SerializerMethodField()
 
     def get_user_is_member(self, team):
-        user = getattr(self.context.get("request", None), "user")
+        user = getattr(self.context.get("request", None), "user", None)
         return (
             user
             and user.is_authenticated
@@ -304,9 +300,9 @@ class TeamSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         team = super().create(validated_data)
-        user = getattr(self.context.get("request", None), "user")
+        user = getattr(self.context.get("request", None), "user", None)
         if user and user.is_authenticated:
-            TeamMembership.objets.create(
+            TeamMembership.objects.create(
                 user=user, team=team, is_owner=True,
             )
         return team
@@ -361,7 +357,7 @@ class GameSerializer(serializers.ModelSerializer):
     permissions = serializers.SerializerMethodField()
 
     def get_permissions(self, game):
-        user = getattr(self.context.get("request", None), "user")
+        user = getattr(self.context.get("request", None), "user", None)
         return {
             "version:add": user in game.team.members.all(),
             "this:delete": user in game.team.members.all(),
@@ -431,7 +427,7 @@ class VersionSerializer(serializers.ModelSerializer):
     permissions = serializers.SerializerMethodField()
 
     def get_permissions(self, version):
-        user = getattr(self.context.get("request", None), "user")
+        user = getattr(self.context.get("request", None), "user", None)
         return {
             "this:delete": user in version.game.team.members.all(),
             "this:edit": user in version.game.team.members.all(),

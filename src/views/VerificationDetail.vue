@@ -49,6 +49,8 @@ export default {
   },
   data() {
     return {
+      // Hey Kit, don't change this to an empty object, that evaluates to true
+      // in JS.
       errors: null,
       shouldSendVerification: this.$route.params.key,
       verificationPending: Boolean(this.$route.params.key),
@@ -62,7 +64,7 @@ export default {
         return;
       }
       try {
-        await this.$http.post('user/verify_email/', data);
+        await this.$http.post('accounts/verify_email/', data);
         this.verificationPending = false;
       } catch (error) {
         // TODO: Actually display errors in the form!

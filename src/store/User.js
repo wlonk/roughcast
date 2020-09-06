@@ -6,7 +6,6 @@ const state = () => ({
   current: null,
   profile: null,
   loggingIn: false,
-  errors: {},
   all: {},
 });
 
@@ -23,9 +22,6 @@ const mutations = {
   },
   doneLoggingIn(state) {
     state.loggingIn = false;
-  },
-  setErrors(state, errors) {
-    state.errors = errors;
   },
   setProfile(state, profile) {
     state.profile = profile;
@@ -72,44 +68,15 @@ const mutations = {
 const actions = {
   async setCurrentUser({ commit }, user) {
     Vue.axios.defaults.headers.common['Authorization'] = `Token ${user.token}`;
-    const response = await api.get('/user/profile/');
     commit('logIn', user);
+    const response = await api.get('accounts/profile/');
     commit('setProfile', response.data);
   },
-  async logIn({ commit }, data) {
-    commit('setErrors', {});
-    commit('loggingIn');
-    const response = await api.post('/login/', data);
-    if (response.ok) {
-      const user = response.data;
-      Vue.axios.defaults.headers.common[
-        'Authorization'
-      ] = `Token ${user.token}`;
-      const profileResponse = await api.get('/user/profile/');
-      commit('logIn', user);
-      commit('setProfile', profileResponse.data);
-    } else {
-      const errors = response.data;
-      console.log(errors);
-      commit('setErrors', errors);
-      commit('logOut');
-    }
-    commit('doneLoggingIn');
-  },
   async logOut({ commit }) {
-    const response = await api.post('/logout/');
     commit('logOut');
-    if (!response.ok) {
-      const errors = {
-        non_field_errors: [
-          'There was an error logging out. Please try again in a moment.',
-        ],
-      };
-      commit('setErrors', errors);
-    }
   },
   async retrieveUsers({ commit }) {
-    const resp = await api.get('/user/');
+    const resp = await api.get('users/');
     if (resp.ok) {
       const users = resp.data;
       const usersObj = users.reduce((acc, curr) => {
@@ -125,7 +92,7 @@ const actions = {
     if (state.all[id] !== undefined) {
       return;
     }
-    const response = await api.get(`/user/${id}/`);
+    const response = await api.get(`users/${id}/`);
     if (response.ok) {
       const user = response.data;
       commit('getUserById', user);

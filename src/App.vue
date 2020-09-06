@@ -1,6 +1,8 @@
 <template>
   <div id="app" data-theme="dark">
     <MainMenu />
+    <!-- @TODO remove this when out of alpha! -->
+    <AlphaWarningBanner />
     <div class="ui container">
       <BreadCrumbs />
     </div>
@@ -14,6 +16,7 @@
 import Vue from 'vue';
 import BreadCrumbs from '@/components/BreadCrumbs';
 import MainMenu from '@/components/MainMenu';
+import AlphaWarningBanner from '@/components/AlphaWarningBanner';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -21,6 +24,7 @@ export default {
   components: {
     BreadCrumbs,
     MainMenu,
+    AlphaWarningBanner,
   },
   computed: mapGetters(['currentUser']),
   created() {

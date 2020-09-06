@@ -17,7 +17,7 @@ const AttachedFile = {
   },
   actions: {
     async retrieveAttachedFiles({ commit }) {
-      const resp = await api.get('/attached_file/');
+      const resp = await api.get('attached_files/');
       if (resp.ok) {
         const attached_files = resp.data;
         const attached_filesObj = attached_files.reduce((acc, curr) => {
@@ -33,7 +33,7 @@ const AttachedFile = {
       if (state.all[id] !== undefined) {
         return;
       }
-      const response = await api.get(`/attached_file/${id}/`);
+      const response = await api.get(`attached_files/${id}/`);
       if (response.ok) {
         const attached_file = response.data;
         commit('getAttachedFileById', attached_file);
@@ -45,7 +45,7 @@ const AttachedFile = {
       const formData = new FormData();
       formData.append('version_id', data.version_id);
       formData.append('attached_file', data.attached_file);
-      const response = await api.post('/attached_file/', formData);
+      const response = await api.post('attached_files/', formData);
       if (response.ok) {
         const newAttachedFile = response.data;
         commit('getAttachedFileById', newAttachedFile);

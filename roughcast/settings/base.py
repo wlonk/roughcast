@@ -24,9 +24,10 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 HASHID_FIELD_SALT = env("HASHID_FIELD_SALT")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DJANGO_DEBUG", type_=boolish)
+DEBUG = env("DJANGO_DEBUG", type_=boolish, default=False)
 ALLOWED_HOSTS = [
     "roughcast.app",
+    "roughcast.onrender.com",
 ]
 if DEBUG:
     ALLOWED_HOSTS += [
@@ -89,6 +90,9 @@ TEMPLATES = [
 ]
 
 
+ADMINS = (("Kit", "kit@transneptune.net"),)
+
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {"default": dj_database_url.config(default="postgres:///roughcast")}
@@ -142,27 +146,24 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     # For things we make by hand:
     str(BASE_DIR / "static"),
-    # For things Vue makes that it considers "the app":
-    str(BASE_DIR / "dist"),
-    # For things Vue makes that it considers "assets", like
-    # chunk-vendor.js:
+    # For things Vue makes that are "assets":
     str(BASE_DIR / "dist" / "static"),
+    # For things Vue makes that are "core":
+    str(BASE_DIR / "dist"),
 ]
 STATIC_ROOT = str(BASE_DIR / "staticfiles")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 MEDIA_ROOT = str(BASE_DIR / "media")
 MEDIA_URL = "/media/"
-
-FONT_ROOT = str(BASE_DIR / "static" / "fonts")
-FONT_URL = "/fonts/"
 
 # Crispy Forms
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 
 # Email
-DEFAULT_FROM_EMAIL = "no-reply@wheretofind.me"
+DEFAULT_FROM_EMAIL = "no-reply@roughcast.app"
+DEFAULT_SUPPORT_EMAIL = "support@roughcast.app"
 # @@@ TODO: get rid of conditionals in settings. Move to .dev?
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

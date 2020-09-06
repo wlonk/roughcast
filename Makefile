@@ -1,17 +1,29 @@
-include .env
-export $(shell sed 's/=.*//' .env)
+-include .env
+export $(shell sed 's/=.*//' .env 2> /dev/null || true)
 
-# Run server:
+######
+# Basic Utilities
+###
+
 .PHONY: default
 default:
 	yarn serve
 
-# Deploy!
-.PHONY: deploy
-deploy:
-	echo "Not implemented"
+.PHONY: prepare-prod
+prepare-prod: install migrate build static
 
-# Lock requirements files:
+.PHONY: clean
+clean:
+	rm -rf staticfiles/*
+	rm -rf dist/*
+	rm -rf coverage/
+	rm -rf .coverage
+	rm -rf htmlcov/
+
+######
+# Managing Dependencies
+###
+
 .PHONY: lock
 lock: requirements/base.txt requirements/dev.txt
 
@@ -20,14 +32,29 @@ requirements/dev.txt: requirements/base.txt
 %.txt: %.in
 	pip-compile --output-file=$@ $<
 
-# Install packages into the local context
-# (make sure to activate that virtual environment!)
-.PHONY: install
-install:
+.PHONY: install-py
+install-py:
+	# Install packages into the local context
+	# (make sure to activate that virtual environment!)
 	pip install -r requirements/base.txt
+
+.PHONY: install-dev
+install-py-dev: install-py
+	# Install packages into the local context
+	# (make sure to activate that virtual environment!)
 	pip install -r requirements/dev.txt
 
-# Handle DB state, making and applying migrations
+.PHONY: install-js
+install-js:
+	yarn install
+
+.PHONY: install
+install: install-js install-py
+
+######
+# Managing the Database
+###
+
 .PHONY: migrations
 migrations:
 	python manage.py makemigrations roughcast
@@ -60,36 +87,54 @@ dumpdata:
 loaddata:
 	python manage.py loaddata test.json
 
-# Manage static assets:
+######
+# Manage Static Assets
+###
+
 .PHONY: static
 static:
 	python manage.py collectstatic --noinput
 
-# Run tests:
-.PHONY: test
-test:
+.PHONY: build
+build:
+	yarn build
+
+######
+# Testing and Linting
+###
+
+.PHONY: test-py
+test-py:
 	pytest
+
+.PHONY: test-js
+test-js:
 	yarn test
 
-# Run linting tools:
-.PHONY: lint
-lint:
+.PHONY: test
+test: test-py test-js
+
+.PHONY: lint-py
+lint-py:
 	isort -rc manage.py roughcast tests
 	black manage.py roughcast tests
 	flake8 manage.py roughcast tests
+
+.PHONY: lint-js
+lint-js:
 	yarn lint
 
-# Access Python shell
+.PHONY: lint
+lint: lint-py lint-js
+
+######
+# Development Conveniences
+###
+
 .PHONY: shell
 shell:
 	python manage.py shell
 
-# Access Postgres shell
 .PHONY: dbshell
 dbshell:
 	python manage.py dbshell
-
-# Debug Django URLs
-.PHONY: show_urls
-show_urls:
-	python manage.py show_urls

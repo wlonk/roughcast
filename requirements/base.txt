@@ -14,10 +14,11 @@ django-filter==2.3.0      # via -r requirements/base.in
 django-hashid-field==3.1.3  # via -r requirements/base.in
 django-markdownify==0.8.0  # via -r requirements/base.in
 django-registration==3.1  # via -r requirements/base.in
-django-sendgrid==1.0.1    # via -r requirements/base.in
-django==3.1               # via -r requirements/base.in, django-filter, django-hashid-field, django-markdownify, django-registration, djangorestframework
+django-sendgrid-v5==0.9.0  # via -r requirements/base.in
+django==3.1               # via -r requirements/base.in, django-filter, django-hashid-field, django-markdownify, django-registration, django-sendgrid-v5, djangorestframework
 djangorestframework==3.11.0  # via -r requirements/base.in
 emoji==0.5.4              # via -r requirements/base.in
+future==0.18.2            # via django-sendgrid-v5
 gunicorn==20.0.4          # via -r requirements/base.in
 hashids==1.2.0            # via django-hashid-field
 markdown==3.2.2           # via -r requirements/base.in, django-markdownify
@@ -25,10 +26,13 @@ packaging==20.4           # via bleach
 pillow==7.1.2             # via -r requirements/base.in
 psycopg2-binary==2.8.5    # via -r requirements/base.in
 pyparsing==2.4.7          # via packaging
+python-http-client==3.3.1  # via django-sendgrid-v5, sendgrid
 pytz==2020.1              # via django
+sendgrid==6.4.6           # via django-sendgrid-v5
 six==1.15.0               # via bleach, packaging
 soupsieve==2.0.1          # via beautifulsoup4
 sqlparse==0.3.1           # via django
+starkbank-ecdsa==1.1.0    # via sendgrid
 webencodings==0.5.1       # via bleach
 whitenoise==5.1.0         # via -r requirements/base.in
 

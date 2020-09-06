@@ -3,7 +3,13 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from roughcast.models import attached_file_upload_to, is_emoji
+from roughcast.models import (
+    InAppNotification,
+    NotificationPreferences,
+    Subscribable,
+    attached_file_upload_to,
+    is_emoji,
+)
 
 
 def test_attached_file_upload_to():
@@ -38,9 +44,102 @@ class TestUser:
 
 
 @pytest.mark.django_db
+class TestUserProfile:
+    def test_str(self, user):
+        assert str(user.profile) == f"UserProfile for {user.username}"
+
+    def test_should_notify(self, user):
+        user.profile.notif_comments = 0
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.IN_APP
+        )
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.INSTANT_EMAIL
+        )
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.DIGEST_EMAIL
+        )
+
+        user.profile.notif_comments = 1
+        assert user.profile._should_notify("comments", NotificationPreferences.IN_APP)
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.INSTANT_EMAIL
+        )
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.DIGEST_EMAIL
+        )
+
+        user.profile.notif_comments = 2
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.IN_APP
+        )
+        assert user.profile._should_notify(
+            "comments", NotificationPreferences.INSTANT_EMAIL
+        )
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.DIGEST_EMAIL
+        )
+
+        user.profile.notif_comments = 3
+        assert user.profile._should_notify("comments", NotificationPreferences.IN_APP)
+        assert user.profile._should_notify(
+            "comments", NotificationPreferences.INSTANT_EMAIL
+        )
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.DIGEST_EMAIL
+        )
+
+        user.profile.notif_comments = 4
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.IN_APP
+        )
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.INSTANT_EMAIL
+        )
+        assert user.profile._should_notify(
+            "comments", NotificationPreferences.DIGEST_EMAIL
+        )
+
+        user.profile.notif_comments = 5
+        assert user.profile._should_notify("comments", NotificationPreferences.IN_APP)
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.INSTANT_EMAIL
+        )
+        assert user.profile._should_notify(
+            "comments", NotificationPreferences.DIGEST_EMAIL
+        )
+
+        user.profile.notif_comments = 6
+        assert not user.profile._should_notify(
+            "comments", NotificationPreferences.IN_APP
+        )
+        assert user.profile._should_notify(
+            "comments", NotificationPreferences.INSTANT_EMAIL
+        )
+        assert user.profile._should_notify(
+            "comments", NotificationPreferences.DIGEST_EMAIL
+        )
+
+        user.profile.notif_comments = 7
+        assert user.profile._should_notify("comments", NotificationPreferences.IN_APP)
+        assert user.profile._should_notify(
+            "comments", NotificationPreferences.INSTANT_EMAIL
+        )
+        assert user.profile._should_notify(
+            "comments", NotificationPreferences.DIGEST_EMAIL
+        )
+
+
+@pytest.mark.django_db
 class TestTeam:
     def test_str(self, team):
         assert str(team) == "Transneptune Games"
+
+    def test_subscribable_delete(self, team_factory):
+        team = team_factory()
+        assert Subscribable.objects.count() == 1
+        team.delete()
+        assert Subscribable.objects.count() == 0
 
 
 @pytest.mark.django_db
@@ -60,3 +159,9 @@ class TestGame:
 class TestVersion:
     def test_str(self, version):
         assert str(version) == "The Game by Transneptune Games version v0.1.0"
+
+    def test_notify(self, game, user, subscription_factory, version_factory):
+        subscription_factory(user=user, subscribable=game.subscribable)
+        assert not InAppNotification.objects.filter(user=user).exists()
+        version_factory(game=game)
+        assert InAppNotification.objects.filter(user=user).exists()
