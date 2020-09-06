@@ -32,5 +32,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  p {
+    text-align: center;
+  }
 }
 </style>

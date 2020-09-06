@@ -18,9 +18,9 @@
         </li>
       </ul>
     </div>
+    <div v-if="successMessage" class="accent-link">{{ successMessage }}</div>
     <div class="submit-row row">
       <input type="submit" value="Reset password" class="submit-btn" />
-      <div v-if="successMessage" class="accent-link">{{ successMessage }}</div>
       <p>
         Back to
         <router-link to="/login" class="accent-link">
@@ -54,7 +54,7 @@ export default {
       const email = e.target.elements['email'].value;
       const data = { email };
       try {
-        await this.$http.post('user/reset_password/', data);
+        await this.$http.post('accounts/reset_password/', data);
         this.successMessage = 'Email sent!';
       } catch (error) {
         // TODO: Actually display errors in the form!

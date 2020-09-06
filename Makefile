@@ -138,7 +138,3 @@ shell:
 .PHONY: dbshell
 dbshell:
 	python manage.py dbshell
-
-.PHONY: show_urls
-show_urls:
-	python manage.py show_urls

@@ -86,7 +86,7 @@ export default {
       const password = e.target.elements['password'].value;
       const data = { username, password };
       try {
-        const response = await this.$http.post('/login/', data);
+        const response = await this.$http.post('accounts/login/', data);
         await this.$store.dispatch('setCurrentUser', response.data);
       } catch (error) {
         this.submitting = false;

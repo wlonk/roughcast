@@ -69,14 +69,14 @@ const actions = {
   async setCurrentUser({ commit }, user) {
     Vue.axios.defaults.headers.common['Authorization'] = `Token ${user.token}`;
     commit('logIn', user);
-    const response = await api.get('/user/profile/');
+    const response = await api.get('accounts/profile/');
     commit('setProfile', response.data);
   },
   async logOut({ commit }) {
     commit('logOut');
   },
   async retrieveUsers({ commit }) {
-    const resp = await api.get('/user/');
+    const resp = await api.get('users/');
     if (resp.ok) {
       const users = resp.data;
       const usersObj = users.reduce((acc, curr) => {
@@ -92,7 +92,7 @@ const actions = {
     if (state.all[id] !== undefined) {
       return;
     }
-    const response = await api.get(`/user/${id}/`);
+    const response = await api.get(`users/${id}/`);
     if (response.ok) {
       const user = response.data;
       commit('getUserById', user);

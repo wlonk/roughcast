@@ -67,10 +67,10 @@ class RegisterSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         user = User.objects.create(
-            username=validated_data["username"],
-            email=validated_data["email"],
-            password=validated_data["password1"],
+            username=validated_data["username"], email=validated_data["email"],
         )
+        user.set_password(validated_data["password1"])
+        user.save()
         email_verification.send_activation_email(user, self.context["request"])
         return user
 
@@ -86,10 +86,6 @@ class VerifyEmailSerializer(serializers.Serializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
-
-
-class LogoutSerializer(serializers.Serializer):
-    pass
 
 
 class PasswordResetSerializer(serializers.Serializer):

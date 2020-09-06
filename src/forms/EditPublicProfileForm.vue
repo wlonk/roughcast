@@ -62,7 +62,7 @@ export default {
       const bio = e.target.elements['bio-info'].value;
       const data = { first_name, bio };
       try {
-        const response = await this.$http.patch('user/me/', data);
+        const response = await this.$http.patch('users/me/', data);
         this.$store.dispatch('updateDisplayName', response.data.first_name);
         this.$store.dispatch('updateBio', response.data.bio);
         this.$emit('close-edit');

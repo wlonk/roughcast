@@ -38,6 +38,7 @@
         </li>
       </ul>
     </div>
+    <div v-if="successMessage" class="accent-link">{{ successMessage }}</div>
     <div class="submit-row row">
       <input type="submit" value="Reset password" class="submit-btn" />
       <ul v-if="errors.non_field_errors">
@@ -57,7 +58,10 @@
 export default {
   name: 'CreateNewPasswordForm',
   data() {
-    return { errors: {} };
+    return {
+      errors: {},
+      successMessage: '',
+    };
   },
   methods: {
     async setNewPassword(e) {
@@ -65,9 +69,13 @@ export default {
       const password1 = e.target.elements['password1'].value;
       const password2 = e.target.elements['password2'].value;
       const data = { uid, token, password1, password2 };
+      this.errors = {};
+      this.successMessage = '';
       try {
-        await this.$http.post('user/reset_password_confirm/', data);
+        await this.$http.post('accounts/reset_password_confirm/', data);
         // TODO: show "thanks, you can log in now!"
+        this.successMessage =
+          'Your password has been reset. Please log in now!';
       } catch (error) {
         // TODO: Actually display errors in the form!
         if (error.response) {

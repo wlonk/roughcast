@@ -3,6 +3,15 @@
     <div>
       <label for="username">Username</label>
       <input type="text" name="username" placeholder="Username" id="username" />
+      <ul v-if="errors.username">
+        <li
+          v-for="(error, i) in errors.username"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </div>
     <div>
       <label for="email">Email</label>
@@ -12,6 +21,15 @@
         placeholder="example@mail.com"
         id="email"
       />
+      <ul v-if="errors.email">
+        <li
+          v-for="(error, i) in errors.email"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </div>
     <div class="psw-row row">
       <div>
@@ -23,6 +41,15 @@
           placeholder="Password"
           class="ui input"
         />
+        <ul v-if="errors.password1">
+          <li
+            v-for="(error, i) in errors.password1"
+            :key="i"
+            class="ui error message"
+          >
+            {{ error }}
+          </li>
+        </ul>
       </div>
       <div>
         <label for="password2">Repeat Password</label>
@@ -33,6 +60,15 @@
           placeholder="Password"
           class="ui input"
         />
+        <ul v-if="errors.password2">
+          <li
+            v-for="(error, i) in errors.password2"
+            :key="i"
+            class="ui error message"
+          >
+            {{ error }}
+          </li>
+        </ul>
       </div>
     </div>
     <div class="check-row row">
@@ -45,6 +81,11 @@
           </router-link>
         </p>
       </label>
+      <ul v-if="errors.tos">
+        <li v-for="(error, i) in errors.tos" :key="i" class="ui error message">
+          {{ error }}
+        </li>
+      </ul>
     </div>
     <div class="submit-row row">
       <input type="submit" value="Sign Up" class="submit-btn" />
@@ -54,6 +95,15 @@
           Log In!
         </router-link>
       </p>
+      <ul v-if="errors.non_field_errors">
+        <li
+          v-for="(error, i) in errors.non_field_errors"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </div>
   </form>
 </template>
@@ -79,7 +129,7 @@ export default {
       // components, which I don't like. So I'll need to decide how to resolve
       // this conflict.
       try {
-        const response = await this.$http.post('register/', data);
+        const response = await this.$http.post('accounts/register/', data);
         await this.$store.dispatch('setCurrentUser', response.data);
         this.$router.push('/verification');
       } catch (error) {

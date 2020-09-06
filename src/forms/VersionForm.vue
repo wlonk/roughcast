@@ -89,7 +89,7 @@ export default {
           slug: this.slug,
           game__slug: this.forGame,
         };
-        const response = await this.$http.get('/version/', { params });
+        const response = await this.$http.get('versions/', { params });
         return response.ok && response.data.length > 0;
       } catch {
         return false;

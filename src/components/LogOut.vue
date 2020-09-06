@@ -22,7 +22,6 @@ export default {
   methods: {
     async logout() {
       try {
-        await this.$http.post('/logout/');
         this.$store.dispatch('logOut');
       } catch (error) {
         this.errors = {

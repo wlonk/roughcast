@@ -12,7 +12,7 @@ const mutations = {
 
 const actions = {
   async retrieveTeamMemberships({ commit }) {
-    const resp = await api.get('/teammembership/');
+    const resp = await api.get('teammemberships/');
     if (resp.ok) {
       const teamMemberships = resp.data;
       const teamMembershipsObj = teamMemberships.reduce((acc, curr) => {
