@@ -38,6 +38,7 @@ import ScrollingEditTeamMenu from '@/components/ScrollingEditTeamMenu';
 import EditPublicTeamInfoForm from '@/forms/EditPublicTeamInfoForm';
 import InviteUserToTeamForm from '@/forms/InviteUserToTeamForm';
 import AddNewGameForm from '@/forms/AddNewGameForm';
+import NoPageNotification from '@/components/NoPageNotification';
 
 export default {
   name: 'EditTeamPage',
@@ -45,7 +46,8 @@ export default {
     ScrollingEditTeamMenu,
     EditPublicTeamInfoForm,
     InviteUserToTeamForm,
-    AddNewGameForm
+    AddNewGameForm,
+    NoPageNotification
   },
   computed: {
     ...mapGetters(['hydratedTeam']),
