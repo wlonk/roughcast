@@ -44,7 +44,7 @@ export default {
       const email = this.currentUser.email;
       const data = { email };
       try {
-        await this.$http.post('user/reset_password/', data);
+        await this.$http.post('accounts/reset_password/', data);
         this.successMessage = 'Reset email sent.';
       } catch (error) {
         if (error.response) {

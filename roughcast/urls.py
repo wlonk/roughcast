@@ -37,12 +37,14 @@ router.register("attached_files", views.AttachedFileViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", include(router.urls)),
     re_path(
         "^(?!api|static|media)",
         TemplateView.as_view(template_name="base.html"),
         name="root",
     ),
+    # After the root template, so that 404s don't generate client
+    # template pages:
+    path("api/", include(router.urls)),
     # Just so the email can generate a reverse URL:
     path(
         "change/<uidb64>/<token>",
