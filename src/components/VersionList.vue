@@ -15,23 +15,12 @@
         :key="version.id"
         v-bind="version" />
     </div>
-    <!-- <div v-if="userCanAddVersions">
-      <h4 class="ui horizontal divider">
-        add a version
-      </h4>
-      <VersionForm
-        :forTeam="team"
-        :forGame="game"
-        :visibleTo="defaultVisibleTo"
-      />
-    </div> -->
   </div>
 </template>
 
 <script>
 import RecentVersionCard from '@/components/RecentVersionCard';
 import VersionCard from '@/components/VersionCard';
-import VersionForm from '@/forms/VersionForm';
 
 export default {
   name: 'VersionList',
@@ -45,7 +34,6 @@ export default {
   components: {
     RecentVersionCard,
     VersionCard,
-    VersionForm,
   },
   computed: {
     recent_version() {
