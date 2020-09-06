@@ -20,6 +20,6 @@
 
 <script>
 export default {
-  name: 'ScrollingEditMenu',
+  name: 'ScrollingEditUserMenu',
 };
 </script>
