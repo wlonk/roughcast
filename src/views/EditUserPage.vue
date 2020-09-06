@@ -3,7 +3,7 @@
     <div v-if="user" class="edit-block">
       <h2>Edit Profile</h2>
       <div>
-        <ScrollingEditMenu />
+        <ScrollingEditUserMenu />
         <div>
           <PublicProfileBlock />
           <AccountSettingsBlock />
@@ -19,7 +19,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import ScrollingEditMenu from '@/components/ScrollingEditMenu';
+import ScrollingEditUserMenu from '@/components/ScrollingEditUserMenu';
 import PublicProfileBlock from '@/components/PublicProfileBlock';
 import AccountSettingsBlock from '@/components/AccountSettingsBlock';
 import ChangePasswordForm from '@/forms/ChangePasswordForm';
@@ -30,7 +30,7 @@ import NoPageNotification from '@/components/NoPageNotification';
 export default {
   name: 'EditUserPage',
   components: {
-    ScrollingEditMenu,
+    ScrollingEditUserMenu,
     PublicProfileBlock,
     AccountSettingsBlock,
     ChangePasswordForm,
