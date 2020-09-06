@@ -14,6 +14,7 @@ import ResetPasswordPage from '@/views/ResetPasswordPage';
 import SetNewPasswordPage from '@/views/SetNewPasswordPage';
 import VerificationDetail from '@/views/VerificationDetail';
 import EditUserPage from '@/views/EditUserPage';
+import EditTeamPage from '@/views/EditTeamPage';
 
 Vue.use(VueRouter);
 
@@ -89,6 +90,14 @@ const routes = [
     component: TeamDetail,
     meta: {
       title: 'Team | Roughcast',
+    },
+  },
+  {
+    path: '/t/:team/edit',
+    name: 'Team',
+    component: EditTeamPage,
+    meta: {
+      title: 'Edit Team | Roughcast',
     },
   },
   {
