@@ -15,33 +15,12 @@
             :body="description" />
           <p v-else class="no-bio">There is no game description yet...</p>
         </div>
-        <div class="controls">
-          <button
-            v-if="!permissions['this:edit'] && !is_subscribed && !is_invited"
-            class="small submit-btn">Subscribe</button>
-          <button
-            v-if="is_subscribed"
-            class="subscribed-label">Subscribed</button>
-          <router-link
-            :to="`/t/${slug}/edit`"
-            v-if="permissions['this:edit']"
-            class="accent-link">
-            Edit Team
-          </router-link>
-          <router-link
-            :to="`/g/add`"
-            v-if="permissions['game:add']"
-            class="accent-link">
-            Add Game
-          </router-link>
-          <div v-if="is_invited" class="invitation">
-            <p>You've been invited</p>
-            <button class="small submit-btn">Join team</button>
-            <button class="small submit-btn">
-              <i class="ban icon"></i>
-            </button>
-          </div>
-        </div>
+        <TeamCardControlPanel
+          :permissions="permissions"
+          :slug="slug"
+          :is_subscribed="is_subscribed"
+          :is_invited="is_invited"
+        />
       </div>
     </div>
   </div>
@@ -49,10 +28,14 @@
 
 <script>
 import RenderedMarkdown from '@/components/RenderedMarkdown';
+import TeamCardControlPanel from '@/components/TeamCardControlPanel';
 
 export default {
   name: 'TeamProfileCard',
-  components: { RenderedMarkdown },
+  components: {
+    RenderedMarkdown,
+    TeamCardControlPanel
+  },
   props: {
     id: String,
     name: String,
@@ -61,15 +44,13 @@ export default {
     url: String,
     description: String,
     user_is_owner: Boolean,
-    is_subscribed: Boolean,
-    // is_subscribed: {
-    //   default: true
-    // },
-    is_invited: Boolean,
-    // is_invited: {
-    //   default: true
-    // },
     logo: String,
+    is_subscribed: {
+      default: false
+    },
+    is_invited: {
+      default: false
+    },
   },
 };
 </script>

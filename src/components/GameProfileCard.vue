@@ -19,26 +19,12 @@
             :body="description" />
           <p v-else class="no-bio">There is no game description yet...</p>
         </div>
-        <div class="controls">
-          <button
-            v-if="!permissions['this:edit'] && !is_subscribed"
-            class="small submit-btn">Subscribe</button>
-          <button
-            v-if="is_subscribed"
-            class="subscribed-label">Subscribed</button>
-          <router-link
-            :to="`/t/${team.slug}/${slug}/edit`"
-            v-if="permissions['this:edit']"
-            class="accent-link">
-            Edit game
-          </router-link>
-          <router-link
-            :to="`/t/${team.slug}/${slug}/edit#add-version`"
-            v-if="permissions['version:add']"
-            class="accent-link">
-            Add version
-          </router-link>
-        </div>
+        <GameCardControlPanel
+          :permissions="permissions"
+          :slug="slug"
+          :team_slug="team.slug"
+          :is_subscribed="is_subscribed"
+        />
       </div>
     </div>
   </div>
@@ -46,10 +32,14 @@
 
 <script>
 import RenderedMarkdown from '@/components/RenderedMarkdown';
+import GameCardControlPanel from '@/components/GameCardControlPanel';
 
 export default {
   name: 'GameProfileCard',
-  components: { RenderedMarkdown },
+  components: {
+    RenderedMarkdown,
+    GameCardControlPanel
+  },
   props: {
     id: String,
     name: String,
