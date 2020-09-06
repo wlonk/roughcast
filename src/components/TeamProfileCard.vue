@@ -17,7 +17,7 @@
         </div>
         <div class="controls">
           <button
-            v-if="!permissions['this:edit'] && !is_subscribed"
+            v-if="!permissions['this:edit'] && !is_subscribed && !is_invited"
             class="small submit-btn">Subscribe</button>
           <button
             v-if="is_subscribed"
@@ -34,6 +34,13 @@
             class="accent-link">
             Add Game
           </router-link>
+          <div v-if="is_invited" class="invitation">
+            <p>You've been invited</p>
+            <button class="small submit-btn">Join team</button>
+            <button class="small submit-btn">
+              <i class="ban icon"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -55,6 +62,13 @@ export default {
     description: String,
     user_is_owner: Boolean,
     is_subscribed: Boolean,
+    // is_subscribed: {
+    //   default: true
+    // },
+    is_invited: Boolean,
+    // is_invited: {
+    //   default: true
+    // },
     logo: String,
   },
 };

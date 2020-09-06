@@ -43,6 +43,9 @@
     &:hover {
       box-shadow: $dm-focus-shadow;
     }
+    i {
+      color: $dm-dark-color;
+    }
   }
   .subscribed-label {
     border: 2px solid $dm-accent-bg-color;
