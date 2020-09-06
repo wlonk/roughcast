@@ -1,9 +1,9 @@
 <template>
   <div>
     <TeamProfileCard v-bind="team" />
-    <h3 class="ui horizontal divider">
-      Games
-    </h3>
+    <div class="box-title">
+      <h5>All games</h5>
+    </div>
     <GameList
       :team="team"
       :userCanAddGames="team.permissions['game:add']"

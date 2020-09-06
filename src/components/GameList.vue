@@ -1,14 +1,17 @@
 <template>
   <div>
-    <div class="game-list">
-      <GameCard v-for="game in gamesWithTeam" :key="game.id" v-bind="game" />
+    <div class="block-content">
+      <GameCard
+        v-for="game in gamesWithTeam"
+        :key="game.id"
+        v-bind="game" />
     </div>
-    <div v-if="userCanAddGames">
+    <!-- <div v-if="userCanAddGames">
       <h4 class="ui horizontal divider">
         add a game
       </h4>
       <GameForm :forTeam="team.slug" />
-    </div>
+    </div> -->
   </div>
 </template>
 
