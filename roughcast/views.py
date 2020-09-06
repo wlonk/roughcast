@@ -2,15 +2,17 @@ from io import BytesIO
 from os.path import basename
 from zipfile import ZipFile
 
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate
 from django.http import HttpResponse
+from django.urls import NoReverseMatch
 from django.utils.text import slugify
 from django_registration.exceptions import ActivationError
-from rest_framework import generics, status
+from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.reverse import reverse
+from rest_framework.viewsets import ModelViewSet, ViewSet
 
 from .models import (
     AttachedFile,
@@ -26,7 +28,6 @@ from .serializers import (
     GameSerializer,
     InAppNotificationSerializer,
     LoginSerializer,
-    LogoutSerializer,
     PasswordResetConfirmSerializer,
     PasswordResetSerializer,
     RegisterSerializer,
@@ -40,79 +41,27 @@ from .serializers import (
 )
 
 
-class RegisterView(generics.CreateAPIView):
-    permission_classes = (AllowAny,)
-    serializer_class = RegisterSerializer
+class AccountsView(ViewSet):
+    def list(self, request):
+        # Very approximate hacky way to list all routed actions
+        mapped_actions = []
+        for action_name in dir(self):
+            try:
+                if hasattr(getattr(self, action_name), "mapping"):
+                    mapped_actions.append(action_name)
+            except AttributeError:
+                pass
+        ret = {}
+        for url_name in mapped_actions:
+            try:
+                url_name_lookup = url_name.replace("_", "-")
+                ret[url_name] = reverse(f"accounts-{url_name_lookup}", request=request,)
+            except NoReverseMatch:  # pragma: nocover
+                continue
 
-    def create(self, request):
-        serializer = self.get_serializer(
-            data=request.data, context={"request": request}
-        )
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        user = serializer.save()
-        user.token = user.get_or_create_token()
-        return Response(SelfUserSerializer(user).data, status=status.HTTP_201_CREATED)
+        return Response(ret)
 
-
-class LoginView(generics.CreateAPIView):
-    permission_classes = (AllowAny,)
-    serializer_class = LoginSerializer
-
-    def create(self, request):
-        serializer = self.get_serializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        try:
-            username = (
-                User.objects.filter(username__iexact=serializer.data["username"])
-                .get()
-                .username
-            )
-        except (User.DoesNotExist, User.MultipleObjectsReturned):
-            return Response(
-                {"non_field_errors": ["Invalid credentials."]},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-        data = {
-            "username": username,
-            "password": serializer.data["password"],
-        }
-        user = authenticate(**data)
-        if user is None:
-            return Response(
-                {"non_field_errors": ["Invalid credentials."]},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-        user.token = user.get_or_create_token()
-        return Response(SelfUserSerializer(user).data, status=status.HTTP_200_OK)
-
-
-class LogoutView(generics.CreateAPIView):
-    permission_classes = (IsAuthenticated,)
-    serializer_class = LogoutSerializer
-
-    def create(self, request):
-        logout(request)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-class UserViewSet(ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    lookup_field = "username"
-    lookup_value_regex = "[^/]+"
-
-    def get_object(self):
-        if self.kwargs["username"] == "me":
-            self.kwargs["username"] = self.request.user.username
-        return super().get_object()
-        # TODO: always serialize self with token and SelfUserSerializer
-
-    # The following are detail-false because they only ever apply to the
-    # current user; this does mean that they also all create invalid
-    # usernames, as a side-effect.
-    @action(detail=False, methods=["get", "put"])
+    @action(detail=False, methods=["get", "put"], permission_classes=(IsAuthenticated,))
     def profile(self, request):
         profile = request.user.profile
         if request.method == "GET":
@@ -152,6 +101,57 @@ class UserViewSet(ModelViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         serializer.save(request=request)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=False, methods=["post"], permission_classes=(AllowAny,))
+    def register(self, request):
+        serializer = RegisterSerializer(data=request.data, context={"request": request})
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        user = serializer.save()
+        user.token = user.get_or_create_token()
+        return Response(SelfUserSerializer(user).data, status=status.HTTP_201_CREATED)
+
+    @action(detail=False, methods=["post"], permission_classes=(AllowAny,))
+    def login(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            username = (
+                User.objects.filter(username__iexact=serializer.data["username"])
+                .get()
+                .username
+            )
+        except (User.DoesNotExist, User.MultipleObjectsReturned):
+            return Response(
+                {"non_field_errors": ["Invalid credentials."]},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        data = {
+            "username": username,
+            "password": serializer.data["password"],
+        }
+        user = authenticate(**data)
+        if user is None:
+            return Response(
+                {"non_field_errors": ["Invalid credentials."]},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        user.token = user.get_or_create_token()
+        return Response(SelfUserSerializer(user).data, status=status.HTTP_200_OK)
+
+
+class UserViewSet(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = "username"
+    lookup_value_regex = "[^/]+"
+
+    def get_object(self):
+        # TODO: always serialize self with token and SelfUserSerializer
+        if self.kwargs["username"] == "me":
+            self.kwargs["username"] = self.request.user.username
+        return super().get_object()
 
 
 class InAppNotificationViewSet(ModelViewSet):

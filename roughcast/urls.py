@@ -18,23 +18,21 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.views.generic.base import TemplateView
+from rest_framework.routers import DefaultRouter
 
 from . import views
-from .routers import ExtensibleDefaultRouter
 
-router = ExtensibleDefaultRouter()
-router.non_resource_register("register", views.RegisterView.as_view())
-router.non_resource_register("login", views.LoginView.as_view())
-router.non_resource_register("logout", views.LogoutView.as_view())
-router.register("user", views.UserViewSet)
+router = DefaultRouter()
+router.register("accounts", views.AccountsView, basename="accounts")
+router.register("users", views.UserViewSet)
 router.register(
     "notifications", views.InAppNotificationViewSet, basename="notifications"
 )
-router.register("team", views.TeamViewSet)
-router.register("teammembership", views.TeamMembershipViewSet)
-router.register("game", views.GameViewSet)
-router.register("version", views.VersionViewSet)
-router.register("attached_file", views.AttachedFileViewSet)
+router.register("teams", views.TeamViewSet)
+router.register("teammemberships", views.TeamMembershipViewSet)
+router.register("games", views.GameViewSet)
+router.register("versions", views.VersionViewSet)
+router.register("attached_files", views.AttachedFileViewSet)
 
 
 urlpatterns = [
@@ -45,6 +43,7 @@ urlpatterns = [
         TemplateView.as_view(template_name="base.html"),
         name="root",
     ),
+    # Just so the email can generate a reverse URL:
     path(
         "change/<uidb64>/<token>",
         TemplateView.as_view(template_name="base.html"),

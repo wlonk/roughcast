@@ -88,10 +88,6 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField()
 
 
-class LogoutSerializer(serializers.Serializer):
-    pass
-
-
 class PasswordResetSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
