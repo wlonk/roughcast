@@ -16,6 +16,7 @@ import VerificationDetail from '@/views/VerificationDetail';
 import EditUserPage from '@/views/EditUserPage';
 import EditTeamPage from '@/views/EditTeamPage';
 import EditGamePage from '@/views/EditGamePage';
+import EditVersionPage from '@/views/EditVersionPage';
 
 Vue.use(VueRouter);
 
@@ -123,6 +124,14 @@ const routes = [
     component: VersionDetail,
     meta: {
       title: 'Version | Roughcast',
+    },
+  },
+  {
+    path: '/t/:team/:game/:version/edit',
+    name: 'EditVersion',
+    component: EditVersionPage,
+    meta: {
+      title: 'Edit Version | Roughcast',
     },
   },
 ];
