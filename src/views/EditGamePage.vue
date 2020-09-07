@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-if="game" class="edit-block">
-      <h2>Edit
+      <h2>
+        Edit
         <router-link :to="`/t/${teamSlug}/${game.slug}`" class="accent-link">
           "{{ game.name }}"
         </router-link>
@@ -27,10 +28,7 @@
             <button class="submit-btn no-top">Make game team-only</button>
           </div>
           <!-- Version history WIP -->
-          <AddNewVersionForm
-            :forTeam="teamSlug"
-            :forGame="game.slug"
-          />
+          <AddNewVersionForm :forTeam="teamSlug" :forGame="game.slug" />
           <div class="edit-box" id="delete">
             <div class="box-title">
               <h5>Delete game</h5>

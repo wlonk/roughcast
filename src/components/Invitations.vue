@@ -20,19 +20,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import InvitationCard from '@/components/InvitationCard';
 
 export default {
   name: 'Invitations',
-  data () {
+  data() {
     return {
-      invitations: [{
-        sender_username: 'mayzee',
-        team: 'Funny Bunnies',
-        team_slug: 'funny-bunny'
-      }]
-    }
+      invitations: [
+        {
+          sender_username: 'mayzee',
+          team: 'Funny Bunnies',
+          team_slug: 'funny-bunny',
+        },
+      ],
+    };
   },
   components: {
     InvitationCard,

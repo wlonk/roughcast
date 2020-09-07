@@ -8,7 +8,11 @@
         <label for="name">Version name</label>
         <input type="text" placeholder="Version name" id="name" />
         <ul v-if="errors.name">
-          <li v-for="(error, i) in errors.name" :key="i" class="ui error message">
+          <li
+            v-for="(error, i) in errors.name"
+            :key="i"
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
@@ -18,7 +22,11 @@
         <textarea placeholder="Add version changes" id="changelog" rows="5">
         </textarea>
         <ul v-if="errors.desc">
-          <li v-for="(error, i) in errors.desc" :key="i" class="ui error message">
+          <li
+            v-for="(error, i) in errors.desc"
+            :key="i"
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
@@ -27,7 +35,11 @@
         <label for="slug">Short link (slug)</label>
         <input type="text" placeholder="Enter short link" id="slug" />
         <ul v-if="errors.slug">
-          <li v-for="(error, i) in errors.slug" :key="i" class="ui error message">
+          <li
+            v-for="(error, i) in errors.slug"
+            :key="i"
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
@@ -76,7 +88,7 @@ export default {
       changelog: '',
       is_public: false,
       visible_to: this.visibleTo,
-      errors: {}
+      errors: {},
     };
   },
   created() {

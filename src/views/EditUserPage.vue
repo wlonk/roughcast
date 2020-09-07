@@ -36,7 +36,7 @@ export default {
     ChangePasswordForm,
     NotificationPreferences,
     NoPageNotification,
-    Invitations
+    Invitations,
   },
   computed: {
     ...mapGetters(['hydratedUser']),

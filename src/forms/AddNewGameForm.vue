@@ -8,7 +8,11 @@
         <label for="name">Team name</label>
         <input type="text" v-model="name" placeholder="Team name" id="name" />
         <ul v-if="errors.name">
-          <li v-for="(error, i) in errors.name" :key="i" class="ui error message">
+          <li
+            v-for="(error, i) in errors.name"
+            :key="i"
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
@@ -17,17 +21,30 @@
         <label for="slug">Short link (slug)</label>
         <input type="text" placeholder="Enter short link" id="slug" />
         <ul v-if="errors.slug">
-          <li v-for="(error, i) in errors.slug" :key="i" class="ui error message">
+          <li
+            v-for="(error, i) in errors.slug"
+            :key="i"
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
       </div>
       <div class="bio">
         <label for="bio-info">Description</label>
-        <textarea placeholder="Add game description" id="bio-info" rows="5" v-model="description">
+        <textarea
+          placeholder="Add game description"
+          id="bio-info"
+          rows="5"
+          v-model="description"
+        >
         </textarea>
         <ul v-if="errors.desc">
-          <li v-for="(error, i) in errors.desc" :key="i" class="ui error message">
+          <li
+            v-for="(error, i) in errors.desc"
+            :key="i"
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
@@ -36,8 +53,14 @@
         <h6>Game image</h6>
         <img src="../assets/no-game-image.svg" alt="no image" />
         <div>
-          <input class="custom-file-upload" type="file" id="game-image-file-loader" />
-          <label for="game-image-file-loader" class="file-loader-label">Upload</label>
+          <input
+            class="custom-file-upload"
+            type="file"
+            id="game-image-file-loader"
+          />
+          <label for="game-image-file-loader" class="file-loader-label"
+            >Upload</label
+          >
         </div>
       </div>
       <!-- Visibility toggle WIP -->

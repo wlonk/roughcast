@@ -1,7 +1,8 @@
 <template>
   <div class="dashboard">
     <div class="header">
-      <h2>Welcome back,
+      <h2>
+        Welcome back,
         <router-link :to="`/u/${currentUser.username}`" class="accent-link">
           {{
             currentUser.first_name
@@ -14,13 +15,15 @@
         <button
           v-on:click="toggleTab"
           :class="active_tab === 'games' && 'active'"
-          data-tab="games">
+          data-tab="games"
+        >
           Games
         </button>
         <button
           v-on:click="toggleTab"
           :class="active_tab === 'group' && 'active'"
-          data-tab="group">
+          data-tab="group"
+        >
           Groups
         </button>
         <div class="bottom-border"></div>
@@ -30,10 +33,9 @@
     <GameList
       v-if="active_tab === 'games'"
       :userCanAddGames="false"
-      :games="gamesWithTeam" />
-    <TeamList
-      v-if="active_tab === 'group'"
-      :teams="listTeams" />
+      :games="gamesWithTeam"
+    />
+    <TeamList v-if="active_tab === 'group'" :teams="listTeams" />
   </div>
 </template>
 
@@ -47,8 +49,8 @@ export default {
   name: 'DashBoard',
   data() {
     return {
-      active_tab: "games"
-    }
+      active_tab: 'games',
+    };
   },
   components: {
     GameList,
@@ -64,7 +66,7 @@ export default {
   methods: {
     toggleTab(e) {
       this.active_tab = e.target.dataset.tab;
-    }
+    },
   },
 };
 </script>

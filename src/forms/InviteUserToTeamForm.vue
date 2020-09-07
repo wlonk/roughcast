@@ -8,7 +8,11 @@
         <label for="name">Username</label>
         <input type="text" placeholder="Enter username" id="name" />
         <ul v-if="errors.name">
-          <li v-for="(error, i) in errors.name" :key="i" class="ui error message">
+          <li
+            v-for="(error, i) in errors.name"
+            :key="i"
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
@@ -19,7 +23,8 @@
           <li
             v-for="(error, i) in errors.non_field_errors"
             :key="i"
-            class="ui error message">
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
@@ -33,8 +38,8 @@ export default {
   name: 'InviteUserToTeamForm',
   data() {
     return {
-      errors: {}
-    }
-  }
+      errors: {},
+    };
+  },
 };
 </script>

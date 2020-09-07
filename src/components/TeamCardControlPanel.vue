@@ -2,20 +2,23 @@
   <div class="controls">
     <button
       v-if="!permissions['this:edit'] && !is_subscribed && !is_invited"
-      class="small submit-btn">Subscribe</button>
-    <button
-      v-if="is_subscribed"
-      class="subscribed-label">Subscribed</button>
+      class="small submit-btn"
+    >
+      Subscribe
+    </button>
+    <button v-if="is_subscribed" class="subscribed-label">Subscribed</button>
     <router-link
       :to="`/t/${slug}/edit`"
       v-if="permissions['this:edit']"
-      class="accent-link">
+      class="accent-link"
+    >
       Edit Team
     </router-link>
     <router-link
       :to="`/g/add`"
       v-if="permissions['game:add']"
-      class="accent-link">
+      class="accent-link"
+    >
       Add Game
     </router-link>
     <div v-if="is_invited" class="invitation">

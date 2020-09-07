@@ -1,9 +1,7 @@
 <template>
   <div class="version-card">
     <div class="header">
-      <router-link
-        :to="`/t/${team}/${game}/${slug}`"
-        class="small-card-title">
+      <router-link :to="`/t/${team}/${game}/${slug}`" class="small-card-title">
         {{ name }}
       </router-link>
       <div>
@@ -39,7 +37,7 @@ export default {
   name: 'VersionCard',
   components: {
     AuthorPreview,
-    CardStatistic
+    CardStatistic,
   },
   props: {
     id: String,
@@ -53,10 +51,10 @@ export default {
     archive_link: String,
     permissions: Object,
     added: {
-      default: '11/12/2020'
+      default: '11/12/2020',
     },
     comments: {
-      default: '0'
+      default: '0',
     },
     created_by: String,
   },
@@ -64,7 +62,7 @@ export default {
     ...mapGetters(['hydratedUser']),
     author() {
       return this.hydratedUser(this.created_by);
-    }
-  }
+    },
+  },
 };
 </script>

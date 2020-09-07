@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-if="team" class="edit-block">
-      <h2>Edit
+      <h2>
+        Edit
         <router-link :to="`/t/${team.slug}`" class="accent-link">
           "{{ team.name }}"
         </router-link>
@@ -17,7 +18,7 @@
           />
           <InviteUserToTeamForm />
           <!-- User Management WIP -->
-          <AddNewGameForm :forTeam="team.slug"/>
+          <AddNewGameForm :forTeam="team.slug" />
           <div class="edit-box" id="delete">
             <div class="box-title">
               <h5>Delete team</h5>
@@ -47,7 +48,7 @@ export default {
     EditPublicTeamInfoForm,
     InviteUserToTeamForm,
     AddNewGameForm,
-    NoPageNotification
+    NoPageNotification,
   },
   computed: {
     ...mapGetters(['hydratedTeam']),

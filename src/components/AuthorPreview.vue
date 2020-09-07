@@ -1,28 +1,22 @@
 <template>
-  <router-link
-    :to="`/u/${username}`">
+  <router-link :to="`/u/${username}`">
     <div class="inline">
-      <img v-if="avatar"
-        :src="avatar"
-        alt="author avatar">
-      <img v-else src="../assets/no-avatar.svg" alt="author avatar">
+      <img v-if="avatar" :src="avatar" alt="author avatar" />
+      <img v-else src="../assets/no-avatar.svg" alt="author avatar" />
       <div class="ui right pointing label">
-        {{ user_name || 'Author Name'}}
+        {{ user_name || 'Author Name' }}
       </div>
     </div>
   </router-link>
 </template>
 
 <script>
-import RenderedMarkdown from '@/components/RenderedMarkdown';
-import GameCardMenu from '@/components/GameCardMenu';
-
 export default {
   name: 'AuthorPreview',
   props: {
     username: String,
     avatar: String,
-    user_name: String
+    user_name: String,
   },
 };
 </script>

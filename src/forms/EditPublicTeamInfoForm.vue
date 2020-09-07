@@ -8,26 +8,48 @@
         <label for="name">Team name</label>
         <input type="text" v-model="name" placeholder="Team name" id="name" />
         <ul v-if="errors.name">
-          <li v-for="(error, i) in errors.name" :key="i" class="ui error message">
+          <li
+            v-for="(error, i) in errors.name"
+            :key="i"
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
       </div>
       <div class="bio">
         <label for="bio-info">Description</label>
-        <textarea placeholder="Add team description" id="bio-info" rows="5" v-model="description">
+        <textarea
+          placeholder="Add team description"
+          id="bio-info"
+          rows="5"
+          v-model="description"
+        >
         </textarea>
         <ul v-if="errors.desc">
-          <li v-for="(error, i) in errors.desc" :key="i" class="ui error message">
+          <li
+            v-for="(error, i) in errors.desc"
+            :key="i"
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
       </div>
       <div>
         <label for="slug">Short link (slug)</label>
-        <input type="text" v-model="slug" placeholder="Enter short link" id="slug" />
+        <input
+          type="text"
+          v-model="slug"
+          placeholder="Enter short link"
+          id="slug"
+        />
         <ul v-if="errors.slug">
-          <li v-for="(error, i) in errors.slug" :key="i" class="ui error message">
+          <li
+            v-for="(error, i) in errors.slug"
+            :key="i"
+            class="ui error message"
+          >
             {{ error }}
           </li>
         </ul>
@@ -65,12 +87,12 @@ export default {
     logo: String,
     description: String,
     name: String,
-    slug: String
+    slug: String,
   },
   data() {
     return {
-      errors: {}
-    }
-  }
+      errors: {},
+    };
+  },
 };
 </script>

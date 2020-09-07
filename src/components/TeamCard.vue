@@ -9,7 +9,7 @@
         <TeamCardMenu v-if="user_is_owner" />
         <router-link :to="`/t/${slug}`" class="small-card-title">
           {{ name }}
-          <div  v-if="name.length > 30" class="inline">
+          <div v-if="name.length > 30" class="inline">
             <div class="ui pointing label">
               {{ name }}
             </div>
@@ -30,10 +30,7 @@
           :avatar="owner.avatar"
         />
         <!-- Hardcoded -->
-        <AuthorPreview
-          username="mayzee"
-          :avatar="null"
-        />
+        <AuthorPreview username="mayzee" :avatar="null" />
       </div>
     </div>
   </div>
@@ -51,7 +48,7 @@ export default {
     RenderedMarkdown,
     TeamCardMenu,
     AuthorPreview,
-    CardStatistic
+    CardStatistic,
   },
   props: {
     id: String,
@@ -66,16 +63,16 @@ export default {
     owners: Array,
     games: {
       type: String,
-      default: '0'
+      default: '0',
     },
     subscribers: {
       type: String,
-      default: '0'
-    }
+      default: '0',
+    },
   },
   computed: {
     shorted_owners() {
-      return (this.owners && this.owners.length > 5)
+      return this.owners && this.owners.length > 5
         ? this.owners.slice(0, 5)
         : this.owners;
     },

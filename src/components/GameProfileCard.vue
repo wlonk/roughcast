@@ -14,9 +14,7 @@
       <div>
         <div>
           <h5>Description</h5>
-          <RenderedMarkdown
-            v-if="description"
-            :body="description" />
+          <RenderedMarkdown v-if="description" :body="description" />
           <p v-else class="no-bio">There is no game description yet...</p>
         </div>
         <GameCardControlPanel
@@ -38,7 +36,7 @@ export default {
   name: 'GameProfileCard',
   components: {
     RenderedMarkdown,
-    GameCardControlPanel
+    GameCardControlPanel,
   },
   props: {
     id: String,
@@ -55,10 +53,10 @@ export default {
   computed: {
     shorted_team_name() {
       const team_name = this.team.name;
-      return (team_name.length > 20)
+      return team_name.length > 20
         ? team_name.substring(0, 20) + '...'
         : team_name;
     },
-  }
+  },
 };
 </script>

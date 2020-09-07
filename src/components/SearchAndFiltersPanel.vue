@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'SearchAndFiltersPanel',
-  };
+export default {
+  name: 'SearchAndFiltersPanel',
+};
 </script>

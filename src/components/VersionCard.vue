@@ -1,21 +1,15 @@
 <template>
   <div class="version-card">
     <div class="header">
-      <router-link
-        :to="`/t/${team}/${game}/${slug}`"
-        class="small-card-title">
+      <router-link :to="`/t/${team}/${game}/${slug}`" class="small-card-title">
         {{ name }}
       </router-link>
       <div>
         <h5>Added</h5>
         <p>{{ added }}</p>
         <a :href="archive_link" class="round-link"></a>
-        <i v-if="!extended"
-          class="sort up icon"
-          v-on:click="toggleContent"></i>
-        <i v-else
-          class="sort down icon"
-          v-on:click="toggleContent"></i>
+        <i v-if="!extended" class="sort up icon" v-on:click="toggleContent"></i>
+        <i v-else class="sort down icon" v-on:click="toggleContent"></i>
       </div>
     </div>
     <div v-if="extended" class="content">
@@ -48,11 +42,11 @@ export default {
   data() {
     return {
       extended: false,
-    }
+    };
   },
   components: {
     AuthorPreview,
-    CardStatistic
+    CardStatistic,
   },
   props: {
     id: String,
@@ -66,10 +60,10 @@ export default {
     archive_link: String,
     permissions: Object,
     added: {
-      default: '11/12/2020'
+      default: '11/12/2020',
     },
     comments: {
-      default: '0'
+      default: '0',
     },
     created_by: String,
   },
@@ -77,12 +71,12 @@ export default {
     ...mapGetters(['hydratedUser']),
     author() {
       return this.hydratedUser(this.created_by);
-    }
+    },
   },
   methods: {
     toggleContent() {
       this.extended = !this.extended;
-    }
-  }
+    },
+  },
 };
 </script>

@@ -9,7 +9,7 @@
             {{ game.name }}
           </router-link>
           <span>@{{ name }}</span>
-          </h4>
+        </h4>
         <div>
           <h5>Added</h5>
           <p>{{ added }}</p>
@@ -31,7 +31,8 @@
           <router-link
             :to="`/t/${game.team}/${game.slug}/${slug}/edit`"
             v-if="permissions['this:edit']"
-            class="accent-link">
+            class="accent-link"
+          >
             Edit Version
           </router-link>
         </div>
@@ -59,15 +60,15 @@ export default {
     permissions: Object,
     attachedFiles: Array,
     added: {
-      default: '11/08/2020'
-    }
+      default: '11/08/2020',
+    },
   },
   components: { RenderedMarkdown },
   computed: {
     ...mapGetters(['hydratedTeam']),
     team_name() {
-      return this.hydratedTeam(this.game.team).name
+      return this.hydratedTeam(this.game.team).name;
     },
-  }
+  },
 };
 </script>

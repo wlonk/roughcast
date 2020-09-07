@@ -10,9 +10,7 @@
       <div>
         <div>
           <h5>Description</h5>
-          <RenderedMarkdown
-            v-if="description"
-            :body="description" />
+          <RenderedMarkdown v-if="description" :body="description" />
           <p v-else class="no-bio">There is no game description yet...</p>
         </div>
         <TeamCardControlPanel
@@ -34,7 +32,7 @@ export default {
   name: 'TeamProfileCard',
   components: {
     RenderedMarkdown,
-    TeamCardControlPanel
+    TeamCardControlPanel,
   },
   props: {
     id: String,
@@ -46,10 +44,10 @@ export default {
     user_is_owner: Boolean,
     logo: String,
     is_subscribed: {
-      default: false
+      default: false,
     },
     is_invited: {
-      default: false
+      default: false,
     },
   },
 };

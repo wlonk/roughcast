@@ -2,20 +2,23 @@
   <div class="controls">
     <button
       v-if="!permissions['this:edit'] && !is_subscribed"
-      class="small submit-btn">Subscribe</button>
-    <button
-      v-if="is_subscribed"
-      class="subscribed-label">Subscribed</button>
+      class="small submit-btn"
+    >
+      Subscribe
+    </button>
+    <button v-if="is_subscribed" class="subscribed-label">Subscribed</button>
     <router-link
       :to="`/t/${team_slug}/${slug}/edit`"
       v-if="permissions['this:edit']"
-      class="accent-link">
+      class="accent-link"
+    >
       Edit game
     </router-link>
     <router-link
       :to="`/t/${team_slug}/${slug}/edit#add-version`"
       v-if="permissions['version:add']"
-      class="accent-link">
+      class="accent-link"
+    >
       Add version
     </router-link>
   </div>
@@ -29,6 +32,6 @@ export default {
     slug: String,
     team_slug: String,
     is_subscribed: Boolean,
-  }
+  },
 };
 </script>

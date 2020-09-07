@@ -26,7 +26,7 @@ export default {
     likes: String,
     comments: String,
     subscribers: String,
-    games: String
+    games: String,
   },
 };
 </script>

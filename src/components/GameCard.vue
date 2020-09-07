@@ -9,15 +9,15 @@
         <GameCardMenu v-if="permissions['this:edit']" />
         <router-link :to="`/t/${team_slug}/${slug}`" class="small-card-title">
           {{ shorted_title }}
-          <div  v-if="name.length > 19" class="inline">
+          <div v-if="name.length > 19" class="inline">
             <div class="ui pointing label">
               {{ name }}
             </div>
           </div>
         </router-link>
-        <div tabindex=0 class="team">
+        <div tabindex="0" class="team">
           {{ shorted_team_name }}
-          <div  v-if="team_name.length > 18" class="inline">
+          <div v-if="team_name.length > 18" class="inline">
             <div class="ui pointing label">
               {{ team_name }}
             </div>
@@ -38,10 +38,7 @@
           :avatar="author.avatar"
         />
         <!-- Hardcoded -->
-        <AuthorPreview
-          username="mayzee"
-          :avatar="null"
-        />
+        <AuthorPreview username="mayzee" :avatar="null" />
       </div>
     </div>
   </div>
@@ -61,7 +58,7 @@ export default {
     RenderedMarkdown,
     GameCardMenu,
     AuthorPreview,
-    CardStatistic
+    CardStatistic,
   },
   props: {
     banner: String,
@@ -74,39 +71,35 @@ export default {
     permissions: Object,
     likes: {
       type: String,
-      default: '0'
+      default: '0',
     },
     comments: {
       type: String,
-      default: '0'
+      default: '0',
     },
-    authors: Array
+    authors: Array,
   },
   computed: {
     ...mapGetters(['hydratedTeam']),
     team_name() {
-      return(typeof this.team === 'string')
+      return typeof this.team === 'string'
         ? this.hydratedTeam(this.team).name
         : this.team.name;
     },
     team_slug() {
-      return(typeof this.team !== 'string')
-        ? this.team.slug
-        : this.team;
+      return typeof this.team !== 'string' ? this.team.slug : this.team;
     },
     shorted_team_name() {
       const team = this.team_name;
-      return (team.length > 18)
-        ? team.substring(0, 18) + '...'
-        : team;
+      return team.length > 18 ? team.substring(0, 18) + '...' : team;
     },
     shorted_title() {
-      return (this.name.length > 19)
+      return this.name.length > 19
         ? this.name.substring(0, 19) + '...'
         : this.name;
     },
     shorted_authors() {
-      return (this.authors && this.authors.length > 5)
+      return this.authors && this.authors.length > 5
         ? this.authors.slice(0, 5)
         : this.authors;
     },

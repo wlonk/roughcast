@@ -22,7 +22,7 @@ export default {
   props: {
     sender: String,
     team: String,
-    team_slug: String
-  }
+    team_slug: String,
+  },
 };
 </script>

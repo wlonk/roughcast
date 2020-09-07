@@ -11,9 +11,10 @@
         <h5>Previous versions</h5>
       </div>
       <VersionCard
-        v-for="(version, i) in old_versions"
+        v-for="version in old_versions"
         :key="version.id"
-        v-bind="version" />
+        v-bind="version"
+      />
     </div>
   </div>
 </template>
@@ -42,6 +43,6 @@ export default {
     old_versions() {
       return this.versions.slice(1);
     },
-  }
+  },
 };
 </script>
