@@ -54,4 +54,14 @@
       }
     }
   }
+  &.public {
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-template-areas: 'name avatar''bio avatar' 'd avatar';
+  }
+  &.adding {
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-template-areas: 'name avatar''bio avatar' 'd avatar' 'toggle avatar' 'submit avatar';
+  }
 }

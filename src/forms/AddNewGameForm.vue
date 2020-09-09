@@ -3,26 +3,13 @@
     <div class="box-title">
       <h5>Add game</h5>
     </div>
-    <form @submit.stop.prevent="createGame" class="page-form public">
+    <form @submit.stop.prevent="createGame" class="page-form adding">
       <div>
         <label for="name">Team name</label>
         <input type="text" v-model="name" placeholder="Team name" id="name" />
         <ul v-if="errors.name">
           <li
             v-for="(error, i) in errors.name"
-            :key="i"
-            class="ui error message"
-          >
-            {{ error }}
-          </li>
-        </ul>
-      </div>
-      <div>
-        <label for="slug">Short link (slug)</label>
-        <input type="text" placeholder="Enter short link" id="slug" />
-        <ul v-if="errors.slug">
-          <li
-            v-for="(error, i) in errors.slug"
             :key="i"
             class="ui error message"
           >
@@ -49,6 +36,19 @@
           </li>
         </ul>
       </div>
+      <div>
+        <label for="slug">Short link (slug)</label>
+        <input type="text" placeholder="Enter short link" id="slug" />
+        <ul v-if="errors.slug">
+          <li
+            v-for="(error, i) in errors.slug"
+            :key="i"
+            class="ui error message"
+          >
+            {{ error }}
+          </li>
+        </ul>
+      </div>
       <div class="avatar">
         <h6>Game image</h6>
         <img src="../assets/no-game-image.svg" alt="no image" />
@@ -63,27 +63,25 @@
           >
         </div>
       </div>
-      <!-- Visibility toggle WIP -->
-      <!-- <div class="field">
-        <label for="default_visible_to">visible to</label>
-        <sui-dropdown
-          :options="dryUserOptionList"
-          v-model="default_visible_to"
-          placeholder="Visible to"
-          multiple
-          search
-          selection
-        />
-        <ul v-if="errors.default_visible_to">
-          <li
-            v-for="(error, i) in errors.default_visible_to"
-            :key="i"
-            class="ui error message"
-          >
-            {{ error }}
-          </li>
-        </ul>
-      </div> -->
+      <!-- Visibility toggle needs functionality -->
+      <div class="custom-toggle">
+        <input
+          type="radio"
+          name="visibility-new-game"
+          id="private-new-game"
+          class="private-input"
+          value="private">
+        <label for="private-new-game">Team-only</label>
+        <div class="selector"></div>
+        <input
+          type="radio"
+          name="visibility-new-game"
+          id="public-new-game"
+          class="public-input"
+          value="public"
+          checked="true">
+        <label for="public-new-game">Public</label>
+      </div>
       <div class="buttons">
         <input type="submit" class="submit-btn no-top" value="Create game" />
         <ul v-if="errors.non_field_errors">

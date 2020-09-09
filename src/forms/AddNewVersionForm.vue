@@ -44,7 +44,24 @@
           </li>
         </ul>
       </div>
-      <!-- Custom visibility toggle WIP -->
+      <div class="custom-toggle">
+        <input
+          type="radio"
+          name="visibility-new-version"
+          id="private-new-version"
+          class="private-input"
+          value="private">
+        <label for="private-new-version">Team-only</label>
+        <div class="selector"></div>
+        <input
+          type="radio"
+          name="visibility-new-version"
+          id="public-new-version"
+          class="public-input"
+          value="public"
+          checked="true">
+        <label for="public-new-version">Public</label>
+      </div>
       <div>
         <!-- <h6>Version file</h6> -->
         <!-- File upload -->

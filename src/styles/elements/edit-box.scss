@@ -17,15 +17,11 @@
       margin: 0;
     }
   }
-  .public {
-    &.info-block,
-    &.page-form {
-      display: grid;
-      grid-column-gap: 2rem;
-      grid-template-areas: 'name avatar''bio avatar' 'd avatar';
-    }
+  .public.info-block {
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-template-areas: 'name avatar''bio avatar' 'd avatar';
   }
-
   .avatar {
     grid-area: avatar;
     img {
