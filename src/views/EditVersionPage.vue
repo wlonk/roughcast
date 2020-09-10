@@ -32,7 +32,13 @@
             <div class="box-title">
               <h5>Delete version</h5>
             </div>
-            <!-- Delete Confirmation message WIP -->
+            <div class="confirmation">
+              <p>Are you sure you want to delete
+                <span class="accent-link">{{ version.name }}</span>
+                ?
+              </p>
+              <p>You can't cancel this action.</p>
+            </div>
             <button class="submit-btn single">Delete version</button>
           </div>
         </div>

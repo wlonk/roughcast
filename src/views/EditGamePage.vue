@@ -33,7 +33,13 @@
             <div class="box-title">
               <h5>Delete game</h5>
             </div>
-            <!-- Delete Confirmation message WIP -->
+            <div class="confirmation">
+              <p>Are you sure you want to delete
+                <span class="accent-link">{{ game.name }}</span>
+                ?
+              </p>
+              <p>You can't cancel this action.</p>
+            </div>
             <button class="submit-btn single">Delete game</button>
           </div>
         </div>
