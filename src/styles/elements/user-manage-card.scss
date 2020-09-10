@@ -1,0 +1,49 @@
+.user-manage-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: relative;
+  margin-top: 3rem;
+  min-height: 4.5rem;
+  .names,
+  .controls {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+  .names {
+    .card-title {
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-left: 6rem;
+    }
+    p {
+      margin-top: 0.5rem;
+      margin-left: 0.5rem;
+    }
+  }
+  .controls {
+    i {
+      opacity: 0.5;
+      cursor: pointer;
+      margin-left: 0.5rem;
+      &:last-child {
+        margin-left: 1rem;
+      }
+      &:hover {
+        opacity: 1;
+      }
+    }
+    h5 {
+      margin-bottom: 0;
+    }
+  }
+  img {
+    border-radius: 0.5rem;
+    width: 4.5rem;
+    position: absolute;
+    top: -1rem;
+  }
+}

@@ -83,4 +83,17 @@
   p {
     margin: 0;
   }
+  .confirmation {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 1rem;
+    p {
+      max-width: 80%;
+    }
+    i {
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+  }
 }

@@ -17,7 +17,7 @@
             :slug="team.slug"
           />
           <InviteUserToTeamForm />
-          <!-- User Management WIP -->
+          <TeamUserManagement :users="team.users"/>
           <AddNewGameForm :forTeam="team.slug" />
           <div class="edit-box" id="delete">
             <div class="box-title">
@@ -37,8 +37,9 @@
 import { mapGetters } from 'vuex';
 import ScrollingEditTeamMenu from '@/components/ScrollingEditTeamMenu';
 import EditPublicTeamInfoForm from '@/forms/EditPublicTeamInfoForm';
-import InviteUserToTeamForm from '@/forms/InviteUserToTeamForm';
 import AddNewGameForm from '@/forms/AddNewGameForm';
+import InviteUserToTeamForm from '@/forms/InviteUserToTeamForm';
+import TeamUserManagement from '@/components/TeamUserManagement';
 import NoPageNotification from '@/components/NoPageNotification';
 
 export default {
@@ -47,6 +48,7 @@ export default {
     ScrollingEditTeamMenu,
     EditPublicTeamInfoForm,
     InviteUserToTeamForm,
+    TeamUserManagement,
     AddNewGameForm,
     NoPageNotification,
   },

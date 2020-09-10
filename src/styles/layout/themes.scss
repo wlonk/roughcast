@@ -114,7 +114,8 @@
   .game-profile-card,
   .team-profile-card,
   .version-profile-card,
-  .version-card {
+  .version-card,
+  .user-manage-card {
     background-color: $dm-dark-color;
     * {
       color: $dm-main-font-color;
@@ -209,5 +210,18 @@
   }
   .sort.down {
     color: $dm-accent-bg-color;
+  }
+  .user-manage-card .controls i {
+    &:hover {
+      color: $dm-accent-bg-color;
+    }
+    &.active {
+      color: $dm-accent-bg-color;
+    }
+  }
+  .confirmation i {
+    &:hover {
+      color: $dm-accent-bg-color;
+    }
   }
 }
