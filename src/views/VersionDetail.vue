@@ -1,16 +1,11 @@
 <template>
-  <VersionProfileCard v-bind="version" />
-  <!-- Files
-  <h4 class="ui horizontal divider">
-    files
-  </h4>
-  <ul>
-    <li v-for="file in version.attachedFiles" :key="file.id">
-      <a :href="file.attached_file">
-        <i class="file pdf outline icon"></i> {{ file.name }}
-      </a>
-    </li>
-  </ul> -->
+  <div>
+    <VersionProfileCard v-bind="version" />
+    <div class="version-content">
+      <!-- Comments here -->
+      <FilesList :files="version.attachedFiles" />
+    </div>
+  </div>
   <!-- Comments
   <h4 class="ui horizontal divider">
     coming soon: discussion
@@ -57,10 +52,11 @@
 import { mapGetters } from 'vuex';
 
 import VersionProfileCard from '@/components/VersionProfileCard';
+import FilesList from '@/components/FilesList';
 
 export default {
   name: 'VersionDetail',
-  components: { VersionProfileCard },
+  components: { VersionProfileCard, FilesList },
   computed: {
     ...mapGetters(['hydratedVersion']),
     version() {

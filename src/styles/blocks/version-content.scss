@@ -1,0 +1,26 @@
+.version-content {
+  display: flex;
+  justify-content: flex-end;
+  .file-list {
+    width: 30%;
+  }
+  .file-card {
+    display: flex;
+    justify-content: space-between;
+    background-color: $dm-dark-color;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    position: relative;
+    h6 {
+      color: $dm-main-font-color;
+      opacity: 0.5;
+    }
+    .card-title {
+      font-size: 1.5rem;
+      max-width: 90%;
+    }
+    .round-link {
+      background-image: url('./assets/file.svg');
+    }
+  }
+}
