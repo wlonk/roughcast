@@ -52,11 +52,11 @@
 import { mapGetters } from 'vuex';
 
 import VersionProfileCard from '@/components/VersionProfileCard';
-import FilesList from '@/components/FilesList';
+import FileList from '@/components/FileList';
 
 export default {
   name: 'VersionDetail',
-  components: { VersionProfileCard, FilesList },
+  components: { VersionProfileCard, FileList },
   computed: {
     ...mapGetters(['hydratedVersion']),
     version() {

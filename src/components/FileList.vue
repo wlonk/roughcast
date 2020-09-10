@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'FilesList',
+  name: 'FileList',
   props: {
     files: Array,
   }
