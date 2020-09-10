@@ -50,16 +50,19 @@
           name="visibility-new-version"
           id="private-new-version"
           class="private-input"
-          value="private">
+          value="private"
+          :checked="!isChecked"
+          @click="toggleCheck">
         <label for="private-new-version">Team-only</label>
-        <div class="selector"></div>
+        <div class="selector" @click="toggleCheck"></div>
         <input
           type="radio"
           name="visibility-new-version"
           id="public-new-version"
           class="public-input"
           value="public"
-          checked="true">
+          :checked="isChecked"
+          @click="toggleCheck">
         <label for="public-new-version">Public</label>
       </div>
       <div>
@@ -106,6 +109,7 @@ export default {
       is_public: false,
       visible_to: this.visibleTo,
       errors: {},
+      isChecked: true,
     };
   },
   created() {
@@ -159,6 +163,12 @@ export default {
     },
     markSlugEdited() {
       this.slugEdited = true;
+    },
+    toggleCheck(e) {
+      const id = e.target.id;
+      return (id)
+        ? this.isChecked = (id === 'public-new-version')
+        : this.isChecked = !this.isChecked;
     },
   },
 };

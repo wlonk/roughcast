@@ -20,6 +20,9 @@
     &:checked + label {
       color: $dm-accent-bg-color;
     }
+    &:focus + label {
+      border-bottom: 2px solid $dm-accent-bg-color;
+    }
   }
   .private-input:checked ~ .selector::before {
     left: 0;

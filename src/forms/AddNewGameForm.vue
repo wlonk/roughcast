@@ -70,16 +70,19 @@
           name="visibility-new-game"
           id="private-new-game"
           class="private-input"
-          value="private">
+          value="private"
+          :checked="!isChecked"
+          @click="toggleCheck">
         <label for="private-new-game">Team-only</label>
-        <div class="selector"></div>
+        <div class="selector" @click="toggleCheck"></div>
         <input
           type="radio"
           name="visibility-new-game"
           id="public-new-game"
           class="public-input"
           value="public"
-          checked="true">
+          :checked="isChecked"
+          @click="toggleCheck">
         <label for="public-new-game">Public</label>
       </div>
       <div class="buttons">
@@ -116,6 +119,7 @@ export default {
       slugEdited: false,
       description: '',
       default_visible_to: [],
+      isChecked: true,
     };
   },
   asyncComputed: {
@@ -153,6 +157,12 @@ export default {
     },
     markSlugEdited() {
       this.slugEdited = true;
+    },
+    toggleCheck(e) {
+      const id = e.target.id;
+      return (id)
+        ? this.isChecked = (id === 'public-new-version')
+        : this.isChecked = !this.isChecked;
     },
   },
 };
