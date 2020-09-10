@@ -44,6 +44,14 @@
           </li>
         </ul>
       </div>
+      <div>
+        <label>Upload files</label>
+        <div class="file-upload">
+          <p>No file chosen</p>
+          <input class="custom-file-upload" type="file" id="version-file-loader" />
+          <label for="version-file-loader" class="file-loader-label">Choose files</label>
+        </div>
+      </div>
       <div class="custom-toggle">
         <input
           type="radio"
@@ -64,14 +72,6 @@
           :checked="isChecked"
           @click="toggleCheck">
         <label for="public-new-version">Public</label>
-      </div>
-      <div>
-        <!-- <h6>Version file</h6> -->
-        <!-- File upload -->
-        <!-- <div>
-          <input class="custom-file-upload" type="file" id="game-image-file-loader" />
-          <label for="game-image-file-loader" class="file-loader-label">Upload</label>
-        </div> -->
       </div>
       <div class="buttons">
         <input type="submit" class="submit-btn no-top" value="Add version" />

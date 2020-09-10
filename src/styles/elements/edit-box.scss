@@ -132,4 +132,23 @@
       }
     }
   }
+  .file-upload {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    p {
+      background-color: $dm-dark-color;
+      color: transparentize($dm-main-font-color, 0.5);
+      border-radius: 0.5rem;
+      margin-right: 0.5rem;
+      padding: 0.75rem;
+      width: 60%;
+    }
+    .file-loader-label {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      min-width: 0;
+    }
+  }
 }
