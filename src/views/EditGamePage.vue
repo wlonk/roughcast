@@ -27,7 +27,7 @@
             </p>
             <button class="submit-btn no-top">Make game team-only</button>
           </div>
-          <!-- Version history WIP -->
+          <VersionHistory :versions="game.versions" />
           <AddNewVersionForm :forTeam="teamSlug" :forGame="game.slug" />
           <div class="edit-box" id="delete">
             <div class="box-title">
@@ -55,6 +55,7 @@ import ScrollingEditGameMenu from '@/components/ScrollingEditGameMenu';
 import EditPublicGameInfoForm from '@/forms/EditPublicGameInfoForm';
 import AddNewVersionForm from '@/forms/AddNewVersionForm';
 import NoPageNotification from '@/components/NoPageNotification';
+import VersionHistory from '@/components/VersionHistory';
 
 export default {
   name: 'EditTeamPage',
@@ -63,6 +64,7 @@ export default {
     EditPublicGameInfoForm,
     AddNewVersionForm,
     NoPageNotification,
+    VersionHistory,
   },
   computed: {
     ...mapGetters(['hydratedGame']),

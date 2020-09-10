@@ -102,4 +102,34 @@
       margin-bottom: 1.25rem;
     }
   }
+  &#history .version-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .small-card-title {
+      font-family: $accent-font;
+      font-size: 1.5rem;
+    }
+    .round-link {
+      background-image: url('./assets/file.svg');
+    }
+    &>div {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      * {
+        margin: 0;
+      }
+      h5 {
+        margin-right: 0.5rem;
+      }
+      p {
+        margin-right: 1rem;
+      }
+      .link {
+        margin-top: 0.5rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
 }
