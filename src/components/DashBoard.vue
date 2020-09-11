@@ -4,11 +4,7 @@
       <h2>
         Welcome back,
         <router-link :to="`/u/${currentUser.username}`" class="accent-link">
-          {{
-            currentUser.first_name
-              ? currentUser.first_name
-              : currentUser.username
-          }}
+          {{ currentUser.first_name || currentUser.username }}
         </router-link>
       </h2>
       <div class="dashboard-tabs">
