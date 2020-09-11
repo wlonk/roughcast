@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     checkPermisions() {
-      return !permissions['this:edit'] && !is_subscribed;
+      return !this.permissions['this:edit'] && !this.is_subscribed;
     },
   },
 };

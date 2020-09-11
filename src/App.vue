@@ -3,9 +3,9 @@
     <MainMenu />
     <!-- @TODO remove this when out of alpha! -->
     <AlphaWarningBanner />
-    <!-- <div class="ui container">
+    <div class="ui container">
       <BreadCrumbs />
-    </div> -->
+    </div>
     <div class="ui container">
       <router-view />
     </div>

@@ -3,7 +3,7 @@
     <VersionProfileCard v-bind="version" />
     <div class="version-content">
       <!-- Comments here -->
-      <FilesList :files="version.attachedFiles" />
+      <FileList :files="version.attachedFiles" />
     </div>
   </div>
   <!-- Comments
