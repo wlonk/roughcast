@@ -24,7 +24,7 @@
       <CardStatistic :games="games" :subscribers="subscribers" />
       <div class="owners">
         <AuthorPreview
-          v-for="(owner, index) in shorted_owners"
+          v-for="(owner, index) in shortened_owners"
           :key="index"
           :username="owner.username"
           :avatar="owner.avatar"
@@ -71,7 +71,7 @@ export default {
     },
   },
   computed: {
-    shorted_owners() {
+    shortened_owners() {
       return this.owners && this.owners.length > 5
         ? this.owners.slice(0, 5)
         : this.owners;

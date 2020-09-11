@@ -8,7 +8,7 @@
       <div class="header">
         <GameCardMenu v-if="permissions['this:edit']" />
         <router-link :to="`/t/${team_slug}/${slug}`" class="small-card-title">
-          {{ shorted_title }}
+          {{ shortened_title }}
           <div v-if="name.length > 19" class="inline">
             <div class="ui pointing label">
               {{ name }}
@@ -16,7 +16,7 @@
           </div>
         </router-link>
         <div tabindex="0" class="team">
-          {{ shorted_team_name }}
+          {{ shortened_team_name }}
           <div v-if="team_name.length > 18" class="inline">
             <div class="ui pointing label">
               {{ team_name }}
@@ -32,7 +32,7 @@
       <CardStatistic :likes="likes" :comments="comments" />
       <div class="authors">
         <AuthorPreview
-          v-for="(author, index) in shorted_authors"
+          v-for="(author, index) in shortened_authors"
           :key="index"
           :username="author.username"
           :avatar="author.avatar"
@@ -89,16 +89,16 @@ export default {
     team_slug() {
       return typeof this.team !== 'string' ? this.team.slug : this.team;
     },
-    shorted_team_name() {
+    shortened_team_name() {
       const team = this.team_name;
-      return team.length > 18 ? team.substring(0, 18) + '...' : team;
+      return team.length > 18 ? team.substring(0, 18) + '&hellip;' : team;
     },
-    shorted_title() {
+    shortened_title() {
       return this.name.length > 19
-        ? this.name.substring(0, 19) + '...'
+        ? this.name.substring(0, 19) + '&hellip;'
         : this.name;
     },
-    shorted_authors() {
+    shortened_authors() {
       return this.authors && this.authors.length > 5
         ? this.authors.slice(0, 5)
         : this.authors;

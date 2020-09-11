@@ -7,7 +7,7 @@
         <h4 class="card-title">{{ name }}</h4>
         <div class="team">
           <router-link :to="`/t/${team.slug}`" class="link">
-            {{ shorted_team_name }}
+            {{ shortened_team_name }}
           </router-link>
         </div>
       </div>
@@ -15,7 +15,7 @@
         <div>
           <h5>Description</h5>
           <RenderedMarkdown v-if="description" :body="description" />
-          <p v-else class="no-bio">There is no game description yet...</p>
+          <p v-else class="no-bio">There is no game description yet&hellip;</p>
         </div>
         <GameCardControlPanel
           :permissions="permissions"
@@ -51,10 +51,10 @@ export default {
     is_owner: Boolean,
   },
   computed: {
-    shorted_team_name() {
+    shortened_team_name() {
       const team_name = this.team.name;
       return team_name.length > 20
-        ? team_name.substring(0, 20) + '...'
+        ? team_name.substring(0, 20) + '&hellip;'
         : team_name;
     },
   },

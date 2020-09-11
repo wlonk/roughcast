@@ -11,7 +11,7 @@
         <div>
           <h5>Description</h5>
           <RenderedMarkdown v-if="description" :body="description" />
-          <p v-else class="no-bio">There is no game description yet...</p>
+          <p v-else class="no-bio">There is no game description yet&hellip;</p>
         </div>
         <TeamCardControlPanel
           :permissions="permissions"

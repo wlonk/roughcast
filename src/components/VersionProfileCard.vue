@@ -25,7 +25,7 @@
         <div class="description">
           <h5>Changes</h5>
           <RenderedMarkdown v-if="changelog" :body="changelog" />
-          <p v-else class="no-bio">There is no changes yet...</p>
+          <p v-else class="no-bio">There is no changes yet&hellip;</p>
         </div>
         <div class="controls">
           <router-link

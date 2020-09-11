@@ -10,7 +10,7 @@
       <div>
         <h5>Bio</h5>
         <p v-if="bio">{{ bio }}</p>
-        <p v-else class="no-bio">There is no user's bio yet...</p>
+        <p v-else class="no-bio">There is no user's bio yet&hellip;</p>
       </div>
     </div>
   </div>
