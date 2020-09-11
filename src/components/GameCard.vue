@@ -2,8 +2,8 @@
   <div class="game-card">
     <div>
       <div>
-        <img v-if="banner" :src="banner" alt="no game banner" />
-        <img v-else src="../assets/no-game-image.svg" alt="no game banner" />
+        <img v-if="banner" :src="banner" :alt="`${name} banner`" />
+        <img v-else src="../assets/no-game-image.svg" alt="No game banner" />
       </div>
       <div class="header">
         <GameCardMenu v-if="permissions['this:edit']" />

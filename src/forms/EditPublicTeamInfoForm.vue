@@ -56,8 +56,8 @@
       </div>
       <div class="avatar">
         <h6>Team logo</h6>
-        <img v-if="logo" :src="logo" alt="team logo" />
-        <img v-else src="../assets/no-team-logo.svg" alt="no logo" />
+        <img v-if="logo" :src="logo" :alt="`${name} team logo`" />
+        <img v-else src="../assets/no-team-logo.svg" alt="No logo" />
         <div>
           <input class="custom-file-upload" type="file" id="file-loader" />
           <label for="file-loader" class="file-loader-label">Upload</label>

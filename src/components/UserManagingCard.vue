@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="user-manage-card">
-      <img v-if="avatar" :src="avatar" alt="avatar" />
-      <img v-else src="../assets/no-avatar.svg" alt="avatar" />
+      <img v-if="avatar" :src="avatar" :alt="`${username} avatar`" />
+      <img v-else src="../assets/no-avatar.svg" alt="No avatar" />
       <div class="names">
         <h4 class="card-title">{{ first_name }}</h4>
         <p>@{{ username }}</p>

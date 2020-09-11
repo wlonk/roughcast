@@ -1,7 +1,7 @@
 <template>
   <div class="version-profile-card">
-    <img v-if="game.banner" :src="game.banner" alt="game banner" />
-    <img v-else src="../assets/no-game-image.svg" alt="no game banner" />
+    <img v-if="game.banner" :src="game.banner" :alt="`${game.name} banner`" />
+    <img v-else src="../assets/no-game-image.svg" alt="No game banner" />
     <div>
       <div class="header">
         <h4 class="card-title">

@@ -51,7 +51,7 @@
       </div>
       <div class="avatar">
         <h6>Game image</h6>
-        <img src="../assets/no-game-image.svg" alt="no image" />
+        <img src="../assets/no-game-image.svg" alt="No image" />
         <div>
           <input
             class="custom-file-upload"

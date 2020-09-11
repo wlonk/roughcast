@@ -1,7 +1,7 @@
 <template>
   <div class="team-profile-card">
-    <img v-if="logo" :src="logo" alt="team logo" />
-    <img v-else src="../assets/no-team-logo.svg" alt="no team logo" />
+    <img v-if="logo" :src="logo" :alt="`${name} team logo`" />
+    <img v-else src="../assets/no-team-logo.svg" alt="No team logo" />
     <div>
       <div class="header">
         <h4 class="card-title">{{ name }}</h4>

@@ -10,7 +10,7 @@
         Go to homepage!
       </router-link>
     </div>
-    <img src="../assets/404.svg" alt="sleep dragon" />
+    <img src="../assets/404.svg" alt="Sleep dragon" />
   </div>
 </template>
 

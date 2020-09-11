@@ -2,8 +2,8 @@
   <div class="team-card">
     <div>
       <div>
-        <img v-if="logo" :src="logo" alt="team logo" />
-        <img v-else src="../assets/no-team-logo.svg" alt="no team logo" />
+        <img v-if="logo" :src="logo" :alt="`${name} team logo`" />
+        <img v-else src="../assets/no-team-logo.svg" alt="No team logo" />
       </div>
       <div class="header">
         <TeamCardMenu v-if="user_is_owner" />
