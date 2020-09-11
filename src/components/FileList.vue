@@ -18,6 +18,6 @@ export default {
   name: 'FileList',
   props: {
     files: Array,
-  }
+  },
 };
 </script>

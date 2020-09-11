@@ -1,11 +1,15 @@
 <template>
   <div>
     <div v-if="version" class="edit-block">
-      <h2>Edit
+      <h2>
+        Edit
         <router-link :to="`/t/${teamSlug}/${game.slug}`" class="accent-link">
           "{{ game.name }}
         </router-link>
-        <router-link :to="`/t/${teamSlug}/${game.slug}/${version.slug}`" class="accent-link">
+        <router-link
+          :to="`/t/${teamSlug}/${game.slug}/${version.slug}`"
+          class="accent-link"
+        >
           @{{ version.name }}"
         </router-link>
       </h2>
@@ -33,7 +37,8 @@
               <h5>Delete version</h5>
             </div>
             <div class="confirmation">
-              <p>Are you sure you want to delete
+              <p>
+                Are you sure you want to delete
                 <span class="accent-link">{{ version.name }}</span>
                 ?
               </p>

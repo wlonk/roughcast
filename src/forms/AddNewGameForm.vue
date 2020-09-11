@@ -72,7 +72,8 @@
           class="private-input"
           value="private"
           :checked="!isChecked"
-          @click="toggleCheck">
+          @click="toggleCheck"
+        />
         <label for="private-new-game">Team-only</label>
         <div class="selector" @click="toggleCheck"></div>
         <input
@@ -82,7 +83,8 @@
           class="public-input"
           value="public"
           :checked="isChecked"
-          @click="toggleCheck">
+          @click="toggleCheck"
+        />
         <label for="public-new-game">Public</label>
       </div>
       <div class="buttons">
@@ -160,9 +162,9 @@ export default {
     },
     toggleCheck(e) {
       const id = e.target.id;
-      return (id)
-        ? this.isChecked = (id === 'public-new-version')
-        : this.isChecked = !this.isChecked;
+      return id
+        ? (this.isChecked = id === 'public-new-version')
+        : (this.isChecked = !this.isChecked);
     },
   },
 };

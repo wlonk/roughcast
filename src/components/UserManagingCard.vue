@@ -9,14 +9,23 @@
       </div>
       <div class="controls">
         <h5>{{ type || 'member' }}</h5>
-        <i v-if="checkAction" class="chevron up icon active" @click="removeAction"></i>
+        <i
+          v-if="checkAction"
+          class="chevron up icon active"
+          @click="removeAction"
+        ></i>
         <i v-else class="chevron up icon" @click="changeUserType"></i>
-        <i v-if="action === 'delete'" class="trash icon active" @click="removeAction"></i>
+        <i
+          v-if="action === 'delete'"
+          class="trash icon active"
+          @click="removeAction"
+        ></i>
         <i v-else class="trash icon" @click="changeToDelete"></i>
       </div>
     </div>
     <div v-if="action" class="confirmation">
-      <p>Are you sure you want to {{ action }}
+      <p>
+        Are you sure you want to {{ action }}
         <span class="accent-link">@{{ username }}</span>
         ?
       </p>
@@ -40,14 +49,14 @@ export default {
   },
   data() {
     return {
-      action: null
-    }
+      action: null,
+    };
   },
   methods: {
     changeUserType() {
-      return (this.type === 'owner')
-        ? this.action = 'demote'
-        : this.action = 'promote';
+      return this.type === 'owner'
+        ? (this.action = 'demote')
+        : (this.action = 'promote');
     },
     changeToDelete() {
       this.action = 'delete';
@@ -58,8 +67,8 @@ export default {
   },
   computed: {
     checkAction() {
-      return this.action === 'promote' || this.action === 'demote'
+      return this.action === 'promote' || this.action === 'demote';
     },
-  }
+  },
 };
 </script>

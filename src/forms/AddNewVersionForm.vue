@@ -48,8 +48,14 @@
         <label>Upload files</label>
         <div class="file-upload">
           <p>No file chosen</p>
-          <input class="custom-file-upload" type="file" id="version-file-loader" />
-          <label for="version-file-loader" class="file-loader-label">Choose files</label>
+          <input
+            class="custom-file-upload"
+            type="file"
+            id="version-file-loader"
+          />
+          <label for="version-file-loader" class="file-loader-label"
+            >Choose files</label
+          >
         </div>
       </div>
       <div class="custom-toggle">
@@ -60,7 +66,8 @@
           class="private-input"
           value="private"
           :checked="!isChecked"
-          @click="toggleCheck">
+          @click="toggleCheck"
+        />
         <label for="private-new-version">Team-only</label>
         <div class="selector" @click="toggleCheck"></div>
         <input
@@ -70,7 +77,8 @@
           class="public-input"
           value="public"
           :checked="isChecked"
-          @click="toggleCheck">
+          @click="toggleCheck"
+        />
         <label for="public-new-version">Public</label>
       </div>
       <div class="buttons">
@@ -166,9 +174,9 @@ export default {
     },
     toggleCheck(e) {
       const id = e.target.id;
-      return (id)
-        ? this.isChecked = (id === 'public-new-version')
-        : this.isChecked = !this.isChecked;
+      return id
+        ? (this.isChecked = id === 'public-new-version')
+        : (this.isChecked = !this.isChecked);
     },
   },
 };

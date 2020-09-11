@@ -1,9 +1,6 @@
 <template>
   <div class="controls">
-    <button
-      v-if="checkPermisions"
-      class="small submit-btn"
-    >
+    <button v-if="checkPermisions" class="small submit-btn">
       Subscribe
     </button>
     <button v-if="is_subscribed" class="subscribed-label">Subscribed</button>
@@ -35,7 +32,7 @@ export default {
   },
   computed: {
     checkPermisions() {
-      return !permissions['this:edit'] && !is_subscribed
+      return !permissions['this:edit'] && !is_subscribed;
     },
   },
 };

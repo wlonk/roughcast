@@ -4,7 +4,11 @@
       <div class="box-title">
         <h5>Version history</h5>
       </div>
-      <VersionHistoryCard v-for="version in versions" v-bind="version" :key="version.id"/>
+      <VersionHistoryCard
+        v-for="version in versions"
+        v-bind="version"
+        :key="version.id"
+      />
       <div v-if="!versions.length" class="version-card">
         <h6>No attached files</h6>
       </div>
@@ -17,7 +21,7 @@ import VersionHistoryCard from '@/components/VersionHistoryCard';
 
 export default {
   name: 'VersionHistory',
-  components: { VersionHistoryCard, },
+  components: { VersionHistoryCard },
   props: {
     versions: Array,
   },

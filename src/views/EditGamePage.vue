@@ -34,7 +34,8 @@
               <h5>Delete game</h5>
             </div>
             <div class="confirmation">
-              <p>Are you sure you want to delete
+              <p>
+                Are you sure you want to delete
                 <span class="accent-link">{{ game.name }}</span>
                 ?
               </p>

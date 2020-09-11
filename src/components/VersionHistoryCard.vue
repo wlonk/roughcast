@@ -1,9 +1,7 @@
 <template>
   <div class="version-card">
     <div>
-      <router-link
-        :to="`/t/${team}/${game}/${slug}`"
-        class="small-card-title">
+      <router-link :to="`/t/${team}/${game}/${slug}`" class="small-card-title">
         {{ name }}
       </router-link>
       <router-link :to="`/t/${team}/${game}/${slug}/edit`" class="link">
@@ -28,7 +26,7 @@ export default {
     game: String,
     slug: String,
     archive_link: String,
-    added: String
+    added: String,
   },
 };
 </script>

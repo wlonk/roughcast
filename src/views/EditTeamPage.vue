@@ -17,14 +17,15 @@
             :slug="team.slug"
           />
           <InviteUserToTeamForm />
-          <TeamUserManagement :users="team.users"/>
+          <TeamUserManagement :users="team.users" />
           <AddNewGameForm :forTeam="team.slug" />
           <div class="edit-box" id="delete">
             <div class="box-title">
               <h5>Delete team</h5>
             </div>
             <div class="confirmation">
-              <p>Are you sure you want to delete
+              <p>
+                Are you sure you want to delete
                 <span class="accent-link">{{ team.name }}</span>
                 ?
               </p>
