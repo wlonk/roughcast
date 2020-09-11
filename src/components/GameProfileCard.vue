@@ -54,7 +54,7 @@ export default {
     shortened_team_name() {
       const team_name = this.team.name;
       return team_name.length > 20
-        ? team_name.substring(0, 20) + '&hellip;'
+        ? team_name.substring(0, 20) + '\u2026'
         : team_name;
     },
   },

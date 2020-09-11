@@ -90,11 +90,11 @@ export default {
     },
     shortened_team_name() {
       const team = this.team_name;
-      return team.length > 18 ? team.substring(0, 18) + '&hellip;' : team;
+      return team.length > 18 ? team.substring(0, 18) + '\u2026' : team;
     },
     shortened_title() {
       return this.name.length > 19
-        ? this.name.substring(0, 19) + '&hellip;'
+        ? this.name.substring(0, 19) + '\u2026'
         : this.name;
     },
     shortened_authors() {
