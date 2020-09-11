@@ -13,7 +13,7 @@
       />
     </div>
     <div v-else>
-      <h6>There is no pending invitation yet.</h6>
+      <h6>There are no pending invitations yet.</h6>
       <p>When somebody invites you, you'll see it here.</p>
     </div>
   </div>

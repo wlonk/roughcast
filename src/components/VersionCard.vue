@@ -8,8 +8,8 @@
         <h5>Added</h5>
         <p>{{ added }}</p>
         <a :href="archive_link" class="round-link"></a>
-        <i v-if="!extended" class="sort up icon" v-on:click="toggleContent"></i>
-        <i v-else class="sort down icon" v-on:click="toggleContent"></i>
+        <i v-if="!extended" class="sort up icon" @click="toggleContent"></i>
+        <i v-else class="sort down icon" @click="toggleContent"></i>
       </div>
     </div>
     <div v-if="extended" class="content">

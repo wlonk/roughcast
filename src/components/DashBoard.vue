@@ -9,14 +9,14 @@
       </h2>
       <div class="dashboard-tabs">
         <button
-          v-on:click="toggleTab"
+          @click="toggleTab"
           :class="active_tab === 'games' && 'active'"
           data-tab="games"
         >
           Games
         </button>
         <button
-          v-on:click="toggleTab"
+          @click="toggleTab"
           :class="active_tab === 'group' && 'active'"
           data-tab="group"
         >

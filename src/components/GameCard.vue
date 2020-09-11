@@ -32,10 +32,9 @@
       <CardStatistic :likes="likes" :comments="comments" />
       <div class="authors">
         <AuthorPreview
-          v-for="(author, index) in shortened_authors"
-          :key="index"
-          :username="author.username"
-          :avatar="author.avatar"
+          v-for="author in shortened_authors"
+          :key="author.id"
+          v-bind="author"
         />
         <!-- Hardcoded -->
         <AuthorPreview username="mayzee" :avatar="null" />

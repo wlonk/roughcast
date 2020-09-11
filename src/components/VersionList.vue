@@ -37,7 +37,7 @@ export default {
     VersionCard,
   },
   computed: {
-    recent_version() {
+    most_recent_version() {
       return this.versions[0];
     },
     old_versions() {

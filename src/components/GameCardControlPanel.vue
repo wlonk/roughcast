@@ -1,7 +1,7 @@
 <template>
   <div class="controls">
     <button
-      v-if="!permissions['this:edit'] && !is_subscribed"
+      v-if="checkPermisions"
       class="small submit-btn"
     >
       Subscribe
@@ -32,6 +32,11 @@ export default {
     slug: String,
     team_slug: String,
     is_subscribed: Boolean,
+  },
+  computed: {
+    checkPermisions() {
+      return !permissions['this:edit'] && !is_subscribed
+    },
   },
 };
 </script>
