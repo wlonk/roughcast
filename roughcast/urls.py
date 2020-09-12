@@ -22,6 +22,9 @@ from rest_framework.routers import DefaultRouter
 
 from . import views
 
+# @@@ WEBSOCKETS
+# from .routing import websockets
+
 router = DefaultRouter()
 router.register("accounts", views.AccountsView, basename="accounts")
 router.register("users", views.UserViewSet)
@@ -52,6 +55,8 @@ urlpatterns = [
         name="password_reset_confirm",
     ),
 ]
+# @@@ WEBSOCKETS
+# ] + websockets.routes
 
 if settings.DEBUG:  # pragma: nocover
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

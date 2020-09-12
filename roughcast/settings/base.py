@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "crispy_forms",
     "markdownify",
     "rest_framework",
     "rest_framework.authtoken",
@@ -72,6 +71,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 WSGI_APPLICATION = "roughcast.wsgi.application"
+# @@@ WEBSOCKETS
+# ASGI_APPLICATION = "roughcast.routing.application"
 ROOT_URLCONF = "roughcast.urls"
 TEMPLATES = [
     {
@@ -114,6 +115,20 @@ TEMPLATES = [
         },
     }
 ]
+
+
+# Redis
+# Used as the channels layer
+# @@@ WEBSOCKETS
+# REDIS_LOCATION = "{0}/{1}".format(
+#     env("REDIS_URL", default="redis://localhost:6379"), 0
+# )
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {"hosts": [REDIS_LOCATION]},
+#     }
+# }
 
 
 # Password validation

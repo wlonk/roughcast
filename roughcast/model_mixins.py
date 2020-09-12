@@ -1,3 +1,7 @@
+# @@@ WEBSOCKETS
+# from asgiref.sync import async_to_sync
+# from channels.layers import get_channel_layer
+# from django.utils import timezone
 from django.db import models
 from hashid_field import HashidAutoField
 
@@ -40,3 +44,45 @@ class SubscribableMixin:
         ret = super().delete(*args, **kwargs)
         subscribable.delete()
         return ret
+
+
+# @@@ WEBSOCKETs
+# class PushableMixin:
+#     # Subclasses implement these:
+#     push_resource = None
+#     push_serializer = None
+
+#     @staticmethod
+#     def _json_format_timestamp(value):
+#         value = value.isoformat()
+#         if value.endswith('+00:00'):
+#             value = value[:-6] + 'Z'
+#         return value
+
+#     def push(self):
+#         channel_layer = get_channel_layer()
+
+#         # @@@ If we eventually enable subscribing to individual models,
+#         # this will have to support translating between `foo/:id/`
+#         # format and `foo/` format, for details and collections.
+#         group_name = self.push_resource
+#         timestamp = self._json_format_timestamp(timezone.now())
+
+#         message = {
+#             # TODO: make this line right:
+#             "type": "getPushNotification",
+#             "payload": self.push_serializer(instance=self).data,
+#             "resource_identifier": f"{self.push_resource}/{self.id}/",
+#             "timestamp": datetime,
+#         }
+
+#         sent_message = {"type": "notify", "content": message}
+#         async_to_sync(channel_layer.group_send)(group_name, sent_message)
+
+#     def save(self, *args, **kwargs):
+#         is_created = not self.id
+#         ret = super().save(*args, **kwargs)
+#         if is_created:
+#             self.push()
+
+#         return ret
