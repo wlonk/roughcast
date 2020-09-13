@@ -248,6 +248,7 @@ class InAppNotificationSerializer(serializers.ModelSerializer):
             "notification_type",
             "path",
             "additional_context",
+            "subject",
         )
 
     id = serializers.CharField(read_only=True)

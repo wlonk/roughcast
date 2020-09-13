@@ -8,6 +8,7 @@ import Team from './Team';
 import Game from './Game';
 import Version from './Version';
 import AttachedFile from './AttachedFile';
+import Notification from './Notification';
 
 Vue.use(Vuex);
 
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     Game,
     Version,
     AttachedFile,
+    Notification,
   },
   plugins: [createPersistedState()],
 });
