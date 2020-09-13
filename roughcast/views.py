@@ -7,12 +7,12 @@ from django.http import HttpResponse
 from django.urls import NoReverseMatch
 from django.utils.text import slugify
 from django_registration.exceptions import ActivationError
-from rest_framework import status, mixins
+from rest_framework import mixins, status
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from rest_framework.viewsets import ModelViewSet, GenericViewSet, ViewSet
+from rest_framework.viewsets import GenericViewSet, ModelViewSet, ViewSet
 
 from .models import (
     AttachedFile,
