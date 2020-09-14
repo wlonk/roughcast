@@ -5,8 +5,10 @@
         {{ name }}
       </router-link>
       <div>
-        <h5>Added</h5>
-        <p>{{ added }}</p>
+        <div v-if="added">
+          <h5>Added</h5>
+          <p>{{ added }}</p>
+        </div>
         <a :href="archive_link" class="round-link"></a>
         <i v-if="!extended" class="sort up icon" @click="toggleContent"></i>
         <i v-else class="sort down icon" @click="toggleContent"></i>
@@ -18,7 +20,9 @@
         <span>{{ changelog_short }}</span>
       </div>
       <div class="footer">
-        <CardStatistic :comments="comments" />
+        <div>
+          <CardStatistic v-if="comments" :comments="comments" />
+        </div>
         <div class="authors">
           <AuthorPreview
             :username="created_by"
@@ -59,12 +63,8 @@ export default {
     slug: String,
     archive_link: String,
     permissions: Object,
-    added: {
-      default: '11/12/2020',
-    },
-    comments: {
-      default: '0',
-    },
+    added: String,
+    comments: String,
     created_by: String,
   },
   computed: {

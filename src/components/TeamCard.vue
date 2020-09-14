@@ -29,8 +29,6 @@
           :username="owner.username"
           :avatar="owner.avatar"
         />
-        <!-- Hardcoded -->
-        <AuthorPreview username="mayzee" :avatar="null" />
       </div>
     </div>
   </div>
@@ -61,14 +59,8 @@ export default {
     user_is_member: Boolean,
     logo: String,
     owners: Array,
-    games: {
-      type: String,
-      default: '0',
-    },
-    subscribers: {
-      type: String,
-      default: '0',
-    },
+    games: String,
+    subscribers: String,
   },
   computed: {
     shortened_owners() {

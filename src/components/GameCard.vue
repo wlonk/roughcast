@@ -68,14 +68,8 @@ export default {
     team: [String, Object],
     latest_version: Object,
     permissions: Object,
-    likes: {
-      type: String,
-      default: '0',
-    },
-    comments: {
-      type: String,
-      default: '0',
-    },
+    likes: String,
+    comments: String,
     authors: Array,
   },
   computed: {

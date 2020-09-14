@@ -43,12 +43,8 @@ export default {
     description: String,
     user_is_owner: Boolean,
     logo: String,
-    is_subscribed: {
-      default: false,
-    },
-    is_invited: {
-      default: false,
-    },
+    is_subscribed: Boolean,
+    is_invited: Boolean,
   },
 };
 </script>

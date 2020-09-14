@@ -5,8 +5,10 @@
         {{ name }}
       </router-link>
       <div>
-        <h5>Added</h5>
-        <p>{{ added }}</p>
+        <div v-if="added">
+          <h5>Added</h5>
+          <p>{{ added }}</p>
+        </div>
         <a :href="archive_link" class="round-link"></a>
       </div>
     </div>
@@ -50,12 +52,8 @@ export default {
     slug: String,
     archive_link: String,
     permissions: Object,
-    added: {
-      default: '11/12/2020',
-    },
-    comments: {
-      default: '0',
-    },
+    added: String,
+    comments: Boolean,
     created_by: String,
   },
   computed: {

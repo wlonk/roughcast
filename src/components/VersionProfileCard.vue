@@ -10,10 +10,9 @@
           </router-link>
           <span>@{{ name }}</span>
         </h4>
-        <div>
+        <div v-if="added">
           <h5>Added</h5>
           <p>{{ added }}</p>
-          <a :href="archive_link" class="round-link"></a>
         </div>
       </div>
       <div class="team">
@@ -59,9 +58,7 @@ export default {
     archive_link: String,
     permissions: Object,
     attachedFiles: Array,
-    added: {
-      default: '11/08/2020',
-    },
+    added: String,
   },
   components: { RenderedMarkdown },
   computed: {

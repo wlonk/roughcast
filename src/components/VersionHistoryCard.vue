@@ -9,8 +9,10 @@
       </router-link>
     </div>
     <div>
-      <h5>Added</h5>
-      <p>{{ added || '11/11/2020' }}</p>
+      <div v-if="added">
+        <h5>Added</h5>
+        <p>{{ added }}</p>
+      </div>
       <a :href="archive_link" class="round-link"></a>
     </div>
   </div>
