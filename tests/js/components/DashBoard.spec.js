@@ -9,6 +9,7 @@ describe('App.vue', () => {
         listGames: () => [],
         hydratedGame: () => () => undefined,
         listTeams: () => [],
+        currentUser: () => ({ username: 'Test user' }),
       },
     });
     const wrapper = shallowMount(DashBoard, { store, localVue });

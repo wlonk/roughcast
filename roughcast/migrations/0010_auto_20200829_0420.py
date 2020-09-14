@@ -10,8 +10,13 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(model_name="userprofile", name="bio",),
+        migrations.RemoveField(
+            model_name="userprofile",
+            name="bio",
+        ),
         migrations.AddField(
-            model_name="user", name="bio", field=models.TextField(blank=True),
+            model_name="user",
+            name="bio",
+            field=models.TextField(blank=True),
         ),
     ]

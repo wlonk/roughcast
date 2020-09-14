@@ -55,7 +55,10 @@ class AccountsView(ViewSet):
         for url_name in mapped_actions:
             try:
                 url_name_lookup = url_name.replace("_", "-")
-                ret[url_name] = reverse(f"accounts-{url_name_lookup}", request=request,)
+                ret[url_name] = reverse(
+                    f"accounts-{url_name_lookup}",
+                    request=request,
+                )
             except NoReverseMatch:  # pragma: nocover
                 continue
 

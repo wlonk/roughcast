@@ -10,7 +10,10 @@
           Edit game
         </sui-dropdown-item>
       </router-link>
-      <router-link :to="`/t/${team}/${slug}/edit#new-version`" class="ui link item">
+      <router-link
+        :to="`/t/${team}/${slug}/edit#new-version`"
+        class="ui link item"
+      >
         <sui-dropdown-item>
           Add New Version
         </sui-dropdown-item>
@@ -30,6 +33,6 @@ export default {
   props: {
     team: String,
     slug: String,
-  }
+  },
 };
 </script>

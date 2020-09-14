@@ -53,7 +53,7 @@ export default {
     archive_link: String,
     permissions: Object,
     added: String,
-    comments: Boolean,
+    comments: String,
     created_by: String,
   },
   computed: {

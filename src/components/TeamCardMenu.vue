@@ -29,6 +29,6 @@ export default {
   name: 'GameCardMenu',
   props: {
     slug: String,
-  }
+  },
 };
 </script>

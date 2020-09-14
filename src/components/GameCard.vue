@@ -10,7 +10,7 @@
           v-if="permissions['this:edit']"
           :slug="slug"
           :team="team_name"
-           />
+        />
         <router-link :to="`/t/${team_slug}/${slug}`" class="small-card-title">
           {{ shortened_title }}
           <div v-if="name.length > 19" class="inline">

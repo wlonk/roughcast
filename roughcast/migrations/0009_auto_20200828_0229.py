@@ -66,7 +66,10 @@ class Migration(migrations.Migration):
             model_name="inappnotification",
             name="id",
             field=hashid_field.field.HashidAutoField(
-                alphabet=ALPHABET, min_length=7, primary_key=True, serialize=False,
+                alphabet=ALPHABET,
+                min_length=7,
+                primary_key=True,
+                serialize=False,
             ),
         ),
         migrations.CreateModel(

@@ -11,7 +11,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RenameModel(
-            old_name="PublisherMembership", new_name="TeamMembership",
+            old_name="PublisherMembership",
+            new_name="TeamMembership",
         ),
-        migrations.RenameModel(old_name="Publisher", new_name="Team",),
+        migrations.RenameModel(
+            old_name="Publisher",
+            new_name="Team",
+        ),
     ]
