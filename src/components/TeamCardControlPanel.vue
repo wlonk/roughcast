@@ -15,7 +15,7 @@
       Edit Team
     </router-link>
     <router-link
-      :to="`/g/add`"
+      :to="`/t/${slug}/edit#new-game`"
       v-if="permissions['game:add']"
       class="accent-link"
     >
