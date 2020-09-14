@@ -4,7 +4,7 @@
       <div class="box-title">
         <h5>Newest version</h5>
       </div>
-      <RecentVersionCard v-bind="recent_version" />
+      <RecentVersionCard v-bind="most_recent_version" />
     </div>
     <div>
       <div class="box-title">
