@@ -6,7 +6,11 @@
         <img v-else src="../assets/no-game-image.svg" alt="No game banner" />
       </div>
       <div class="header">
-        <GameCardMenu v-if="permissions['this:edit']" />
+        <GameCardMenu
+          v-if="permissions['this:edit']"
+          :slug="slug"
+          :team="team_name"
+           />
         <router-link :to="`/t/${team_slug}/${slug}`" class="small-card-title">
           {{ shortened_title }}
           <div v-if="name.length > 19" class="inline">
