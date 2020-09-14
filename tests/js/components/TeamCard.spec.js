@@ -3,7 +3,11 @@ import TeamCard from '@/components/TeamCard.vue';
 
 describe('App.vue', () => {
   it('renders', () => {
-    const wrapper = shallowMount(TeamCard);
-    expect(wrapper.find('.ui.card').exists()).toBe(true);
+    const wrapper = shallowMount(TeamCard, {
+      propsData: {
+        name: 'Test Team',
+      },
+    });
+    expect(wrapper.find('.team-card').exists()).toBe(true);
   });
 });

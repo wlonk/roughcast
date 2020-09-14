@@ -11,7 +11,7 @@ from django.db import models
 
 
 class StringField(models.TextField):
-    """ A simple unlimited length string field.
+    """A simple unlimited length string field.
 
     Django's CharField requires a max_length, and TextField displays a multi-
     line widget, but in Postgres there's no reason to add an arbitrary max

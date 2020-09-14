@@ -1,7 +1,7 @@
 <template>
   <div class="page-header" id="page-header">
     <div class="header item">
-      <img src="../assets/logo.svg" alt="logo" />
+      <img src="../assets/logo.svg" alt="Logo" />
       <router-link to="/" class="logo-title">
         Roughcast
       </router-link>

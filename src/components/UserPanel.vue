@@ -1,9 +1,15 @@
 <template>
   <div class="user-panel">
     <router-link :to="`/u/${currentUser.username}`" class="ui link item">
-      <img v-if="currentUser.avatar" :src="currentUser.avatar" alt="avatar" />
-      <img v-else src="../assets/no-avatar.svg" alt="avatar" />
-      {{ currentUser.first_name }}
+      <img
+        v-if="currentUser.avatar"
+        :src="currentUser.avatar"
+        alt="Your avatar"
+      />
+      <img v-else src="../assets/no-avatar.svg" alt="No avatar" />
+      {{
+        currentUser.first_name ? currentUser.first_name : currentUser.username
+      }}
     </router-link>
     <UserControlMenu />
   </div>

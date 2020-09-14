@@ -101,7 +101,8 @@ class TestPasswordResetSerializer:
         assert serializer.is_valid(), serializer.errors
         with patch("roughcast.serializers.get_current_site") as get_current_site:
             get_current_site.return_value = MagicMock(
-                name="Roughcast", domain="roughcast.app",
+                name="Roughcast",
+                domain="roughcast.app",
             )
             serializer.save()
 
@@ -183,7 +184,8 @@ class TestPasswordResetConfirmSerializer:
         assert serializer.is_valid()
         with patch("roughcast.serializers.get_current_site") as get_current_site:
             get_current_site.return_value = MagicMock(
-                name="Roughcast", domain="roughcast.app",
+                name="Roughcast",
+                domain="roughcast.app",
             )
             serializer.save()
 

@@ -5,7 +5,7 @@
         <h2>Welcome back</h2>
         <LogIn />
       </div>
-      <img src="../assets/player.svg" alt="player" />
+      <img src="../assets/player.svg" alt="Player" />
     </div>
   </div>
 </template>

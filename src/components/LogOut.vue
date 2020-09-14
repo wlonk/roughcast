@@ -1,35 +1,18 @@
 <template>
   <form @submit.stop.prevent="logout">
-    <input type="submit" value="Log Out" class="accent-link" />
-    <ul v-if="errors.non_field_errors">
-      <li
-        v-for="(error, i) in errors.non_field_errors"
-        :key="i"
-        class="ui error message"
-      >
-        {{ error }}
-      </li>
-    </ul>
+    <sui-dropdown-item>
+      <input type="submit" value="Log Out" />
+    </sui-dropdown-item>
   </form>
 </template>
 
 <script>
 export default {
   name: 'LogOut',
-  data() {
-    return { errors: {} };
-  },
   methods: {
-    async logout() {
-      try {
-        this.$store.dispatch('logOut');
-      } catch (error) {
-        this.errors = {
-          non_field_errors: [
-            'There was an error logging out. Please try again in a moment.',
-          ],
-        };
-      }
+    logout() {
+      this.$store.dispatch('logOut');
+      this.$router.push('/');
     },
   },
 };

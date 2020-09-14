@@ -1,8 +1,8 @@
 .welcome-block,
 .auth-block,
 .verification-block,
-.edit-block {
-  display: flex;
+.edit-block,
+.dashboard {
   h1, h2 {
     font-family: $accent-font;
   }
@@ -17,6 +17,13 @@
     margin: 1.5rem 0 4rem;
     letter-spacing: 0.2em;
   }
+}
+
+.welcome-block,
+.auth-block,
+.verification-block,
+.edit-block {
+  display: flex;
 }
 
 .welcome-block>div {
@@ -47,13 +54,4 @@
 .user-game-block {
   margin-top: 2.5rem;
   padding-bottom: 4rem;
-  .games {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1rem;
-    margin-top: 2.5rem;
-    &>* {
-      margin: 0;
-    }
-  }
 }

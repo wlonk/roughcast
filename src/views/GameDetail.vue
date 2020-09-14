@@ -1,9 +1,6 @@
 <template>
   <div>
-    <GameSection v-bind="game" />
-    <h3 class="ui horizontal divider">
-      Versions
-    </h3>
+    <GameProfileCard v-bind="game" />
     <VersionList
       :team="teamSlug"
       :game="game.slug"
@@ -17,12 +14,12 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import GameSection from '@/components/GameSection';
+import GameProfileCard from '@/components/GameProfileCard';
 import VersionList from '@/components/VersionList';
 
 export default {
   name: 'GameDetail',
-  components: { GameSection, VersionList },
+  components: { GameProfileCard, VersionList },
   computed: {
     ...mapGetters(['hydratedGame']),
     teamSlug() {

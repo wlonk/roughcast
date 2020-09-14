@@ -1,5 +1,5 @@
 .edit-box {
-  padding-top: 2.5rem;
+  padding-top: 4rem;
   &:first-child {
     padding-top: 0;
   }
@@ -17,15 +17,11 @@
       margin: 0;
     }
   }
-  .public {
-    &.info-block,
-    &.page-form {
-      display: grid;
-      grid-column-gap: 2rem;
-      grid-template-areas: 'name avatar''bio avatar' 'd avatar';
-    }
+  .public.info-block {
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-template-areas: 'name avatar''bio avatar' 'd avatar';
   }
-
   .avatar {
     grid-area: avatar;
     img {
@@ -39,13 +35,16 @@
   }
   .bio {
     grid-area: bio;
-    min-width: 23rem;
+    width: 23rem;
   }
   .no-data {
     opacity: 0.3;
   }
   textarea {
     margin-bottom: 0;
+  }
+  label[for="slug"] {
+    margin-top: 1rem;
   }
   .remove {
     background: none;
@@ -72,10 +71,87 @@
   .row {
     display: flex;
     align-items: center;
-    // justify-content: space-between;
-    // width: 16rem;
     .checkbox-label {
       margin-right: 2rem;
+    }
+  }
+  &#password-change {
+    .submit-btn {
+      margin: 0;
+    }
+  }
+  p {
+    margin: 0;
+  }
+  .confirmation {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    // padding: 0 1rem;
+    p {
+      max-width: 80%;
+    }
+    i {
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+  }
+  &#delete .confirmation {
+    display: block;
+    p:last-child {
+      margin-bottom: 1.25rem;
+    }
+  }
+  &#history .version-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .small-card-title {
+      font-family: $accent-font;
+      font-size: 1.5rem;
+    }
+    .round-link {
+      background-image: url('./assets/file.svg');
+    }
+    &>div {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      * {
+        margin: 0;
+      }
+      h5 {
+        margin-right: 0.5rem;
+      }
+      p {
+        margin-right: 1rem;
+      }
+      .link {
+        margin-top: 0.5rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  &#new-version .custom-toggle {
+    margin-top: 3rem;
+  }
+  .file-upload {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    p {
+      background-color: $dm-dark-color;
+      color: transparentize($dm-main-font-color, 0.5);
+      border-radius: 0.5rem;
+      margin-right: 0.5rem;
+      padding: 0.75rem;
+      width: 60%;
+    }
+    .file-loader-label {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      min-width: 0;
     }
   }
 }

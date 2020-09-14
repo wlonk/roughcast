@@ -14,6 +14,9 @@ import ResetPasswordPage from '@/views/ResetPasswordPage';
 import SetNewPasswordPage from '@/views/SetNewPasswordPage';
 import VerificationDetail from '@/views/VerificationDetail';
 import EditUserPage from '@/views/EditUserPage';
+import EditTeamPage from '@/views/EditTeamPage';
+import EditGamePage from '@/views/EditGamePage';
+import EditVersionPage from '@/views/EditVersionPage';
 
 Vue.use(VueRouter);
 
@@ -92,9 +95,25 @@ const routes = [
     },
   },
   {
+    path: '/t/:team/edit',
+    name: 'EditTeam',
+    component: EditTeamPage,
+    meta: {
+      title: 'Edit Team | Roughcast',
+    },
+  },
+  {
     path: '/t/:team/:game',
     name: 'Game',
     component: GameDetail,
+    meta: {
+      title: 'Game | Roughcast',
+    },
+  },
+  {
+    path: '/t/:team/:game/edit',
+    name: 'EditGame',
+    component: EditGamePage,
     meta: {
       title: 'Game | Roughcast',
     },
@@ -105,6 +124,14 @@ const routes = [
     component: VersionDetail,
     meta: {
       title: 'Version | Roughcast',
+    },
+  },
+  {
+    path: '/t/:team/:game/:version/edit',
+    name: 'EditVersion',
+    component: EditVersionPage,
+    meta: {
+      title: 'Edit Version | Roughcast',
     },
   },
 ];

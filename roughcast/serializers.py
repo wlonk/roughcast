@@ -67,7 +67,8 @@ class RegisterSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         user = User.objects.create(
-            username=validated_data["username"], email=validated_data["email"],
+            username=validated_data["username"],
+            email=validated_data["email"],
         )
         user.set_password(validated_data["password1"])
         user.save()
@@ -128,7 +129,8 @@ class PasswordResetSerializer(serializers.Serializer):
                 "protocol": "https" if use_https else "http",
             }
             self.send_mail(
-                context, user.email,
+                context,
+                user.email,
             )
 
 
@@ -284,7 +286,9 @@ class TeamSerializer(serializers.ModelSerializer):
             user
             and user.is_authenticated
             and TeamMembership.objects.filter(
-                user=user, team=team, is_owner=True,
+                user=user,
+                team=team,
+                is_owner=True,
             ).exists()
         )
 
@@ -295,7 +299,10 @@ class TeamSerializer(serializers.ModelSerializer):
         return (
             user
             and user.is_authenticated
-            and TeamMembership.objects.filter(user=user, team=team,).exists()
+            and TeamMembership.objects.filter(
+                user=user,
+                team=team,
+            ).exists()
         )
 
     def create(self, validated_data):
@@ -303,7 +310,9 @@ class TeamSerializer(serializers.ModelSerializer):
         user = getattr(self.context.get("request", None), "user", None)
         if user and user.is_authenticated:
             TeamMembership.objects.create(
-                user=user, team=team, is_owner=True,
+                user=user,
+                team=team,
+                is_owner=True,
             )
         return team
 
@@ -325,7 +334,10 @@ class TeamMembershipSerializer(serializers.ModelSerializer):
     user_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="user"
     )
-    team = SlugStringField(model_class=Team, queryset=Team.objects.all(),)
+    team = SlugStringField(
+        model_class=Team,
+        queryset=Team.objects.all(),
+    )
     team_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="team"
     )
@@ -349,7 +361,10 @@ class GameSerializer(serializers.ModelSerializer):
 
     id = serializers.CharField(read_only=True)
     slug = SlugField()
-    team = SlugStringField(model_class=Team, queryset=Team.objects.all(),)
+    team = SlugStringField(
+        model_class=Team,
+        queryset=Team.objects.all(),
+    )
     team_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="team"
     )
@@ -398,13 +413,18 @@ class VersionSerializer(serializers.ModelSerializer):
     slug = SlugField()
     created_by = UserStringField(read_only=True)
     created_by_setter = serializers.HiddenField(
-        default=serializers.CurrentUserDefault(), source="created_by",
+        default=serializers.CurrentUserDefault(),
+        source="created_by",
     )
     game = SlugStringField(model_class=Game, queryset=Game.objects.all())
     game_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="game"
     )
-    team = SlugStringField(model_class=Team, read_only=True, source="game.team",)
+    team = SlugStringField(
+        model_class=Team,
+        read_only=True,
+        source="game.team",
+    )
     visible_to = UserStringField(queryset=User.objects.all(), many=True)
     archive_link = serializers.SerializerMethodField()
 
@@ -456,7 +476,9 @@ class AttachedFileSerializer(serializers.ModelSerializer):
     )
     game = SlugStringField(model_class=Game, read_only=True, source="version.game")
     team = SlugStringField(
-        model_class=Team, read_only=True, source="version.game.team",
+        model_class=Team,
+        read_only=True,
+        source="version.game.team",
     )
     name = serializers.SerializerMethodField()
 

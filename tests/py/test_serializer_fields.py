@@ -38,7 +38,8 @@ class TestSlugStringField:
     def test_to_representation(self, team):
         assert (
             SlugStringField(
-                model_class=Team, queryset=Team.objects.all(),
+                model_class=Team,
+                queryset=Team.objects.all(),
             ).to_representation(team)
             == team.slug
         )

@@ -14,8 +14,8 @@
     </div>
     <div class="avatar">
       <h6>Avatar</h6>
-      <img v-if="avatar" :src="avatar" alt="avatar" />
-      <img v-else src="../assets/no-avatar.svg" alt="avatar" />
+      <img v-if="avatar" :src="avatar" alt="Your avatar" />
+      <img v-else src="../assets/no-avatar.svg" alt="No avatar" />
     </div>
   </div>
 </template>

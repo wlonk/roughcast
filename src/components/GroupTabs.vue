@@ -4,14 +4,14 @@
       <i
         v-if="count > 0"
         class="chevron left icon pagination-left"
-        v-on:click="decreaseCount"
+        @click="decreaseCount"
       ></i>
     </div>
     <div class="tab-content">
       <div
         v-for="group in tabs"
         :key="group.slug"
-        v-on:click="() => selectGroup(group)"
+        @click="() => selectGroup(group)"
         v-bind:class="[group.slug === chosen.slug ? 'chosen' : '']"
       >
         {{ group.name }}
@@ -21,7 +21,7 @@
       <i
         v-if="rightPagination"
         class="chevron right icon pagination-right"
-        v-on:click="increaseCount"
+        @click="increaseCount"
       ></i>
     </div>
   </div>

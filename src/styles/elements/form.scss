@@ -27,6 +27,7 @@
     width: 100%;
     padding: 1rem;
     margin-bottom: 1rem;
+    min-width: 23rem;
   }
   textarea {
     font-size: 1rem;
@@ -53,5 +54,15 @@
         margin-left: 0.5rem;
       }
     }
+  }
+  &.public {
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-template-areas: 'name avatar''bio avatar' 'd avatar';
+  }
+  &.adding {
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-template-areas: 'name avatar''bio avatar' 'd avatar' 'toggle avatar' 'submit avatar';
   }
 }

@@ -5,7 +5,7 @@
         <h2>Forgot password?</h2>
         <ResetPasswordForm />
       </div>
-      <img src="../assets/player.svg" alt="player" />
+      <img src="../assets/player.svg" alt="Player" />
     </div>
   </div>
 </template>

@@ -174,7 +174,9 @@ class Team(SubscribableMixin, BasicModelMixin, SimpleSlugMixin, models.Model):
     url = models.URLField(blank=True)
 
     members = models.ManyToManyField(
-        User, through="TeamMembership", related_name="team_memberships",
+        User,
+        through="TeamMembership",
+        related_name="team_memberships",
     )
 
     subscribable = models.OneToOneField(Subscribable, on_delete=models.CASCADE)
@@ -212,7 +214,8 @@ class Game(SubscribableMixin, BasicModelMixin, SimpleSlugMixin, models.Model):
     class Meta:
         constraints = (
             models.UniqueConstraint(
-                fields=("team", "name"), name="unique_name_per_team",
+                fields=("team", "name"),
+                name="unique_name_per_team",
             ),
             models.UniqueConstraint(fields=("slug",), name="unique_game_slug"),
         )
@@ -234,7 +237,8 @@ class Version(BasicModelMixin, SimpleSlugMixin, models.Model):
     class Meta:
         constraints = (
             models.UniqueConstraint(
-                fields=("game", "name"), name="unique_name_per_game",
+                fields=("game", "name"),
+                name="unique_name_per_game",
             ),
             models.UniqueConstraint(
                 fields=("game", "slug"), name="unique_slug_per_game"

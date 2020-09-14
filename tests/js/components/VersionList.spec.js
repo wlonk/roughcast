@@ -7,11 +7,11 @@ describe('App.vue', () => {
       propsData: {
         team: 'team',
         game: 'game',
-        versions: [],
+        versions: [{ id: 'abc123' }],
         userCanAddVersions: true,
         defaultVisibleTo: [],
       },
     });
-    expect(wrapper.find('.version-list').exists()).toBe(true);
+    expect(wrapper.find('.versions-list').exists()).toBe(true);
   });
 });

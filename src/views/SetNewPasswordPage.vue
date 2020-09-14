@@ -5,7 +5,7 @@
         <h2>Create new password</h2>
         <CreateNewPasswordForm />
       </div>
-      <img src="../assets/player.svg" alt="player" />
+      <img src="../assets/player.svg" alt="Player" />
     </div>
   </div>
 </template>
