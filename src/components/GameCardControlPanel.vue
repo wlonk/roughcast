@@ -12,7 +12,7 @@
       Edit game
     </router-link>
     <router-link
-      :to="`/t/${team_slug}/${slug}/edit#add-version`"
+      :to="`/t/${team_slug}/${slug}/edit#new-version`"
       v-if="permissions['version:add']"
       class="accent-link"
     >
