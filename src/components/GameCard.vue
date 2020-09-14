@@ -36,8 +36,6 @@
           :key="author.id"
           v-bind="author"
         />
-        <!-- Hardcoded -->
-        <AuthorPreview username="mayzee" :avatar="null" />
       </div>
     </div>
   </div>
