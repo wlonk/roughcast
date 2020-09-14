@@ -6,7 +6,7 @@
         <img v-else src="../assets/no-team-logo.svg" alt="No team logo" />
       </div>
       <div class="header">
-        <TeamCardMenu v-if="user_is_owner" />
+        <TeamCardMenu v-if="user_is_owner" :slug="slug" />
         <router-link :to="`/t/${slug}`" class="small-card-title">
           {{ name }}
           <div v-if="name.length > 30" class="inline">
