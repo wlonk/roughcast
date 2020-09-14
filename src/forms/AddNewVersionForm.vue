@@ -52,6 +52,7 @@
             class="custom-file-upload"
             type="file"
             id="version-file-loader"
+            multiple
           />
           <label for="version-file-loader" class="file-loader-label"
             >Choose files</label
