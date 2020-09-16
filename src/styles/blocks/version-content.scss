@@ -7,16 +7,15 @@
   .file-card {
     display: flex;
     justify-content: space-between;
-    background-color: $dm-dark-color;
+    background-color: $dm-bg-card-color;
     border-radius: 0.5rem;
     padding: 1rem;
     position: relative;
     h6 {
-      color: $dm-main-font-color;
+      color: $main-light-color;
       opacity: 0.5;
     }
     .card-title {
-      font-size: 1.5rem;
       max-width: 90%;
     }
     .round-link {

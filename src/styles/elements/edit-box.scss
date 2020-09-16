@@ -10,7 +10,7 @@
     h6 {
       display: flex;
       align-items: flex-end;
-      font-size: 1.1rem;
+      font-size: $base-font-size;
       margin-bottom: 0.5rem;
     }
     p {
@@ -61,7 +61,7 @@
     display: flex;
     align-items: center;
     .verfc {
-      font-size: 0.75rem;
+      font-size: $base-font-size;
       margin-left: 1rem;
     }
   }
@@ -106,10 +106,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .small-card-title {
-      font-family: $accent-font;
-      font-size: 1.5rem;
-    }
     .round-link {
       background-image: url('./assets/file.svg');
     }
@@ -141,8 +137,8 @@
     align-items: center;
     margin-top: 0.5rem;
     p {
-      background-color: $dm-dark-color;
-      color: transparentize($dm-main-font-color, 0.5);
+      background-color: $dm-bg-card-color;
+      color: transparentize($main-light-color, 0.5);
       border-radius: 0.5rem;
       margin-right: 0.5rem;
       padding: 0.75rem;

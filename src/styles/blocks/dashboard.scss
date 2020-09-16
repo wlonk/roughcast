@@ -4,16 +4,11 @@
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 1rem;
-    h2 {
-      a {
-        font-family: $accent-font;
-      }
-    }
     .dashboard-tabs  {
       position: relative;
       margin-bottom: 2rem;
       .bottom-border {
-        background-color: $dm-dark-color;
+        background-color: $dm-bg-card-color;
         width: 14rem; height: 2px;
         position: absolute;
         bottom: 0; right: 0;
@@ -31,8 +26,8 @@
         padding-right: 0.75em;
       }
       &:hover, &:focus, &.active {
-        color: $dm-accent-bg-color;
-        border-bottom: 2px solid $dm-accent-bg-color;
+        color: $main-accent-color;
+        border-bottom: 2px solid $main-accent-color;
       }
     }
   }

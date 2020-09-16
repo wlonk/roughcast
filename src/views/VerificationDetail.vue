@@ -1,7 +1,7 @@
 <template>
   <div class="verification-block">
     <div v-if="!shouldSendVerification">
-      <h2>Welcome to Roughcast</h2>
+      <h2 class="page-title">Welcome to Roughcast</h2>
       <img src="../assets/mailbox.svg" alt="Mailbox" />
       <div class="text-block">
         <p>
@@ -18,17 +18,17 @@
       </div>
     </div>
     <div v-else-if="verificationPending">
-      <h2>Verifing&hellip;</h2>
+      <h2 class="page-title">Verifing&hellip;</h2>
       <img src="../assets/mailbox-open.svg" alt="Mailbox" />
       <p>Hold on, we're verifying your email&hellip;</p>
     </div>
     <div v-else-if="errors">
-      <h2>Uh oh</h2>
+      <h2 class="page-title">Uh oh</h2>
       <img src="../assets/mailbox-open.svg" alt="Mailbox" />
       <p>Something went wrong verifying your email.</p>
     </div>
     <div v-else>
-      <h2>Verified!</h2>
+      <h2 class="page-title">Verified!</h2>
       <img src="../assets/mailbox-open.svg" alt="Mailbox" />
       <p>Great! You have successfully verified your email.</p>
       <router-link to="/" class="submit-btn">

@@ -15,13 +15,13 @@
   .filters {
     display: flex;
     &>div {
-      background-color: $dm-dark-color;
+      background-color: $dm-bg-card-color;
       border-radius: 0.5rem;
       padding: 1.25rem 2rem;
       margin-left: 1rem;
     }
     select {
-      background-color: $dm-dark-color;
+      background-color: $dm-bg-card-color;
     }
   }
 }

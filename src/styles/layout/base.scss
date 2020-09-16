@@ -7,27 +7,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea, select {
-  font-family: $base-font !important;
-  font-size: 1rem;
-  letter-spacing: 0.1em !important;
-  line-height: 1.5em !important;
   margin: 0; padding: 0;
-}
-
-.accent-link {
-  letter-spacing: 0.1em !important;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-span, div {
-  font-family: $base-font !important;
-  font-size: 1rem;
-  letter-spacing: 0.1em !important;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  letter-spacing: 0.1em !important;
 }
 
 input, textarea {
@@ -37,7 +17,6 @@ input, textarea {
 
 button {
   cursor: pointer;
-  font-size: 1rem !important;
   background: none;
   border: none;
 }
@@ -47,8 +26,6 @@ button {
 }
 
 .card-title {
-  font-family: $accent-font;
-  font-size: 2rem;
   margin-bottom: 0;
 }
 
@@ -68,7 +45,7 @@ select {
 }
 
 .round-link {
-  background-color: $dm-addt-dark-color;
+  background-color: $main-dark-color;
   background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;

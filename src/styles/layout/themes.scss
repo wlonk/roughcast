@@ -1,27 +1,28 @@
 [data-theme="dark"] {
   background-color: $dm-main-bg-color;
-  a.link {
+  a.link,
+  .scrollactive-item {
     &:hover,
     &.active,
     p:hover {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
   }
   .breadcrumb {
     .router-link-active,
     .divider  {
-      color: transparentize($dm-main-font-color, 0.4);
+      color: transparentize($main-light-color, 0.4);
       &:hover {
-        color: $dm-main-font-color;
+        color: $main-light-color;
       }
     }
   }
   .page-header {
     * {
-      color: $dm-main-font-color;
+      color: $main-light-color;
     }
     .logo-title:hover {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
   }
   .header-link::before {
@@ -33,22 +34,22 @@
   .edit-block,
   .dashboard {
     * {
-      color: $dm-main-font-color;
+      color: $main-light-color;
     }
   }
   .submit-btn {
-    background-color: $dm-accent-bg-color;
-    color: $dm-dark-color !important;
+    background-color: $main-accent-color;
+    color: $dm-bg-card-color !important;
     &:hover {
       box-shadow: $dm-focus-shadow;
     }
     i {
-      color: $dm-dark-color;
+      color: $dm-bg-card-color;
     }
   }
   .subscribed-label {
-    border: 2px solid $dm-accent-bg-color;
-    color: $dm-accent-bg-color !important;
+    border: 2px solid $main-accent-color;
+    color: $main-accent-color !important;
   }
   input:focus {
     box-shadow: $dm-focus-shadow;
@@ -58,55 +59,55 @@
     input[type="email"],
     input[type="password"],
     textarea {
-      background-color: $dm-dark-color;
+      background-color: $dm-bg-card-color;
       border: 2px solid transparent;
-      color: $dm-main-font-color;
+      color: $main-light-color;
       &:focus {
-        outline: $dm-accent-bg-color;
-        border: 2px solid $dm-accent-bg-color;
+        outline: $main-accent-color;
+        border: 2px solid $main-accent-color;
       }
     }
   }
   .checkbox-label {
-    color: $dm-main-font-color;
+    color: $main-light-color;
     input[type="checkbox"] {
       &:focus ~ p::before {
-        box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4);
+        box-shadow: 0 0 0.5rem 0 transparentize($main-accent-color, 0.4);
       }
       &:checked {
         & ~ p::before {
-          border-color: $dm-accent-bg-color;
+          border-color: $main-accent-color;
           background-image: url('./assets/close-dm.svg');
         }
       }
     }
     p::before {
-      background-color: $dm-dark-color;
+      background-color: $dm-bg-card-color;
     }
   }
   .accent-link {
-    color: $dm-accent-bg-color !important;
+    color: $main-accent-color !important;
   }
   .dropdown-menu {
     .item {
-      color: $dm-main-font-color !important;
+      color: $main-light-color !important;
     }
     .notification-item.new {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
     .ui.label {
-      background-color: $dm-accent-bg-color;
-      color: $dm-dark-color;
+      background-color: $main-accent-color;
+      color: $dm-bg-card-color;
     }
     .menu.transition,
     .menu.transition::after {
-      box-shadow: 0 0 2rem 0 $dm-dark-color;
-      background-color: $dm-addt-dark-color !important;
+      box-shadow: 0 0 2rem 0 $dm-bg-card-color;
+      background-color: $main-dark-color !important;
     }
     form:hover {
-      background-color: darken($dm-addt-dark-color, 1%);
+      background-color: darken($main-dark-color, 1%);
       input {
-        color: $dm-accent-bg-color;
+        color: $main-accent-color;
       }
     }
   }
@@ -116,56 +117,56 @@
   .version-profile-card,
   .version-card,
   .user-manage-card {
-    background-color: $dm-dark-color;
+    background-color: $dm-bg-card-color;
     * {
-      color: $dm-main-font-color;
+      color: $main-light-color;
     }
     h5 {
-      color: transparentize($dm-main-font-color, 0.5);
+      color: transparentize($main-light-color, 0.5);
     }
     .team:before {
       background-image: url('./assets/group-dm.svg');
     }
   }
   .card-title {
-    color: $dm-accent-bg-color;
+    color: $main-accent-color;
   }
   .user-elements * {
-    color: $dm-main-font-color;
+    color: $main-light-color;
   }
   .user-block-title {
     h5 {
-      border-bottom: 2px solid $dm-accent-bg-color;
+      border-bottom: 2px solid $main-accent-color;
     }
     p {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
   }
   .box-title {
-    color: $dm-main-font-color;
+    color: $main-light-color;
     h5 {
-      border-bottom: 2px solid $dm-accent-bg-color;
+      border-bottom: 2px solid $main-accent-color;
     }
     .icon:hover {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
   }
   .edit-box {
     .remove:hover {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
   }
   .custom-file-upload:focus ~ .file-loader-label {
-    box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4);
+    box-shadow: 0 0 0.5rem 0 transparentize($main-accent-color, 0.4);
   }
   .verfc {
-    color: $dm-error-color;
+    color: $main-error-color;
   }
   .game-card, .team-card, .version-card {
-    color: $dm-main-font-color;
-    background-color: $dm-dark-color;
+    color: $main-light-color;
+    background-color: $dm-bg-card-color;
     .small-card-title {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
     .team:before {
       background-image: url('./assets/group-dm.svg');
@@ -173,55 +174,55 @@
     .authors a,
     .owners a {
       img {
-        border: 2px solid $dm-dark-color;
+        border: 2px solid $dm-bg-card-color;
       }
       &:hover, &:focus {
         img {
-          border: 2px solid $dm-accent-bg-color;
+          border: 2px solid $main-accent-color;
         }
       }
     }
   }
   .inline .label {
-    background-color: $dm-accent-bg-color;
-    color: $dm-dark-color;
-    box-shadow: 0 0 0.5rem 0 transparentize($dm-dark-color, 0.4);
+    background-color: $main-accent-color;
+    color: $dm-bg-card-color;
+    box-shadow: 0 0 0.5rem 0 transparentize($dm-bg-card-color, 0.4);
   }
   .group-tabs {
     .chevron:hover {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
     .tab-content * {
-      background-color: $dm-dark-color;
+      background-color: $dm-bg-card-color;
       &:hover {
         box-shadow: $dm-focus-shadow;
       }
       &.chosen {
-        background-color: $dm-accent-bg-color;
-        color: $dm-dark-color;
+        background-color: $main-accent-color;
+        color: $dm-bg-card-color;
       }
     }
   }
   .invitation-card {
-    background-color: $dm-dark-color;
+    background-color: $dm-bg-card-color;
     i:hover {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
   }
   .sort.down {
-    color: $dm-accent-bg-color;
+    color: $main-accent-color;
   }
   .user-manage-card .controls i {
     &:hover {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
     &.active {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
   }
   .confirmation i {
     &:hover {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
   }
 }

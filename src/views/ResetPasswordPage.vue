@@ -2,7 +2,7 @@
   <div>
     <div class="auth-block">
       <div>
-        <h2>Forgot password?</h2>
+        <h2 class="page-title">Forgot password?</h2>
         <ResetPasswordForm />
       </div>
       <img src="../assets/player.svg" alt="Player" />
