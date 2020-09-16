@@ -6,7 +6,7 @@
       </router-link>
       <div>
         <div v-if="added">
-          <h5>Added</h5>
+          <h6 class="section-title">Added</h6>
           <p>{{ added }}</p>
         </div>
         <a :href="archive_link" class="round-link"></a>
@@ -16,7 +16,7 @@
     </div>
     <div v-if="extended" class="content">
       <div>
-        <h5>Changes</h5>
+        <h6 class="section-title">Changes</h6>
         <span>{{ changelog_short }}</span>
       </div>
       <div class="footer">

@@ -55,7 +55,7 @@
         </ul>
       </div>
       <div class="avatar">
-        <h6>Team logo</h6>
+        <h6 class="section-title">Team logo</h6>
         <img v-if="logo" :src="logo" :alt="`${name} team logo`" />
         <img v-else src="../assets/no-team-logo.svg" alt="No logo" />
         <div>

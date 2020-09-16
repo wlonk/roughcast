@@ -1,4 +1,4 @@
-p, a.link, button, label, h6,
+p, a.link, label, h6,
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 .card-title,
 .small-card-title,
 .logo-title {
-  font-family: $accent-font;
+  font-family: $accent-font !important;
 }
 
 .welcome-title {
@@ -70,4 +70,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .team-card .small-card-title {
   line-height: 1.2em !important;
+}
+
+.section-title {
+  font-weight: 700;
+}
+
+.card .section-title {
+  opacity: 0.5;
 }

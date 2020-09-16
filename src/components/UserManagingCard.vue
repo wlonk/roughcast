@@ -8,7 +8,7 @@
         <p>@{{ username }}</p>
       </div>
       <div class="controls">
-        <h5>{{ type || 'member' }}</h5>
+        <h6 class="section-title">{{ type || 'member' }}</h6>
         <i
           v-if="checkAction"
           class="chevron up icon active"

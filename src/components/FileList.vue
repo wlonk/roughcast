@@ -8,7 +8,7 @@
       <a :href="file.attached_file" class="round-link"></a>
     </div>
     <div v-if="!files.length" class="file-card">
-      <h6>No attached files</h6>
+      <h6 class="section-title">No attached files</h6>
     </div>
   </div>
 </template>

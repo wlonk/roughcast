@@ -10,7 +10,7 @@
         :key="version.id"
       />
       <div v-if="!versions.length" class="version-card">
-        <h6>No attached files</h6>
+        <h6 class="section-title">No attached files</h6>
       </div>
     </div>
   </div>

@@ -55,7 +55,7 @@
         </ul>
       </div>
       <div class="avatar">
-        <h6>Game image</h6>
+        <h6 class="section-title">Game image</h6>
         <img v-if="banner" :src="banner" :alt="`${name} banner`" />
         <img v-else src="../assets/no-game-image.svg" alt="No banner" />
         <div>
