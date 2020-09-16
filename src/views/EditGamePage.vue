@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="game" class="edit-block">
-      <h2>
+      <h2 class="page-title">
         Edit
         <router-link :to="`/t/${teamSlug}/${game.slug}`" class="accent-link">
           "{{ game.name }}"

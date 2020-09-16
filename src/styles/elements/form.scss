@@ -16,7 +16,7 @@
     }
   }
   label {
-    font-size: 1.1rem;
+    // font-size: $base-font-size;
     font-weight: 700;
     margin-bottom: 0.5rem;
   }
@@ -30,7 +30,7 @@
     min-width: 23rem;
   }
   textarea {
-    font-size: 1rem;
+    font-size: $base-font-size;
     resize: vertical;
     min-height: 7rem;
   }

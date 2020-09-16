@@ -1,9 +1,10 @@
 $dm-main-bg-color: hsl(246, 28, 37);
-$dm-addt-dark-color: hsl(244, 28, 20);
-$dm-dark-color: hsl(245, 28, 25);
-$dm-accent-bg-color: hsl(47, 97, 54);
-$dm-main-font-color: hsl(60, 11, 96);
-$dm-error-color: hsl(11, 96, 65);
+$dm-bg-card-color: hsl(245, 28, 25);
+
+$main-dark-color: hsl(244, 28, 20);
+$main-light-color: hsl(60, 11, 96);
+$main-accent-color: hsl(47, 97, 54);
+$main-error-color: hsl(11, 96, 65);
 
 // Font variables
 $accent-font: 'Kurale', serif;
@@ -11,7 +12,12 @@ $base-font: 'Arvo', serif;
 $button-font: 'Patua One', serif;
 
 // Font sizes
-$medium-font: 2rem;
+$base-font-size: 1rem;
+$small-font-size: 1.15rem;
+$medium-font-size: 1.75rem;
+$large-font-size: 2rem;
+$x-large-font-size: 3rem;
+$huge-font-size: 4rem;
 
 // Shadows
-$dm-focus-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.6);
+$dm-focus-shadow: 0 0 0.5rem 0 transparentize($main-accent-color, 0.6);

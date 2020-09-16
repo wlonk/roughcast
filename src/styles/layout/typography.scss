@@ -1,0 +1,73 @@
+p, a.link, button, label, h6,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea, select,
+span, div {
+  font-family: $base-font !important;
+  font-size: $base-font-size;
+  letter-spacing: 0.1em !important;
+  line-height: 1.5em !important;
+}
+
+.accent-link {
+  letter-spacing: 0.1em !important;
+  font-weight: 700;
+}
+
+button,
+input[type="submit"],
+.file-loader-label,
+.submit-btn {
+  font-family: $button-font !important;
+  font-size: $small-font-size;
+  font-weight: 700;
+  letter-spacing: 0.15em !important;
+  text-align: center;
+}
+
+input[type="submit"][value="Log Out"] {
+  font-size: $base-font-size;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 0.15em !important;
+}
+
+.welcome-title,
+.page-title,
+.page-title *,
+.box-title h5,
+.card-title,
+.small-card-title,
+.logo-title {
+  font-family: $accent-font;
+}
+
+.welcome-title {
+  font-size: $huge-font-size;
+  line-height: 1.15em;
+}
+
+.page-title {
+  font-size: $x-large-font-size;
+}
+
+.card-title {
+  font-size: $large-font-size;
+}
+
+.box-title h5,
+.logo-title,
+.small-card-title {
+  font-size: $medium-font-size;
+}
+
+.scrollactive-item {
+  font-weight: 700;
+  line-height: 1.5em;
+}
+
+.team-card .small-card-title {
+  line-height: 1.2em !important;
+}

@@ -50,8 +50,6 @@
     }
   }
   .small-card-title {
-    font-family: $accent-font;
-    font-size: 1.5rem;
     &:hover .label,
     &:focus .label {
       display: block;
@@ -118,8 +116,7 @@
 }
 
 .team-card .small-card-title {
-  max-height: 3.75rem;
-  line-height: 1.75rem;
+  max-height: 4.5em;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
