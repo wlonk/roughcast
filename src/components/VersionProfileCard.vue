@@ -11,7 +11,7 @@
           <span>@{{ name }}</span>
         </h4>
         <div v-if="added">
-          <h5>Added</h5>
+          <h6 class="section-title">Added</h6>
           <p>{{ added }}</p>
         </div>
       </div>
@@ -22,7 +22,7 @@
       </div>
       <div>
         <div class="description">
-          <h5>Changes</h5>
+          <h6 class="section-title">Changes</h6>
           <RenderedMarkdown v-if="changelog" :body="changelog" />
           <p v-else class="no-bio">There is no changes yet&hellip;</p>
         </div>

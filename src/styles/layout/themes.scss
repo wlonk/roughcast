@@ -121,7 +121,7 @@
     * {
       color: $main-light-color;
     }
-    h5 {
+    h6 {
       color: transparentize($main-light-color, 0.5);
     }
     .team:before {
@@ -133,14 +133,6 @@
   }
   .user-elements * {
     color: $main-light-color;
-  }
-  .user-block-title {
-    h5 {
-      border-bottom: 2px solid $main-accent-color;
-    }
-    p {
-      color: $main-accent-color;
-    }
   }
   .box-title {
     color: $main-light-color;

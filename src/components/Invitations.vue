@@ -3,7 +3,7 @@
     <div class="box-title">
       <h5>Invitations</h5>
     </div>
-    <div v-if="invitations.length">
+    <div v-if="invitations">
       <InvitationCard
         v-for="(invite, index) in invitations"
         :key="index"
@@ -13,7 +13,7 @@
       />
     </div>
     <div v-else>
-      <h6>There are no pending invitations yet.</h6>
+      <h6 class="section-title">There are no pending invitations yet.</h6>
       <p>When somebody invites you, you'll see it here.</p>
     </div>
   </div>
@@ -24,17 +24,6 @@ import InvitationCard from '@/components/InvitationCard';
 
 export default {
   name: 'Invitations',
-  data() {
-    return {
-      invitations: [
-        {
-          sender_username: 'mayzee',
-          team: 'Funny Bunnies',
-          team_slug: 'funny-bunny',
-        },
-      ],
-    };
-  },
   components: {
     InvitationCard,
   },
