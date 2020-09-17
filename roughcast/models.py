@@ -91,6 +91,7 @@ class User(AbstractUser):
                 user=self,
                 notification_type=message.pop("type"),
                 path=message.pop("path"),
+                subject=message.pop("subject"),
                 additional_context=message,
             )
         if instant_email:  # pragma: nocover
@@ -158,6 +159,7 @@ class InAppNotification(BasicModelMixin, models.Model):
     notification_type = models.CharField(max_length=32, choices=NOTIFICATION_TYPES)
     path = models.CharField(max_length=128)
     additional_context = models.JSONField(blank=True, null=True)
+    subject = models.CharField(max_length=128, blank=True)
 
 
 class DigestEmailElement(models.Model):
