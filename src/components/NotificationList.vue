@@ -6,11 +6,11 @@
     class="dropdown-menu"
   >
     <sui-label
-      v-if="notificationCount > 0"
+      v-if="unreadNotificationCount > 0"
       floating
       size="mini"
       class="circular"
-      >{{ notificationCount }}</sui-label
+      >{{ unreadNotificationCount }}</sui-label
     >
     <sui-dropdown-menu>
       <sui-dropdown-item
@@ -34,9 +34,13 @@
           class="book icon"
         ></i>
         <p :class="['notification-item', notification.seen_at ? '' : 'new']">
-          <router-link :to="notification.path">
+          <a
+            @click.prevent.stop="
+              () => navigateAndMarkRead(notification.id, notification.path)
+            "
+          >
             {{ notification.subject }}
-          </router-link>
+          </a>
         </p>
         <i
           class="close icon right floated"
@@ -67,10 +71,22 @@ export default {
   },
   computed: {
     ...mapGetters(['allNotifications']),
-    notificationCount() {
-      return _.size(this.allNotifications);
+    unreadNotificationCount() {
+      return _.filter(this.allNotifications, n => n.seen_at === null).length;
     },
   },
-  methods: mapActions(['retrieveNotifications', 'markRead']),
+  methods: {
+    ...mapActions(['retrieveNotifications', 'markRead']),
+    navigateAndMarkRead(id, path) {
+      this.markRead(id);
+      this.$router.push(path);
+    },
+  },
 };
 </script>
+
+<style scoped>
+.notification-item.new a {
+  color: rgb(251, 202, 24);
+}
+</style>

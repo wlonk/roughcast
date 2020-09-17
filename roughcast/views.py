@@ -166,7 +166,9 @@ class InAppNotificationViewSet(
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return InAppNotification.objects.filter(user=self.request.user)
+        return InAppNotification.objects.filter(
+            user=self.request.user, seen_at__isnull=True
+        )
 
 
 class TeamViewSet(ModelViewSet):
