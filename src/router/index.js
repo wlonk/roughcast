@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import updatePageTitle from './updatePageTitle';
 
 import RootPage from '@/views/RootPage';
+import TermsOfServicePage from '@/views/TermsOfServicePage';
 import UserDetail from '@/views/UserDetail';
 import TeamDetail from '@/views/TeamDetail';
 import GameDetail from '@/views/GameDetail';
@@ -27,6 +28,14 @@ const routes = [
     component: RootPage,
     meta: {
       title: 'Roughcast',
+    },
+  },
+  {
+    path: '/tos',
+    name: 'ToS',
+    component: TermsOfServicePage,
+    meta: {
+      title: 'Terms of Service | Roughcast',
     },
   },
   {

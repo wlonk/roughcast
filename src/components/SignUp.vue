@@ -121,7 +121,7 @@ export default {
       const email = e.target.elements['email'].value;
       const password1 = e.target.elements['password1'].value;
       const password2 = e.target.elements['password2'].value;
-      const tos = e.target.elements['tos'].value;
+      const tos = e.target.elements['tos'].checked;
       const data = { username, email, password1, password2, tos };
       // @@@ The reason I like doing this here is that it makes form error
       // handling easier; errors don't have to be kept in the store, like they
