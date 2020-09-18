@@ -5,7 +5,7 @@
     labeled
     class="dropdown-menu"
   >
-    <sui-label floating size="mini" class="circular">3</sui-label>
+    <sui-label floating size="mini" class="circular"></sui-label>
     <sui-dropdown-menu>
       <sui-dropdown-item>
         <i class="book icon"></i>
