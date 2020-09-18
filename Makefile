@@ -30,19 +30,19 @@ lock: requirements/base.txt requirements/dev.txt
 requirements/dev.txt: requirements/base.txt
 
 %.txt: %.in
-	pip-compile --output-file=$@ $<
+	pip-compile --upgrade --output-file=$@ $<
 
 .PHONY: install-py
 install-py:
 	# Install packages into the local context
 	# (make sure to activate that virtual environment!)
-	pip install -r requirements/base.txt
+	pip-sync requirements/base.txt
 
 .PHONY: install-dev
 install-py-dev: install-py
 	# Install packages into the local context
 	# (make sure to activate that virtual environment!)
-	pip install -r requirements/dev.txt
+	pip-sync requirements/base.txt requirements/dev.txt
 
 .PHONY: install-js
 install-js:
