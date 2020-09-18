@@ -28,11 +28,9 @@ export default {
   },
   computed: mapGetters(['currentUser']),
   created() {
-    if (this.currentUser) {
-      const user = this.currentUser;
-      Vue.axios.defaults.headers.common[
-        'Authorization'
-      ] = `Token ${user.token}`;
+    if (this.currentUser && this.currentUser.token) {
+      const { token } = this.currentUser;
+      Vue.axios.defaults.headers.common['Authorization'] = `Token ${token}`;
     }
   },
 };

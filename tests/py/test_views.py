@@ -20,6 +20,9 @@ class TestAccountsView:
                 "http://testserver/api/accounts/reset_password_confirm/"
             ),
             "verify_email": "http://testserver/api/accounts/verify_email/",
+            "request_verify_email": (
+                "http://testserver/api/accounts/request_verify_email/"
+            ),
         }
         assert response.json() == expected
 
@@ -105,6 +108,16 @@ class TestLoginView:
 
 @pytest.mark.django_db
 class TestUserViewSet:
+    def test_list(self, user, client):
+        response = client.get("/api/users/")
+        assert response.status_code == 200
+        assert response.json()[0]["username"] == user.username
+
+    def test_detail__other(self, user, client):
+        response = client.get(f"/api/users/{user.username}/")
+        assert response.status_code == 200
+        assert response.json()["username"] == user.username
+
     def test_me(self, client):
         response = client.get("/api/users/me/")
         assert response.status_code == 200
@@ -159,6 +172,10 @@ class TestUserViewSet:
         data = {"key": key}
         response = client.post("/api/accounts/verify_email/", data)
         assert response.status_code == 204
+
+    def test_request_verify_email(self, client):
+        response = client.post("/api/accounts/request_verify_email/")
+        assert response.status_code == 202
 
     def test_reset_password__invalid(self, client):
         response = client.post("/api/accounts/reset_password/")

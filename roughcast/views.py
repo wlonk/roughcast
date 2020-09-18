@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.viewsets import GenericViewSet, ModelViewSet, ViewSet
 
+from . import email_verification
 from .models import (
     AttachedFile,
     Game,
@@ -89,6 +90,11 @@ class AccountsView(ViewSet):
             )
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    @action(detail=False, methods=["post"], permission_classes=(IsAuthenticated,))
+    def request_verify_email(self, request):
+        email_verification.send_activation_email(request.user, request)
+        return Response(status=status.HTTP_202_ACCEPTED)
+
     @action(detail=False, methods=["post"], permission_classes=(AllowAny,))
     def reset_password(self, request):
         serializer = PasswordResetSerializer(data=request.data)
@@ -154,7 +160,18 @@ class UserViewSet(ModelViewSet):
         # TODO: always serialize self with token and SelfUserSerializer
         if self.kwargs["username"] == "me":
             self.kwargs["username"] = self.request.user.username
-        return super().get_object()
+        user = super().get_object()
+        if user == self.request.user:
+            user.token = user.get_or_create_token()
+        return user
+
+    def get_serializer_class(self):
+        try:
+            if self.get_object() == self.request.user:
+                return SelfUserSerializer
+        except KeyError:
+            pass
+        return self.serializer_class
 
 
 class InAppNotificationViewSet(
