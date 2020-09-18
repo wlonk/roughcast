@@ -18,16 +18,6 @@
           My Invitations
         </sui-dropdown-item>
       </router-link>
-      <router-link to="/add-new-game" class="ui link item">
-        <sui-dropdown-item>
-          Create Group
-        </sui-dropdown-item>
-      </router-link>
-      <router-link to="/add-new-game" class="ui link item">
-        <sui-dropdown-item>
-          New Game
-        </sui-dropdown-item>
-      </router-link>
       <router-link :to="`/u/${currentUser.username}/edit`" class="ui link item">
         <sui-dropdown-item>
           Settings
