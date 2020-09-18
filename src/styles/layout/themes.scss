@@ -143,8 +143,10 @@
   }
   .box-title {
     color: $dm-main-font-color;
+    flex-direction: column;
     h5 {
       border-bottom: 2px solid $dm-accent-bg-color;
+      align-self: flex-start;
     }
     .icon:hover {
       color: $dm-accent-bg-color;

@@ -11,10 +11,22 @@
           >
             @{{ currentUser.username }}
           </router-link>
-          , to start using Roughcast, we need to verify your email. <br />
-          We’ve sent an email with a confirmation link to<br />
+          , to really start using Roughcast, we need to verify your email.
+          <br />
+          We’ve sent an email with a confirmation link to
         </p>
         <p class="accent-link">{{ currentUser.email }}</p>
+        <p>
+          Meanwhile, why not start by
+        </p>
+        <p>
+          <br />
+          <router-link
+            :to="`/t/${myTeam.slug}/edit#new-game`"
+            class="submit-btn"
+            >adding a game?</router-link
+          >
+        </p>
       </div>
     </div>
     <div v-else-if="verificationPending">
@@ -43,7 +55,12 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'VerificationDetail',
-  computed: mapGetters(['currentUser']),
+  computed: {
+    ...mapGetters(['currentUser', 'myTeams']),
+    myTeam() {
+      return this.myTeams[0];
+    },
+  },
   created() {
     this.verifyKey();
   },

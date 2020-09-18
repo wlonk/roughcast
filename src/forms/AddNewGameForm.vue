@@ -2,11 +2,16 @@
   <div class="edit-box" id="new-game">
     <div class="box-title">
       <h5>Add game</h5>
+      <p>
+        Once you've added a game, you can start adding versions to it. Each time
+        you add a version, everyone subscribed to the game will get a
+        notification, and be able to get the files you share with them!
+      </p>
     </div>
     <form @submit.stop.prevent="createGame" class="page-form adding">
       <div>
-        <label for="name">Team name</label>
-        <input type="text" v-model="name" placeholder="Team name" id="name" />
+        <label for="name">Game name</label>
+        <input type="text" v-model="name" placeholder="Game name" id="name" />
         <ul v-if="errors.name">
           <li
             v-for="(error, i) in errors.name"
