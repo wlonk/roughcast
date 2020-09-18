@@ -6,22 +6,16 @@
   >
     <sui-dropdown-menu>
       <router-link :to="`/u/${currentUser.username}`" class="ui link item">
-        <sui-dropdown-item>
-          My Profile
-        </sui-dropdown-item>
+        <sui-dropdown-item> My Profile </sui-dropdown-item>
       </router-link>
       <router-link
         :to="`/u/${currentUser.username}/edit#invitations`"
         class="ui link item"
       >
-        <sui-dropdown-item>
-          My Invitations
-        </sui-dropdown-item>
+        <sui-dropdown-item> My Invitations </sui-dropdown-item>
       </router-link>
       <router-link :to="`/u/${currentUser.username}/edit`" class="ui link item">
-        <sui-dropdown-item>
-          Settings
-        </sui-dropdown-item>
+        <sui-dropdown-item> Settings </sui-dropdown-item>
       </router-link>
       <LogOut />
     </sui-dropdown-menu>

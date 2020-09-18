@@ -36,10 +36,10 @@ export default {
         tag: 'router-link',
       };
 
-      const segments = _.flatMap(this.$route.matched, rr => {
+      const segments = _.flatMap(this.$route.matched, (rr) => {
         const matches = rr.regex.exec(rr.path);
-        const names = matches.slice(1).map(n => n.slice(1));
-        return _.flatMap(names, n => [
+        const names = matches.slice(1).map((n) => n.slice(1));
+        return _.flatMap(names, (n) => [
           divider,
           {
             path: this.nameToPath(n, this.$route.params[n]),

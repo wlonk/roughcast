@@ -16,9 +16,7 @@
           We’ve sent an email with a confirmation link to
         </p>
         <p class="accent-link">{{ currentUser.email }}</p>
-        <p>
-          Meanwhile, why not start by
-        </p>
+        <p>Meanwhile, why not start by</p>
         <p>
           <br />
           <router-link
@@ -43,9 +41,7 @@
       <h2>Verified!</h2>
       <img src="../assets/mailbox-open.svg" alt="Mailbox" />
       <p>Great! You have successfully verified your email.</p>
-      <router-link to="/" class="submit-btn">
-        Go to Dashboard!
-      </router-link>
+      <router-link to="/" class="submit-btn"> Go to Dashboard! </router-link>
     </div>
   </div>
 </template>

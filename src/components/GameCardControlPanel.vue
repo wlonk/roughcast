@@ -1,8 +1,6 @@
 <template>
   <div class="controls">
-    <button v-if="checkPermisions" class="small submit-btn">
-      Subscribe
-    </button>
+    <button v-if="checkPermisions" class="small submit-btn">Subscribe</button>
     <button v-if="is_subscribed" class="subscribed-label">Subscribed</button>
     <router-link
       :to="`/t/${team_slug}/${slug}/edit`"

@@ -72,7 +72,7 @@ export default {
   computed: {
     ...mapGetters(['allNotifications']),
     unreadNotificationCount() {
-      return _.filter(this.allNotifications, n => n.seen_at === null).length;
+      return _.filter(this.allNotifications, (n) => n.seen_at === null).length;
     },
   },
   methods: {
