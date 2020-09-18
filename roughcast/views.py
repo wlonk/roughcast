@@ -118,6 +118,10 @@ class AccountsView(ViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         user = serializer.save()
         user.token = user.get_or_create_token()
+        # @@@ Temporary until we build out make-a-team interface:
+        team = Team.objects.create(name=f"Team {user.username}")
+        TeamMembership.objects.create(user=user, team=team, is_owner=True)
+        # @@@
         return Response(SelfUserSerializer(user).data, status=status.HTTP_201_CREATED)
 
     @action(detail=False, methods=["post"], permission_classes=(AllowAny,))
