@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.viewsets import GenericViewSet, ModelViewSet, ViewSet
 
+from . import email_verification
 from .models import (
     AttachedFile,
     Game,
@@ -88,6 +89,11 @@ class AccountsView(ViewSet):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=False, methods=["post"], permission_classes=(IsAuthenticated,))
+    def request_verify_email(self, request):
+        email_verification.send_activation_email(request.user, request)
+        return Response(status=status.HTTP_202_ACCEPTED)
 
     @action(detail=False, methods=["post"], permission_classes=(AllowAny,))
     def reset_password(self, request):

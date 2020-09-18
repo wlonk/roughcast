@@ -218,7 +218,11 @@ class SelfUserSerializer(serializers.ModelSerializer):
             "bio",
             "email",
             "token",
+            "is_email_verified",
         )
+        extra_kwargs = {
+            "is_email_verified": {"read_only": True},
+        }
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -232,11 +236,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "notif_games",
         )
 
+    user = UserStringField(read_only=True)
     notif_comments = NotificationMaskField()
     notif_mentions = NotificationMaskField()
     notif_versions = NotificationMaskField()
     notif_games = NotificationMaskField()
-    user = UserStringField(read_only=True)
 
 
 class InAppNotificationSerializer(serializers.ModelSerializer):
