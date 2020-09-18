@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <div class="header">
+    <div class="dashboard-header">
       <h2 class="page-title">
         Welcome back,
         <router-link :to="`/u/${currentUser.username}`" class="accent-link">

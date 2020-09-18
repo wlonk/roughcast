@@ -10,7 +10,7 @@
       <NotificationList />
       <UserPanel />
     </div>
-    <div v-else class="ui right item">
+    <div v-else class="user-preview">
       <router-link to="/login" class="ui link item header-link">
         Log In
       </router-link>

@@ -3,7 +3,7 @@
     icon="large bell"
     pointing="top right"
     labeled
-    class="dropdown-menu"
+    class="dropdown-menu notification-list"
   >
     <sui-label floating size="mini" class="circular"></sui-label>
     <sui-dropdown-menu>
