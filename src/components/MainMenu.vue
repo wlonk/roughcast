@@ -2,9 +2,7 @@
   <div class="page-header" id="page-header">
     <div class="header item">
       <img src="../assets/logo.svg" alt="Logo" />
-      <router-link to="/" class="logo-title">
-        Roughcast
-      </router-link>
+      <router-link to="/" class="logo-title"> Roughcast </router-link>
     </div>
     <div v-if="currentUser" class="ui right item">
       <NotificationList />

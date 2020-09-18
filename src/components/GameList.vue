@@ -23,7 +23,7 @@ export default {
   computed: {
     ...mapGetters(['hydratedGame']),
     gamesWithTeam() {
-      return this.games.map(g => this.hydratedGame(g.slug));
+      return this.games.map((g) => this.hydratedGame(g.slug));
     },
   },
 };

@@ -23,9 +23,7 @@
       <input type="submit" value="Reset password" class="submit-btn" />
       <p>
         Back to
-        <router-link to="/login" class="accent-link">
-          Log In
-        </router-link>
+        <router-link to="/login" class="accent-link"> Log In </router-link>
       </p>
       <ul v-if="errors.non_field_errors">
         <li

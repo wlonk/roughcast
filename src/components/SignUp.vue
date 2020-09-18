@@ -91,9 +91,7 @@
       <input type="submit" value="Sign Up" class="submit-btn" />
       <p>
         Already have an account?
-        <router-link to="/login" class="accent-link">
-          Log In!
-        </router-link>
+        <router-link to="/login" class="accent-link"> Log In! </router-link>
       </p>
       <ul v-if="errors.non_field_errors">
         <li
