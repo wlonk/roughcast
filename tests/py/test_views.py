@@ -108,6 +108,16 @@ class TestLoginView:
 
 @pytest.mark.django_db
 class TestUserViewSet:
+    def test_list(self, user, client):
+        response = client.get("/api/users/")
+        assert response.status_code == 200
+        assert response.json()[0]["username"] == user.username
+
+    def test_detail__other(self, user, client):
+        response = client.get(f"/api/users/{user.username}/")
+        assert response.status_code == 200
+        assert response.json()["username"] == user.username
+
     def test_me(self, client):
         response = client.get("/api/users/me/")
         assert response.status_code == 200

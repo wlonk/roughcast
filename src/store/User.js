@@ -72,8 +72,21 @@ const actions = {
     const response = await api.get('accounts/profile/');
     commit('setProfile', response.data);
   },
+  async refreshMe({ commit }) {
+    try {
+      const response = await api.get('users/me/');
+      commit('logIn', response.data);
+    } catch (error) {
+      if (error.response) {
+        // return error.response;
+      } else {
+        // return {}
+      }
+    }
+  },
   async logOut({ commit }) {
     commit('logOut');
+    delete Vue.axios.defaults.headers.common['Authorization'];
   },
   async retrieveUsers({ commit }) {
     const resp = await api.get('users/');

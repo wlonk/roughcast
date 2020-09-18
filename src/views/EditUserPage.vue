@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="user" class="edit-block">
+    <div v-if="currentUser" class="edit-block">
       <h2>Edit Profile</h2>
       <div>
         <ScrollingEditUserMenu />
@@ -39,10 +39,7 @@ export default {
     Invitations,
   },
   computed: {
-    ...mapGetters(['hydratedUser']),
-    user() {
-      return this.hydratedUser(this.$route.params.username);
-    },
+    ...mapGetters(['currentUser']),
   },
 };
 </script>

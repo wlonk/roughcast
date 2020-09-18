@@ -160,7 +160,18 @@ class UserViewSet(ModelViewSet):
         # TODO: always serialize self with token and SelfUserSerializer
         if self.kwargs["username"] == "me":
             self.kwargs["username"] = self.request.user.username
-        return super().get_object()
+        user = super().get_object()
+        if user == self.request.user:
+            user.token = user.get_or_create_token()
+        return user
+
+    def get_serializer_class(self):
+        try:
+            if self.get_object() == self.request.user:
+                return SelfUserSerializer
+        except KeyError:
+            pass
+        return self.serializer_class
 
 
 class InAppNotificationViewSet(

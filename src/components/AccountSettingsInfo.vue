@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'AccountSettingsInfo',
   props: {
@@ -37,7 +39,11 @@ export default {
       sentMessage: '',
     };
   },
+  created() {
+    this.refreshMe();
+  },
   methods: {
+    ...mapActions(['refreshMe']),
     async requestConfirmation() {
       this.sentMessage = '';
       try {
