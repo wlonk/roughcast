@@ -1,5 +1,5 @@
 <template>
-  <div class="verification-block">
+  <div class="verification-page">
     <div v-if="!shouldSendVerification">
       <h2 class="page-title">Welcome to Roughcast</h2>
       <img src="../assets/mailbox.svg" alt="Mailbox" />

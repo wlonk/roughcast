@@ -39,7 +39,7 @@
       </ul>
     </div>
     <div v-if="successMessage" class="accent-link">{{ successMessage }}</div>
-    <div class="submit-row row">
+    <div class="submit-row">
       <input type="submit" value="Reset password" class="submit-btn" />
       <ul v-if="errors.non_field_errors">
         <li

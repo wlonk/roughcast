@@ -1,6 +1,7 @@
 .page-form {
   &>div {
-    &.row {
+    &.submit-row,
+    &.check-row {
       display: flex;
     }
     &.submit-row {
@@ -10,13 +11,15 @@
       align-items: center;
       justify-content: space-between;
       margin: 0.5rem 0 0;
+      .accent-link {
+        text-align: right;
+      }
     }
     &>* {
       display: block;
     }
   }
   label {
-    // font-size: $base-font-size;
     font-weight: 700;
     margin-bottom: 0.5rem;
   }
@@ -30,7 +33,6 @@
     min-width: 23rem;
   }
   textarea {
-    font-size: $base-font-size;
     resize: vertical;
     min-height: 7rem;
   }
@@ -38,22 +40,7 @@
     margin-left: 1rem;
   }
   .accent-link {
-    font-weight: 700;
     margin-left: 0.25rem;
-  }
-  .psw-row {
-    &>div {
-      width: 50%;
-      * {
-        display: block;
-      }
-      &:first-child {
-        margin-right: 0.5rem;
-      }
-      &:last-child {
-        margin-left: 0.5rem;
-      }
-    }
   }
   &.public {
     display: grid;
