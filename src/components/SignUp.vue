@@ -31,47 +31,45 @@
         </li>
       </ul>
     </div>
-    <div class="psw-row row">
-      <div>
-        <label for="password1">Password</label>
-        <input
-          name="password1"
-          type="password"
-          id="password1"
-          placeholder="Password"
-          class="ui input"
-        />
-        <ul v-if="errors.password1">
-          <li
-            v-for="(error, i) in errors.password1"
-            :key="i"
-            class="ui error message"
-          >
-            {{ error }}
-          </li>
-        </ul>
-      </div>
-      <div>
-        <label for="password2">Repeat Password</label>
-        <input
-          name="password2"
-          type="password"
-          id="password2"
-          placeholder="Password"
-          class="ui input"
-        />
-        <ul v-if="errors.password2">
-          <li
-            v-for="(error, i) in errors.password2"
-            :key="i"
-            class="ui error message"
-          >
-            {{ error }}
-          </li>
-        </ul>
-      </div>
+    <div>
+      <label for="password1">Password</label>
+      <input
+        name="password1"
+        type="password"
+        id="password1"
+        placeholder="Password"
+        class="ui input"
+      />
+      <ul v-if="errors.password1">
+        <li
+          v-for="(error, i) in errors.password1"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
     </div>
-    <div class="check-row row">
+    <div>
+      <label for="password2">Repeat Password</label>
+      <input
+        name="password2"
+        type="password"
+        id="password2"
+        placeholder="Password"
+        class="ui input"
+      />
+      <ul v-if="errors.password2">
+        <li
+          v-for="(error, i) in errors.password2"
+          :key="i"
+          class="ui error message"
+        >
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+    <div class="check-row">
       <label for="tos" class="checkbox-label inline">
         <input type="checkbox" id="tos" name="tos" />
         <p>
@@ -87,7 +85,7 @@
         </li>
       </ul>
     </div>
-    <div class="submit-row row">
+    <div class="submit-row">
       <input type="submit" value="Sign Up" class="submit-btn" />
       <p>
         Already have an account?

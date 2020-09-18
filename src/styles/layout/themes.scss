@@ -28,10 +28,8 @@
   .header-link::before {
     background-image: url('./assets/user-dm.svg');
   }
-  .welcome-block,
-  .auth-block,
-  .verification-block,
-  .edit-block,
+  .initial-page,
+  .verification-page,
   .dashboard {
     * {
       color: $main-light-color;

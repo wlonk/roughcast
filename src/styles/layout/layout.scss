@@ -1,0 +1,34 @@
+.verification-page,
+.initial-page {
+  h1, h2 {
+    margin-bottom: 2rem;
+  }
+  p {
+    margin: 1.5rem 0 4rem;
+    letter-spacing: 0.2em;
+  }
+}
+
+.initial-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  &>div {
+    width: 45%;
+  }
+}
+
+.verification-page {
+  text-align: center;
+  .text-block {
+    .accent-link {
+      margin: 0;
+    }
+    p {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
