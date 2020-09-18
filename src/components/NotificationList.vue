@@ -5,13 +5,7 @@
     labeled
     class="dropdown-menu"
   >
-    <sui-label
-      v-if="unreadNotificationCount > 0"
-      floating
-      size="mini"
-      class="circular"
-      >{{ unreadNotificationCount }}</sui-label
-    >
+    <sui-label floating size="mini" class="circular"></sui-label>
     <sui-dropdown-menu>
       <sui-dropdown-item
         v-for="notification in allNotifications"
