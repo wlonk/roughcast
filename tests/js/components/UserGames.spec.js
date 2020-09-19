@@ -9,6 +9,6 @@ describe('App.vue', () => {
         games: [],
       },
     });
-    expect(wrapper.find('.user-game-block').exists()).toBe(true);
+    expect(wrapper.find('.content-list').exists()).toBe(true);
   });
 });
