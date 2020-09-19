@@ -241,21 +241,21 @@
   .profile-card img {
     margin: -2rem auto 0;
   }
-}
-
-@media only screen and (max-width: 350px) {
-  #invitations p {
-    max-width: 90%;
-  }
-  .edit-box .page-form {
-    max-width: 90%;
+  .page-form {
+    max-width: 100%;
     input[type="text"],
     input[type="email"],
     input[type="password"],
     textarea {
-      width: 100% !important;
-      min-width: 0;
+      width: 100%;
+      min-width: 0 !important;
     }
+  }
+}
+
+@media only screen and (max-width: 365px) {
+  #invitations p {
+    max-width: 90%;
   }
   #history .version-card {
     min-width: 0;

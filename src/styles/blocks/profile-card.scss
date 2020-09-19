@@ -6,6 +6,7 @@
   margin-top: 4rem;
   margin-bottom: 2.5rem;
   position: relative;
+  padding-bottom: 6rem;
   &>img {
     border-radius: 0.5rem;
     position: absolute;
@@ -86,14 +87,7 @@
   }
 }
 
-.game-profile-card,
-.team-profile-card,
 .version-profile-card {
-  padding-bottom: 6rem;
-}
-
-.version-profile-card {
-  padding-bottom: 3em;
   .header {
     margin-bottom: 0 !important;
     div {
