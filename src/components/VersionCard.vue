@@ -1,5 +1,5 @@
 <template>
-  <div class="version-card">
+  <div class="version-card small-card">
     <div class="header">
       <router-link :to="`/t/${team}/${game}/${slug}`" class="small-card-title">
         {{ name }}

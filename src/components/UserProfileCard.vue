@@ -1,5 +1,5 @@
 <template>
-  <div class="user-profile-card">
+  <div class="user-profile-card profile-card">
     <img v-if="avatar" :src="avatar" :alt="`${username} avatar`" />
     <img v-else src="../assets/no-avatar.svg" alt="No avatar" />
     <div>

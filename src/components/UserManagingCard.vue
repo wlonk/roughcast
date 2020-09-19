@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="user-manage-card">
+    <div class="user-manage-card small-card">
       <img v-if="avatar" :src="avatar" :alt="`${username} avatar`" />
       <img v-else src="../assets/no-avatar.svg" alt="No avatar" />
       <div class="names">

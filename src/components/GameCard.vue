@@ -1,5 +1,5 @@
 <template>
-  <div class="game-card">
+  <div class="game-card small-card">
     <div>
       <div>
         <img v-if="banner" :src="banner" :alt="`${name} banner`" />

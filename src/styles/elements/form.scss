@@ -42,14 +42,15 @@
   .accent-link {
     margin-left: 0.25rem;
   }
-  &.public {
-    display: grid;
-    grid-column-gap: 2rem;
-    grid-template-areas: 'name avatar''bio avatar' 'd avatar';
-  }
+  &.public,
   &.adding {
     display: grid;
     grid-column-gap: 2rem;
+  }
+  &.public {
+    grid-template-areas: 'name avatar''bio avatar' 'd avatar';
+  }
+  &.adding {
     grid-template-areas: 'name avatar''bio avatar' 'd avatar' 'toggle avatar' 'submit avatar';
   }
 }

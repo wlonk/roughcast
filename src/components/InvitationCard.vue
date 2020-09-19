@@ -1,5 +1,5 @@
 <template>
-  <div class="invitation-card">
+  <div class="invitation-card small-card">
     <span>
       <router-link :to="`/u/${sender}`" class="accent-link">
         @{{ sender }}
