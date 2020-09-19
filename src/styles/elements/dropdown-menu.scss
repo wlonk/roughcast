@@ -1,6 +1,5 @@
 .dropdown-menu {
   .ui.circular.label {
-    box-shadow: $dm-focus-shadow;
     min-width: 0.75rem !important;
     min-height: 0.75rem !important;
     top: -0.25rem;
@@ -15,8 +14,6 @@
     }
     input[type="submit"] {
       background: none;
-      font-family: $base-font;
-      font-weight: 700;
       text-align: left;
       width: 100%;
       padding: 1rem 1.25rem;

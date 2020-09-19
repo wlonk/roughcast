@@ -1,10 +1,18 @@
 [data-theme="dark"] {
   background-color: $dm-main-bg-color;
-  a.link,
-  .scrollactive-item {
-    &:hover,
-    &.active,
-    p:hover {
+  p, a, button, label, h6, i, .item,
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="submit"],
+  button, textarea, select,
+  h1, h2, h3, h4, h5, h6,
+  .group-tabs *, .box-title,
+  .team, .content {
+    color: $main-light-color;
+  }
+  a, .scrollactive-item {
+    &:hover, &.active, p:hover {
       color: $main-accent-color;
     }
   }
@@ -17,24 +25,8 @@
       }
     }
   }
-  .page-header {
-    * {
-      color: $main-light-color;
-    }
-    .logo-title:hover {
-      color: $main-accent-color;
-    }
-  }
   .header-link::before {
     background-image: url('./assets/user-dm.svg');
-  }
-  .initial-page,
-  .verification-page,
-  .dashboard,
-  .edit-block {
-    * {
-      color: $main-light-color;
-    }
   }
   .submit-btn {
     background-color: $main-accent-color;
@@ -47,7 +39,7 @@
     }
   }
   .subscribed-label {
-    border: 2px solid $main-accent-color;
+    border: $accent-border;
     color: $main-accent-color !important;
   }
   input:focus {
@@ -59,28 +51,25 @@
     input[type="password"],
     textarea {
       background-color: $dm-bg-card-color;
-      border: 2px solid transparent;
-      color: $main-light-color;
+      border: $transparent-border;
       &:focus {
         outline: $main-accent-color;
-        border: 2px solid $main-accent-color;
+        border: $accent-border;
       }
     }
   }
   .checkbox-label {
-    color: $main-light-color;
     input[type="checkbox"] {
       &:focus ~ p::before {
-        box-shadow: 0 0 0.5rem 0 transparentize($main-accent-color, 0.4);
+        box-shadow: $accent-border;
       }
-      &:checked {
-        & ~ p::before {
-          border-color: $main-accent-color;
-          background-image: url('./assets/close-dm.svg');
-        }
+      &:checked ~ p::before {
+        border-color: $main-accent-color;
+        background-image: url('./assets/close-dm.svg');
       }
     }
     p::before {
+      border: 2px solid transparent;
       background-color: $dm-bg-card-color;
     }
   }
@@ -88,9 +77,6 @@
     color: $main-accent-color !important;
   }
   .dropdown-menu {
-    .item {
-      color: $main-light-color !important;
-    }
     .notification-item.new {
       color: $main-accent-color;
     }
@@ -98,9 +84,12 @@
       background-color: $main-accent-color;
       color: $dm-bg-card-color;
     }
+    .ui.circular.label {
+      box-shadow: $dm-focus-shadow;
+    }
     .menu.transition,
     .menu.transition::after {
-      box-shadow: 0 0 2rem 0 $dm-bg-card-color;
+      box-shadow: $black-shadow;
       background-color: $main-dark-color !important;
     }
     form:hover {
@@ -117,12 +106,6 @@
   .version-card,
   .user-manage-card {
     background-color: $dm-bg-card-color;
-    * {
-      color: $main-light-color;
-    }
-    h6 {
-      color: transparentize($main-light-color, 0.5);
-    }
     .team:before {
       background-image: url('./assets/group-dm.svg');
     }
@@ -130,35 +113,29 @@
   .card-title {
     color: $main-accent-color;
   }
-  .user-elements * {
-    color: $main-light-color;
-  }
   .box-title {
-    color: $main-light-color;
     h5 {
-      border-bottom: 2px solid $main-accent-color;
+      border-bottom: $accent-border;
     }
     .icon:hover {
       color: $main-accent-color;
     }
   }
-  .edit-box {
-    .remove:hover {
-      color: $main-accent-color;
-    }
+  .edit-box .remove:hover {
+    color: $main-accent-color;
   }
   .custom-file-upload:focus ~ .file-loader-label {
-    box-shadow: 0 0 0.5rem 0 transparentize($main-accent-color, 0.4);
+    box-shadow: $dm-focus-shadow;
   }
   .verfc {
     color: $main-error-color;
   }
+  .small-card-title,
+  .smallest-title {
+    color: $main-accent-color;
+  }
   .game-card, .team-card, .version-card {
-    color: $main-light-color;
     background-color: $dm-bg-card-color;
-    .small-card-title {
-      color: $main-accent-color;
-    }
     .team:before {
       background-image: url('./assets/group-dm.svg');
     }
@@ -169,7 +146,7 @@
       }
       &:hover, &:focus {
         img {
-          border: 2px solid $main-accent-color;
+          border: $accent-border;
         }
       }
     }
@@ -177,7 +154,7 @@
   .inline .label {
     background-color: $main-accent-color;
     color: $dm-bg-card-color;
-    box-shadow: 0 0 0.5rem 0 transparentize($dm-bg-card-color, 0.4);
+    box-shadow: $black-shadow;
   }
   .group-tabs {
     .chevron:hover {
@@ -200,20 +177,53 @@
       color: $main-accent-color;
     }
   }
-  .sort.down {
+  .sort.down,
+  .confirmation i:hover {
     color: $main-accent-color;
   }
   .user-manage-card .controls i {
-    &:hover {
-      color: $main-accent-color;
-    }
+    &:hover,
     &.active {
       color: $main-accent-color;
     }
   }
-  .confirmation i {
-    &:hover {
+  .dashboard-header {
+    .bottom-border {
+      background-color: $dm-bg-card-color;
+    }
+    button {
+      border-bottom: 2px solid transparent;
+      &:hover, &:focus, &.active {
+        color: $main-accent-color;
+        border-bottom: $accent-border;
+      }
+    }
+  }
+  .file-card {
+    background-color: $dm-bg-card-color;
+  }
+  .custom-toggle {
+    label:hover {
       color: $main-accent-color;
     }
+    input {
+      &:checked + label {
+        color: $main-accent-color;
+      }
+      &:focus + label {
+        border-bottom: $accent-border;
+      }
+    }
+    .selector {
+      background-color: $dm-bg-card-color;
+      border: 2px solid $main-accent-color;
+      &::before {
+        background-color: $main-accent-color;
+      }
+    }
+  }
+  .file-upload p {
+    background-color: $dm-bg-card-color;
+    color: transparentize($main-light-color, 0.5);
   }
 }

@@ -138,4 +138,18 @@
       width: $small-font-size;
     }
   }
+  .game-card,
+  .team-card {
+    min-width: 0;
+    .team {
+      display: none;
+    }
+    p {
+      min-width: 0 !important;
+    }
+    .authors,
+    .owners {
+      display: none;
+    }
+  }
 }
