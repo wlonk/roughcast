@@ -7,6 +7,10 @@
       font-size: $x-large-font-size;
     }
   }
+  .wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+  }
   .content-list {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;

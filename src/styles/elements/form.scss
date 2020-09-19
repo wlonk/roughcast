@@ -53,4 +53,7 @@
   &.adding {
     grid-template-areas: 'name avatar''bio avatar' 'd avatar' 'toggle avatar' 'submit avatar';
   }
+  .section-title {
+    margin-bottom: 0.5rem;
+  }
 }

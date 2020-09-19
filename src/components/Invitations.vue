@@ -24,6 +24,11 @@ import InvitationCard from '@/components/InvitationCard';
 
 export default {
   name: 'Invitations',
+  data() {
+    return {
+      invitations: undefined,
+    };
+  },
   components: {
     InvitationCard,
   },
