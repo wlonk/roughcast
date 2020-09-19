@@ -130,3 +130,39 @@
   -webkit-box-orient: vertical;
   word-break: break-word;
 }
+
+.file-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+  .smallest-title {
+    max-width: 80%;
+  }
+  .round-link {
+    background-image: url('./assets/file.svg');
+  }
+}
+
+.invitation-card {
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  max-width: 23rem;
+  &>span {
+    line-height: 1.5em;
+  }
+  .actions {
+    display: flex;
+    margin: 0;
+  }
+  .icon {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 0.25rem;
+  }
+}

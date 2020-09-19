@@ -2,8 +2,11 @@
   padding: 1.25rem;
   .header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+    .small-card-title {
+      margin-top: 0.25rem;
+    }
     .round-link {
       background-image: url('./assets/file.svg');
       margin-left: 1rem;
@@ -23,18 +26,24 @@
         }
         &.down {
           margin-right: -0.75rem;
-          margin-left: 1rem;
+          margin-left: 0.75rem;
         }
       }
     }
   }
   .content {
     margin-top: 1.25rem;
+    &>div {
+      margin-bottom: 0.5rem;
+    }
   }
   .footer {
     width: 100%;
     .authors {
       width: 100%;
+      .inline .label {
+        left: -5.5rem;
+      }
     }
   }
   .states * {

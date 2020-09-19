@@ -48,6 +48,9 @@
       }
     }
   }
+  .main-content {
+    grid-column-gap: 1rem;
+  }
 }
 
 @media only screen and (max-width: 800px) {
@@ -81,6 +84,15 @@
       margin-bottom: 3rem;
     }
   }
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    &>div:last-child {
+      min-width: 35rem;
+      margin-top: 2rem;
+    }
+  }
 }
 
 @media only screen and (max-width: 660px) {
@@ -107,6 +119,9 @@
   }
   .search-filter-panel .page-form {
     width: 90%;
+    input[type="text"] {
+      min-width: 0;
+    }
   }
   .public, .adding {
     display: flex !important;
@@ -135,7 +150,7 @@
     }
     img {
       position: relative;
-      margin: -2rem auto 0;
+      margin-top: -2rem;
     }
     &>div {
       margin-left: 0;
@@ -149,6 +164,12 @@
     align-items: flex-start;
     &>* {
       margin-bottom: 0.5rem;
+    }
+  }
+  .main-content {
+    &>div {
+      min-width: 0 !important;
+      width: 100%;
     }
   }
 }
@@ -217,6 +238,9 @@
       text-align: right;
     }
   }
+  .profile-card img {
+    margin: -2rem auto 0;
+  }
 }
 
 @media only screen and (max-width: 350px) {
@@ -236,5 +260,14 @@
   #history .version-card {
     min-width: 0;
     width: 100%;
+  }
+  .profile-card.team-profile-card .header {
+    flex-direction: column;
+    .card-title {
+      max-width: 100%;
+    }
+    .round-link {
+      margin-top: 1rem;
+    }
   }
 }

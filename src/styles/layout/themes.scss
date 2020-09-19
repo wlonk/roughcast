@@ -19,6 +19,9 @@
       color: $main-accent-color;
     }
   }
+  .card .section-title {
+    color: transparentize($main-light-color, 0.4);
+  }
   .breadcrumb {
     .router-link-active,
     .divider  {

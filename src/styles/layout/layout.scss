@@ -63,3 +63,20 @@
     }
   }
 }
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1.75fr 1.25fr;
+  grid-column-gap: 5rem;
+  grid-template-areas: 'main_bl addt_bl';
+  &.versions-list {
+    &>div:first-child {
+      min-width: 35rem;
+    }
+  }
+  &.version-content {
+    .file-list {
+      grid-area: addt_bl;
+    }
+  }
+}
