@@ -18,52 +18,52 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex';
 
-import UserProfileCard from "@/components/UserProfileCard";
-import UserGames from "@/components/UserGames";
-import GroupTabs from "@/components/GroupTabs";
+import UserProfileCard from '@/components/UserProfileCard';
+import UserGames from '@/components/UserGames';
+import GroupTabs from '@/components/GroupTabs';
 
-const allGames = { name: "All games", slug: "*" };
+const allGames = { name: 'All games', slug: '*' };
 
 export default {
-  name: "UserDetail",
+  name: 'UserDetail',
   components: {
     UserProfileCard,
     GroupTabs,
-    UserGames
+    UserGames,
   },
   data() {
     return {
-      chosenGroup: allGames
+      chosenGroup: allGames,
     };
   },
   methods: {
     changeActiveGroup(group) {
       this.chosenGroup = group;
-    }
+    },
   },
   computed: {
-    ...mapGetters(["hydratedUser", "myTeams", "listGames", "gamesForTeam"]),
+    ...mapGetters(['hydratedUser', 'myTeams', 'listGames', 'gamesForTeam']),
     user() {
       return this.hydratedUser(this.$route.params.username);
     },
     groups() {
       return [
         allGames,
-        ...this.myTeams.map((t) => ({ name: t.name, slug: t.slug })),
+        ...this.myTeams.map(t => ({ name: t.name, slug: t.slug })),
       ];
     },
     filteredGames() {
-      if (this.chosenGroup.slug === "*") {
+      if (this.chosenGroup.slug === '*') {
         return this.listGames;
       }
       return this.gamesForTeam(this.chosenGroup.slug);
-    }
+    },
   },
   created() {
-    this.$store.dispatch("getUserById", this.$route.params.username);
-    this.$store.dispatch("retrieveTeams");
-  }
+    this.$store.dispatch('getUserById', this.$route.params.username);
+    this.$store.dispatch('retrieveTeams');
+  },
 };
 </script>

@@ -122,24 +122,24 @@ const actions = {
 };
 
 const getters = {
-  currentUser: (state) => {
+  currentUser: state => {
     return state.current;
   },
-  profile: (state) => {
+  profile: state => {
     return state.profile;
   },
-  dryUser: (state) => (username) => {
-    return _.find(state.all, (u) => u.username === username);
+  dryUser: state => username => {
+    return _.find(state.all, u => u.username === username);
   },
-  hydratedUser: (state) => (username) => {
-    const user = _.find(state.all, (u) => u.username === username);
+  hydratedUser: state => username => {
+    const user = _.find(state.all, u => u.username === username);
     return user;
   },
-  loginErrors: (state) => {
+  loginErrors: state => {
     return state.errors;
   },
-  dryUserOptionList: (state) => {
-    return _.map(state.all, (u) => ({
+  dryUserOptionList: state => {
+    return _.map(state.all, u => ({
       key: u.id,
       value: u.username,
       text: `${u.first_name} (@${u.username})`,

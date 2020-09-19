@@ -19,8 +19,7 @@
       </div>
       <div class="bio">
         <label for="changelog">Changes</label>
-        <textarea placeholder="Add version changes" id="changelog"  >
-        </textarea>
+        <textarea placeholder="Add version changes" id="changelog"> </textarea>
         <ul v-if="errors.desc">
           <li
             v-for="(error, i) in errors.desc"
@@ -157,7 +156,7 @@ export default {
         visible_to: elements['visible_to']?.value || [],
       };
       const newVersion = await this.createNewVersion(data);
-      e.target.elements['files'].files.forEach(async (file) => {
+      e.target.elements['files'].files.forEach(async file => {
         const data = {
           version_id: newVersion.id,
           attached_file: file,

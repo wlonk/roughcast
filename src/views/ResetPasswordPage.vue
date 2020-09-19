@@ -1,5 +1,5 @@
 <template>
-  <div  class="initial-page">
+  <div class="initial-page">
     <div>
       <h2 class="page-title">Forgot password?</h2>
       <ResetPasswordForm />

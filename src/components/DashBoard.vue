@@ -56,7 +56,7 @@ export default {
   computed: {
     ...mapGetters(['listGames', 'hydratedGame', 'listTeams', 'currentUser']),
     gamesWithTeam() {
-      return this.listGames.map((g) => this.hydratedGame(g.slug));
+      return this.listGames.map(g => this.hydratedGame(g.slug));
     },
   },
   methods: {

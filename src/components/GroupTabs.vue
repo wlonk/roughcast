@@ -20,15 +20,15 @@
 
 <script>
 export default {
-  name: "GroupTabs",
+  name: 'GroupTabs',
   data() {
     return {
-      count: 0
+      count: 0,
     };
   },
   props: {
     groups: Array,
-    chosen: Object
+    chosen: Object,
   },
   methods: {
     decreaseCount() {
@@ -38,13 +38,13 @@ export default {
       return (this.count = this.count + 5);
     },
     selectGroup(group) {
-      this.$emit("choose-group", group);
-    }
+      this.$emit('choose-group', group);
+    },
   },
   computed: {
     allGames() {
-      return { name: "All games", slug: "*" };
-    }
-  }
+      return { name: 'All games', slug: '*' };
+    },
+  },
 };
 </script>

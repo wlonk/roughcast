@@ -24,12 +24,7 @@
       </div>
       <div class="bio">
         <label for="bio-info">Changes</label>
-        <textarea
-          placeholder="Add changes"
-          id="bio-info"
-           
-          v-model="changelog"
-        >
+        <textarea placeholder="Add changes" id="bio-info" v-model="changelog">
         </textarea>
         <ul v-if="errors.desc">
           <li

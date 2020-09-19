@@ -1,4 +1,4 @@
-const slugify = (text) => {
+const slugify = text => {
   return text
     .toString()
     .toLowerCase()

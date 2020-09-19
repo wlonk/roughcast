@@ -79,9 +79,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import slugify from './slugify';
-
 export default {
   name: 'AddNewGroupForm',
   data() {

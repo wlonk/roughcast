@@ -22,7 +22,6 @@
         <textarea
           placeholder="Add team description"
           id="bio-info"
-           
           v-model="description"
         >
         </textarea>

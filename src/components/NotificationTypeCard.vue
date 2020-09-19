@@ -45,7 +45,7 @@ export default {
     order: Number,
     notifs: Object,
   },
-  data: function () {
+  data: function() {
     return {
       inApp: this.notifs.in_app,
       instantEmail: this.notifs.instant_email,
