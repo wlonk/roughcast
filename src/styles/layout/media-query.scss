@@ -128,6 +128,19 @@
       }
     }
   }
+  .profile-card {
+    flex-direction: column;
+    &.game-profile-card .header {
+      flex-direction: column;
+    }
+    img {
+      position: relative;
+      margin: -2rem auto 0;
+    }
+    &>div {
+      margin-left: 0;
+    }
+  }
 }
 
 @media only screen and (max-width: 540px) {
@@ -193,6 +206,15 @@
     padding-bottom: 4rem;
     .accent-link {
       word-break: break-word;
+    }
+  }
+  .user-elements .wrapper>div:first-child {
+    flex-direction: column;
+    align-items: flex-start;
+    .group-tabs {
+      width: 100%;
+      margin-top: 1rem;
+      text-align: right;
     }
   }
 }
