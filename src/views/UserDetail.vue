@@ -1,45 +1,50 @@
 <template>
-  <div>
+  <div class="user-elements">
     <UserProfileCard v-bind="user" />
-    <div class="user-elements">
-      <GroupTabs
-        @choose-group="changeActiveGroup"
-        :groups="groups"
-        :chosen="chosenGroup"
-      />
-      <UserGames :group="chosenGroup" :games="filteredGames" />
+    <div class="wrapper">
+      <div>
+        <div class="box-title">
+          <h5>{{ chosenGroup.name }}</h5>
+        </div>
+        <GroupTabs
+          @choose-group="changeActiveGroup"
+          :groups="groups"
+          :chosen="chosenGroup"
+        />
+      </div>
+      <UserGames :games="filteredGames" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
-import UserProfileCard from '@/components/UserProfileCard';
-import GroupTabs from '@/components/GroupTabs';
-import UserGames from '@/components/UserGames';
+import UserProfileCard from "@/components/UserProfileCard";
+import UserGames from "@/components/UserGames";
+import GroupTabs from "@/components/GroupTabs";
 
-const allGames = { name: 'All games', slug: '*' };
+const allGames = { name: "All games", slug: "*" };
 
 export default {
-  name: 'UserDetail',
+  name: "UserDetail",
   components: {
     UserProfileCard,
     GroupTabs,
-    UserGames,
+    UserGames
   },
   data() {
     return {
-      chosenGroup: allGames,
+      chosenGroup: allGames
     };
   },
   methods: {
     changeActiveGroup(group) {
       this.chosenGroup = group;
-    },
+    }
   },
   computed: {
-    ...mapGetters(['hydratedUser', 'myTeams', 'listGames', 'gamesForTeam']),
+    ...mapGetters(["hydratedUser", "myTeams", "listGames", "gamesForTeam"]),
     user() {
       return this.hydratedUser(this.$route.params.username);
     },
@@ -50,15 +55,15 @@ export default {
       ];
     },
     filteredGames() {
-      if (this.chosenGroup.slug === '*') {
+      if (this.chosenGroup.slug === "*") {
         return this.listGames;
       }
       return this.gamesForTeam(this.chosenGroup.slug);
-    },
+    }
   },
   created() {
-    this.$store.dispatch('getUserById', this.$route.params.username);
-    this.$store.dispatch('retrieveTeams');
-  },
+    this.$store.dispatch("getUserById", this.$route.params.username);
+    this.$store.dispatch("retrieveTeams");
+  }
 };
 </script>

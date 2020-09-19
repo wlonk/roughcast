@@ -44,7 +44,22 @@
   }
 }
 
-.user-game-block {
-  margin-top: 2.5rem;
-  padding-bottom: 4rem;
+.user-elements {
+  .wrapper {
+    &>div:first-child {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      .box-title {
+        margin-bottom: 0;
+      }
+    }
+    .group-tabs>i, .section-title {
+      display: inline-block;
+    }
+    .none {
+      display: none !important;
+    }
+  }
 }
