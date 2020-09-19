@@ -27,7 +27,7 @@
         <textarea
           placeholder="Add changes"
           id="bio-info"
-          rows="5"
+           
           v-model="changelog"
         >
         </textarea>

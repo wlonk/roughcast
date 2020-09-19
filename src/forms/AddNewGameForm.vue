@@ -27,7 +27,6 @@
         <textarea
           placeholder="Add game description"
           id="bio-info"
-          rows="5"
           v-model="description"
         >
         </textarea>
