@@ -8,6 +8,7 @@ span, div {
   font-size: $base-font-size;
   letter-spacing: 0.1em !important;
   line-height: 1.5em !important;
+  margin: 0; padding: 0;
 }
 
 .accent-link {
@@ -63,6 +64,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: $medium-font-size;
 }
 
+.smallest-title {
+  font-family: $accent-font !important;
+  font-size: $small-font-size;
+}
+
 .scrollactive-item {
   font-weight: 700;
   line-height: 1.5em;
@@ -78,4 +84,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .card .section-title {
   opacity: 0.5;
+}
+
+.verfc {
+  font-size: $base-font-size;
+}
+
+.sort {
+  font-size: $large-font-size;
+}
+
+.version-profile-card .header span {
+  font-family: $accent-font !important;
+  font-size: $small-font-size;
 }

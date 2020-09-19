@@ -7,16 +7,12 @@
   .file-card {
     display: flex;
     justify-content: space-between;
-    background-color: $dm-bg-card-color;
+    align-items: flex-start;
     border-radius: 0.5rem;
     padding: 1rem;
     position: relative;
-    h6 {
-      color: $main-light-color;
-      opacity: 0.5;
-    }
-    .card-title {
-      max-width: 90%;
+    .smallest-title {
+      max-width: 80%;
     }
     .round-link {
       background-image: url('./assets/file.svg');

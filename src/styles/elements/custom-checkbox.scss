@@ -26,7 +26,6 @@
     margin: 0;
     &::before {
       content: '';
-      border: 2px solid transparent;
       border-radius: 0.25rem;
       position: absolute;
       left: 0; top: 0;

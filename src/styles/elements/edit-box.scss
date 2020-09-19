@@ -7,12 +7,6 @@
     &>div {
       margin-bottom: 1.5rem;
     }
-    h6 {
-      display: flex;
-      align-items: flex-end;
-      font-size: $base-font-size;
-      margin-bottom: 0.5rem;
-    }
     p {
       margin: 0;
     }
@@ -61,7 +55,6 @@
     display: flex;
     align-items: center;
     .verfc {
-      font-size: $base-font-size;
       margin-left: 1rem;
     }
   }
@@ -87,7 +80,6 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    // padding: 0 1rem;
     p {
       max-width: 80%;
     }
@@ -130,24 +122,5 @@
   }
   &#new-version .custom-toggle {
     margin-top: 3rem;
-  }
-  .file-upload {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 0.5rem;
-    p {
-      background-color: $dm-bg-card-color;
-      color: transparentize($main-light-color, 0.5);
-      border-radius: 0.5rem;
-      margin-right: 0.5rem;
-      padding: 0.75rem;
-      width: 60%;
-    }
-    .file-loader-label {
-      margin: 0;
-      padding: 0.75rem 1rem;
-      min-width: 0;
-    }
   }
 }

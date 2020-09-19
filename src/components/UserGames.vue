@@ -3,7 +3,7 @@
     <div class="box-title">
       <h5>{{ group.name }}</h5>
     </div>
-    <div class="block-content">
+    <div class="content-list">
       <GameCard v-for="game in games" :key="game.slug" v-bind="game" />
     </div>
   </div>

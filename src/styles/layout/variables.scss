@@ -20,4 +20,9 @@ $x-large-font-size: 3rem;
 $huge-font-size: 4rem;
 
 // Shadows
-$dm-focus-shadow: 0 0 0.5rem 0 transparentize($main-accent-color, 0.6);
+$dm-focus-shadow: 0 0 0.5rem 0 transparentize($main-accent-color, 0.4);
+$black-shadow: 0 0 0.5rem 0 transparentize($dm-bg-card-color, 0.4);
+
+// Borders
+$transparent-border: 2px solid transparent;;
+$accent-border: 2px solid $main-accent-color;

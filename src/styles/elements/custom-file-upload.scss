@@ -11,7 +11,22 @@
 .custom-file-upload {
   opacity: 0;
   position: absolute;
-  &:focus ~ .file-loader-label {
-    box-shadow: 0 0 12px $main-accent-color;
+}
+
+.file-upload {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  p {
+    border-radius: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.75rem;
+    width: 60%;
+  }
+  .file-loader-label {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    min-width: 0;
   }
 }
