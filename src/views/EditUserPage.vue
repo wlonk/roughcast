@@ -19,18 +19,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import ScrollingEditUserMenu from '@/components/ScrollingEditUserMenu';
-import PublicProfileBlock from '@/components/PublicProfileBlock';
-import AccountSettingsBlock from '@/components/AccountSettingsBlock';
-import ChangePasswordForm from '@/forms/ChangePasswordForm';
-import NotificationPreferences from '@/components/NotificationPreferences';
-import Invitations from '@/components/Invitations';
-import NoPageNotification from '@/components/NoPageNotification';
-import AddNewGroupForm from '@/forms/AddNewGroupForm';
+import { mapGetters } from "vuex";
+import ScrollingEditUserMenu from "@/components/ScrollingEditUserMenu";
+import PublicProfileBlock from "@/components/PublicProfileBlock";
+import AccountSettingsBlock from "@/components/AccountSettingsBlock";
+import ChangePasswordForm from "@/forms/ChangePasswordForm";
+import NotificationPreferences from "@/components/NotificationPreferences";
+import Invitations from "@/components/Invitations";
+import NoPageNotification from "@/components/NoPageNotification";
+import AddNewGroupForm from "@/forms/AddNewGroupForm";
 
 export default {
-  name: 'EditUserPage',
+  name: "EditUserPage",
   components: {
     ScrollingEditUserMenu,
     PublicProfileBlock,
@@ -42,7 +42,7 @@ export default {
     AddNewGroupForm
   },
   computed: {
-    ...mapGetters(['currentUser']),
-  },
+    ...mapGetters(["currentUser"])
+  }
 };
 </script>
