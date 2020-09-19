@@ -9,7 +9,7 @@
         v-bind="version"
         :key="version.id"
       />
-      <div v-if="!versions.length" class="version-card">
+      <div v-if="!versions.length" class="version-card small-card">
         <h6 class="section-title">No attached files</h6>
       </div>
     </div>

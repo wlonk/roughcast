@@ -68,11 +68,6 @@
       margin-right: 2rem;
     }
   }
-  &#password-change {
-    .submit-btn {
-      margin: 0;
-    }
-  }
   p {
     margin: 0;
   }
@@ -93,34 +88,5 @@
     p:last-child {
       margin-bottom: 1.25rem;
     }
-  }
-  &#history .version-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .round-link {
-      background-image: url('./assets/file.svg');
-    }
-    &>div {
-      display: flex;
-      align-items: center;
-      margin: 0;
-      * {
-        margin: 0;
-      }
-      h6 {
-        margin-right: 0.5rem;
-      }
-      p {
-        margin-right: 1rem;
-      }
-      .link {
-        margin-top: 0.5rem;
-        margin-left: 0.5rem;
-      }
-    }
-  }
-  &#new-version .custom-toggle {
-    margin-top: 3rem;
   }
 }

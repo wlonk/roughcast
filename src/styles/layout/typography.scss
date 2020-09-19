@@ -64,6 +64,22 @@ h1, h2, h3, h4, h5, h6 {
   font-size: $medium-font-size;
 }
 
+.box-title {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  h5 {
+    padding-bottom: 0.25rem;
+    padding-right: 1rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+  .icon {
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+}
+
 .smallest-title {
   font-family: $accent-font !important;
   font-size: $small-font-size;
@@ -97,4 +113,8 @@ h1, h2, h3, h4, h5, h6 {
 .version-profile-card .header span {
   font-family: $accent-font !important;
   font-size: $small-font-size;
+}
+
+.file-upload .file-loader-label {
+  font-size: $base-font-size;
 }

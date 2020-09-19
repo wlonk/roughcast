@@ -1,5 +1,4 @@
 .version-card {
-  border-radius: 0.5rem;
   padding: 1.25rem;
   .header {
     display: flex;
@@ -33,55 +32,34 @@
     margin-top: 1.25rem;
   }
   .footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.25rem;
     width: 100%;
-    .states {
-      display: flex;
-      align-items: center;
-      * {
-        display: inline-block;
-      }
-    }
     .authors {
-      display: flex;
-      justify-content: flex-end;
       width: 100%;
-      &>* {
-        cursor: pointer;
-        margin-right: -0.75rem;
-        position: relative;
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-      img {
-        width: 2.5rem;
-        border-radius: 50%;
-      }
-      a:hover, a:focus {
-        img {
-          z-index: 5;
-        }
-        .label {
-          word-break: keep-all;
-          display: block;
-          right: 2.5rem; left: none;
-        }
-      }
     }
-    .inline .label {
-      display: none;
-      font-weight: 300;
-      line-height: 1.5rem;
-      padding: 0.5rem 1.5rem;
-      position: absolute !important;
-      left: -5.25rem; top: 0;
-      z-index: 4;
-      word-wrap: break-word;
-      word-break: break-all;
-      max-width: 20rem;
+  }
+  .states * {
+    display: inline-block;
+  }
+}
+
+#history .version-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+  min-width: 23rem;
+  .round-link {
+    background-image: url('./assets/file.svg');
+  }
+  &>div {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    * {
+      margin: 0;
+    }
+    a.link {
+      margin-left: 0.5rem;
     }
   }
 }

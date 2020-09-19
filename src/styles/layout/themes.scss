@@ -99,15 +99,21 @@
       }
     }
   }
-  .user-profile-card,
-  .game-profile-card,
-  .team-profile-card,
-  .version-profile-card,
-  .version-card,
-  .user-manage-card {
+  .small-card,
+  .profile-card {
     background-color: $dm-bg-card-color;
     .team:before {
       background-image: url('./assets/group-dm.svg');
+    }
+    .authors a {
+      img {
+        border: 2px solid $dm-bg-card-color;
+      }
+      &:hover, &:focus {
+        img {
+          border: $accent-border;
+        }
+      }
     }
   }
   .card-title {
@@ -133,23 +139,6 @@
   .small-card-title,
   .smallest-title {
     color: $main-accent-color;
-  }
-  .game-card, .team-card, .version-card {
-    background-color: $dm-bg-card-color;
-    .team:before {
-      background-image: url('./assets/group-dm.svg');
-    }
-    .authors a,
-    .owners a {
-      img {
-        border: 2px solid $dm-bg-card-color;
-      }
-      &:hover, &:focus {
-        img {
-          border: $accent-border;
-        }
-      }
-    }
   }
   .inline .label {
     background-color: $main-accent-color;

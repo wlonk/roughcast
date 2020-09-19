@@ -1,5 +1,5 @@
 <template>
-  <div class="team-profile-card">
+  <div class="team-profile-card profile-card">
     <img v-if="logo" :src="logo" :alt="`${name} team logo`" />
     <img v-else src="../assets/no-team-logo.svg" alt="No team logo" />
     <div>
