@@ -19,7 +19,7 @@
       </div>
       <div class="bio">
         <label for="changelog">Changes</label>
-        <textarea placeholder="Add version changes" id="changelog" rows="5">
+        <textarea placeholder="Add version changes" id="changelog"  >
         </textarea>
         <ul v-if="errors.desc">
           <li
