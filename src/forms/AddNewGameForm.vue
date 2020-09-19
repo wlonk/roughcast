@@ -5,8 +5,8 @@
     </div>
     <form @submit.stop.prevent="createGame" class="page-form adding">
       <div>
-        <label for="name">Team name</label>
-        <input type="text" v-model="name" placeholder="Team name" id="name" />
+        <label for="name">Game name</label>
+        <input type="text" v-model="name" placeholder="Game name" id="name" />
         <ul v-if="errors.name">
           <li
             v-for="(error, i) in errors.name"
@@ -50,7 +50,7 @@
         </ul>
       </div>
       <div class="avatar">
-        <h6 class="section-title">Game image</h6>
+        <h6 class="section-title">Group image</h6>
         <img src="../assets/no-game-image.svg" alt="No image" />
         <div>
           <input

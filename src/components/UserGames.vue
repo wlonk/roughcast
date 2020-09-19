@@ -1,5 +1,5 @@
 <template>
-  <div class="user-game-block">
+  <div class="user-game-block wrapper">
     <div class="box-title">
       <h5>{{ group.name }}</h5>
     </div>
