@@ -1,5 +1,5 @@
 <template>
-  <div v-if="versions.length" class="versions-list">
+  <div v-if="versions.length" class="versions-list main-content">
     <div>
       <div class="box-title">
         <h5>Newest version</h5>
@@ -8,7 +8,7 @@
     </div>
     <div>
       <div class="box-title">
-        <h5>Previous versions</h5>
+        <h5>Old versions</h5>
       </div>
       <VersionCard
         v-for="version in old_versions"
