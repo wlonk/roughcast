@@ -1,6 +1,6 @@
 <template>
   <div class="notification-type-card">
-    <h6>{{ name }}</h6>
+    <h6 class="section-title">{{ name }}</h6>
     <div class="row">
       <label :for="`inapp-checkbox-${order}`" class="checkbox-label inline">
         <input

@@ -27,7 +27,6 @@
         <textarea
           placeholder="Add game description"
           id="bio-info"
-          rows="5"
           v-model="description"
         >
         </textarea>
@@ -55,7 +54,7 @@
         </ul>
       </div>
       <div class="avatar">
-        <h6>Game image</h6>
+        <h6 class="section-title">Group image</h6>
         <img src="../assets/no-game-image.svg" alt="No image" />
         <div>
           <input

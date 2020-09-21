@@ -1,13 +1,18 @@
 <template>
-  <div>
+  <div class="user-elements">
     <UserProfileCard v-bind="user" />
-    <div class="user-elements">
-      <GroupTabs
-        @choose-group="changeActiveGroup"
-        :groups="groups"
-        :chosen="chosenGroup"
-      />
-      <UserGames :group="chosenGroup" :games="filteredGames" />
+    <div class="wrapper">
+      <div>
+        <div class="box-title">
+          <h5>{{ chosenGroup.name }}</h5>
+        </div>
+        <GroupTabs
+          @choose-group="changeActiveGroup"
+          :groups="groups"
+          :chosen="chosenGroup"
+        />
+      </div>
+      <UserGames :games="filteredGames" />
     </div>
   </div>
 </template>
@@ -16,8 +21,8 @@
 import { mapGetters } from 'vuex';
 
 import UserProfileCard from '@/components/UserProfileCard';
-import GroupTabs from '@/components/GroupTabs';
 import UserGames from '@/components/UserGames';
+import GroupTabs from '@/components/GroupTabs';
 
 const allGames = { name: 'All games', slug: '*' };
 

@@ -20,6 +20,6 @@ describe('App.vue', () => {
         userCanAddGames: true,
       },
     });
-    expect(wrapper.find('.game-list').exists()).toBe(true);
+    expect(wrapper.find('.content-list').exists()).toBe(true);
   });
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="team-profile-card">
+  <div class="team-profile-card profile-card">
     <img v-if="logo" :src="logo" :alt="`${name} team logo`" />
     <img v-else src="../assets/no-team-logo.svg" alt="No team logo" />
     <div>
@@ -9,7 +9,7 @@
       </div>
       <div>
         <div>
-          <h5>Description</h5>
+          <h6 class="section-title">Description</h6>
           <RenderedMarkdown v-if="description" :body="description" />
           <p v-else class="no-bio">There is no game description yet&hellip;</p>
         </div>

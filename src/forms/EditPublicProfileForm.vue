@@ -11,7 +11,7 @@
     </div>
     <div class="bio">
       <label for="bio-info">Bio</label>
-      <textarea placeholder="Add your bio" id="bio-info" rows="5" v-model="bio">
+      <textarea placeholder="Add your bio" id="bio-info" v-model="bio">
       </textarea>
       <ul v-if="errors.bio">
         <li v-for="(error, i) in errors.bio" :key="i" class="ui error message">
@@ -20,7 +20,7 @@
       </ul>
     </div>
     <div class="avatar">
-      <h6>Avatar</h6>
+      <h6 class="section-title">Avatar</h6>
       <img v-if="avatar" :src="avatar" alt="Your avatar" />
       <img v-else src="../assets/no-avatar.svg" alt="No avatar" />
       <div>

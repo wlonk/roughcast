@@ -1,9 +1,9 @@
 <template>
   <div>
     <VersionProfileCard v-bind="version" />
-    <div class="version-content">
-      <!-- Comments here -->
+    <div class="version-content main-content">
       <FileList :files="version.attachedFiles" />
+      <!-- Comments here -->
     </div>
   </div>
   <!-- Comments

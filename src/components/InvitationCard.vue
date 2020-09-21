@@ -1,11 +1,11 @@
 <template>
-  <div class="invitation-card">
+  <div class="invitation-card small-card">
     <span>
-      <router-link :to="`/u/${sender}`" class="ui accent-link item">
+      <router-link :to="`/u/${sender}`" class="accent-link">
         @{{ sender }}
       </router-link>
       invite you to join
-      <router-link :to="`/t/${team_slug}`" class="ui accent-link item">
+      <router-link :to="`/t/${team_slug}`" class="accent-link">
         {{ team }}
       </router-link>
     </span>

@@ -1,19 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Kurale&family=Patua+One&display=swap');
-@import "vue-select/src/scss/vue-select.scss";
 
 // Layout
 @import "./layout/variables.scss";
 @import "./layout/themes.scss";
+@import "./layout/layout.scss";
+@import "./layout/typography.scss";
 @import "./layout/base.scss";
+
 
 // Blocks
 @import "./blocks/page-header.scss";
-@import "./blocks/main-block.scss";
 @import "./blocks/edit-block.scss";
 @import "./blocks/profile-card.scss";
 @import "./blocks/dashboard.scss";
-@import "./blocks/versions.scss";
-@import "./blocks/version-content.scss";
 
 // Elements
 @import "./elements/submit-btn.scss";
@@ -21,14 +20,13 @@
 @import "./elements/custom-checkbox.scss";
 @import "./elements/user-panel.scss";
 @import "./elements/dropdown-menu.scss";
-@import "./elements/user-block-title.scss";
 @import "./elements/edit-box.scss";
-@import "./elements/box-title.scss";
 @import "./elements/custom-file-upload.scss";
 @import "./elements/custom-toggle.scss";
-@import "./elements/group-tabs.scss";
 @import "./elements/small-card.scss";
-@import "./elements/invitation-card.scss";
 @import "./elements/search-filter-panel.scss";
 @import "./elements/version-card.scss";
 @import "./elements/user-manage-card.scss";
+
+
+@import "./layout/media-query.scss";

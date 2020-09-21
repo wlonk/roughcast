@@ -1,20 +1,11 @@
 .version-card {
-  border-radius: 0.5rem;
   padding: 1.25rem;
-  h5 {
-    margin-bottom: 0.5rem;
-  }
-  * {
-    font-family: $base-font;
-    letter-spacing: 0.1rem;
-  }
   .header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     .small-card-title {
-      font-family: $accent-font;
-      font-size: 1.5rem;
+      margin-top: 0.25rem;
     }
     .round-link {
       background-image: url('./assets/file.svg');
@@ -29,69 +20,55 @@
       }
       .sort {
         cursor: pointer;
-        font-size: 2.25rem;
         &.up {
           transform: rotate(90deg);
           margin-left: 0;
         }
         &.down {
-
           margin-right: -0.75rem;
-          margin-left: 1rem;
+          margin-left: 0.75rem;
         }
       }
     }
   }
   .content {
     margin-top: 1.25rem;
+    &>div {
+      margin-bottom: 0.5rem;
+    }
   }
   .footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.25rem;
     width: 100%;
-    .states {
-      display: flex;
-      align-items: center;
-      * {
-        display: inline-block;
-      }
-    }
     .authors {
-      display: flex;
-      justify-content: flex-end;
-      &>* {
-        cursor: pointer;
-        margin-right: -0.75rem;
-        position: relative;
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-      img {
-        width: 2.5rem;
-        border-radius: 50%;
-      }
-      a:hover, a:focus {
-        img {
-          z-index: 5;
-        }
-        .label {
-          display: block;
-        }
+      width: 100%;
+      .inline .label {
+        left: -5.5rem;
       }
     }
-    .inline .label {
-      display: none;
-      font-weight: 300;
-      line-height: 1.5rem;
-      padding: 0.5rem 1.5rem;
-      position: absolute !important;
-      left: -5.25rem; top: 0;
-      z-index: 4;
-      word-wrap: break-word;
-      word-break: break-all;
-      max-width: 20rem;
+  }
+  .states * {
+    display: inline-block;
+  }
+}
+
+#history .version-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+  min-width: 23rem;
+  .round-link {
+    background-image: url('./assets/file.svg');
+  }
+  &>div {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    * {
+      margin: 0;
+    }
+    a.link {
+      margin-left: 0.5rem;
     }
   }
 }

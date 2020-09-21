@@ -1,5 +1,5 @@
 <template>
-  <div class="user-profile-card">
+  <div class="user-profile-card profile-card">
     <img v-if="avatar" :src="avatar" :alt="`${username} avatar`" />
     <img v-else src="../assets/no-avatar.svg" alt="No avatar" />
     <div>
@@ -8,7 +8,7 @@
         <p>@{{ username }}</p>
       </div>
       <div>
-        <h5>Bio</h5>
+        <h6 class="section-title">Bio</h6>
         <p v-if="bio">{{ bio }}</p>
         <p v-else class="no-bio">There is no user's bio yet&hellip;</p>
       </div>

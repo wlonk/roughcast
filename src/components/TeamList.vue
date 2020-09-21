@@ -1,6 +1,8 @@
 <template>
-  <div class="team-list">
-    <TeamCard v-for="team in teams" :key="team.id" v-bind="team" />
+  <div class="wrapper">
+    <div class="content-list">
+      <TeamCard v-for="team in teams" :key="team.id" v-bind="team" />
+    </div>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="version-card">
+  <div class="version-card small-card">
     <div>
-      <router-link :to="`/t/${team}/${game}/${slug}`" class="small-card-title">
+      <router-link :to="`/t/${team}/${game}/${slug}`" class="smallest-title">
         {{ name }}
       </router-link>
       <router-link :to="`/t/${team}/${game}/${slug}/edit`" class="link">
@@ -10,7 +10,7 @@
     </div>
     <div>
       <div v-if="added">
-        <h5>Added</h5>
+        <h6 class="section-title">Added</h6>
         <p>{{ added }}</p>
       </div>
       <a :href="archive_link" class="round-link"></a>

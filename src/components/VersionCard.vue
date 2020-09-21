@@ -1,22 +1,22 @@
 <template>
-  <div class="version-card">
+  <div class="version-card small-card">
     <div class="header">
       <router-link :to="`/t/${team}/${game}/${slug}`" class="small-card-title">
         {{ name }}
       </router-link>
       <div>
-        <div v-if="added">
-          <h5>Added</h5>
-          <p>{{ added }}</p>
-        </div>
         <a :href="archive_link" class="round-link"></a>
         <i v-if="!extended" class="sort up icon" @click="toggleContent"></i>
         <i v-else class="sort down icon" @click="toggleContent"></i>
       </div>
     </div>
     <div v-if="extended" class="content">
+      <div v-if="added">
+        <h6 class="section-title">Added</h6>
+        <p>{{ added }}</p>
+      </div>
       <div>
-        <h5>Changes</h5>
+        <h6 class="section-title">Changes</h6>
         <span>{{ changelog_short }}</span>
       </div>
       <div class="footer">

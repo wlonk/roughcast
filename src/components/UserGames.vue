@@ -1,11 +1,6 @@
 <template>
-  <div class="user-game-block">
-    <div class="box-title">
-      <h5>{{ group.name }}</h5>
-    </div>
-    <div class="block-content">
-      <GameCard v-for="game in games" :key="game.slug" v-bind="game" />
-    </div>
+  <div class="content-list">
+    <GameCard v-for="game in games" :key="game.slug" v-bind="game" />
   </div>
 </template>
 
@@ -18,7 +13,6 @@ export default {
     GameCard,
   },
   props: {
-    group: Object,
     games: Array,
   },
 };

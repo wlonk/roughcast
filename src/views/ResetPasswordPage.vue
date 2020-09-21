@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <div class="auth-block">
-      <div>
-        <h2>Forgot password?</h2>
-        <ResetPasswordForm />
-      </div>
-      <img src="../assets/player.svg" alt="Player" />
+  <div class="initial-page">
+    <div>
+      <h2 class="page-title">Forgot password?</h2>
+      <ResetPasswordForm />
     </div>
+    <img src="../assets/player.svg" alt="Player" />
   </div>
 </template>
 

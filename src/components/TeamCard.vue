@@ -1,5 +1,5 @@
 <template>
-  <div class="team-card">
+  <div class="team-card small-card">
     <div>
       <div>
         <img v-if="logo" :src="logo" :alt="`${name} team logo`" />
@@ -22,7 +22,7 @@
     </div>
     <div class="footer">
       <CardStatistic :games="games" :subscribers="subscribers" />
-      <div class="owners">
+      <div class="authors">
         <AuthorPreview
           v-for="(owner, index) in shortened_owners"
           :key="index"

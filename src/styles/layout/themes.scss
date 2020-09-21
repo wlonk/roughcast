@@ -1,54 +1,52 @@
 [data-theme="dark"] {
   background-color: $dm-main-bg-color;
-  a.link {
-    &:hover,
-    &.active,
-    p:hover {
-      color: $dm-accent-bg-color;
+  p, a, button, label, h6, i, .item,
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="submit"],
+  button, textarea, select,
+  h1, h2, h3, h4, h5, h6,
+  .section-title,
+  .group-tabs *, .box-title,
+  .team, .content,
+  .ui.dropdown .menu>.item,
+  .ui.dropdown .menu>.item:hover {
+    color: $main-light-color;
+  }
+  a, .scrollactive-item {
+    &:hover, &.active, p:hover {
+      color: $main-accent-color;
     }
+  }
+  .card .section-title {
+    color: transparentize($main-light-color, 0.4);
   }
   .breadcrumb {
     .router-link-active,
     .divider  {
-      color: transparentize($dm-main-font-color, 0.4);
+      color: transparentize($main-light-color, 0.4);
       &:hover {
-        color: $dm-main-font-color;
+        color: $main-light-color;
       }
-    }
-  }
-  .page-header {
-    * {
-      color: $dm-main-font-color;
-    }
-    .logo-title:hover {
-      color: $dm-accent-bg-color;
     }
   }
   .header-link::before {
     background-image: url('./assets/user-dm.svg');
   }
-  .welcome-block,
-  .auth-block,
-  .verification-block,
-  .edit-block,
-  .dashboard {
-    * {
-      color: $dm-main-font-color;
-    }
-  }
   .submit-btn {
-    background-color: $dm-accent-bg-color;
-    color: $dm-dark-color !important;
+    background-color: $main-accent-color;
+    color: $dm-bg-card-color !important;
     &:hover {
       box-shadow: $dm-focus-shadow;
     }
     i {
-      color: $dm-dark-color;
+      color: $dm-bg-card-color;
     }
   }
   .subscribed-label {
-    border: 2px solid $dm-accent-bg-color;
-    color: $dm-accent-bg-color !important;
+    border: $accent-border;
+    color: $main-accent-color !important;
   }
   input:focus {
     box-shadow: $dm-focus-shadow;
@@ -58,172 +56,169 @@
     input[type="email"],
     input[type="password"],
     textarea {
-      background-color: $dm-dark-color;
-      border: 2px solid transparent;
-      color: $dm-main-font-color;
+      background-color: $dm-bg-card-color;
+      border: $transparent-border;
       &:focus {
-        outline: $dm-accent-bg-color;
-        border: 2px solid $dm-accent-bg-color;
+        outline: $main-accent-color;
+        border: $accent-border;
       }
     }
   }
   .checkbox-label {
-    color: $dm-main-font-color;
     input[type="checkbox"] {
       &:focus ~ p::before {
-        box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4);
+        box-shadow: $accent-border;
       }
-      &:checked {
-        & ~ p::before {
-          border-color: $dm-accent-bg-color;
-          background-image: url('./assets/close-dm.svg');
-        }
+      &:checked ~ p::before {
+        border-color: $main-accent-color;
+        background-image: url('./assets/close-dm.svg');
       }
     }
     p::before {
-      background-color: $dm-dark-color;
+      border: 2px solid transparent;
+      background-color: $dm-bg-card-color;
     }
   }
   .accent-link {
-    color: $dm-accent-bg-color !important;
+    color: $main-accent-color !important;
   }
   .dropdown-menu {
-    .item {
-      color: $dm-main-font-color !important;
-    }
     .notification-item.new {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
     .ui.label {
-      background-color: $dm-accent-bg-color;
-      color: $dm-dark-color;
+      background-color: $main-accent-color;
+      color: $dm-bg-card-color;
+    }
+    .ui.circular.label {
+      box-shadow: $dm-focus-shadow;
     }
     .menu.transition,
     .menu.transition::after {
-      box-shadow: 0 0 2rem 0 $dm-dark-color;
-      background-color: $dm-addt-dark-color !important;
+      box-shadow: $black-shadow;
+      background-color: $main-dark-color !important;
     }
     form:hover {
-      background-color: darken($dm-addt-dark-color, 1%);
+      background-color: darken($main-dark-color, 1%);
       input {
-        color: $dm-accent-bg-color;
+        color: $main-accent-color;
       }
     }
   }
-  .user-profile-card,
-  .game-profile-card,
-  .team-profile-card,
-  .version-profile-card,
-  .version-card,
-  .user-manage-card {
-    background-color: $dm-dark-color;
-    * {
-      color: $dm-main-font-color;
-    }
-    h5 {
-      color: transparentize($dm-main-font-color, 0.5);
-    }
+  .small-card,
+  .profile-card {
+    background-color: $dm-bg-card-color;
     .team:before {
       background-image: url('./assets/group-dm.svg');
     }
-  }
-  .card-title {
-    color: $dm-accent-bg-color;
-  }
-  .user-elements * {
-    color: $dm-main-font-color;
-  }
-  .user-block-title {
-    h5 {
-      border-bottom: 2px solid $dm-accent-bg-color;
-    }
-    p {
-      color: $dm-accent-bg-color;
-    }
-  }
-  .box-title {
-    color: $dm-main-font-color;
-    flex-direction: column;
-    h5 {
-      border-bottom: 2px solid $dm-accent-bg-color;
-      align-self: flex-start;
-    }
-    .icon:hover {
-      color: $dm-accent-bg-color;
-    }
-  }
-  .edit-box {
-    .remove:hover {
-      color: $dm-accent-bg-color;
-    }
-  }
-  .custom-file-upload:focus ~ .file-loader-label {
-    box-shadow: 0 0 0.5rem 0 transparentize($dm-accent-bg-color, 0.4);
-  }
-  .verfc {
-    color: $dm-error-color;
-  }
-  .game-card, .team-card, .version-card {
-    color: $dm-main-font-color;
-    background-color: $dm-dark-color;
-    .small-card-title {
-      color: $dm-accent-bg-color;
-    }
-    .team:before {
-      background-image: url('./assets/group-dm.svg');
-    }
-    .authors a,
-    .owners a {
+    .authors a {
       img {
-        border: 2px solid $dm-dark-color;
+        border: 2px solid $dm-bg-card-color;
       }
       &:hover, &:focus {
         img {
-          border: 2px solid $dm-accent-bg-color;
+          border: $accent-border;
         }
       }
     }
   }
+  .card-title {
+    color: $main-accent-color;
+  }
+  .box-title {
+    h5 {
+      border-bottom: $accent-border;
+    }
+    .icon:hover {
+      color: $main-accent-color;
+    }
+  }
+  .edit-box .remove:hover {
+    color: $main-accent-color;
+  }
+  .custom-file-upload:focus ~ .file-loader-label {
+    box-shadow: $dm-focus-shadow;
+  }
+  .verfc {
+    color: $main-error-color;
+  }
+  .small-card-title,
+  .smallest-title {
+    color: $main-accent-color;
+  }
   .inline .label {
-    background-color: $dm-accent-bg-color;
-    color: $dm-dark-color;
-    box-shadow: 0 0 0.5rem 0 transparentize($dm-dark-color, 0.4);
+    background-color: $main-accent-color;
+    color: $dm-bg-card-color;
+    box-shadow: $black-shadow;
   }
   .group-tabs {
     .chevron:hover {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
     .tab-content * {
-      background-color: $dm-dark-color;
+      background-color: $dm-bg-card-color;
       &:hover {
         box-shadow: $dm-focus-shadow;
       }
       &.chosen {
-        background-color: $dm-accent-bg-color;
-        color: $dm-dark-color;
+        background-color: $main-accent-color;
+        color: $dm-bg-card-color;
       }
     }
   }
   .invitation-card {
-    background-color: $dm-dark-color;
+    background-color: $dm-bg-card-color;
     i:hover {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
   }
-  .sort.down {
-    color: $dm-accent-bg-color;
+  .sort.down,
+  .confirmation i:hover {
+    color: $main-accent-color;
   }
   .user-manage-card .controls i {
-    &:hover {
-      color: $dm-accent-bg-color;
-    }
+    &:hover,
     &.active {
-      color: $dm-accent-bg-color;
+      color: $main-accent-color;
     }
   }
-  .confirmation i {
-    &:hover {
-      color: $dm-accent-bg-color;
+  .dashboard-header {
+    .bottom-border {
+      background-color: $dm-bg-card-color;
     }
+    button {
+      border-bottom: 2px solid transparent;
+      &:hover, &:focus, &.active {
+        color: $main-accent-color;
+        border-bottom: $accent-border;
+      }
+    }
+  }
+  .file-card {
+    background-color: $dm-bg-card-color;
+  }
+  .custom-toggle {
+    label:hover {
+      color: $main-accent-color;
+    }
+    input {
+      &:checked + label {
+        color: $main-accent-color;
+      }
+      &:focus + label {
+        border-bottom: $accent-border;
+      }
+    }
+    .selector {
+      background-color: $dm-bg-card-color;
+      border: 2px solid $main-accent-color;
+      &::before {
+        background-color: $main-accent-color;
+      }
+    }
+  }
+  .file-upload p {
+    background-color: $dm-bg-card-color;
+    color: transparentize($main-light-color, 0.5);
   }
 }

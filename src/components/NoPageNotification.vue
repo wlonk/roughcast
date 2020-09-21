@@ -1,7 +1,7 @@
 <template>
   <div class="welcome-block">
     <div>
-      <h1>Oooooops!</h1>
+      <h1 class="welcome-title">Oooooops!</h1>
       <p>
         The page you’re looking for was not found or you don’t have access to
         it.

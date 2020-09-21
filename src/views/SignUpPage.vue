@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="auth-block">
+    <div class="initial-page">
       <div>
-        <h2>Create account</h2>
+        <h2 class="page-title">Create account</h2>
         <SignUp />
       </div>
       <img src="../assets/player.svg" alt="Player" />

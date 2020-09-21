@@ -4,40 +4,27 @@
   margin: 2rem 0 1.5rem;
   label {
     cursor: pointer;
-    color: white;
     font-weight: 700;
     letter-spacing: 0.1em;
     border-bottom: 2px solid transparent;
     margin-bottom: 0;
-    &:hover {
-      color: $dm-accent-bg-color;
-    }
   }
   input {
       opacity: 0;
       position: absolute;
       z-index: -1;
-    &:checked + label {
-      color: $dm-accent-bg-color;
-    }
-    &:focus + label {
-      border-bottom: 2px solid $dm-accent-bg-color;
-    }
   }
   .private-input:checked ~ .selector::before {
     left: 0;
   }
   .selector {
     cursor: pointer;
-    background-color: $dm-dark-color;
-    border: 2px solid $dm-accent-bg-color;
     border-radius: 2rem;
     margin: 0 1rem;
     width: 4rem; height: 2rem;
     position: relative;
     &::before {
       content: "";
-      background-color: $dm-accent-bg-color;
       border-radius: 50%;
       width: 1.8rem; height: 1.8rem;
       position: absolute;
@@ -45,4 +32,8 @@
       transition: left 0.25s;
     }
   }
+}
+
+#new-version .custom-toggle {
+  margin-top: 3rem;
 }

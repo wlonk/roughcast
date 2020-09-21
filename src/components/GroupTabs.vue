@@ -1,30 +1,21 @@
 <template>
-  <div class="group-tabs">
-    <div>
-      <i
-        v-if="count > 0"
-        class="chevron left icon pagination-left"
-        @click="decreaseCount"
-      ></i>
-    </div>
-    <div class="tab-content">
-      <div
-        v-for="group in tabs"
+  <sui-dropdown
+    icon="none"
+    pointing="top right"
+    class="dropdown-menu group-tabs"
+  >
+    <div class="section-title">Groups</div>
+    <i class="dropdown icon"></i>
+    <sui-dropdown-menu>
+      <sui-dropdown-item
+        v-for="group in groups"
         :key="group.slug"
         @click="() => selectGroup(group)"
-        v-bind:class="[group.slug === chosen.slug ? 'chosen' : '']"
       >
         {{ group.name }}
-      </div>
-    </div>
-    <div>
-      <i
-        v-if="rightPagination"
-        class="chevron right icon pagination-right"
-        @click="increaseCount"
-      ></i>
-    </div>
-  </div>
+      </sui-dropdown-item>
+    </sui-dropdown-menu>
+  </sui-dropdown>
 </template>
 
 <script>
@@ -51,13 +42,8 @@ export default {
     },
   },
   computed: {
-    tabs() {
-      return this.groups.slice(this.count, this.count + 5);
-    },
-    rightPagination() {
-      const groupNumber = this.groups.length / 5;
-      const timesNumber = this.count / 5 + 1;
-      return groupNumber > timesNumber;
+    allGames() {
+      return { name: 'All games', slug: '*' };
     },
   },
 };

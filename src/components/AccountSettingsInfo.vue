@@ -1,11 +1,11 @@
 <template>
   <div class="info-block">
     <div>
-      <h6>Username</h6>
+      <h6 class="section-title">Username</h6>
       <p>@{{ username }}</p>
     </div>
     <div>
-      <h6>Email</h6>
+      <h6 class="section-title">Email</h6>
       <div class="mail">
         <p>{{ email }}</p>
         <p v-if="is_email_verified">

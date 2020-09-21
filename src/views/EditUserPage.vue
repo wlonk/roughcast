@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="currentUser" class="edit-block">
-      <h2>Edit Profile</h2>
+      <h2 class="page-title">Edit Profile</h2>
       <div>
         <ScrollingEditUserMenu />
         <div>
@@ -10,6 +10,7 @@
           <ChangePasswordForm />
           <NotificationPreferences />
           <Invitations />
+          <AddNewGroupForm />
         </div>
       </div>
     </div>
@@ -26,6 +27,7 @@ import ChangePasswordForm from '@/forms/ChangePasswordForm';
 import NotificationPreferences from '@/components/NotificationPreferences';
 import Invitations from '@/components/Invitations';
 import NoPageNotification from '@/components/NoPageNotification';
+import AddNewGroupForm from '@/forms/AddNewGroupForm';
 
 export default {
   name: 'EditUserPage',
@@ -37,6 +39,7 @@ export default {
     NotificationPreferences,
     NoPageNotification,
     Invitations,
+    AddNewGroupForm,
   },
   computed: {
     ...mapGetters(['currentUser']),

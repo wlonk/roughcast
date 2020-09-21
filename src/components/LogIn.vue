@@ -32,7 +32,7 @@
         </li>
       </ul>
     </div>
-    <div class="check-row row">
+    <div class="check-row">
       <label for="checkbox" class="checkbox-label inline">
         <input
           type="checkbox"
@@ -46,7 +46,7 @@
         Forgot password?
       </router-link>
     </div>
-    <div class="submit-row row">
+    <div class="submit-row">
       <input
         :disabled="submitting"
         type="submit"

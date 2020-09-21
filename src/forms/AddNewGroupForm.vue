@@ -1,9 +1,9 @@
 <template>
-  <div class="edit-box" id="public">
+  <div class="edit-box" id="new-team">
     <div class="box-title">
-      <h5>Public Information</h5>
+      <h5>Create group</h5>
     </div>
-    <form class="page-form public">
+    <form class="page-form adding">
       <div>
         <label for="name">Team name</label>
         <input type="text" v-model="name" placeholder="Team name" id="name" />
@@ -37,12 +37,7 @@
       </div>
       <div>
         <label for="slug">Short link (slug)</label>
-        <input
-          type="text"
-          v-model="slug"
-          placeholder="Enter short link"
-          id="slug"
-        />
+        <input type="text" placeholder="Enter short link" id="slug" />
         <ul v-if="errors.slug">
           <li
             v-for="(error, i) in errors.slug"
@@ -54,17 +49,21 @@
         </ul>
       </div>
       <div class="avatar">
-        <h6 class="section-title">Team logo</h6>
-        <img v-if="logo" :src="logo" :alt="`${name} team logo`" />
-        <img v-else src="../assets/no-team-logo.svg" alt="No logo" />
+        <h6 class="section-title">Group logo</h6>
+        <img src="../assets/no-team-logo.svg" alt="No team logo" />
         <div>
-          <input class="custom-file-upload" type="file" id="file-loader" />
-          <label for="file-loader" class="file-loader-label">Upload</label>
-          <button v-if="logo" class="remove">Remove</button>
+          <input
+            class="custom-file-upload"
+            type="file"
+            id="group-image-file-loader"
+          />
+          <label for="group-image-file-loader" class="file-loader-label"
+            >Upload</label
+          >
         </div>
       </div>
       <div class="buttons">
-        <input type="submit" class="submit-btn no-top" value="Update Info" />
+        <input type="submit" class="submit-btn no-top" value="Create game" />
         <ul v-if="errors.non_field_errors">
           <li
             v-for="(error, i) in errors.non_field_errors"
@@ -81,16 +80,13 @@
 
 <script>
 export default {
-  name: 'EditPublicTeamInfoForm',
-  props: {
-    logo: String,
-    description: String,
-    name: String,
-    slug: String,
-  },
+  name: 'AddNewGroupForm',
   data() {
     return {
       errors: {},
+      name: '',
+      slug: '',
+      description: '',
     };
   },
 };

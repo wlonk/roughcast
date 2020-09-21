@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
-    <div class="header">
-      <h2>
+    <div class="dashboard-header">
+      <h2 class="page-title">
         Welcome back,
         <router-link :to="`/u/${currentUser.username}`" class="accent-link">
           {{ currentUser.first_name || currentUser.username }}

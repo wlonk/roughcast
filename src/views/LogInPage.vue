@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="auth-block">
+    <div class="initial-page">
       <div>
-        <h2>Welcome back</h2>
+        <h2 class="page-title">Welcome back</h2>
         <LogIn />
       </div>
       <img src="../assets/player.svg" alt="Player" />
