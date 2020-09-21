@@ -62,15 +62,15 @@ const actions = {
 };
 
 const getters = {
-  dryVersion: state => slug => {
-    return _.find(state.all, v => v.slug === slug);
+  dryVersion: (state) => (slug) => {
+    return _.find(state.all, (v) => v.slug === slug);
   },
-  hydratedVersion: (state, getters, rootState) => slug => {
-    const version = _.find(state.all, v => v.slug === slug);
-    const game = _.find(rootState.Game.all, g => g.slug === version.game);
+  hydratedVersion: (state, getters, rootState) => (slug) => {
+    const version = _.find(state.all, (v) => v.slug === slug);
+    const game = _.find(rootState.Game.all, (g) => g.slug === version.game);
     const attachedFiles = _.filter(
       rootState.AttachedFile.all,
-      af => af.version_id === version.id,
+      (af) => af.version_id === version.id,
     );
     return {
       ...version,

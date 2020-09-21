@@ -51,7 +51,7 @@ export default {
     groups() {
       return [
         allGames,
-        ...this.myTeams.map(t => ({ name: t.name, slug: t.slug })),
+        ...this.myTeams.map((t) => ({ name: t.name, slug: t.slug })),
       ];
     },
     filteredGames() {

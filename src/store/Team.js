@@ -56,18 +56,18 @@ const actions = {
 };
 
 const getters = {
-  listTeams: state => {
+  listTeams: (state) => {
     return _.values(state.all);
   },
-  myTeams: state => {
-    return _.filter(state.all, t => t.user_is_member);
+  myTeams: (state) => {
+    return _.filter(state.all, (t) => t.user_is_member);
   },
-  dryTeam: state => slug => {
-    return _.find(state.all, p => p.slug === slug);
+  dryTeam: (state) => (slug) => {
+    return _.find(state.all, (p) => p.slug === slug);
   },
-  hydratedTeam: (state, getters, rootState) => slug => {
-    const team = _.find(state.all, p => p.slug === slug);
-    const games = _.filter(rootState.Game.all, t => t.team === team.slug);
+  hydratedTeam: (state, getters, rootState) => (slug) => {
+    const team = _.find(state.all, (p) => p.slug === slug);
+    const games = _.filter(rootState.Game.all, (t) => t.team === team.slug);
     return {
       ...team,
       games,

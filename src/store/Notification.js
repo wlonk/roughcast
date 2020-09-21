@@ -56,7 +56,7 @@ const actions = {
 };
 
 const getters = {
-  allNotifications: state => {
+  allNotifications: (state) => {
     return state.all;
   },
 };

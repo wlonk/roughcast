@@ -156,7 +156,7 @@ export default {
         visible_to: elements['visible_to']?.value || [],
       };
       const newVersion = await this.createNewVersion(data);
-      e.target.elements['files'].files.forEach(async file => {
+      e.target.elements['files'].files.forEach(async (file) => {
         const data = {
           version_id: newVersion.id,
           attached_file: file,
