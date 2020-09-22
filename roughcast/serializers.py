@@ -18,6 +18,7 @@ from .models import (
     AttachedFile,
     Game,
     InAppNotification,
+    Subscription,
     Team,
     TeamMembership,
     User,
@@ -28,6 +29,7 @@ from .serializer_fields import (
     NotificationMaskField,
     SlugField,
     SlugStringField,
+    SubscriptionModelInstanceField,
     UserStringField,
 )
 from .text import unmark
@@ -256,6 +258,29 @@ class InAppNotificationSerializer(serializers.ModelSerializer):
         )
 
     id = serializers.CharField(read_only=True)
+
+
+class SubscriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subscription
+        fields = (
+            "id",
+            "user",
+            "instance",
+        )
+
+    id = serializers.CharField(read_only=True)
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    instance = SubscriptionModelInstanceField(source="subscribable")
+
+    def create(self, validated_data):
+        user = validated_data["user"]
+        # @@@ Why is this under this key, rather than under "instance"?
+        instance = validated_data["subscribable"]
+        return Subscription.objects.create(
+            user=user,
+            subscribable=instance.subscribable,
+        )
 
 
 class TeamSerializer(serializers.ModelSerializer):

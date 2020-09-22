@@ -31,6 +31,7 @@ router.register("users", views.UserViewSet)
 router.register(
     "notifications", views.InAppNotificationViewSet, basename="notifications"
 )
+router.register("subscriptions", views.SubscriptionViewSet, basename="subscriptions")
 router.register("teams", views.TeamViewSet)
 router.register("teammemberships", views.TeamMembershipViewSet)
 router.register("games", views.GameViewSet)

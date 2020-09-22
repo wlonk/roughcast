@@ -49,3 +49,32 @@ class NotificationMaskField(serializers.Field):
         ]
         mask = reduce(lambda a, b: a | b, vals, NotificationPreferences.NONE)
         return mask
+
+
+class SubscriptionModelInstanceField(serializers.Field):
+    # TODO: validate.
+    def _try_get_subscribable_model(self, subscribable):
+        # These are lower-case to match the model attributes:
+        for model_name in ("team", "game"):
+            exceptions = (
+                getattr(subscribable.__class__, model_name).RelatedObjectDoesNotExist,
+            )
+            try:
+                return getattr(subscribable, model_name)
+            except exceptions:
+                pass
+
+    def to_representation(self, value):
+        subscribable_model = self._try_get_subscribable_model(value)
+        return f"{subscribable_model.__class__.__name__}:{subscribable_model.id}"
+
+    def to_internal_value(self, data):
+        from .models import Game, Team
+
+        model_name, id_ = data.split(":")
+        model_class = {
+            "Team": Team,
+            "Game": Game,
+        }[model_name]
+        instance = model_class.objects.get(pk=id_)
+        return instance

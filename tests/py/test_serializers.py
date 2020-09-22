@@ -5,12 +5,14 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
 from rest_framework import serializers
 
+from roughcast.models import Subscription
 from roughcast.serializers import (
     AttachedFileSerializer,
     GameSerializer,
     PasswordResetConfirmSerializer,
     PasswordResetSerializer,
     RegisterSerializer,
+    SubscriptionSerializer,
     TeamSerializer,
     VerifyEmailSerializer,
     VersionSerializer,
@@ -192,6 +194,22 @@ class TestPasswordResetConfirmSerializer:
         assert len(mailoutbox) == 1
         user.refresh_from_db()
         assert user.check_password("foobar")
+
+
+@pytest.mark.django_db
+class TestSubscriptionSerializer:
+    def test_create(self, rf, user, game):
+        request = rf.post("/")
+        request.user = user
+        serializer = SubscriptionSerializer(
+            data={
+                "instance": f"Game:{game.id}",
+            },
+            context={"request": request},
+        )
+        assert serializer.is_valid(), serializer.errors
+        instance = serializer.save()
+        assert instance.__class__ is Subscription
 
 
 @pytest.mark.django_db

@@ -19,6 +19,7 @@ from .models import (
     AttachedFile,
     Game,
     InAppNotification,
+    Subscription,
     Team,
     TeamMembership,
     User,
@@ -33,6 +34,7 @@ from .serializers import (
     PasswordResetSerializer,
     RegisterSerializer,
     SelfUserSerializer,
+    SubscriptionSerializer,
     TeamMembershipSerializer,
     TeamSerializer,
     UserProfileSerializer,
@@ -190,6 +192,14 @@ class InAppNotificationViewSet(
         return InAppNotification.objects.filter(
             user=self.request.user, seen_at__isnull=True
         )
+
+
+class SubscriptionViewSet(ModelViewSet):
+    serializer_class = SubscriptionSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return Subscription.objects.filter(user=self.request.user)
 
 
 class TeamViewSet(ModelViewSet):
