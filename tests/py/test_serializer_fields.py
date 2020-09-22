@@ -4,6 +4,7 @@ from roughcast.models import Team, User
 from roughcast.serializer_fields import (
     NotificationMaskField,
     SlugStringField,
+    SubscriptionModelInstanceField,
     UserStringField,
 )
 
@@ -77,3 +78,14 @@ class TestNotificationMaskField:
     )
     def test_to_representation(self, mask, expected):
         assert NotificationMaskField().to_representation(mask) == expected
+
+
+@pytest.mark.django_db
+class TestSubscriptionModelInstanceField:
+    def test_to_representation(self, game):
+        field = SubscriptionModelInstanceField()
+        assert field.to_representation(game.subscribable) == f"Game:{game.id}"
+
+    def test_to_internal_value(self, game):
+        field = SubscriptionModelInstanceField()
+        assert field.to_internal_value(f"Game:{game.id}") == game

@@ -204,6 +204,13 @@ class TestUserViewSet:
 
 
 @pytest.mark.django_db
+class TestSubscriptionViewSet:
+    def test_queryset(self, client):
+        response = client.get("/api/subscriptions/")
+        assert len(response.json()) == 0
+
+
+@pytest.mark.django_db
 class TestInAppNotificationViewSet:
     def test_queryset(self, client, in_app_notification_factory):
         notif = in_app_notification_factory(user=client.user)

@@ -21,7 +21,7 @@
           :permissions="permissions"
           :slug="slug"
           :team_slug="team.slug"
-          :is_subscribed="is_subscribed"
+          :gameId="id"
         />
       </div>
     </div>
