@@ -1,12 +1,21 @@
 <template>
   <div class="controls">
     <button
-      v-if="!permissions['this:edit'] && !is_subscribed && !is_invited"
+      v-if="!isSubscribed"
       class="small submit-btn"
+      type="button"
+      @click="doSubscribe"
     >
-      Subscribe
+      follow
     </button>
-    <button v-if="is_subscribed" class="subscribed-label">Subscribed</button>
+    <button
+      v-else
+      class="subscribed-label"
+      type="button"
+      @click="doUnsubscribe"
+    >
+      unfollow
+    </button>
     <router-link
       :to="`/t/${slug}/edit`"
       v-if="permissions['this:edit']"
@@ -32,13 +41,39 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'TeamCardControlPanel',
   props: {
     permissions: Object,
     slug: String,
-    is_subscribed: Boolean,
     is_invited: Boolean,
+    teamId: String,
+  },
+  created() {
+    this.retrieveSubscriptions();
+  },
+  computed: {
+    ...mapGetters(['getSubscriptionForInstance']),
+    instance() {
+      return `Team:${this.teamId}`;
+    },
+    subscription() {
+      return this.getSubscriptionForInstance(this.instance);
+    },
+    isSubscribed() {
+      return Boolean(this.subscription);
+    },
+  },
+  methods: {
+    ...mapActions(['retrieveSubscriptions', 'subscribe', 'unsubscribe']),
+    doSubscribe() {
+      this.subscribe(this.instance);
+    },
+    doUnsubscribe() {
+      this.unsubscribe(this.subscription.id);
+    },
   },
 };
 </script>

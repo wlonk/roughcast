@@ -16,7 +16,7 @@
         <TeamCardControlPanel
           :permissions="permissions"
           :slug="slug"
-          :is_subscribed="is_subscribed"
+          :teamId="id"
           :is_invited="is_invited"
         />
       </div>
@@ -43,7 +43,6 @@ export default {
     description: String,
     user_is_owner: Boolean,
     logo: String,
-    is_subscribed: Boolean,
     is_invited: Boolean,
   },
 };

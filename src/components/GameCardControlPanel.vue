@@ -1,7 +1,21 @@
 <template>
   <div class="controls">
-    <button v-if="checkPermisions" class="small submit-btn">Subscribe</button>
-    <button v-if="is_subscribed" class="subscribed-label">Subscribed</button>
+    <button
+      v-if="!isSubscribed"
+      class="small submit-btn"
+      type="button"
+      @click="doSubscribe"
+    >
+      follow
+    </button>
+    <button
+      v-else
+      class="subscribed-label"
+      type="button"
+      @click="doUnsubscribe"
+    >
+      unfollow
+    </button>
     <router-link
       :to="`/t/${team_slug}/${slug}/edit`"
       v-if="permissions['this:edit']"
@@ -20,17 +34,38 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'GameCardControlPanel',
   props: {
     permissions: Object,
     slug: String,
     team_slug: String,
-    is_subscribed: Boolean,
+    gameId: String,
+  },
+  created() {
+    this.retrieveSubscriptions();
   },
   computed: {
-    checkPermisions() {
-      return !this.permissions['this:edit'] && !this.is_subscribed;
+    ...mapGetters(['getSubscriptionForInstance']),
+    instance() {
+      return `Game:${this.gameId}`;
+    },
+    subscription() {
+      return this.getSubscriptionForInstance(this.instance);
+    },
+    isSubscribed() {
+      return Boolean(this.subscription);
+    },
+  },
+  methods: {
+    ...mapActions(['retrieveSubscriptions', 'subscribe', 'unsubscribe']),
+    doSubscribe() {
+      this.subscribe(this.instance);
+    },
+    doUnsubscribe() {
+      this.unsubscribe(this.subscription.id);
     },
   },
 };

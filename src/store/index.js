@@ -6,6 +6,7 @@ import User from './User';
 import TeamMembership from './TeamMembership';
 import Team from './Team';
 import Game from './Game';
+import Subscription from './Subscription';
 import Version from './Version';
 import AttachedFile from './AttachedFile';
 import Notification from './Notification';
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     TeamMembership,
     Team,
     Game,
+    Subscription,
     Version,
     AttachedFile,
     Notification,
