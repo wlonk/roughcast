@@ -21,6 +21,7 @@ from .models import (
     InAppNotification,
     Subscription,
     Team,
+    TeamInvite,
     TeamMembership,
     User,
     Version,
@@ -35,6 +36,7 @@ from .serializers import (
     RegisterSerializer,
     SelfUserSerializer,
     SubscriptionSerializer,
+    TeamInviteSerializer,
     TeamMembershipSerializer,
     TeamSerializer,
     UserProfileSerializer,
@@ -212,6 +214,14 @@ class TeamViewSet(ModelViewSet):
 class TeamMembershipViewSet(ModelViewSet):
     queryset = TeamMembership.objects.all()
     serializer_class = TeamMembershipSerializer
+
+
+class TeamInviteViewSet(ModelViewSet):
+    serializer_class = TeamInviteSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return TeamInvite.objects.for_user(self.request.user)
 
 
 class GameViewSet(ModelViewSet):

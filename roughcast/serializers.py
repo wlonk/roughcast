@@ -20,6 +20,7 @@ from .models import (
     InAppNotification,
     Subscription,
     Team,
+    TeamInvite,
     TeamMembership,
     User,
     UserProfile,
@@ -371,6 +372,16 @@ class TeamMembershipSerializer(serializers.ModelSerializer):
     team_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="team"
     )
+
+
+class TeamInviteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeamInvite
+        fields = (
+            "id",
+            "to_email",
+            "team",
+        )
 
 
 class GameSerializer(serializers.ModelSerializer):

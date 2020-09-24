@@ -204,6 +204,13 @@ class TestUserViewSet:
 
 
 @pytest.mark.django_db
+class TestTeamInviteViewSet:
+    def test_queryset(self, client):
+        response = client.get("/api/invites/")
+        assert len(response.json()) == 0
+
+
+@pytest.mark.django_db
 class TestSubscriptionViewSet:
     def test_queryset(self, client):
         response = client.get("/api/subscriptions/")
