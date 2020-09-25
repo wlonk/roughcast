@@ -16,7 +16,7 @@
             :name="team.name"
             :slug="team.slug"
           />
-          <InviteUserToTeamForm />
+          <InviteUserToTeamForm :team="team.id" />
           <TeamUserManagement :users="team.users" />
           <AddNewGameForm :forTeam="team.slug" />
           <div class="edit-box" id="delete">

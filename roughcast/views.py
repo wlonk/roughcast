@@ -235,7 +235,7 @@ class TeamInviteViewSet(
     @action(detail=True, methods=["post"])
     def accept(self, request, pk=None):
         invite = self.get_object()
-        if request.user.email != invite.to_email():
+        if request.user.email != invite.to_email:
             return Response(status=status.HTTP_403_FORBIDDEN)
 
         membership = TeamMembership.objects.create(
@@ -243,6 +243,7 @@ class TeamInviteViewSet(
             team=invite.team,
             is_owner=False,
         )
+        invite.delete()
         data = TeamMembershipSerializer(instance=membership).data
         return Response(data, status=status.HTTP_201_CREATED)
 

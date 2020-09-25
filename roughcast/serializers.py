@@ -383,6 +383,11 @@ class TeamInviteSerializer(serializers.ModelSerializer):
             "team",
         )
 
+    id = serializers.CharField(read_only=True)
+    team = serializers.PrimaryKeyRelatedField(
+        queryset=Team.objects.all(), pk_field=serializers.CharField()
+    )
+
     def validate_team(self, value):
         user = getattr(self.context.get("request", None), "user", None)
         valid_teams = []

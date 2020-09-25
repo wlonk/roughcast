@@ -9,7 +9,7 @@
           <AccountSettingsBlock />
           <ChangePasswordForm />
           <NotificationPreferences />
-          <Invitations />
+          <InvitationList />
           <AddNewGroupForm />
         </div>
       </div>
@@ -25,7 +25,7 @@ import PublicProfileBlock from '@/components/PublicProfileBlock';
 import AccountSettingsBlock from '@/components/AccountSettingsBlock';
 import ChangePasswordForm from '@/forms/ChangePasswordForm';
 import NotificationPreferences from '@/components/NotificationPreferences';
-import Invitations from '@/components/Invitations';
+import InvitationList from '@/components/InvitationList';
 import NoPageNotification from '@/components/NoPageNotification';
 import AddNewGroupForm from '@/forms/AddNewGroupForm';
 
@@ -38,7 +38,7 @@ export default {
     ChangePasswordForm,
     NotificationPreferences,
     NoPageNotification,
-    Invitations,
+    InvitationList,
     AddNewGroupForm,
   },
   computed: {

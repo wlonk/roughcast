@@ -13,6 +13,7 @@ from roughcast.serializers import (
     PasswordResetSerializer,
     RegisterSerializer,
     SubscriptionSerializer,
+    TeamInviteSerializer,
     TeamSerializer,
     VerifyEmailSerializer,
     VersionSerializer,
@@ -242,6 +243,40 @@ class TestTeamSerializer:
         assert serializer.is_valid(), serializer.errors
         team = serializer.save()
         assert team is not None
+
+
+@pytest.mark.django_db
+class TestTeamInviteSerializer:
+    def test_validate_team__invalid(self, rf, team_membership_factory):
+        team_membership = team_membership_factory()
+        team = team_membership.team
+        user = team_membership.user
+        data = {
+            "to_email": "test@example.com",
+            "team": str(team.id),
+        }
+        request = rf.post("/")
+        request.user = user
+        context = {"request": request}
+        serializer = TeamInviteSerializer(data=data, context=context)
+
+        assert not serializer.is_valid()
+        assert "team" in serializer.errors
+
+    def test_validate_team__valid(self, rf, team_membership_factory):
+        team_membership = team_membership_factory(is_owner=True)
+        team = team_membership.team
+        user = team_membership.user
+        data = {
+            "to_email": "test@example.com",
+            "team": str(team.id),
+        }
+        request = rf.post("/")
+        request.user = user
+        context = {"request": request}
+        serializer = TeamInviteSerializer(data=data, context=context)
+
+        assert serializer.is_valid(), serializer.errors
 
 
 @pytest.mark.django_db

@@ -4,6 +4,7 @@ import createPersistedState from 'vuex-persistedstate';
 
 import User from './User';
 import TeamMembership from './TeamMembership';
+import Invite from './Invite';
 import Team from './Team';
 import Game from './Game';
 import Subscription from './Subscription';
@@ -20,6 +21,7 @@ export default new Vuex.Store({
   modules: {
     User,
     TeamMembership,
+    Invite,
     Team,
     Game,
     Subscription,
