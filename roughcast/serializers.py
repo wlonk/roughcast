@@ -383,6 +383,18 @@ class TeamInviteSerializer(serializers.ModelSerializer):
             "team",
         )
 
+    def validate_team(self, value):
+        user = getattr(self.context.get("request", None), "user", None)
+        valid_teams = []
+        if user:
+            valid_teams = TeamMembership.objects.filter(
+                user=user,
+                is_owner=True,
+            ).values_list("team", flat=True)
+        if value.id not in valid_teams:
+            raise serializers.ValidationError("You are not an owner of this team")
+        return value
+
 
 class GameSerializer(serializers.ModelSerializer):
     class Meta:
