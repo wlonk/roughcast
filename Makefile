@@ -12,6 +12,10 @@ default:
 .PHONY: prepare-prod
 prepare-prod: install migrate build static
 
+.PHONY: serve-prod
+serve-prod:
+	gunicorn roughcast.wsgi
+
 .PHONY: clean
 clean:
 	rm -rf staticfiles/*
@@ -36,6 +40,7 @@ requirements/dev.txt: requirements/base.txt
 install-py:
 	# Install packages into the local context
 	# (make sure to activate that virtual environment!)
+	pip install pip-tools
 	pip-sync requirements/base.txt
 
 .PHONY: install-dev
@@ -72,7 +77,7 @@ migrate:
 	python manage.py migrate
 
 .PHONY: migratezero
-migratezero:
+migrate-zero:
 	python manage.py migrate roughcast zero
 
 .PHONY: user

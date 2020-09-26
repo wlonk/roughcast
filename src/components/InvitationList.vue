@@ -3,13 +3,11 @@
     <div class="box-title">
       <h5>Invitations</h5>
     </div>
-    <div v-if="invitations">
+    <div v-if="myPendingInvites.length > 0">
       <InvitationCard
-        v-for="(invite, index) in invitations"
-        :key="index"
-        :sender="invite.sender_username"
-        :team="invite.team"
-        :team_slug="invite.team_slug"
+        v-for="invite in myPendingInvites"
+        :key="invite.id"
+        v-bind="invite"
       />
     </div>
     <div v-else>
@@ -20,17 +18,18 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import InvitationCard from '@/components/InvitationCard';
 
 export default {
-  name: 'Invitations',
-  data() {
-    return {
-      invitations: undefined,
-    };
+  name: 'InvitationList',
+  created() {
+    this.retrieveInvites();
   },
   components: {
     InvitationCard,
   },
+  computed: mapGetters(['myPendingInvites']),
+  methods: mapActions(['retrieveInvites']),
 };
 </script>

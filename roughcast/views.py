@@ -21,6 +21,7 @@ from .models import (
     InAppNotification,
     Subscription,
     Team,
+    TeamInvite,
     TeamMembership,
     User,
     Version,
@@ -35,6 +36,7 @@ from .serializers import (
     RegisterSerializer,
     SelfUserSerializer,
     SubscriptionSerializer,
+    TeamInviteSerializer,
     TeamMembershipSerializer,
     TeamSerializer,
     UserProfileSerializer,
@@ -212,6 +214,38 @@ class TeamViewSet(ModelViewSet):
 class TeamMembershipViewSet(ModelViewSet):
     queryset = TeamMembership.objects.all()
     serializer_class = TeamMembershipSerializer
+
+
+class TeamInviteViewSet(
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    GenericViewSet,
+):
+    serializer_class = TeamInviteSerializer
+
+    # @@@ TODO: Permissions:
+    #  - Owners of associated team can create, delete
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return TeamInvite.objects.for_user(self.request.user)
+
+    @action(detail=True, methods=["post"])
+    def accept(self, request, pk=None):
+        invite = self.get_object()
+        if request.user.email != invite.to_email:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
+        membership = TeamMembership.objects.create(
+            user=request.user,
+            team=invite.team,
+            is_owner=False,
+        )
+        invite.delete()
+        data = TeamMembershipSerializer(instance=membership).data
+        return Response(data, status=status.HTTP_201_CREATED)
 
 
 class GameViewSet(ModelViewSet):

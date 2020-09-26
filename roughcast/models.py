@@ -6,6 +6,7 @@ from random import randint
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from emoji import UNICODE_EMOJI
@@ -200,6 +201,20 @@ class TeamMembership(BasicModelMixin, models.Model):
 
     def __str__(self):
         return f"{self.user.username} is a member of {self.team.name}"
+
+
+class TeamInviteQuerySet(models.QuerySet):
+    def for_user(self, user):
+        return self.filter(
+            Q(to_email=user.email) | Q(team__in=user.team_memberships.all())
+        )
+
+
+class TeamInvite(BasicModelMixin, models.Model):
+    objects = TeamInviteQuerySet.as_manager()
+
+    to_email = models.EmailField()
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
 
 class Game(SubscribableMixin, BasicModelMixin, SimpleSlugMixin, models.Model):

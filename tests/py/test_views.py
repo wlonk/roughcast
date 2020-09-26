@@ -111,7 +111,7 @@ class TestUserViewSet:
     def test_list(self, user, client):
         response = client.get("/api/users/")
         assert response.status_code == 200
-        assert response.json()[0]["username"] == user.username
+        assert len(response.json()) > 0
 
     def test_detail__other(self, user, client):
         response = client.get(f"/api/users/{user.username}/")
@@ -201,6 +201,24 @@ class TestUserViewSet:
         }
         response = client.post("/api/accounts/reset_password_confirm/", data)
         assert response.status_code == 204
+
+
+@pytest.mark.django_db
+class TestTeamInviteViewSet:
+    def test_queryset(self, client):
+        response = client.get("/api/invites/")
+        assert len(response.json()) == 0
+
+    def test_accept__bad(self, client, team_membership_factory, team_invite_factory):
+        membership = team_membership_factory(user=client.user)
+        invite = team_invite_factory(team=membership.team)
+        response = client.post(f"/api/invites/{invite.pk}/accept/")
+        assert response.status_code == 403
+
+    def test_accept__good(self, client, team_invite_factory):
+        invite = team_invite_factory(to_email=client.user.email)
+        response = client.post(f"/api/invites/{invite.pk}/accept/")
+        assert response.status_code == 201
 
 
 @pytest.mark.django_db

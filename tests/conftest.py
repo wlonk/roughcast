@@ -11,6 +11,7 @@ from roughcast.models import (
     InAppNotification,
     Subscription,
     Team,
+    TeamInvite,
     TeamMembership,
     Version,
 )
@@ -62,6 +63,15 @@ class TeamMembershipFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(UserFactory)
     team = factory.SubFactory(TeamFactory)
     is_owner = False
+
+
+@register
+class TeamInviteFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = TeamInvite
+
+    to_email = "test@example.com"
+    team = factory.SubFactory(TeamFactory)
 
 
 @register

@@ -73,6 +73,9 @@ const getters = {
       games,
     };
   },
+  teamById: (state) => (id) => {
+    return state.all[id];
+  },
 };
 
 const Team = {
