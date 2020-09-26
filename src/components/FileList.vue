@@ -4,7 +4,9 @@
       <h5>Attached Files</h5>
     </div>
     <div v-for="file in files" :key="file.id" class="file-card small-card">
-      <h6 class="smallest-title">{{ file.name }}</h6>
+      <h6 class="smallest-title">
+        {{ file.name }}
+      </h6>
       <a :href="file.attached_file" class="round-link"></a>
     </div>
     <div v-if="!files.length" class="file-card small-card">

@@ -6,7 +6,12 @@
     <form @submit.stop.prevent="createVersion" class="page-form">
       <div>
         <label for="name">Version name</label>
-        <input type="text" placeholder="Version name" id="name" />
+        <input
+          type="text"
+          placeholder="Version name"
+          id="name"
+          v-model="name"
+        />
         <ul v-if="errors.name">
           <li
             v-for="(error, i) in errors.name"
@@ -19,7 +24,12 @@
       </div>
       <div class="bio">
         <label for="changelog">Changes</label>
-        <textarea placeholder="Add version changes" id="changelog"> </textarea>
+        <textarea
+          placeholder="Add version changes"
+          id="changelog"
+          v-model="changelog"
+        >
+        </textarea>
         <ul v-if="errors.desc">
           <li
             v-for="(error, i) in errors.desc"
@@ -32,7 +42,12 @@
       </div>
       <div>
         <label for="slug">Short link (slug)</label>
-        <input type="text" placeholder="Enter short link" id="slug" />
+        <input
+          type="text"
+          placeholder="Enter short link"
+          id="slug"
+          v-model="slug"
+        />
         <ul v-if="errors.slug">
           <li
             v-for="(error, i) in errors.slug"
@@ -148,21 +163,22 @@ export default {
     async createVersion(e) {
       const elements = e.target.elements;
       const data = {
-        game: elements['game'].value,
-        name: elements['name'].value,
-        slug: elements['slug'].value,
-        changelog: elements['changelog'].value,
-        is_public: elements['is_public'].value,
-        visible_to: elements['visible_to']?.value || [],
+        game: this.game,
+        name: this.name,
+        slug: this.slug,
+        changelog: this.changelog,
+        is_public: true,
+        visible_to: [],
       };
       const newVersion = await this.createNewVersion(data);
-      e.target.elements['files'].files.forEach(async (file) => {
+      elements['version-file-loader'].files.forEach(async (file) => {
         const data = {
           version_id: newVersion.id,
           attached_file: file,
         };
         await this.createNewAttachedFile(data);
       });
+      this.$router.push(`/t/${this.forTeam}/${this.game}/${this.slug}`);
     },
     updateSlug() {
       if (!this.slugEdited) {

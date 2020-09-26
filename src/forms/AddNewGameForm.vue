@@ -42,7 +42,12 @@
       </div>
       <div>
         <label for="slug">Short link (slug)</label>
-        <input type="text" placeholder="Enter short link" id="slug" />
+        <input
+          type="text"
+          placeholder="Enter short link"
+          id="slug"
+          v-model="slug"
+        />
         <ul v-if="errors.slug">
           <li
             v-for="(error, i) in errors.slug"
@@ -108,6 +113,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import { mapGetters, mapActions } from 'vuex';
 import slugify from './slugify';
 
@@ -144,17 +150,20 @@ export default {
   computed: mapGetters(['dryUserOptionList']),
   methods: {
     ...mapActions(['createNewGame']),
-    async createGame(e) {
+    async createGame() {
       this.errors = {};
-      const elements = e.target.elements;
       const data = {
-        team: elements['team'].value,
-        name: elements['name'].value,
-        slug: elements['slug'].value,
-        description: elements['description'].value,
+        team: this.team,
+        name: this.name,
+        slug: this.slug,
+        description: this.description,
+        default_visible_to: [],
       };
       const errors = await this.createNewGame(data);
       this.errors = errors;
+      if (_.isEmpty(errors)) {
+        this.$router.push(`/t/${this.team}/${this.slug}`);
+      }
     },
     updateSlug() {
       if (!this.slugEdited) {
