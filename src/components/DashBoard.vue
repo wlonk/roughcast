@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import GameList from '@/components/GameList';
 import TeamList from '@/components/TeamList';
 import SearchAndFiltersPanel from '@/components/SearchAndFiltersPanel';
@@ -53,6 +53,10 @@ export default {
     TeamList,
     SearchAndFiltersPanel,
   },
+  created() {
+    this.retrieveTeams();
+    this.retrieveGames();
+  },
   computed: {
     ...mapGetters(['listGames', 'hydratedGame', 'listTeams', 'currentUser']),
     gamesWithTeam() {
@@ -60,6 +64,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['retrieveTeams', 'retrieveGames']),
     toggleTab(e) {
       this.active_tab = e.target.dataset.tab;
     },
