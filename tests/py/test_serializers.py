@@ -5,7 +5,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
 from rest_framework import serializers
 
-from roughcast.models import Subscription
+from roughcast.models import InAppNotification, Subscription
 from roughcast.serializers import (
     AttachedFileSerializer,
     GameSerializer,
@@ -263,7 +263,10 @@ class TestTeamInviteSerializer:
         assert not serializer.is_valid()
         assert "team" in serializer.errors
 
-    def test_validate_team__valid(self, rf, team_membership_factory):
+    def test_validate_team__valid(
+        self, rf, team_membership_factory, user_factory, mailoutbox
+    ):
+        user_factory(email="test@example.com")
         team_membership = team_membership_factory(is_owner=True)
         team = team_membership.team
         user = team_membership.user
@@ -277,6 +280,10 @@ class TestTeamInviteSerializer:
         serializer = TeamInviteSerializer(data=data, context=context)
 
         assert serializer.is_valid(), serializer.errors
+
+        serializer.save()
+        assert len(mailoutbox) == 1
+        assert InAppNotification.objects.count() == 1
 
 
 @pytest.mark.django_db

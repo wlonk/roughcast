@@ -5,8 +5,9 @@ from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ValidationError as DjangoValidationError
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, send_mail
 from django.template import loader
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
@@ -399,6 +400,44 @@ class TeamInviteSerializer(serializers.ModelSerializer):
         if value.id not in valid_teams:
             raise serializers.ValidationError("You are not an owner of this team")
         return value
+
+    def create(self, validated_data):
+        invite = super().create(validated_data)
+        request = self.context.get("request")
+
+        # Email user
+        email_body_template = "invites/invite_email_body.txt"
+        email_subject_template = "invites/invite_email_subject.txt"
+
+        team_name = validated_data["team"].name
+        to_email = validated_data["to_email"]
+        context = {
+            "team_name": team_name,
+        }
+        subject = render_to_string(
+            template_name=email_subject_template,
+            context=context,
+            request=request,
+        )
+        # Force subject to a single line to avoid header-injection
+        # issues.
+        subject = "".join(subject.splitlines())
+        message = render_to_string(
+            template_name=email_body_template,
+            context=context,
+            request=request,
+        )
+        send_mail(invite.to_email, message, settings.DEFAULT_FROM_EMAIL, [to_email])
+        # InApp notify user if user exists locally
+        user = User.objects.filter(email=to_email).first()
+        if user:
+            path = f"/u/{user.username}/edit#invitations"
+            subject = f"You've been invited to {team_name}"
+            InAppNotification.objects.create(
+                user=user, notification_type="invite", path=path, subject=subject
+            )
+
+        return invite
 
 
 class GameSerializer(serializers.ModelSerializer):
