@@ -108,6 +108,10 @@ build:
 # Testing and Linting
 ###
 
+.PHONY: test-pdb
+test-pdb:
+	pytest --pdb
+
 .PHONY: test-py
 test-py:
 	pytest

@@ -79,20 +79,20 @@
           name="visibility-new-version"
           id="private-new-version"
           class="private-input"
-          value="private"
-          :checked="!isChecked"
-          @click="toggleCheck"
+          :value="false"
+          @click="togglePublic"
+          v-model="is_public"
         />
         <label for="private-new-version">Team-only</label>
-        <div class="selector" @click="toggleCheck"></div>
+        <div class="selector" @click="togglePublic"></div>
         <input
           type="radio"
           name="visibility-new-version"
           id="public-new-version"
           class="public-input"
-          value="public"
-          :checked="isChecked"
-          @click="toggleCheck"
+          :value="true"
+          @click="togglePublic"
+          v-model="is_public"
         />
         <label for="public-new-version">Public</label>
       </div>
@@ -129,10 +129,8 @@ export default {
       slug: '',
       slugEdited: false,
       changelog: '',
-      is_public: false,
-      visible_to: this.visibleTo,
+      is_public: true,
       errors: {},
-      isChecked: true,
     };
   },
   created() {
@@ -167,8 +165,7 @@ export default {
         name: this.name,
         slug: this.slug,
         changelog: this.changelog,
-        is_public: true,
-        visible_to: [],
+        is_public: this.is_public,
       };
       const newVersion = await this.createNewVersion(data);
       elements['version-file-loader'].files.forEach(async (file) => {
@@ -188,11 +185,11 @@ export default {
     markSlugEdited() {
       this.slugEdited = true;
     },
-    toggleCheck(e) {
+    togglePublic(e) {
       const id = e.target.id;
       return id
-        ? (this.isChecked = id === 'public-new-version')
-        : (this.isChecked = !this.isChecked);
+        ? (this.is_public = id === 'public-new-version')
+        : (this.is_public = !this.is_public);
     },
   },
 };

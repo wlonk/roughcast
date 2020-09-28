@@ -118,10 +118,7 @@
       "game": "mBw6Q2q",
       "name": "v0.1.0",
       "changelog": "Initial draft.",
-      "is_public": false,
-      "visible_to": [
-        2
-      ]
+      "is_public": false
     }
   },
   {
@@ -135,8 +132,7 @@
       "game": "mBw6Q2q",
       "name": "v0.2.0",
       "changelog": "Fixed the errors.",
-      "is_public": false,
-      "visible_to": []
+      "is_public": false
     }
   },
   {
@@ -150,8 +146,7 @@
       "game": "B72lnjE",
       "name": "version 1",
       "changelog": "It's a stab at it, anyway.",
-      "is_public": false,
-      "visible_to": []
+      "is_public": false
     }
   },
   {
@@ -165,11 +160,7 @@
       "game": "B72lnjE",
       "name": "version 2",
       "changelog": "Stabbity.",
-      "is_public": false,
-      "visible_to": [
-        1,
-        2
-      ]
+      "is_public": false
     }
   },
   {

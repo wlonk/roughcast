@@ -51,8 +51,8 @@ class TeamFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Team
 
-    name = "Transneptune Games"
-    slug = "transneptune-games"
+    name = factory.Sequence("Team {}".format)
+    slug = factory.Sequence("team-{}".format)
 
 
 @register
@@ -80,8 +80,8 @@ class GameFactory(factory.django.DjangoModelFactory):
         model = Game
 
     team = factory.SubFactory(TeamFactory)
-    name = "The Game"
-    slug = "the-game"
+    name = factory.Sequence("Game {}".format)
+    slug = factory.Sequence("game-{}".format)
 
 
 @register
@@ -90,9 +90,10 @@ class VersionFactory(factory.django.DjangoModelFactory):
         model = Version
 
     game = factory.SubFactory(GameFactory)
-    name = "v0.1.0"
-    slug = "v0.1.0"
+    name = factory.Sequence("v0.{}.0".format)
+    slug = factory.Sequence("v0.{}.0".format)
     created_by = factory.SubFactory(UserFactory)
+    is_public = True
 
 
 @register
@@ -112,6 +113,11 @@ class InAppNotificationFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(UserFactory)
     notification_type = "comments"
     path = "/test/path"
+
+
+@pytest.fixture
+def anon_client():
+    return APIClient()
 
 
 @pytest.fixture

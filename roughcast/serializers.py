@@ -453,7 +453,6 @@ class GameSerializer(serializers.ModelSerializer):
             "description",
             "latest_version",
             "permissions",
-            "default_visible_to",
         )
 
     id = serializers.CharField(read_only=True)
@@ -465,7 +464,6 @@ class GameSerializer(serializers.ModelSerializer):
     team_id = serializers.PrimaryKeyRelatedField(
         read_only=True, pk_field=serializers.CharField(), source="team"
     )
-    default_visible_to = UserStringField(queryset=User.objects.all(), many=True)
     permissions = serializers.SerializerMethodField()
 
     def get_permissions(self, game):
@@ -501,7 +499,6 @@ class VersionSerializer(serializers.ModelSerializer):
             "changelog",
             "changelog_short",
             "is_public",
-            "visible_to",
             "archive_link",
             "permissions",
         )
@@ -522,11 +519,10 @@ class VersionSerializer(serializers.ModelSerializer):
         read_only=True,
         source="game.team",
     )
-    visible_to = UserStringField(queryset=User.objects.all(), many=True)
     archive_link = serializers.SerializerMethodField()
 
     def get_archive_link(self, version):
-        return reverse("version-archive", kwargs={"pk": str(version.pk)})
+        return reverse("versions-archive", kwargs={"pk": str(version.pk)})
 
     changelog_short = serializers.SerializerMethodField()
 

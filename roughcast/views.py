@@ -3,6 +3,7 @@ from os.path import basename
 from zipfile import ZipFile
 
 from django.contrib.auth import authenticate
+from django.db.models import Q
 from django.http import HttpResponse
 from django.urls import NoReverseMatch
 from django.utils.text import slugify
@@ -256,9 +257,17 @@ class GameViewSet(ModelViewSet):
 
 
 class VersionViewSet(ModelViewSet):
-    queryset = Version.objects.all()
     serializer_class = VersionSerializer
     filterset_fields = ("slug", "game__slug")
+
+    def get_queryset(self):
+        # @@@TODO: move this into a manager method:
+        if self.request.user.is_authenticated:
+            return Version.objects.filter(
+                Q(is_public=True) | Q(game__team__members=self.request.user)
+            )
+        else:
+            return Version.objects.filter(is_public=True)
 
     @action(detail=True, methods=["get"])
     def archive(self, request, pk=None):

@@ -36,7 +36,7 @@ router.register("teams", views.TeamViewSet)
 router.register("teammemberships", views.TeamMembershipViewSet)
 router.register("invites", views.TeamInviteViewSet, basename="invites")
 router.register("games", views.GameViewSet)
-router.register("versions", views.VersionViewSet)
+router.register("versions", views.VersionViewSet, basename="versions")
 router.register("attached_files", views.AttachedFileViewSet)
 
 

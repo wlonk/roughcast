@@ -6,7 +6,6 @@
       :game="game.slug"
       :userCanAddVersions="game.permissions['version:add']"
       :versions="game.versions"
-      :defaultVisibleTo="game.default_visible_to"
     />
   </div>
 </template>
