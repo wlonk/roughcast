@@ -130,7 +130,6 @@ export default {
       slug: '',
       slugEdited: false,
       description: '',
-      default_visible_to: [],
       isChecked: true,
     };
   },
@@ -157,7 +156,6 @@ export default {
         name: this.name,
         slug: this.slug,
         description: this.description,
-        default_visible_to: [],
       };
       const errors = await this.createNewGame(data);
       this.errors = errors;

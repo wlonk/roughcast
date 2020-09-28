@@ -130,7 +130,6 @@ export default {
       slugEdited: false,
       changelog: '',
       is_public: false,
-      visible_to: this.visibleTo,
       errors: {},
       isChecked: true,
     };
@@ -168,7 +167,6 @@ export default {
         slug: this.slug,
         changelog: this.changelog,
         is_public: true,
-        visible_to: [],
       };
       const newVersion = await this.createNewVersion(data);
       elements['version-file-loader'].files.forEach(async (file) => {
