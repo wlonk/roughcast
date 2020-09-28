@@ -133,7 +133,7 @@ class TestUserProfile:
 @pytest.mark.django_db
 class TestTeam:
     def test_str(self, team):
-        assert str(team) == "Transneptune Games"
+        assert str(team) == "Team 1"
 
     def test_subscribable_delete(self, team_factory):
         team = team_factory()
@@ -146,19 +146,23 @@ class TestTeam:
 class TestTeamMembership:
     def test_str(self, team_membership):
         username = team_membership.user.username
-        assert str(team_membership) == f"{username} is a member of Transneptune Games"
+        team_name = team_membership.team.name
+        assert str(team_membership) == f"{username} is a member of {team_name}"
 
 
 @pytest.mark.django_db
 class TestGame:
     def test_str(self, game):
-        assert str(game) == "The Game by Transneptune Games"
+        team_name = game.team.name
+        assert str(game) == f"Game 1 by {team_name}"
 
 
 @pytest.mark.django_db
 class TestVersion:
     def test_str(self, version):
-        assert str(version) == "The Game by Transneptune Games version v0.1.0"
+        game_name = version.game.name
+        team_name = version.game.team.name
+        assert str(version) == f"{game_name} by {team_name} version v0.1.0"
 
     def test_notify(self, game, user, subscription_factory, version_factory):
         subscription_factory(user=user, subscribable=game.subscribable)

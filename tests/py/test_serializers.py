@@ -330,4 +330,4 @@ it is long enough, it will get cropped.
 class TestAttachedFileSerializer:
     def test_name(self, attached_file):
         serializer = AttachedFileSerializer(instance=attached_file)
-        assert serializer.data["name"].startswith("The_Game-v0.1.0-")
+        assert serializer.data["name"].startswith("Game")

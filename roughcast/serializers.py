@@ -522,7 +522,7 @@ class VersionSerializer(serializers.ModelSerializer):
     archive_link = serializers.SerializerMethodField()
 
     def get_archive_link(self, version):
-        return reverse("version-archive", kwargs={"pk": str(version.pk)})
+        return reverse("versions-archive", kwargs={"pk": str(version.pk)})
 
     changelog_short = serializers.SerializerMethodField()
 

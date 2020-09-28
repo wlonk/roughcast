@@ -6,16 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('roughcast', '0012_teaminvite'),
+        ("roughcast", "0012_teaminvite"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='game',
-            name='default_visible_to',
+            model_name="game",
+            name="default_visible_to",
         ),
         migrations.RemoveField(
-            model_name='version',
-            name='visible_to',
+            model_name="version",
+            name="visible_to",
         ),
     ]

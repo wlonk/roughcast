@@ -240,6 +240,13 @@ class TestInAppNotificationViewSet:
 
 @pytest.mark.django_db
 class TestVersionViewSet:
+    def test_queryset_anonymous(self, anon_client, version_factory):
+        version = version_factory(is_public=True)
+        version_factory(is_public=False)
+        response = anon_client.get("/api/versions/")
+        assert len(response.json()) == 1
+        assert version.id in [v["id"] for v in response.json()]
+
     def test_archive_link(self, client, version, attached_file_factory):
         attached_file_factory(version=version)
         response = client.get(f"/api/versions/{version.id}/archive/")

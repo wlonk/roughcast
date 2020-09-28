@@ -72,30 +72,6 @@
           >
         </div>
       </div>
-      <!-- Visibility toggle needs functionality -->
-      <div class="custom-toggle">
-        <input
-          type="radio"
-          name="visibility-new-game"
-          id="private-new-game"
-          class="private-input"
-          value="private"
-          :checked="!isChecked"
-          @click="toggleCheck"
-        />
-        <label for="private-new-game">Team-only</label>
-        <div class="selector" @click="toggleCheck"></div>
-        <input
-          type="radio"
-          name="visibility-new-game"
-          id="public-new-game"
-          class="public-input"
-          value="public"
-          :checked="isChecked"
-          @click="toggleCheck"
-        />
-        <label for="public-new-game">Public</label>
-      </div>
       <div class="buttons">
         <input type="submit" class="submit-btn no-top" value="Create game" />
         <ul v-if="errors.non_field_errors">
@@ -130,7 +106,6 @@ export default {
       slug: '',
       slugEdited: false,
       description: '',
-      isChecked: true,
     };
   },
   asyncComputed: {
@@ -170,12 +145,6 @@ export default {
     },
     markSlugEdited() {
       this.slugEdited = true;
-    },
-    toggleCheck(e) {
-      const id = e.target.id;
-      return id
-        ? (this.isChecked = id === 'public-new-version')
-        : (this.isChecked = !this.isChecked);
     },
   },
 };
