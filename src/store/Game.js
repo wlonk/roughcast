@@ -74,9 +74,13 @@ const getters = {
   hydratedGame: (state, getters, rootState) => (slug) => {
     const game = _.find(state.all, (g) => g.slug === slug);
     const team = _.find(rootState.Team.all, (p) => p.slug === game.team);
-    const versions = _.filter(
-      rootState.Version.all,
-      (v) => v.game === game.slug,
+    const versions = _.orderBy(
+      _.filter(
+        rootState.Version.all,
+        (v) => v.game === game.slug,
+      ),
+      ['created_at'],
+      ['desc']
     );
     return {
       ...game,

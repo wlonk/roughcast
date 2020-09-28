@@ -45,7 +45,7 @@ pytest-factoryboy==2.0.3  # via -r requirements/dev.in
 pytest-freezegun==0.4.2   # via -r requirements/dev.in
 pytest==6.0.2             # via -r requirements/dev.in, pytest-cov, pytest-django, pytest-factoryboy, pytest-freezegun
 python-dateutil==2.8.1    # via faker, freezegun
-regex==2020.7.14          # via black
+regex==2020.9.27          # via black
 six==1.15.0               # via packaging, pip-tools, python-dateutil
 text-unidecode==1.3       # via faker
 toml==0.10.1              # via black, pytest

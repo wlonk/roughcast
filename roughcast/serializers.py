@@ -489,6 +489,7 @@ class VersionSerializer(serializers.ModelSerializer):
         model = Version
         fields = (
             "id",
+            "created_at",
             "created_by",
             "created_by_setter",
             "game",
@@ -502,6 +503,9 @@ class VersionSerializer(serializers.ModelSerializer):
             "archive_link",
             "permissions",
         )
+        extra_kwargs = {
+            "created_at": {"read_only": True},
+        }
 
     id = serializers.CharField(read_only=True)
     slug = SlugField()

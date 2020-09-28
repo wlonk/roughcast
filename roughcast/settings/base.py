@@ -171,19 +171,21 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 MEDIA_ROOT = str(BASE_DIR / "media")
 MEDIA_URL = "/media/"
 
-# Crispy Forms
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", default=None)
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", default=None)
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME", default=None)
+AWS_S3_FILE_OVERWRITE = False
+# We keep the file URLs in browser long enough that we can't rely on
+# querystring auth:
+AWS_QUERYSTRING_AUTH = False
 
 
 # Email
 DEFAULT_FROM_EMAIL = "no-reply@roughcast.app"
 DEFAULT_SUPPORT_EMAIL = "support@roughcast.app"
-# @@@ TODO: get rid of conditionals in settings. Move to .dev?
-if DEBUG:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-else:
-    EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-    SENDGRID_API_KEY = env("SENDGRID_API_KEY")
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = env("SENDGRID_API_KEY", default=None)
 
 
 # Django-registration
