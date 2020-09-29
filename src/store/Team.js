@@ -9,7 +9,7 @@ const mutations = {
   setTeams(state, teams) {
     state.all = teams;
   },
-  getTeamById(state, team) {
+  setTeamById(state, team) {
     state.all = {
       ...state.all,
       [team.id]: team,
@@ -38,19 +38,41 @@ const actions = {
     const response = await api.get(`teams/${id}/`);
     if (response.ok) {
       const team = response.data;
-      commit('getTeamById', team);
+      commit('setTeamById', team);
     } else {
       // TODO: Display lookup error toast?
     }
   },
   async createNewTeam({ commit }, data) {
-    const response = await api.post('teams/', data);
-    if (response.ok) {
+    try {
+      const response = await api.post('teams/', data);
       const newTeam = response.data;
-      commit('getTeamById', newTeam);
-      commit('retrieveTeamMemberships');
-    } else {
-      // TODO: Display lookup error toast?
+      commit('setTeamById', newTeam);
+      return {};
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      } else {
+        return {
+          non_field_errors: ['There was error communicating with the server'],
+        };
+      }
+    }
+  },
+  async editTeam({ commit }, { slug, data }) {
+    try {
+      const response = await api.patch(`teams/${slug}/`, data);
+      const newTeam = response.data;
+      commit('setTeamById', newTeam);
+      return {};
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      } else {
+        return {
+          non_field_errors: ['There was error communicating with the server'],
+        };
+      }
     }
   },
 };

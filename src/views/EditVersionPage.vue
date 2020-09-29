@@ -16,22 +16,7 @@
       <div>
         <ScrollingEditVersionMenu />
         <div>
-          <EditPublicVersionInfoForm
-            :changelog="version.changelog"
-            :name="version.name"
-            :slug="version.slug"
-          />
-          <div class="edit-box" id="visibility">
-            <div class="box-title">
-              <h5>Visibility settings</h5>
-            </div>
-            <p>
-              <span class="accent-link">{{ version.name }}</span>
-              is visible for
-              <span class="accent-link">{{ version.visibility || 'All' }}</span>
-            </p>
-            <button class="submit-btn no-top">Make version team-only</button>
-          </div>
+          <EditPublicVersionInfoForm v-bind="version" />
           <div class="edit-box" id="delete">
             <div class="box-title">
               <h5>Delete version</h5>

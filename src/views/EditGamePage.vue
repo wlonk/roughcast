@@ -10,12 +10,7 @@
       <div>
         <ScrollingEditGameMenu />
         <div>
-          <EditPublicGameInfoForm
-            :banner="game.banner"
-            :description="game.description"
-            :name="game.name"
-            :slug="game.slug"
-          />
+          <EditPublicGameInfoForm v-bind="game" />
           <div class="edit-box" id="visibility">
             <div class="box-title">
               <h5>Visibility settings</h5>

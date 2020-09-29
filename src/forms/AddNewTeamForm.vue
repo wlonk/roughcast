@@ -1,9 +1,9 @@
 <template>
   <div class="edit-box" id="new-team">
     <div class="box-title">
-      <h5>Create group</h5>
+      <h5>Create team</h5>
     </div>
-    <form class="page-form adding">
+    <form class="page-form adding" @submit.stop.prevent="createTeam">
       <div>
         <label for="name">Team name</label>
         <input type="text" v-model="name" placeholder="Team name" id="name" />
@@ -37,7 +37,12 @@
       </div>
       <div>
         <label for="slug">Short link (slug)</label>
-        <input type="text" placeholder="Enter short link" id="slug" />
+        <input
+          type="text"
+          placeholder="Enter short link"
+          id="slug"
+          v-model="slug"
+        />
         <ul v-if="errors.slug">
           <li
             v-for="(error, i) in errors.slug"
@@ -49,21 +54,21 @@
         </ul>
       </div>
       <div class="avatar">
-        <h6 class="section-title">Group logo</h6>
+        <h6 class="section-title">Team logo</h6>
         <img src="../assets/no-team-logo.svg" alt="No team logo" />
         <div>
           <input
             class="custom-file-upload"
             type="file"
-            id="group-image-file-loader"
+            id="team-image-file-loader"
           />
-          <label for="group-image-file-loader" class="file-loader-label"
+          <label for="team-image-file-loader" class="file-loader-label"
             >Upload</label
           >
         </div>
       </div>
       <div class="buttons">
-        <input type="submit" class="submit-btn no-top" value="Create game" />
+        <input type="submit" class="submit-btn no-top" value="Create team" />
         <ul v-if="errors.non_field_errors">
           <li
             v-for="(error, i) in errors.non_field_errors"
@@ -79,8 +84,11 @@
 </template>
 
 <script>
+import _ from 'lodash';
+import { mapActions } from 'vuex';
+
 export default {
-  name: 'AddNewGroupForm',
+  name: 'AddNewTeamForm',
   data() {
     return {
       errors: {},
@@ -88,6 +96,22 @@ export default {
       slug: '',
       description: '',
     };
+  },
+  methods: {
+    ...mapActions(['createNewTeam']),
+    async createTeam() {
+      this.errors = {};
+      const data = {
+        name: this.name,
+        slug: this.slug,
+        description: this.description,
+      };
+      const errors = await this.createNewTeam(data);
+      this.errors = errors;
+      if (_.isEmpty(errors)) {
+        this.$router.push(`/t/${this.slug}`);
+      }
+    },
   },
 };
 </script>

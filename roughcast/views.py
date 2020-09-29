@@ -265,7 +265,7 @@ class VersionViewSet(ModelViewSet):
         if self.request.user.is_authenticated:
             return Version.objects.filter(
                 Q(is_public=True) | Q(game__team__members=self.request.user)
-            )
+            ).distinct()
         else:
             return Version.objects.filter(is_public=True)
 

@@ -9,7 +9,7 @@ const mutations = {
   setVersions(state, versions) {
     state.all = versions;
   },
-  getVersionById(state, version) {
+  setVersionById(state, version) {
     state.all = {
       ...state.all,
       [version.id]: version,
@@ -43,7 +43,7 @@ const actions = {
         // TODO: Display lookup error toast?
       } else {
         const version = versions[0];
-        commit('getVersionById', version);
+        commit('setVersionById', version);
       }
     } else {
       // TODO: Display lookup error toast?
@@ -53,10 +53,26 @@ const actions = {
     const response = await api.post('versions/', data);
     if (response.ok) {
       const newVersion = response.data;
-      commit('getVersionById', newVersion);
+      commit('setVersionById', newVersion);
       return newVersion;
     } else {
       // TODO: Display lookup error toast?
+    }
+  },
+  async editVersion({ commit }, { id, data }) {
+    try {
+      const response = await api.patch(`versions/${id}/`, data);
+      const newVersion = response.data;
+      commit('setVersionById', newVersion);
+      return {};
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      } else {
+        return {
+          non_field_errors: ['There was error communicating with the server'],
+        };
+      }
     }
   },
 };
