@@ -81,12 +81,11 @@ jobs:
     docker:
       - image: 'circleci/python:latest'
         environment:
-          DJANGO_SETTINGS_MODULE: roughcast.settings.test
           DATABASE_URL: postgres://ubuntu:circle_test@localhost:5432/circle_test
           DJANGO_DEBUG: False
           HASHID_FIELD_SALT: test_hash_id
           DJANGO_SECRET_KEY: test_secret_key
-          DJANGO_SETTINGS_MODULE: roughcast.settings.base
+          DJANGO_SETTINGS_MODULE: roughcast.settings.test
           SECURE_SSL_REDIRECT: False
           SENDGRID_API_KEY: test_sendgrid_key
       - image: circleci/postgres:12.4
