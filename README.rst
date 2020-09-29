@@ -22,6 +22,7 @@ Clone the repo::
 Set up your secrets ``.env`` file::
 
    cat << EOF > .env
+   DJANGO_SETTINGS_MODULE=roughcast.settings.local
    DJANGO_SECRET_KEY=$(pwgen 50 1 -ys)
    DJANGO_DEBUG=True
    HASHID_FIELD_SALT='samplesalt'
