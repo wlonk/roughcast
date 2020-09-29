@@ -3,10 +3,15 @@
     <div class="box-title">
       <h5>Public Information</h5>
     </div>
-    <form class="page-form public">
+    <form class="page-form public" @submit.stop.prevent="edit">
       <div>
         <label for="name">Game name</label>
-        <input type="text" v-model="name" placeholder="Game name" id="name" />
+        <input
+          type="text"
+          v-model="theName"
+          placeholder="Game name"
+          id="name"
+        />
         <ul v-if="errors.name">
           <li
             v-for="(error, i) in errors.name"
@@ -22,7 +27,7 @@
         <textarea
           placeholder="Add game description"
           id="bio-info"
-          v-model="description"
+          v-model="theDescription"
         >
         </textarea>
         <ul v-if="errors.desc">
@@ -39,7 +44,7 @@
         <label for="slug">Short link (slug)</label>
         <input
           type="text"
-          v-model="slug"
+          v-model="theSlug"
           placeholder="Enter short link"
           id="slug"
         />
@@ -80,6 +85,9 @@
 </template>
 
 <script>
+import _ from 'lodash';
+import { mapActions } from 'vuex';
+
 export default {
   name: 'EditPublicGameInfoForm',
   props: {
@@ -87,11 +95,31 @@ export default {
     description: String,
     name: String,
     slug: String,
+    team: Object,
   },
   data() {
     return {
       errors: {},
+      theDescription: this.description,
+      theName: this.name,
+      theSlug: this.slug,
     };
+  },
+  methods: {
+    ...mapActions(['editGame']),
+    async edit() {
+      this.errors = {};
+      const data = {
+        name: this.theName,
+        slug: this.theSlug,
+        description: this.theDescription,
+      };
+      const errors = await this.editGame({ slug: this.slug, data });
+      this.errors = errors;
+      if (_.isEmpty(errors)) {
+        this.$router.push(`/t/${this.team.slug}/${this.slug}`);
+      }
+    },
   },
 };
 </script>

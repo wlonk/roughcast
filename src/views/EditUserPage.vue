@@ -10,7 +10,7 @@
           <ChangePasswordForm />
           <NotificationPreferences />
           <InvitationList />
-          <AddNewGroupForm />
+          <AddNewTeamForm />
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@ import ChangePasswordForm from '@/forms/ChangePasswordForm';
 import NotificationPreferences from '@/components/NotificationPreferences';
 import InvitationList from '@/components/InvitationList';
 import NoPageNotification from '@/components/NoPageNotification';
-import AddNewGroupForm from '@/forms/AddNewGroupForm';
+import AddNewTeamForm from '@/forms/AddNewTeamForm';
 
 export default {
   name: 'EditUserPage',
@@ -39,7 +39,7 @@ export default {
     NotificationPreferences,
     NoPageNotification,
     InvitationList,
-    AddNewGroupForm,
+    AddNewTeamForm,
   },
   computed: {
     ...mapGetters(['currentUser']),

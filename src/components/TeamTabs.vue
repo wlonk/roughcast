@@ -2,17 +2,17 @@
   <sui-dropdown
     icon="none"
     pointing="top right"
-    class="dropdown-menu group-tabs"
+    class="dropdown-menu team-tabs"
   >
-    <div class="section-title">Groups</div>
+    <div class="section-title">Teams</div>
     <i class="dropdown icon"></i>
     <sui-dropdown-menu>
       <sui-dropdown-item
-        v-for="group in groups"
-        :key="group.slug"
-        @click="() => selectGroup(group)"
+        v-for="team in teams"
+        :key="team.slug"
+        @click="() => selectTeam(team)"
       >
-        {{ group.name }}
+        {{ team.name }}
       </sui-dropdown-item>
     </sui-dropdown-menu>
   </sui-dropdown>
@@ -20,14 +20,14 @@
 
 <script>
 export default {
-  name: 'GroupTabs',
+  name: 'TeamTabs',
   data() {
     return {
       count: 0,
     };
   },
   props: {
-    groups: Array,
+    teams: Array,
     chosen: Object,
   },
   methods: {
@@ -37,8 +37,8 @@ export default {
     increaseCount() {
       return (this.count = this.count + 5);
     },
-    selectGroup(group) {
-      this.$emit('choose-group', group);
+    selectTeam(team) {
+      this.$emit('choose-team', team);
     },
   },
   computed: {

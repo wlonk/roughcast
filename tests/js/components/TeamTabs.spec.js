@@ -1,15 +1,15 @@
 import { shallowMount } from '@vue/test-utils';
-import GroupTabs from '@/components/GroupTabs.vue';
+import TeamTabs from '@/components/TeamTabs.vue';
 
 describe('App.vue', () => {
   it('renders', () => {
     const allGames = { name: 'All games', slug: '*' };
-    const wrapper = shallowMount(GroupTabs, {
+    const wrapper = shallowMount(TeamTabs, {
       propsData: {
-        groups: [],
+        teams: [],
         chosen: allGames,
       },
     });
-    expect(wrapper.find('.group-tabs').exists()).toBe(true);
+    expect(wrapper.find('.team-tabs').exists()).toBe(true);
   });
 });

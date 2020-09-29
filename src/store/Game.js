@@ -9,7 +9,7 @@ const mutations = {
   setGames(state, games) {
     state.all = games;
   },
-  getGameById(state, game) {
+  setGameById(state, game) {
     state.all = {
       ...state.all,
       [game.id]: game,
@@ -38,7 +38,7 @@ const actions = {
     const response = await api.get(`games/${id}/`);
     if (response.ok) {
       const game = response.data;
-      commit('getGameById', game);
+      commit('setGameById', game);
     } else {
       // TODO: Display lookup error toast?
     }
@@ -47,7 +47,23 @@ const actions = {
     try {
       const response = await api.post('games/', data);
       const newGame = response.data;
-      commit('getGameById', newGame);
+      commit('setGameById', newGame);
+      return {};
+    } catch (error) {
+      if (error.response) {
+        return error.response;
+      } else {
+        return {
+          non_field_errors: ['There was error communicating with the server'],
+        };
+      }
+    }
+  },
+  async editGame({ commit }, { slug, data }) {
+    try {
+      const response = await api.patch(`games/${slug}/`, data);
+      const newGame = response.data;
+      commit('setGameById', newGame);
       return {};
     } catch (error) {
       if (error.response) {

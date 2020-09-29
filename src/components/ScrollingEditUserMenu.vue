@@ -16,7 +16,7 @@
       Invitations
     </router-link>
     <router-link to="#new-team" class="link scrollactive-item">
-      Create group
+      Create team
     </router-link>
   </scrollactive>
 </template>

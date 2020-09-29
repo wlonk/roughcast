@@ -17,10 +17,10 @@
         </button>
         <button
           @click="toggleTab"
-          :class="active_tab === 'group' && 'active'"
-          data-tab="group"
+          :class="active_tab === 'team' && 'active'"
+          data-tab="team"
         >
-          Groups
+          Teams
         </button>
         <div class="bottom-border"></div>
       </div>
@@ -31,7 +31,7 @@
       :userCanAddGames="false"
       :games="gamesWithTeam"
     />
-    <TeamList v-if="active_tab === 'group'" :teams="listTeams" />
+    <TeamList v-if="active_tab === 'team'" :teams="listTeams" />
   </div>
 </template>
 

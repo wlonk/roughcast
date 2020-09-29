@@ -4,12 +4,12 @@
     <div class="wrapper">
       <div>
         <div class="box-title">
-          <h5>{{ chosenGroup.name }}</h5>
+          <h5>{{ chosenTeam.name }}</h5>
         </div>
-        <GroupTabs
-          @choose-group="changeActiveGroup"
-          :groups="groups"
-          :chosen="chosenGroup"
+        <TeamTabs
+          @choose-team="changeActiveTeam"
+          :teams="teams"
+          :chosen="chosenTeam"
         />
       </div>
       <UserGames :games="filteredGames" />
@@ -22,7 +22,7 @@ import { mapGetters } from 'vuex';
 
 import UserProfileCard from '@/components/UserProfileCard';
 import UserGames from '@/components/UserGames';
-import GroupTabs from '@/components/GroupTabs';
+import TeamTabs from '@/components/TeamTabs';
 
 const allGames = { name: 'All games', slug: '*' };
 
@@ -30,17 +30,17 @@ export default {
   name: 'UserDetail',
   components: {
     UserProfileCard,
-    GroupTabs,
+    TeamTabs,
     UserGames,
   },
   data() {
     return {
-      chosenGroup: allGames,
+      chosenTeam: allGames,
     };
   },
   methods: {
-    changeActiveGroup(group) {
-      this.chosenGroup = group;
+    changeActiveTeam(team) {
+      this.chosenTeam = team;
     },
   },
   computed: {
@@ -48,17 +48,17 @@ export default {
     user() {
       return this.hydratedUser(this.$route.params.username);
     },
-    groups() {
+    teams() {
       return [
         allGames,
         ...this.myTeams.map((t) => ({ name: t.name, slug: t.slug })),
       ];
     },
     filteredGames() {
-      if (this.chosenGroup.slug === '*') {
+      if (this.chosenTeam.slug === '*') {
         return this.listGames;
       }
-      return this.gamesForTeam(this.chosenGroup.slug);
+      return this.gamesForTeam(this.chosenTeam.slug);
     },
   },
   created() {

@@ -59,7 +59,7 @@
         </ul>
       </div>
       <div class="avatar">
-        <h6 class="section-title">Group image</h6>
+        <h6 class="section-title">Team image</h6>
         <img src="../assets/no-game-image.svg" alt="No image" />
         <div>
           <input
