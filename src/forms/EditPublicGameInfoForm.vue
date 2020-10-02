@@ -138,7 +138,7 @@ export default {
         name: this.theName,
         slug: this.theSlug,
         description: this.theDescription,
-        default_is_public: this.theDefault_is_public, 
+        default_is_public: this.theDefault_is_public,
       };
       const errors = await this.editGame({ slug: this.slug, data });
       this.errors = errors;
