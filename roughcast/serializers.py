@@ -453,6 +453,7 @@ class GameSerializer(serializers.ModelSerializer):
             "description",
             "latest_version",
             "permissions",
+            "default_is_public",
         )
 
     id = serializers.CharField(read_only=True)

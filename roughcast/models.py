@@ -222,6 +222,7 @@ class Game(SubscribableMixin, BasicModelMixin, SimpleSlugMixin, models.Model):
     name = StringField()
     banner = models.ImageField(null=True, blank=True)
     description = models.TextField()
+    default_is_public = models.BooleanField(default=False)
 
     subscribable = models.OneToOneField(Subscribable, on_delete=models.CASCADE)
 

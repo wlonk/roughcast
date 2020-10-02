@@ -120,16 +120,16 @@ export default {
   name: 'AddNewVersionForm',
   props: {
     forTeam: String,
-    forGame: String,
+    forGame: Object,
   },
   data() {
     return {
-      game: this.forGame,
+      game: this.forGame.slug,
       name: '',
       slug: '',
       slugEdited: false,
       changelog: '',
-      is_public: true,
+      is_public: this.forGame.default_is_public,
       errors: {},
     };
   },
@@ -147,7 +147,7 @@ export default {
       try {
         const params = {
           slug: this.slug,
-          game__slug: this.forGame,
+          game__slug: this.forGame.slug,
         };
         const response = await this.$http.get('versions/', { params });
         return response.ok && response.data.length > 0;

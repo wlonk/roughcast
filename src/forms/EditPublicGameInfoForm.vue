@@ -58,6 +58,29 @@
           </li>
         </ul>
       </div>
+      <div class="custom-toggle">
+        <input
+          type="radio"
+          name="visibility-new-version"
+          id="private-new-version"
+          class="private-input"
+          :value="false"
+          @click="togglePublic"
+          v-model="theDefault_is_public"
+        />
+        <label for="private-new-version">Team-only</label>
+        <div class="selector" @click="togglePublic"></div>
+        <input
+          type="radio"
+          name="visibility-new-version"
+          id="public-new-version"
+          class="public-input"
+          :value="true"
+          @click="togglePublic"
+          v-model="theDefault_is_public"
+        />
+        <label for="public-new-version">Public</label>
+      </div>
       <div class="avatar">
         <h6 class="section-title">Game image</h6>
         <img v-if="banner" :src="banner" :alt="`${name} banner`" />
@@ -96,6 +119,7 @@ export default {
     name: String,
     slug: String,
     team: Object,
+    default_is_public: Boolean,
   },
   data() {
     return {
@@ -103,6 +127,7 @@ export default {
       theDescription: this.description,
       theName: this.name,
       theSlug: this.slug,
+      theDefault_is_public: this.default_is_public,
     };
   },
   methods: {
@@ -113,12 +138,19 @@ export default {
         name: this.theName,
         slug: this.theSlug,
         description: this.theDescription,
+        default_is_public: this.theDefault_is_public,
       };
       const errors = await this.editGame({ slug: this.slug, data });
       this.errors = errors;
       if (_.isEmpty(errors)) {
         this.$router.push(`/t/${this.team.slug}/${this.slug}`);
       }
+    },
+    togglePublic(e) {
+      const id = e.target.id;
+      return id
+        ? (this.theDefault_is_public = id === 'public-new-version')
+        : (this.theDefault_is_public = !this.theDefault_is_public);
     },
   },
 };

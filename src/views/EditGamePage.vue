@@ -23,7 +23,7 @@
             <button class="submit-btn no-top">Make game team-only</button>
           </div>
           <VersionHistory :versions="game.versions" />
-          <AddNewVersionForm :forTeam="teamSlug" :forGame="game.slug" />
+          <AddNewVersionForm :forTeam="teamSlug" :forGame="game" />
           <div class="edit-box" id="delete">
             <div class="box-title">
               <h5>Delete game</h5>
@@ -54,7 +54,7 @@ import NoPageNotification from '@/components/NoPageNotification';
 import VersionHistory from '@/components/VersionHistory';
 
 export default {
-  name: 'EditTeamPage',
+  name: 'EditGamePage',
   components: {
     ScrollingEditGameMenu,
     EditPublicGameInfoForm,

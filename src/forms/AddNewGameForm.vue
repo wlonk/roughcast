@@ -58,6 +58,29 @@
           </li>
         </ul>
       </div>
+      <div class="custom-toggle">
+        <input
+          type="radio"
+          name="visibility-new-version"
+          id="private-new-version"
+          class="private-input"
+          :value="false"
+          @click="togglePublic"
+          v-model="default_is_public"
+        />
+        <label for="private-new-version">Team-only</label>
+        <div class="selector" @click="togglePublic"></div>
+        <input
+          type="radio"
+          name="visibility-new-version"
+          id="public-new-version"
+          class="public-input"
+          :value="true"
+          @click="togglePublic"
+          v-model="default_is_public"
+        />
+        <label for="public-new-version">Public</label>
+      </div>
       <div class="avatar">
         <h6 class="section-title">Team image</h6>
         <img src="../assets/no-game-image.svg" alt="No image" />
@@ -106,6 +129,7 @@ export default {
       slug: '',
       slugEdited: false,
       description: '',
+      default_is_public: true,
     };
   },
   asyncComputed: {
@@ -131,6 +155,7 @@ export default {
         name: this.name,
         slug: this.slug,
         description: this.description,
+        default_is_public: this.default_is_public,
       };
       const errors = await this.createNewGame(data);
       this.errors = errors;
@@ -145,6 +170,12 @@ export default {
     },
     markSlugEdited() {
       this.slugEdited = true;
+    },
+    togglePublic(e) {
+      const id = e.target.id;
+      return id
+        ? (this.default_is_public = id === 'public-new-version')
+        : (this.default_is_public = !this.default_is_public);
     },
   },
 };
