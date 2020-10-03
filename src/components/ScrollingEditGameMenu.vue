@@ -3,9 +3,6 @@
     <router-link to="#public" class="scrollactive-item">
       Public information
     </router-link>
-    <router-link to="#visibility" class="scrollactive-item">
-      Visibility settings
-    </router-link>
     <router-link to="#history" class="scrollactive-item">
       Versions history
     </router-link>

@@ -11,17 +11,6 @@
         <ScrollingEditGameMenu />
         <div>
           <EditPublicGameInfoForm v-bind="game" />
-          <div class="edit-box" id="visibility">
-            <div class="box-title">
-              <h5>Visibility settings</h5>
-            </div>
-            <p>
-              <span class="accent-link">{{ game.name }}</span>
-              is visible for
-              <span class="accent-link">{{ game.visibility || 'All' }}</span>
-            </p>
-            <button class="submit-btn no-top">Make game team-only</button>
-          </div>
           <VersionHistory :versions="game.versions" />
           <AddNewVersionForm :forTeam="teamSlug" :forGame="game" />
           <div class="edit-box" id="delete">
