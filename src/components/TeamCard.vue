@@ -24,10 +24,10 @@
       <CardStatistic :games="games" :subscribers="subscribers" />
       <div class="authors">
         <AuthorPreview
-          v-for="(owner, index) in shortened_owners"
-          :key="index"
-          :username="owner.username"
-          :avatar="owner.avatar"
+          v-for="member in shortened_members"
+          :key="member.id"
+          :username="member.username"
+          :avatar="member.avatar"
         />
       </div>
     </div>
@@ -58,15 +58,15 @@ export default {
     user_is_owner: Boolean,
     user_is_member: Boolean,
     logo: String,
-    owners: Array,
+    members: Array,
     games: String,
     subscribers: String,
   },
   computed: {
-    shortened_owners() {
-      return this.owners && this.owners.length > 5
-        ? this.owners.slice(0, 5)
-        : this.owners;
+    shortened_members() {
+      return this.members && this.members.length > 5
+        ? this.members.slice(0, 5)
+        : this.members;
     },
   },
 };

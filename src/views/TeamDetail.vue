@@ -24,6 +24,8 @@ export default {
   created() {
     this.$store.dispatch('getTeamById', this.$route.params.team);
     this.$store.dispatch('retrieveGames');
+    this.$store.dispatch('retrieveUsers');
+    this.$store.dispatch('retrieveTeamMemberships');
   },
   computed: {
     ...mapGetters(['hydratedTeam']),

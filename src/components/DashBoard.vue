@@ -56,6 +56,7 @@ export default {
   created() {
     this.retrieveTeams();
     this.retrieveGames();
+    this.retrieveTeamMemberships();
   },
   computed: {
     ...mapGetters(['listGames', 'hydratedGame', 'listTeams', 'currentUser']),
@@ -64,7 +65,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['retrieveTeams', 'retrieveGames']),
+    ...mapActions(['retrieveTeams', 'retrieveGames', 'retrieveTeamMemberships']),
     toggleTab(e) {
       this.active_tab = e.target.dataset.tab;
     },

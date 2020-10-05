@@ -11,7 +11,19 @@
         <div>
           <h6 class="section-title">Description</h6>
           <RenderedMarkdown v-if="description" :body="description" />
-          <p v-else class="no-bio">There is no game description yet&hellip;</p>
+          <p v-else class="no-bio">There is no team description yet&hellip;</p>
+        </div>
+        <div class="small-card">
+          <div class="footer">
+            <div class="authors">
+              <AuthorPreview
+                v-for="member in members"
+                :key="member.id"
+                :username="member.username"
+                :avatar="member.avatar"
+                />
+            </div>
+          </div>
         </div>
         <TeamCardControlPanel
           :permissions="permissions"
@@ -27,12 +39,14 @@
 <script>
 import RenderedMarkdown from '@/components/RenderedMarkdown';
 import TeamCardControlPanel from '@/components/TeamCardControlPanel';
+import AuthorPreview from '@/components/AuthorPreview';
 
 export default {
   name: 'TeamProfileCard',
   components: {
     RenderedMarkdown,
     TeamCardControlPanel,
+    AuthorPreview,
   },
   props: {
     id: String,
@@ -44,6 +58,7 @@ export default {
     user_is_owner: Boolean,
     logo: String,
     is_invited: Boolean,
+    members: Array,
   },
 };
 </script>

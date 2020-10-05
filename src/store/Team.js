@@ -78,8 +78,18 @@ const actions = {
 };
 
 const getters = {
-  listTeams: (state) => {
-    return _.values(state.all);
+  listTeams: (state, getters, rootState) => {
+    return _.values(state.all).map(
+      (t) => {
+        const tms = _.filter(rootState.TeamMembership.all, (tm) => tm.team_id === t.id);
+        const usernames = tms.map((tm) => tm.user);
+        const members = _.uniq(_.filter(rootState.User.all, (u) => usernames.includes(u.username)));
+        return {
+          ...t,
+          members,
+        };
+      }
+    );
   },
   myTeams: (state) => {
     return _.filter(state.all, (t) => t.user_is_member);
@@ -90,9 +100,13 @@ const getters = {
   hydratedTeam: (state, getters, rootState) => (slug) => {
     const team = _.find(state.all, (p) => p.slug === slug);
     const games = _.filter(rootState.Game.all, (t) => t.team === team.slug);
+    const tms = _.filter(rootState.TeamMembership.all, (tm) => tm.team_id === team.id);
+    const usernames = tms.map((tm) => tm.user);
+    const members = _.uniq(_.filter(rootState.User.all, (u) => usernames.includes(u.username)));
     return {
       ...team,
       games,
+      members,
     };
   },
   teamById: (state) => (id) => {
