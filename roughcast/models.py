@@ -267,7 +267,7 @@ class Version(BasicModelMixin, SimpleSlugMixin, models.Model):
         return {
             "type": "versions",
             "path": f"/t/{team.slug}/{game.slug}/{self.slug}",
-            "subject": "Check out {game.name} {version.name}",
+            "subject": f"Check out {game.name} {self.name}",
             "email_template": "new_version.html",
             "email_context": {
                 "team": str(team.id),
