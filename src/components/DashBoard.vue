@@ -65,7 +65,11 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['retrieveTeams', 'retrieveGames', 'retrieveTeamMemberships']),
+    ...mapActions([
+      'retrieveTeams',
+      'retrieveGames',
+      'retrieveTeamMemberships',
+    ]),
     toggleTab(e) {
       this.active_tab = e.target.dataset.tab;
     },

@@ -21,7 +21,7 @@
                 :key="member.id"
                 :username="member.username"
                 :avatar="member.avatar"
-                />
+              />
             </div>
           </div>
         </div>
