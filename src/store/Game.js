@@ -51,7 +51,7 @@ const actions = {
       return {};
     } catch (error) {
       if (error.response) {
-        return error.response;
+        return error.response.data;
       } else {
         return {
           non_field_errors: ['There was error communicating with the server'],
