@@ -40,7 +40,7 @@
           </li>
         </ul>
       </div>
-      <div>
+      <div :class="slugError ? 'error' : ''">
         <label for="slug">Short link (slug)</label>
         <input
           type="text"
@@ -48,7 +48,10 @@
           id="slug"
           v-model="slug"
         />
-        <ul v-if="errors.slug">
+        <ul v-if="errors.slug || slugError">
+          <li v-if="slugError" class="ui error message">
+            This slug is in use.
+          </li>
           <li
             v-for="(error, i) in errors.slug"
             :key="i"
@@ -113,6 +116,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import { mapGetters, mapActions } from 'vuex';
 import slugify from './slugify';
 
@@ -167,7 +171,11 @@ export default {
         changelog: this.changelog,
         is_public: this.is_public,
       };
-      const newVersion = await this.createNewVersion(data);
+      const [newVersion, errors] = await this.createNewVersion(data);
+      if (!_.isEmpty(errors)) {
+        this.errors = errors;
+        return;
+      }
       elements['version-file-loader'].files.forEach(async (file) => {
         const data = {
           version_id: newVersion.id,

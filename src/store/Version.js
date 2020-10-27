@@ -50,13 +50,22 @@ const actions = {
     }
   },
   async createNewVersion({ commit }, data) {
-    const response = await api.post('versions/', data);
-    if (response.ok) {
+    try {
+      const response = await api.post('versions/', data);
       const newVersion = response.data;
       commit('setVersionById', newVersion);
-      return newVersion;
-    } else {
-      // TODO: Display lookup error toast?
+      return [newVersion, {}];
+    } catch (error) {
+      if (error.response) {
+        return [null, error.response.data];
+      } else {
+        return [
+          null,
+          {
+            non_field_errors: ['There was error communicating with the server'],
+          },
+        ];
+      }
     }
   },
   async editVersion({ commit }, { id, data }) {
