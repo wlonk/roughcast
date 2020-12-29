@@ -56,4 +56,14 @@
   .section-title {
     margin-bottom: 0.5rem;
   }
+
+  // Error lists:
+  ul {
+    padding-left: 0;
+  }
+  .ui.error.message {
+    list-style: none;
+    padding: 0.5em;
+    font-style: italic;
+  }
 }

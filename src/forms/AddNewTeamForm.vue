@@ -54,6 +54,7 @@
         </ul>
       </div>
       <div class="avatar">
+        <!-- Commented out until we enable this:
         <h6 class="section-title">Team logo</h6>
         <img src="../assets/no-team-logo.svg" alt="No team logo" />
         <div>
@@ -66,6 +67,7 @@
             >Upload</label
           >
         </div>
+        -->
       </div>
       <div class="buttons">
         <input type="submit" class="submit-btn no-top" value="Create team" />

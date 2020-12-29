@@ -30,9 +30,9 @@
           v-model="changelog"
         >
         </textarea>
-        <ul v-if="errors.desc">
+        <ul v-if="errors.changelog">
           <li
-            v-for="(error, i) in errors.desc"
+            v-for="(error, i) in errors.changelog"
             :key="i"
             class="ui error message"
           >
@@ -64,17 +64,28 @@
       <div>
         <label>Upload files</label>
         <div class="file-upload">
-          <p>No file chosen</p>
+          <p>{{ fileNames }}</p>
           <input
             class="custom-file-upload"
             type="file"
             id="version-file-loader"
+            ref="files"
+            @change="updateFiles"
             multiple
           />
           <label for="version-file-loader" class="file-loader-label"
             >Choose files</label
           >
         </div>
+        <ul v-if="errors.files">
+          <li
+            v-for="(error, i) in errors.files"
+            :key="i"
+            class="ui error message"
+          >
+            {{ error }}
+          </li>
+        </ul>
       </div>
       <div class="custom-toggle">
         <input
@@ -134,6 +145,7 @@ export default {
       slugEdited: false,
       changelog: '',
       is_public: this.forGame.default_is_public,
+      files: [],
       errors: {},
     };
   },
@@ -142,6 +154,10 @@ export default {
   },
   computed: {
     ...mapGetters(['dryUserOptionList']),
+    fileNames() {
+      const noFiles = 'No files chosen';
+      return this.files.map((f) => f.name).join(', ') || noFiles;
+    },
   },
   asyncComputed: {
     async slugError() {
@@ -162,8 +178,15 @@ export default {
   },
   methods: {
     ...mapActions(['createNewVersion', 'createNewAttachedFile']),
-    async createVersion(e) {
-      const elements = e.target.elements;
+    updateFiles() {
+      this.files = Array.from(this.$refs.files.files);
+    },
+    async createVersion() {
+      this.errors = this.checkFileUploads();
+      if (!_.isEmpty(this.errors)) {
+        return;
+      }
+
       const data = {
         game: this.game,
         name: this.name,
@@ -176,7 +199,8 @@ export default {
         this.errors = errors;
         return;
       }
-      elements['version-file-loader'].files.forEach(async (file) => {
+
+      this.files.forEach(async (file) => {
         const data = {
           version_id: newVersion.id,
           attached_file: file,
@@ -184,6 +208,12 @@ export default {
         await this.createNewAttachedFile(data);
       });
       this.$router.push(`/t/${this.forTeam}/${this.game}/${this.slug}`);
+    },
+    checkFileUploads() {
+      if (this.files.length < 1) {
+        return { files: ['You must upload at least one file.'] };
+      }
+      return {};
     },
     updateSlug() {
       if (!this.slugEdited) {
