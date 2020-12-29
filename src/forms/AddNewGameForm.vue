@@ -82,6 +82,7 @@
         <label for="public-new-version">Public</label>
       </div>
       <div class="avatar">
+        <!-- Remove until we enable this:
         <h6 class="section-title">Team image</h6>
         <img src="../assets/no-game-image.svg" alt="No image" />
         <div>
@@ -94,6 +95,7 @@
             >Upload</label
           >
         </div>
+        -->
       </div>
       <div class="buttons">
         <input type="submit" class="submit-btn no-top" value="Create game" />
