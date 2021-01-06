@@ -13,7 +13,7 @@
     "js:serve": "vue-cli-service serve"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "dompurify": "^2.0.17",
     "lodash": "^4.17.20",
