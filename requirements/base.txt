@@ -5,68 +5,68 @@
 #    pip-compile --output-file=requirements/base.txt requirements/base.in
 #
 aioredis==1.3.1           # via channels-redis
-asgiref==3.2.10           # via channels, channels-redis, daphne, django
+asgiref==3.3.1            # via channels, channels-redis, daphne, django
 async-timeout==3.0.1      # via aioredis
-attrs==20.2.0             # via automat, service-identity, twisted
-autobahn==20.7.1          # via daphne
+attrs==20.3.0             # via automat, service-identity, twisted
+autobahn==20.12.3         # via daphne
 automat==20.2.0           # via twisted
-beautifulsoup4==4.9.1     # via -r base.in
-bleach==3.2.0             # via -r base.in
-boto3==1.15.1             # via -r base.in
-botocore==1.18.6          # via boto3, s3transfer
-cffi==1.14.3              # via cryptography
-channels-redis==3.1.0     # via -r base.in
-channels==2.4.0           # via -r base.in, channels-redis
+beautifulsoup4==4.9.3     # via -r requirements/base.in
+bleach==3.2.1             # via -r requirements/base.in
+boto3==1.16.54            # via -r requirements/base.in
+botocore==1.19.54         # via boto3, s3transfer
+cffi==1.14.4              # via cryptography
+channels-redis==3.2.0     # via -r requirements/base.in
+channels==3.0.3           # via -r requirements/base.in, channels-redis
 confusable-homoglyphs==3.2.0  # via django-registration
 constantly==15.1.0        # via twisted
-cryptography==3.2         # via autobahn, pyopenssl, service-identity
-daphne==2.5.0             # via channels
-dj-database-url==0.5.0    # via -r base.in
-django-filter==2.3.0      # via -r base.in
-django-hashid-field==3.1.3  # via -r base.in
-django-registration==3.1  # via -r base.in
-django-sendgrid-v5==0.9.0  # via -r base.in
-django-storages==1.10.1   # via -r base.in
-django==3.1.1             # via -r base.in, channels, django-filter, django-hashid-field, django-registration, django-sendgrid-v5, django-storages, djangorestframework
-djangorestframework==3.11.1  # via -r base.in
-emoji==0.6.0              # via -r base.in
+cryptography==3.3.1       # via autobahn, pyopenssl, service-identity
+daphne==3.0.1             # via channels
+dj-database-url==0.5.0    # via -r requirements/base.in
+django-filter==2.4.0      # via -r requirements/base.in
+django-hashid-field==3.1.3  # via -r requirements/base.in
+django-registration==3.1.1  # via -r requirements/base.in
+django-sendgrid-v5==0.9.0  # via -r requirements/base.in
+django-storages==1.11.1   # via -r requirements/base.in
+django==3.1.5             # via -r requirements/base.in, channels, django-filter, django-hashid-field, django-registration, django-sendgrid-v5, django-storages, djangorestframework
+djangorestframework==3.12.2  # via -r requirements/base.in
+emoji==0.6.0              # via -r requirements/base.in
 future==0.18.2            # via django-sendgrid-v5
-gunicorn==20.0.4          # via -r base.in
+gunicorn==20.0.4          # via -r requirements/base.in
 hashids==1.3.1            # via django-hashid-field
 hiredis==1.1.0            # via aioredis
-hyperlink==20.0.1         # via twisted
-idna==2.10                # via hyperlink, twisted
-importlib-metadata==2.0.0  # via -r base.in
+hyperlink==21.0.0         # via autobahn, twisted
+idna==3.1                 # via hyperlink, twisted
+importlib-metadata==3.4.0  # via -r requirements/base.in
 incremental==17.5.0       # via twisted
 jmespath==0.10.0          # via boto3, botocore
-markdown==3.2.2           # via -r base.in
-msgpack==1.0.0            # via channels-redis
-packaging==20.4           # via bleach
-pillow==7.2.0             # via -r base.in
-psycopg2-binary==2.8.6    # via -r base.in
+markdown==3.3.3           # via -r requirements/base.in
+msgpack==1.0.2            # via channels-redis
+packaging==20.8           # via bleach
+pillow==8.1.0             # via -r requirements/base.in
+psycopg2-binary==2.8.6    # via -r requirements/base.in
 pyasn1-modules==0.2.8     # via service-identity
 pyasn1==0.4.8             # via pyasn1-modules, service-identity
 pycparser==2.20           # via cffi
 pyhamcrest==2.0.2         # via twisted
-pyopenssl==19.1.0         # via twisted
+pyopenssl==20.0.1         # via twisted
 pyparsing==2.4.7          # via packaging
 python-dateutil==2.8.1    # via botocore
 python-http-client==3.3.1  # via django-sendgrid-v5, sendgrid
-pytz==2020.1              # via django
-s3transfer==0.3.3         # via boto3
-sendgrid==6.4.7           # via django-sendgrid-v5
+pytz==2020.5              # via django
+s3transfer==0.3.4         # via boto3
+sendgrid==6.5.0           # via django-sendgrid-v5
 service-identity==18.1.0  # via twisted
-six==1.15.0               # via automat, bleach, cryptography, packaging, pyopenssl, python-dateutil
-soupsieve==2.0.1          # via beautifulsoup4
-sqlparse==0.3.1           # via django
+six==1.15.0               # via automat, bleach, cryptography, pyopenssl, python-dateutil
+soupsieve==2.1            # via beautifulsoup4
+sqlparse==0.4.1           # via django
 starkbank-ecdsa==1.1.0    # via sendgrid
 twisted[tls]==20.3.0      # via daphne
-txaio==20.4.1             # via autobahn
-urllib3==1.25.10          # via botocore
+txaio==20.12.1            # via autobahn
+urllib3==1.26.2           # via botocore
 webencodings==0.5.1       # via bleach
-whitenoise==5.2.0         # via -r base.in
-zipp==3.2.0               # via importlib-metadata
-zope.interface==5.1.0     # via twisted
+whitenoise==5.2.0         # via -r requirements/base.in
+zipp==3.4.0               # via importlib-metadata
+zope.interface==5.2.0     # via twisted
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
