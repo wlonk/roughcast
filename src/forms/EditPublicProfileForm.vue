@@ -2,7 +2,12 @@
   <form @submit.stop.prevent="submit" class="page-form public">
     <div>
       <label for="name">Display name</label>
-      <input type="text" v-model="name" placeholder="Display name" id="name" />
+      <input
+        type="text"
+        v-model="nameData"
+        placeholder="Display name"
+        id="name"
+      />
       <ul v-if="errors.name">
         <li v-for="(error, i) in errors.name" :key="i" class="ui error message">
           {{ error }}
@@ -11,7 +16,7 @@
     </div>
     <div class="bio">
       <label for="bio-info">Bio</label>
-      <textarea placeholder="Add your bio" id="bio-info" v-model="bio">
+      <textarea placeholder="Add your bio" id="bio-info" v-model="bioData">
       </textarea>
       <ul v-if="errors.bio">
         <li v-for="(error, i) in errors.bio" :key="i" class="ui error message">
@@ -54,12 +59,16 @@ export default {
     name: String,
   },
   data() {
-    return { errors: {} };
+    return {
+      nameData: this.name,
+      bioData: this.bio,
+      errors: {},
+    };
   },
   methods: {
-    async submit(e) {
-      const first_name = e.target.elements['name'].value;
-      const bio = e.target.elements['bio-info'].value;
+    async submit() {
+      const first_name = this.nameData;
+      const bio = this.bioData;
       const data = { first_name, bio };
       try {
         const response = await this.$http.patch('users/me/', data);
