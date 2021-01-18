@@ -78,31 +78,32 @@ class User(AbstractUser):
             "email_context": <dict of additional context to put in email>,
         }
         """
-        in_app = self.profile._should_notify(
-            message["type"], NotificationPreferences.IN_APP
-        )
-        instant_email = self.profile._should_notify(
-            message["type"], NotificationPreferences.INSTANT_EMAIL
-        )
-        digest_email = self.profile._should_notify(
-            message["type"], NotificationPreferences.DIGEST_EMAIL
-        )
-        if in_app:
-            InAppNotification.objects.create(
-                user=self,
-                notification_type=message.pop("type"),
-                path=message.pop("path"),
-                subject=message.pop("subject"),
-                additional_context=message,
+        if "type" in message:
+            in_app = self.profile._should_notify(
+                message["type"], NotificationPreferences.IN_APP
             )
-        if instant_email:  # pragma: nocover
-            # @TODO: send email right away
-            pass
-        if digest_email:  # pragma: nocover
-            # @TODO: create digest-email model instance.
-            # @TODO: run weekly job to scoop up digest emails models and
-            # build and send an email.
-            pass
+            instant_email = self.profile._should_notify(
+                message["type"], NotificationPreferences.INSTANT_EMAIL
+            )
+            digest_email = self.profile._should_notify(
+                message["type"], NotificationPreferences.DIGEST_EMAIL
+            )
+            if in_app:
+                InAppNotification.objects.create(
+                    user=self,
+                    notification_type=message.pop("type"),
+                    path=message.pop("path"),
+                    subject=message.pop("subject"),
+                    additional_context=message,
+                )
+            if instant_email:  # pragma: nocover
+                # @TODO: send email right away
+                pass
+            if digest_email:  # pragma: nocover
+                # @TODO: create digest-email model instance.
+                # @TODO: run weekly job to scoop up digest emails models and
+                # build and send an email.
+                pass
 
 
 class NotificationPreferences(IntFlag):
