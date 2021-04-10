@@ -43,7 +43,7 @@ def attached_file_upload_to(instance, filename):
 # Used in EmojiReaction:
 def is_emoji(value):
     # @@@ TODO: This is simplistic for now:
-    return value in UNICODE_EMOJI
+    return value in UNICODE_EMOJI["en"]
 
 
 class AlphaTestEmail(models.Model):
