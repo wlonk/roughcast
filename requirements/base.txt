@@ -76,7 +76,7 @@ django==3.2
     #   djangorestframework
 djangorestframework==3.12.4
     # via -r requirements/base.in
-emoji==0.6.0
+emoji==1.2.0
     # via -r requirements/base.in
 future==0.18.2
     # via django-sendgrid-v5
